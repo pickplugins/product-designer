@@ -1,0 +1,44 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+.templates {
+  margin: 25px 0;
+}
+.templates .templates-list{}
+.templates .templates-list .template {
+  margin: 10px 0;
+}
+.templates .templates-list .template .move {
+  background: rgb(247, 98, 24) none repeat scroll 0 0;
+  color: #fff;
+  cursor: pointer;
+  line-height: normal;
+  padding: 4px 8px;
+}
+
+.templates .templates-list .template .remove {
+  background: rgb(247, 98, 24) none repeat scroll 0 0;
+  color: #fff;
+  cursor: pointer;
+  line-height: normal;
+  padding: 4px 8px;
+}
+
+
+.templates .templates-list .template textarea {
+  display: inline-block;
+  vertical-align: top;
+}
+
+
+
+
+
+
+
+
+
+
+
+

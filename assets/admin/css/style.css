@@ -1,0 +1,97 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+.product-sides{}
+
+.product-sides .side-list{}
+.product-sides .side-list .side {
+  margin: 20px 0;
+  padding: 5px 10px;
+}
+.product-sides .side-list .side:nth-child(2n+1) {
+  background: #e4e4e466;
+}
+.product-sides .side-list .side .upload_side{
+
+}
+
+
+
+.product-sides .side-list .side .actions .move {
+  background: rgb(247, 98, 24) none repeat scroll 0 0;
+  color: #fff;
+  cursor: pointer;
+  line-height: normal;
+  padding: 4px 8px;
+  display: inline-block;
+}
+
+.product-sides .side-list .side .actions .remove {
+  background: rgb(247, 98, 24) none repeat scroll 0 0;
+  color: #fff;
+  cursor: pointer;
+  line-height: normal;
+  padding: 4px 8px;
+  display: inline-block;
+}
+
+.product-sides .side-list .side .preview {
+  /* background: rgb(247, 98, 24) none repeat scroll 0 0; */
+  color: #fff;
+  cursor: pointer;
+  line-height: normal;
+  /* padding: 4px 8px; */
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  float: none;
+  display: inline-block;
+  border: 1px solid #ddd;
+  vertical-align: top;
+}
+.product-sides .side-list .side .preview img{
+  width: 100%;
+}
+
+
+.product-sides .side-list .side .inline {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 30px;
+}
+
+
+
+
+
+
+
+
+.product-designer-admin .faq{}
+.product-designer-admin .faq .group-title {
+  display: block;
+  font-weight: bold;
+  padding: 10px 0;
+}
+
+
+.product-designer-admin .faq .item {
+  padding-left: 20px;
+}
+.product-designer-admin .faq .item a {
+  display: block;
+  font-size: 14px;
+  padding: 4px 0;
+  text-decoration: none;
+}
+
+
+
+
+
+
+
+
+
+

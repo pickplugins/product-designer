@@ -1,0 +1,93 @@
+@font-face {
+  font-family: 'PickIcons';
+  src:  url('fonts/PickIcons.eot?95mc6k');
+  src:  url('fonts/PickIcons.eot?95mc6k#iefix') format('embedded-opentype'),
+    url('fonts/PickIcons.ttf?95mc6k') format('truetype'),
+    url('fonts/PickIcons.woff?95mc6k') format('woff'),
+    url('fonts/PickIcons.svg?95mc6k#PickIcons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="pickicon-"], [class*=" pickicon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'PickIcons' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.pickicon-circle:before {
+  content: "\e900";
+}
+.pickicon-heart:before {
+  content: "\e901";
+
+}
+.pickicon-polygon-5:before {
+  content: "\e902";
+
+}
+.pickicon-polygon-6:before {
+  content: "\e903";
+
+}
+.pickicon-polygon-7:before {
+  content: "\e904";
+
+}
+.pickicon-polygon-8:before {
+  content: "\e905";
+
+}
+.pickicon-polygon-9:before {
+  content: "\e906";
+
+}
+.pickicon-polygon-10:before {
+  content: "\e907";
+
+}
+.pickicon-square:before {
+  content: "\e908";
+
+}
+.pickicon-square-round:before {
+  content: "\e909";
+
+}
+.pickicon-star-5:before {
+  content: "\e90a";
+
+}
+.pickicon-star-6:before {
+  content: "\e90b";
+
+}
+.pickicon-star-7:before {
+  content: "\e90c";
+
+}
+.pickicon-star-8:before {
+  content: "\e90d";
+
+}
+.pickicon-star-9:before {
+  content: "\e90e";
+
+}
+.pickicon-star-10:before {
+  content: "\e90f";
+
+}
+.pickicon-triangle:before {
+  content: "\e910";
+
+}
