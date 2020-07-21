@@ -20,13 +20,13 @@ class class_product_designer_shortcodes  {
                 ),
             $atts);
 
-        $html = '';
-        $post_id = isset($atts['id']) ? sanitize_text_field($atts['id']) : '';
 
+        $atts = apply_filters('product_designer_atts', $atts);
 
         ob_start();
-        include product_designer_plugin_dir.'/templates/product-designer/product-designer.php';
-        echo $html;
+
+        do_action('product_designer', $atts);
+
         return ob_get_clean();
 
     }

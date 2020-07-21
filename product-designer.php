@@ -35,6 +35,7 @@ class ProductDesigner{
 		require_once( product_designer_plugin_dir . 'includes/class-post-meta.php');
 		require_once( product_designer_plugin_dir . 'includes/functions-wc.php');
         require_once( product_designer_plugin_dir . 'includes/settings-hook.php');
+        require_once( product_designer_plugin_dir . 'templates/product-designer/product-designer-hook.php');
 
 
 

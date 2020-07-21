@@ -1,9 +1,6 @@
 <?php
 
-/*
-* @Author 		pickplugins
-* Copyright: 	2015 pickplugins
-*/
+
 
 if ( ! defined('ABSPATH')) exit;  // if direct access
 
@@ -103,7 +100,7 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 
 
 
-            <?php do_action('product_designer', $product_id);
+            <?php //do_action('product_designer', $product_id);
 
 
 
