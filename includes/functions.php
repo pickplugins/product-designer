@@ -80,8 +80,8 @@ function product_designer_get_product_list()
 
 function product_designer_get_product_list_ajax()
 	{
-		if(isset($_POST['offset'])) $offset = (int)$_POST['offset'];
-		if(isset($_POST['product_terms'])) $product_terms = (int)$_POST['product_terms'];		
+		if(isset($_POST['offset'])) $offset = (int)sanitize_text_field($_POST['offset']);
+		if(isset($_POST['product_terms'])) $product_terms = (int)sanitize_text_field($_POST['product_terms']);
 		
 		$product_designer_posts_per_page = get_option('product_designer_posts_per_page');
 		if(empty($product_designer_posts_per_page))	
@@ -180,8 +180,8 @@ add_action('wp_ajax_nopriv_product_designer_get_product_list_ajax', 'product_des
 
 function product_designer_product_list_by_cat_ajax()
 	{
-		if(isset($_POST['offset'])) $offset = (int)$_POST['offset'];
-		if(isset($_POST['product_terms'])) $product_terms = $_POST['product_terms'];		
+		if(isset($_POST['offset'])) $offset = (int)sanitize_text_field($_POST['offset']);
+		if(isset($_POST['product_terms'])) $product_terms = stripslashes_deep($_POST['product_terms']);
 		
 		$product_designer_posts_per_page = get_option('product_designer_posts_per_page');
 		
@@ -345,8 +345,8 @@ function product_designer_get_sticker_cat()
 	
 function product_designer_get_sticker_list_ajax()
 	{
-		if(isset($_POST['offset'])) $offset = (int)$_POST['offset'];
-		if(isset($_POST['sticker_terms'])) $sticker_terms = (int)$_POST['sticker_terms'];		
+		if(isset($_POST['offset'])) $offset = (int) sanitize_text_field($_POST['offset']);
+		if(isset($_POST['sticker_terms'])) $sticker_terms = (int) sanitize_text_field($_POST['sticker_terms']);
 		
 		$product_designer_posts_per_page = get_option('product_designer_posts_per_page');
 		if(empty($product_designer_posts_per_page))	
@@ -410,7 +410,7 @@ function product_designer_get_sticker_list_ajax()
 
 			if(!empty($sticker_url))
 				{
-					$html.= '<img stickerid="'.get_the_ID().'" src="'.$sticker_url.'"/>';
+					$html.= '<img stickerid="'.get_the_ID().'" src="'.esc_url_raw($sticker_url).'"/>';
 
 				}
 		
@@ -446,8 +446,8 @@ add_action('wp_ajax_nopriv_product_designer_get_sticker_list_ajax', 'product_des
 	
 function product_designer_get_sticker_list_by_cat_ajax()
 	{
-		if(isset($_POST['offset'])) $offset = (int)$_POST['offset'];
-		if(isset($_POST['sticker_terms'])) $sticker_terms = $_POST['sticker_terms'];		
+		if(isset($_POST['offset'])) $offset = (int) sanitize_text_field($_POST['offset']);
+		if(isset($_POST['sticker_terms'])) $sticker_terms = sanitize_text_field($_POST['sticker_terms']);
 		
 		$product_designer_posts_per_page = get_option('product_designer_posts_per_page');
 		if(empty($product_designer_posts_per_page))	
@@ -511,7 +511,7 @@ function product_designer_get_sticker_list_by_cat_ajax()
 
 			if(!empty($sticker_url))
 				{
-					$html.= '<img stickerid="'.get_the_ID().'" src="'.$sticker_url.'"/>';
+					$html.= '<img stickerid="'.get_the_ID().'" src="'.esc_url_raw($sticker_url).'"/>';
 
 				}
 		
@@ -585,7 +585,7 @@ function product_designer_get_sticker_list()
 
 			if(!empty($sticker_url))
 				{
-					$html.= '<img stickerid="'.get_the_ID().'" src="'.$sticker_url.'"/>';
+					$html.= '<img stickerid="'.get_the_ID().'" src="'.esc_url_raw($sticker_url).'"/>';
 
 				}
 		
@@ -681,9 +681,9 @@ add_action('init', 'product_designer_init_session', 1);
 function product_designer_save_session() {
 	
 	
-	$side = $_POST['side'];
-	$product_id = $_POST['product_id'];
-	$url = $_POST['url'];
+	$side = isset($_POST['side']) ? sanitize_text_field($_POST['side']) : '';
+	$product_id = isset($_POST['product_id']) ? sanitize_text_field($_POST['product_id']) : '';
+	$url = isset($_POST['url']) ?  esc_url_raw($_POST['url']) : '';
 	
 	$_SESSION['product_id'] = $product_id;
 	
@@ -691,11 +691,11 @@ function product_designer_save_session() {
 	
 	 if($side == "front")
 		{
-			$_SESSION['product_designer_front'] = $url;
+			$_SESSION['product_designer_front'] = esc_url_raw($url);
 		}
 	else if($side == "back")
 		{
-			$_SESSION['product_designer_back'] = $url;
+			$_SESSION['product_designer_back'] = esc_url_raw($url);
 		}
 
 			
@@ -706,7 +706,7 @@ function product_designer_save_session() {
 			
 			
 	$uniqid = uniqid();
-	$img = $url;
+	$img = esc_url_raw($url);
 	//$img = str_replace('data:image/png;base64,', '', $img);
 	//$img = str_replace(' ', '+', $img);
 	//$data = base64_decode($img);
@@ -787,11 +787,11 @@ function product_designer_save_session() {
 		
 	 if($side == "front")
 		{
-			$_SESSION['product_designer_front_img'] = $img_url;
+			$_SESSION['product_designer_front_img'] = esc_url_raw($img_url);
 		}
 	else if($side == "back")
 		{
-			$_SESSION['product_designer_back_img'] = $img_url;
+			$_SESSION['product_designer_back_img'] = esc_url_raw($img_url);
 		}
 		
 		

@@ -19,15 +19,8 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 
 					<?php
 
-					if(!empty($_COOKIE['side_customized'])){
-						$cook_data = $_COOKIE['side_customized'];
-					}
-					else{
-						$cook_data = '';
-					}
+                    $cook_data = isset($_COOKIE['side_customized']) ? sanitize_text_field($_COOKIE['side_customized']) : '';
 
-					//var_dump(stripslashes($cook_data));
-					//var_dump(unserialize($cook_data));
 					$cook_data = unserialize(stripslashes($cook_data));
 					//var_dump($cook_data);
 					if(!empty($cook_data[$product_id])){
@@ -138,7 +131,7 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 							$thumb_url = $thumb['0'];
 
 							if(!empty($thumb_url))
-								echo '<img class="" title="'.get_the_title().'" src="'.$thumb_url.'" />';
+								echo '<img class="" title="'.get_the_title().'" src="'.esc_url_raw($thumb_url).'" />';
 
 						endwhile;
 						wp_reset_query();

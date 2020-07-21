@@ -61,18 +61,18 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 
         <div class="input-group">
             <div class="input-group-title"><?php echo __('Text Color:', 'product-designer'); ?></div>
-            <input class="color  tool-button" id="font-color" title="Text Color" placeholder="#fff" type="text" value="#fff">
+            <input data-jscolor="" class="color  tool-button" id="font-color" title="Text Color" placeholder="rgba(255,255,255,1)" type="text" value="rgba(255,255,255,1)">
         </div>
 
         <div class="input-group">
             <div class="input-group-title"><?php echo __('Background Color:', 'product-designer'); ?></div>
-            <input class="color  tool-button" id="font-bg-color" title="Background Color" placeholder="#fff" type="text" value="#fff">
+            <input data-jscolor="" class="color  tool-button" id="font-bg-color" title="Background Color" placeholder="rgba(255,255,255,1)" type="text" value="rgba(255,255,255,1)">
         </div>
 
 
         <div class="input-group">
             <div class="input-group-title"><?php echo __('Outline Color:', 'product-designer'); ?></div>
-            <input class="color  tool-button" id="stroke-color" title="Outline Color" placeholder="#fff" type="text" value="#fff">
+            <input data-jscolor="" class="color  tool-button" id="stroke-color" title="Outline Color" placeholder="rgba(255,255,255,1)" type="text" value="rgba(255,255,255,1)">
         </div>
 
 
@@ -145,7 +145,7 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 
         <div class="input-group">
             <div class="input-group-title"><?php echo __('Color:', 'product-designer'); ?></div>
-            <input class="color " title="Color" id="curvedText-font-color"  placeholder="<?php echo __('Color', 'product-designer'); ?>"  type="text" value="#fff" />
+            <input data-jscolor="" class="color " title="Color" id="curvedText-font-color"  placeholder="<?php echo __('Color', 'product-designer'); ?>"  type="text" value="rgba(255,255,255,1)" />
         </div>
         <div class="input-group">
             <div class="input-group-title"><?php echo __('Opacity:', 'product-designer'); ?></div>
@@ -237,7 +237,7 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
         </div>
         <div class="input-group">
             <div class="input-group-title"><?php echo __('Color:', 'product-designer'); ?></div>
-            <input  title="<?php echo __('Color', 'product-designer'); ?>" id="shape-color" class="color " placeholder="<?php echo __('Color', 'product-designer'); ?>"  type="text" value="#fff" />
+            <input  data-jscolor="" title="<?php echo __('Color', 'product-designer'); ?>" id="shape-color" class="color " placeholder="<?php echo __('Color', 'product-designer'); ?>"  type="text" value="rgba(255,255,255,1)" />
         </div>
 
     </div>
@@ -260,7 +260,7 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 
                 if($is_variable){
 
-                    $variation_id = isset($_GET['variation_id']) ? $_GET['variation_id']: '';
+                    $variation_id = isset($_GET['variation_id']) ? sanitize_text_field($_GET['variation_id']) : '';
                     $variation_data= new WC_Product_Variation( $variation_id );
 
                     $sale_price = $variation_data->get_sale_price();

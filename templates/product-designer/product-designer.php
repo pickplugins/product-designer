@@ -26,7 +26,7 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 	
 	if(!empty($_GET['product_id'])):
 
-		$product_id = sanitize_text_field($_GET['product_id']);
+		$product_id = isset($_GET['product_id']) ? sanitize_text_field($_GET['product_id']) : '';
 
 		$product_data = wc_get_product($product_id);
 		$is_variable = $product_data->is_type('variable');
@@ -34,7 +34,7 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 
 		if($is_variable):
 
-            $variation_id = isset($_GET['variation_id']) ? $_GET['variation_id']: '';
+            $variation_id = isset($_GET['variation_id']) ? sanitize_text_field($_GET['variation_id']): '';
 			$pd_template_id = get_post_meta( $variation_id, 'pd_template_id', true );
 			$canvas_settings = get_post_meta( $pd_template_id, 'canvas', true );
 
@@ -69,7 +69,7 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 
 
 		if(!empty($_GET['side'])){
-			$current_side = sanitize_text_field($_GET['side']);
+			$current_side = isset($_GET['side']) ? sanitize_text_field($_GET['side']) : '';
 
 			}
 		else{

@@ -19,7 +19,7 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 
 
 
-		$cook_data = $_COOKIE['side_customized'];
+		$cook_data = isset($_COOKIE['side_customized']) ? sanitize_text_field($_COOKIE['side_customized']) : '';
 
 		//$cook_data = (stripslashes($cook_data));
 		$cook_data = unserialize(stripslashes($cook_data));
@@ -44,7 +44,7 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 
 
 
-			echo '<form class="cart" enctype="multipart/form-data" method="post" action="'.$product_designer_page_url.'?product_id='.$product_id.'&final">
+			echo '<form class="cart" enctype="multipart/form-data" method="post" action="'.esc_url_raw($product_designer_page_url).'?product_id='.$product_id.'&final">
 							<input class="input-text qty text" type="number" size="4" title="Qty" value="1" name="quantity" min="1" step="1">
 							<input type="hidden" value="'.$product_id.'" name="add-to-cart">
 							<input type="hidden" value='.serialize($prduct_cook_data).' name="tdesigner_custom_design" size="3">
@@ -101,7 +101,7 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 
 			if(isset($_POST['custom_design_cart']) )
 			{
-				echo '<a href="'.$woocommerce->cart->get_cart_url().'"><strong>'.__('View Cart', 'product-designer').'</strong></a>';
+				echo '<a href="'.wc_get_cart_url().'"><strong>'.__('View Cart', 'product-designer').'</strong></a>';
 
 				echo '<style type="text/css">';
 
@@ -164,7 +164,7 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 			}
 			else{
 
-				echo '<form class="cart" enctype="multipart/form-data" method="post" action="'.$product_designer_page_url.'?product_id='.$product_id.'&final">
+				echo '<form class="cart" enctype="multipart/form-data" method="post" action="'.esc_url_raw($product_designer_page_url).'?product_id='.$product_id.'&final">
 								<input class="input-text qty text" type="number" size="4" title="Qty" value="1" name="quantity" min="1" step="1">
 								<input type="hidden" value='.$product_id.' name="product_id" size="3"><br/>								
 								<input type="hidden" value='.serialize($prduct_cook_data).' name="tdesigner_custom_design" size="3"><br/>
@@ -205,23 +205,13 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 
 		<?php
 
-		if(!empty($_COOKIE['side_customized'])){
-			$cook_data = $_COOKIE['side_customized'];
-		}
-		else{
-			$cook_data = '';
-		}
+        $cook_data = isset($_COOKIE['side_customized']) ? sanitize_text_field($_COOKIE['side_customized']) : '';
 
 		//var_dump(stripslashes($cook_data));
 		//var_dump(unserialize($cook_data));
 		$cook_data = unserialize(stripslashes($cook_data));
 		//var_dump($cook_data);
-		if(!empty($cook_data[$product_id])){
-			$prduct_cook_data = $cook_data[$product_id];
-		}
-		else{
-			$prduct_cook_data = array();
-		}
+        $prduct_cook_data = isset($cook_data[$product_id]) ? $cook_data[$product_id] : array();
 
 		if(!empty($side_data)){
 
@@ -241,17 +231,17 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 
 				if(!empty($src)){
 					echo '<li>';
-					echo '<a title="'.__('Original design.', 'product-designer').'" class=" '.$active.'" href="'.$page_url.'?product_id='.$product_id.'&side='.$id.'">'.$name.'<img src="'.$src.'" /></a>';
+					echo '<a title="'.__('Original design.', 'product-designer').'" class=" '.$active.'" href="'.esc_url_raw($page_url).'?product_id='.$product_id.'&side='.$id.'">'.$name.'<img src="'.$src.'" /></a>';
 					echo '<i class="fa fa-hand-o-right" ></i>';
 
 					if(!empty($prduct_cook_data[$id])){
 						$attach_id = $prduct_cook_data[$id];
 						//var_dump($customized_data);
 						$attach_url = wp_get_attachment_url( $attach_id );
-						echo ' <a class="" title="'.__('Your design.', 'product-designer').'" href="#">Your design<img src="'.$attach_url.'" /></a>';
+						echo ' <a class="" title="'.__('Your design.', 'product-designer').'" href="#">Your design<img src="'.esc_url_raw($attach_url).'" /></a>';
 					}
 					else{
-						echo ' <a class="" title="'.__('Empty', 'product-designer').'" href="#">&nbsp;<img src="'.product_designer_plugin_url.'assets/front/images/placeholder.png" /></a>';
+						echo ' <a class="" title="'.__('Empty', 'product-designer').'" href="#">&nbsp;<img src="'.esc_url_raw(product_designer_plugin_url).'assets/front/images/placeholder.png" /></a>';
 					}
 
 
@@ -266,7 +256,7 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 		}
 		else{
 
-			echo '<span>'.__('Not avilable.', 'product-designer').'</span>';
+			echo '<span>'.__('Not available.', 'product-designer').'</span>';
 
 		}
 

@@ -28,7 +28,7 @@ $product_designer_editor['product_type']  = $product_type;
 
 if($product_type == 'variable'){
 
-	$variation_id = isset($_GET['variation_id']) ? $_GET['variation_id']: '';
+	$variation_id = isset($_GET['variation_id']) ? sanitize_text_field($_GET['variation_id']) : '';
 
 	$product_designer_editor['variation_id']  = $variation_id;
 
@@ -86,8 +86,8 @@ $product_designer_editor['wc_currency_symbol']  = $wc_currency_symbol;
 
 $product_designer_editor['session_id']  = $session_id;
 
-$product_designer_editor['width']  = $canvas_settings['width'];
-$product_designer_editor['height']  = $canvas_settings['height'];
+$product_designer_editor['width']  = isset($canvas_settings['width']) ? $canvas_settings['width'] : '';
+$product_designer_editor['height']  = isset($canvas_settings['height']) ? $canvas_settings['height'] : '';
 
 
 $product_designer_editor['output_file_format']  = isset($canvas_settings['output']['file_format']) ? $canvas_settings['output']['file_format'] : 'png';

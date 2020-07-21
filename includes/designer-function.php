@@ -77,182 +77,6 @@ function Tdesigner_google_fonts(){
 
 
 
-
-
-add_action('wp_ajax_clipart_upload', function(){
-
-		check_ajax_referer('photo-upload');
-		
-		// you can use WP's wp_handle_upload() function:
-		$file = $_FILES['async-upload'];
-		
-		$status = wp_handle_upload($file, array('action' => 'clipart_upload'));
-
-		$file_loc = $status['file'];
-		$file_name = basename($status['name']);
-		$file_type = wp_check_filetype($file_name);
-	
-		$attachment = array(
-			'post_mime_type' => $status['type'],
-			'post_title' => preg_replace('/\.[^.]+$/', '', basename($file['name'])),
-			'post_content' => '',
-			'post_status' => 'inherit'
-		);
-	
-		$attach_id = wp_insert_attachment($attachment, $file_loc);
-		$attach_data = wp_generate_attachment_metadata($attach_id, $file_loc);
-		wp_update_attachment_metadata($attach_id, $attach_data);
-		//echo $attach_id;
-	
-	
-		$user_id = get_current_user_id();
-	
-	    $clipart_post = array(
-	      'post_title'    => __('Custom clipart', 'product-designer'),
-	      'post_status'   => 'publish',
-	      'post_author'   => $user_id,
-	      'post_type'     =>'clipart'
-		);
-	
-		$clipart_ID = wp_insert_post( $clipart_post );
-		update_post_meta( $clipart_ID, '_thumbnail_id', $attach_id );
-	
-	
-	
-	
-	
-		$attach_title = get_the_title($attach_id);
-	
-		$html['attach_url'] = wp_get_attachment_url($attach_id);
-		$html['attach_id'] = $attach_id;
-		$html['attach_title'] = get_the_title($attach_id);	
-	
-		$response = array(
-							'status'=>'ok',
-							'html'=>$html,
-							
-							
-							);
-	
-		echo json_encode($response);
-
-  exit;
-});
-
-
-
-
-	add_filter( 'woocommerce_add_cart_item', 'Tdesigner_add_cart_item' , 10, 1 );
-	function Tdesigner_add_cart_item( $cart_item ) {
-		if ( (!empty( $cart_item['tdesigner_custom_design'] ))) {
-
-		}
-
-		return $cart_item;
-	}
-
-
-
-
-
-
-	add_action( 'woocommerce_add_order_item_meta',  'Tdesigner_add_order_item_meta' , 10, 2 );
-	function Tdesigner_add_order_item_meta( $item_id, $cart_item ) {
-	 
-	 //order completed page. & admin
-	 
-	// var_dump($cart_item);
-	 
-		if ( (!empty( $cart_item['tdesigner_custom_design'] ))){
-			
-				 woocommerce_add_order_item_meta( $item_id, 'tdesigner_custom_design', $cart_item['tdesigner_custom_design'] );
-
-			}		 
-			 
-	}
-
-	add_filter( 'woocommerce_add_cart_item_data', 'Tdesigner_add_cart_item_data', 10, 2 );
-	function Tdesigner_add_cart_item_data( $cart_item_meta, $product_id ) {
-		global $woocommerce;
-
-		if ( (!empty( $_POST['tdesigner_custom_design'] ))  ){
-			
-			$cart_item_meta['tdesigner_custom_design'] = stripslashes($_POST['tdesigner_custom_design']);
-			
-			}
-	//var_dump($cart_item_meta);
-		//var_dump($_POST);
-
-		return $cart_item_meta;
-	}
-
-
-
-
-
-
-	add_filter( 'woocommerce_get_cart_item_from_session', 'Tdesigner_get_cart_item_from_session' , 10, 2 );
-	function Tdesigner_get_cart_item_from_session( $cart_item, $values ) {
-
-
-	
-		if ( (!empty( $values['tdesigner_custom_design'] )) ) {
-			
-			$cart_item['tdesigner_custom_design'] = $values['tdesigner_custom_design'];
-		}
-		
-
-		return $cart_item;
-	}
-
-
-
-	
-	add_filter( 'woocommerce_get_item_data',  'Tdesigner_get_item_data' , 10, 2 );
-	function Tdesigner_get_item_data( $item_data, $cart_item ) {
-		
-	// at cart page, checkout page
-		if ( (!empty( $cart_item['tdesigner_custom_design']) )){
-			
-			$tdesigner_custom_design = $cart_item['tdesigner_custom_design'];
-			
-			$tdesigner_custom_design = unserialize($tdesigner_custom_design);
-			
-			//var_dump($cart_item);
-			
-			$product_id = $cart_item['product_id'];
-			
-			$side_data = get_post_meta($product_id, 'side_data', true);
-			
-			//var_dump($side_data);
-			//var_dump($cart_item);
-			$html = '<br />';
-			foreach($tdesigner_custom_design as $side=>$design_id){
-				
-				$attach_url = wp_get_attachment_url( $design_id );
-				
-				$html.= '<img class="" title='.$side_data[$side]['name'].' width="30" src='.$attach_url.' /> ';
-				}
-			
-			//var_dump($val);
-			
-			$item_data[] = array(
-				'name'    => __( 'Custom Design', 'product-designer' ),
-				'value'   => $tdesigner_custom_design,
-				'display' => $html
-			);
-			
-		}
-			
-			
-		
-
-			
-	
-
-		return $item_data;
-	}
-	
 	
 	function product_designer_page_list_ids()
 		{	
@@ -339,16 +163,13 @@ function product_designer_ajax_create_template(){
 
 	$form_data = array();
 
-	$json = $_POST['json'];
-	//$current_side = $_POST['current_side'];
-	//$product_id = $_POST['product_id'];
-
+	$json = isset($_POST['json']) ? sanitize_text_field($_POST['json']) : '';
 
 	parse_str($_POST['form_data'], $form_data);
-	$product_id = $form_data['product_id'];
-	$side_id = $form_data['side_id'];
+	$product_id = isset($form_data['product_id']) ? sanitize_text_field($form_data['product_id']) : '';
+	$side_id = isset($form_data['side_id']) ? sanitize_text_field($form_data['side_id']) : '';
 	$template_id = time();
-	$template_name = $form_data['template_name'];
+	$template_name = isset($form_data['template_name']) ? sanitize_text_field($form_data['template_name']) : '';
 
 
 
@@ -392,10 +213,10 @@ add_action('wp_ajax_product_designer_ajax_create_template', 'product_designer_aj
 	
 function product_designer_ajax_update_template(){
 	
-	$json = $_POST['json'];
-	$current_side = $_POST['current_side'];	
-	$t_id = $_POST['t_id'];		
-	$product_id = $_POST['product_id'];
+	$json = isset( $_POST['json']) ?  sanitize_text_field($_POST['json']) : '';
+	$current_side = isset($_POST['current_side']) ? sanitize_text_field($_POST['current_side']) : '';
+	$t_id = isset($_POST['t_id']) ? sanitize_text_field($_POST['t_id']) : '';
+	$product_id = isset($_POST['product_id']) ? sanitize_text_field($_POST['product_id']) : '';
 	
 	
 	$templates = get_post_meta($product_id, 'templates', true);
@@ -442,8 +263,8 @@ add_action('wp_ajax_nopriv_product_designer_ajax_update_template', 'product_desi
 	
 function product_designer_ajax_load_pre_template(){
 	
-	$pre_template_id = $_POST['pre_template_id'];
-	$pd_template_id = $_POST['pd_template_id'];
+	$pre_template_id = isset($_POST['pre_template_id']) ? sanitize_text_field($_POST['pre_template_id']) : '';
+	$pd_template_id = isset($_POST['pd_template_id']) ? sanitize_text_field($_POST['pd_template_id']) : '';
 	$response = array();
 	
 	
@@ -482,9 +303,9 @@ add_action('wp_ajax_nopriv_product_designer_ajax_load_pre_template', 'product_de
 	
 function product_designer_ajax_base64_uplaod(){
 	
-	$base_64 = $_POST['base_64'];
-	$current_side = (string)$_POST['current_side'];	
-	$product_id = (string)$_POST['product_id'];
+	$base_64 = isset($_POST['base_64']) ? sanitize_text_field($_POST['base_64']) : '';
+	$current_side = isset($_POST['current_side']) ? (string) sanitize_text_field($_POST['current_side']) : '';
+	$product_id = isset($_POST['product_id']) ? (string) sanitize_text_field($_POST['product_id']) : '';
 
 
 	$title = "Tattoo : ";
@@ -541,7 +362,7 @@ function product_designer_ajax_base64_uplaod(){
 	 'post_title' => preg_replace('/\.[^.]+$/', '', basename($filename)),
 	 'post_content' => '',
 	 'post_status' => 'inherit',
-	 'guid' => $wp_upload_dir['url'] . '/' . basename($filename)
+	 'guid' => esc_url_raw($wp_upload_dir['url']) . '/' . basename($filename)
 	 );
 		
 	$attach_id = wp_insert_attachment( $attachment, $filename );
@@ -552,13 +373,13 @@ function product_designer_ajax_base64_uplaod(){
 	
 	$response = array();
 	$response['attach_id'] = $attach_id;
-	$response['attachment_url'] = $attach_url;		
+	$response['attachment_url'] = esc_url_raw($attach_url);
 	
 	//echo json_encode($response);
 	
 	$cookie_name = "side_customized";
 	
-	$cook_data = $_COOKIE[$cookie_name];
+	$cook_data = isset($_COOKIE[$cookie_name]) ? sanitize_text_field($_COOKIE[$cookie_name]) : '';
 	$cook_data = unserialize(stripslashes($cook_data));	
 	//$cook_data = array();
 	$cook_data[$product_id][$current_side] = $attach_id;
@@ -598,7 +419,7 @@ function product_designer_ajax_temp_save_side_output(){
 
 
 
-	$product_id = isset($_POST['product_id']) ? $_POST['product_id'] : '';
+	$product_id = isset($_POST['product_id']) ? sanitize_text_field($_POST['product_id']) : '';
 
 
 	$session_id = session_id();
@@ -608,7 +429,7 @@ function product_designer_ajax_temp_save_side_output(){
 		// @new
 		$upload_path      = str_replace( '/', DIRECTORY_SEPARATOR, $upload_dir['path'] ) . DIRECTORY_SEPARATOR;
 
-		$img = $_POST['base_64'];
+		$img = isset($_POST['base_64']) ?  sanitize_text_field($_POST['base_64']) : '';
 		$img = str_replace('data:image/png;base64,', '', $img);
 		$img = str_replace(' ', '+', $img);
 
@@ -653,7 +474,7 @@ function product_designer_ajax_temp_save_side_output(){
 			'post_title' => preg_replace('/\.[^.]+$/', '', basename($filename)),
 			'post_content' => '',
 			'post_status' => 'inherit',
-			'guid' => $upload_dir['url'] . '/' . basename($filename)
+			'guid' => esc_url_raw($upload_dir['url']) . '/' . basename($filename)
 		);
 
 		$attach_id = wp_insert_attachment( $attachment, $filename, 289 );
@@ -693,7 +514,7 @@ function product_designer_ajax_delete_attach_id(){
 
 
 
-	$attach_id = isset($_POST['attach_id']) ? $_POST['attach_id'] : '';
+	$attach_id = isset($_POST['attach_id']) ? sanitize_text_field($_POST['attach_id']) : '';
 
 	if ( false === wp_delete_attachment( $attach_id ) ) {
 
@@ -734,8 +555,8 @@ function product_designer_ajax_paged_clipart_list(){
 		
 		
 		$response = array();
-		$cat_id = sanitize_text_field($_POST['cat']);
-		$paged = sanitize_text_field($_POST['paged']);		
+		$cat_id = isset($_POST['cat']) ? sanitize_text_field($_POST['cat']) : '';
+		$paged = isset($_POST['paged']) ? sanitize_text_field($_POST['paged']) : '';
 		
 		if($cat_id=='all'){
 			$tax_query = array();
@@ -809,7 +630,7 @@ function product_designer_ajax_get_clipart_list(){
 		$product_designer_posts_per_page = get_option('product_designer_posts_per_page');
 		
 		$response = array();
-		$cat_id = sanitize_text_field($_POST['cat']);	
+		$cat_id = isset($_POST['cat']) ? sanitize_text_field($_POST['cat']) : '';
 		
 		if($cat_id=='all'){
 			$tax_query = array();

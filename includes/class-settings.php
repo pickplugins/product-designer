@@ -1,36 +1,42 @@
 <?php
-if ( ! defined('ABSPATH')) exit;  // if direct access 	
 
+/*
+* @Author 		pickplugins
+* Copyright: 	2015 pickplugins.com
+*/
 
-class product_designer_class_settings  {
-	
-	
-    public function __construct(){
+if ( ! defined('ABSPATH')) exit;  // if direct access
 
-		add_action( 'admin_menu', array( $this, 'admin_menu' ), 9 );
+class class_product_designer_settings{
 
-    }
-	
-	
-	public function admin_menu() {
-
-
-		add_menu_page(__('Product Designer', 'product-designer'), __('Product Designer', 'product-designer'), 'manage_options', 'product_designer', array( $this, 'settings' ));
-		add_submenu_page('product_designer', __('Clip Art Categories', 'product-designer'), __('Clip Art Categories', 'product-designer'), 'manage_options', 'edit-tags.php?taxonomy=clipart_cat&post_type=clipart' );
-
-
-	}
-	
-	public function settings(){
+	public function __construct(){
 		
-		include( 'menu/settings.php' );	
+		add_action('admin_menu', array( $this, 'menu_init' ));
 		
 		}
+
+
+    public function menu_init() {
+
+        add_menu_page(__('Product Designer', 'product-designer'), __('Product Designer', 'product-designer'), 'manage_options', 'product_designer', array( $this, 'settings' ), 'dashicons-store');
+
+
+
+    }
+
+	public function settings(){
+		include(product_designer_plugin_dir.'includes/menu/settings.php');
+	}
+
+
+
+
+
+
+
+
+
 	
-
-
 }
-
-
-new product_designer_class_settings();
-
+	
+new class_product_designer_settings();

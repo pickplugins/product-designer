@@ -19,14 +19,14 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 		$name = str_replace(' ','+',$Fontname);
 
 		if(!empty($font['src'])){
-			$src = $font['src'];
+			$src = isset($font['src']) ? esc_url_raw($font['src']) : '';
 			?>
-    @font-face {
-        font-family: <?php echo $Fontname; ?>;
-        src: url("<?php echo $src; ?>");
-    }
+            @font-face {
+                font-family: <?php echo $Fontname; ?>;
+                src: url("<?php echo $src; ?>");
+            }
 
-    <?php
+            <?php
 
 
 	}
@@ -52,7 +52,7 @@ else{
             ?>
 
             .canvas-container{
-                /*background:rgba(0, 0, 0, 0) url("<?php echo $src; ?>") no-repeat scroll 0 0;*/
+
             }
 
 

@@ -3,7 +3,7 @@
 Plugin Name: Product Designer
 Plugin URI: https://www.pickplugins.com/item/product-designer/?ref=dashboard
 Description: Awesome Product Designer for Woo-Commenrce.
-Version: 1.0.9
+Version: 1.0.12
 WC requires at least: 3.0.0
 WC tested up to: 3.3
 Author: PickPlugins
@@ -24,24 +24,33 @@ class ProductDesigner{
 		define('product_designer_plugin_url', plugins_url('/', __FILE__) );
 		define('product_designer_plugin_dir', plugin_dir_path( __FILE__ ) );
 		define('product_designer_plugin_name', 'Product Designer' );
-		define('product_designer_plugin_version', '1.0.9' );
+		define('product_designer_plugin_version', '1.0.12' );
 
-		require_once( plugin_dir_path( __FILE__ ) . 'includes/class-functions.php');
-		require_once( plugin_dir_path( __FILE__ ) . 'includes/class-shortcodes.php');
+        require_once( product_designer_plugin_dir . 'includes/class-settings-tabs.php');
 
-		require_once( plugin_dir_path( __FILE__ ) . 'templates/product-designer/product-designer-hook.php');
+		require_once( product_designer_plugin_dir . 'includes/class-functions.php');
+		require_once( product_designer_plugin_dir . 'includes/class-shortcodes.php');
+		require_once( product_designer_plugin_dir . 'includes/class-settings.php');
+		require_once( product_designer_plugin_dir . 'includes/class-posttypes.php');
+		require_once( product_designer_plugin_dir . 'includes/class-post-meta.php');
+		require_once( product_designer_plugin_dir . 'includes/functions-wc.php');
+        require_once( product_designer_plugin_dir . 'includes/settings-hook.php');
 
-		require_once( plugin_dir_path( __FILE__ ) . 'includes/class-settings.php');
-		require_once( plugin_dir_path( __FILE__ ) . 'includes/class-posttypes.php');			
-		require_once( plugin_dir_path( __FILE__ ) . 'includes/class-post-meta.php');
-		require_once( plugin_dir_path( __FILE__ ) . 'includes/functions-wc.php');
-		require_once( plugin_dir_path( __FILE__ ) . 'includes/designer-function.php');		
+
+
+		//require_once( product_designer_plugin_dir . 'includes/tshirt-designer-meta.php');
+		//require_once( product_designer_plugin_dir . 'includes/functions.php');
+
+		//require_once( product_designer_plugin_dir . 'includes/designer.php');
+		require_once( product_designer_plugin_dir . 'includes/designer-function.php');
 
 		add_action( 'wp_enqueue_scripts', array( $this, '_front_scripts' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, '_admin_scripts' ) );
 		add_action( 'admin_enqueue_scripts', 'wp_enqueue_media' );
 		add_action( 'plugins_loaded', array( $this, 'load_textdomain' ));
-
+		
+		add_filter('widget_text', 'do_shortcode');
+		
 		register_activation_hook( __FILE__, array( $this, 'product_designer_install' ) );
 
 		}
@@ -59,18 +68,18 @@ class ProductDesigner{
 		
 	public function product_designer_install(){
 
-		do_action( 'product_designer_install' );
+		do_action( 'product_designer_action_install' );
 		
 		}		
 		
 	public function product_designer_uninstall(){
 		
-		do_action( 'product_designer_uninstall' );
+		do_action( 'product_designer_action_uninstall' );
 		}		
 		
 	public function product_designer_deactivation(){
 		
-		do_action( 'product_designer_deactivation' );
+		do_action( 'product_designer_action_deactivation' );
 		}
 		
 		
@@ -114,6 +123,8 @@ class ProductDesigner{
 				wp_localize_script( 'product_designer_js', 'product_designer_ajax', array( 'product_designer_ajaxurl' => admin_url( 'admin-ajax.php')));
 				wp_enqueue_script('fabric.curvedText', plugins_url( '/assets/front/js/fabric.curvedText.js' , __FILE__ ) , array( 'jquery' ));
 
+				//wp_enqueue_script('anno', plugins_url( '/assets/front/js/anno.js' , __FILE__ ) , array( 'jquery' ));
+				//wp_enqueue_style('anno-css', product_designer_plugin_url.'assets/front/css/anno.css');
 
 				wp_enqueue_script('jquery-impromptu.min', plugins_url( '/assets/front/js/jquery-impromptu.min.js' , __FILE__ ) , array( 'jquery' ));
 				wp_enqueue_style('jquery-impromptu.min-css', product_designer_plugin_url.'assets/front/css/jquery-impromptu.min.css');
@@ -138,8 +149,13 @@ class ProductDesigner{
 		}		
 		
 	public function _admin_scripts(){
-		
-		wp_enqueue_script('jquery');
+
+        $screen = get_current_screen();
+
+        //var_dump($screen);
+
+
+        wp_enqueue_script('jquery');
 		wp_enqueue_script('jquery-ui-sortable');
 
 		wp_enqueue_script('product_designer_js', plugins_url( '/assets/admin/js/scripts.js' , __FILE__ ) , array( 'jquery' ));
@@ -147,14 +163,28 @@ class ProductDesigner{
 
 		wp_enqueue_style('product_designer_admin', product_designer_plugin_url.'assets/admin/css/style.css');
 		wp_enqueue_style('product_designer_style-templates', product_designer_plugin_url.'assets/admin/css/style-templates.css');		
-		
-		//ParaAdmin
-		wp_enqueue_style('ParaAdmin', product_designer_plugin_url.'ParaAdmin/css/ParaAdmin.css');
-		wp_enqueue_script('ParaAdmin', plugins_url( 'ParaAdmin/js/ParaAdmin.js' , __FILE__ ) , array( 'jquery' ));
-		
-		wp_enqueue_style('font-awesome.min', product_designer_plugin_url.'assets/global/css/font-awesome.min.css');
 
-		}
+		wp_enqueue_style('font-awesome.min', product_designer_plugin_url.'assets/global/css/font-awesome.min.css');
+		
+		//wp_enqueue_style( 'wp-color-picker' );
+		//wp_enqueue_script( 'product_designer_color_picker', plugins_url('/js/color-picker.js', __FILE__ ), array( 'wp-color-picker' ), false, true );
+        wp_register_style('font-awesome-4', product_designer_plugin_url.'assets/global/css/font-awesome-4.css');
+        wp_register_style('font-awesome-5', product_designer_plugin_url.'assets/global/css/font-awesome-5.css');
+
+        wp_register_style('settings-tabs', product_designer_plugin_url.'assets/settings-tabs/settings-tabs.css');
+        wp_register_script('settings-tabs', product_designer_plugin_url.'assets/settings-tabs/settings-tabs.js'  , array( 'jquery' ));
+
+
+        if ($screen->id == 'toplevel_page_product_designer'){
+
+            $settings_tabs_field = new settings_tabs_field();
+            $settings_tabs_field->admin_scripts();
+
+        }
+
+
+		do_action('product_designer_action_admin_scripts');
+		}		
 		
 
 

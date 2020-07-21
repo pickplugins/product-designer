@@ -110,7 +110,7 @@ function product_designer_clipart_meta( $post ) {
 		if ( ! isset( $_POST['clipart_meta_nonce'] ) )
 			return $post_id;
 
-		$nonce = $_POST['clipart_meta_nonce'];
+		$nonce = isset($_POST['clipart_meta_nonce']) ? sanitize_text_field($_POST['clipart_meta_nonce']) : '';
 
 		if ( ! wp_verify_nonce( $nonce, 'product_designer_clipart_meta' ) )
 			return $post_id;
@@ -131,7 +131,7 @@ function product_designer_clipart_meta( $post ) {
 				return $post_id;
 		}
 
-		$clipart_price =  sanitize_text_field($_POST['clipart_price']);
+		$clipart_price = isset($_POST['clipart_price']) ? sanitize_text_field($_POST['clipart_price']) : '';
 		update_post_meta( $post_id, 'clipart_price', $clipart_price );
 
 	}
@@ -146,7 +146,7 @@ function product_designer_clipart_meta( $post ) {
 		if ( ! isset( $_POST['clipart_meta_nonce'] ) )
 			return $post_id;
 
-		$nonce = $_POST['clipart_meta_nonce'];
+		$nonce = isset($_POST['clipart_meta_nonce']) ? sanitize_text_field($_POST['clipart_meta_nonce']) : '';
 
 		if ( ! wp_verify_nonce( $nonce, 'product_designer_clipart_meta' ) )
 			return $post_id;
@@ -167,7 +167,7 @@ function product_designer_clipart_meta( $post ) {
 				return $post_id;
 		}
 
-		$pd_template_id =  sanitize_text_field($_POST['pd_template_id']);
+		$pd_template_id = isset($_POST['pd_template_id']) ? sanitize_text_field($_POST['pd_template_id']) : '';
 		update_post_meta( $post_id, 'pd_template_id', $pd_template_id );
 
 	}
@@ -192,7 +192,7 @@ function product_designer_clipart_meta( $post ) {
 		if ( ! isset( $_POST['clipart_meta_nonce'] ) )
 			return $post_id;
 
-		$nonce = $_POST['clipart_meta_nonce'];
+		$nonce = isset($_POST['clipart_meta_nonce']) ? sanitize_text_field($_POST['clipart_meta_nonce']) : '';
 
 		if ( ! wp_verify_nonce( $nonce, 'product_designer_clipart_meta' ) )
 			return $post_id;
@@ -283,6 +283,20 @@ function product_designer_wc_order_meta( $post ) {
             if(!empty($order_items))
             foreach ($order_items as $order_item_id => $order_item) {
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	            $product_id = $order_item['product_id'];
 	            $product_title = get_the_title($product_id);
 	            $pd_template_id = get_post_meta( $product_id, 'pd_template_id', true );
@@ -322,10 +336,10 @@ function product_designer_wc_order_meta( $post ) {
 
                         </td>
                         <td class="">
-                            <img  style="width: 100px" src="<?php echo $attach_url; ?>" />
+                            <img  style="width: 100px" src="<?php echo esc_url_raw($attach_url); ?>" />
                         </td>
                         <td class="">
-                            <button onclick="prepHref(this)" data-src="<?php echo $attach_url; ?>" class="button download-btn">Download</button>
+                            <button onclick="prepHref(this)" data-src="<?php echo esc_url_raw($attach_url); ?>" class="button download-btn">Download</button>
                         </td>
                     </tr>
                     <?php
@@ -443,6 +457,11 @@ function product_designer_wc_order_meta( $post ) {
 
         </div>
 
+        <?php
+
+        //echo '<pre>'.var_export($side_data, true).'</pre>';
+
+        ?>
 
             <div class="option-box">
                 <p class="option-title"><?php echo __('Item sides', 'product-designer'); ?></p>
@@ -451,7 +470,7 @@ function product_designer_wc_order_meta( $post ) {
 
 			            <?php
 
-			            //var_dump($side_data);
+
 
 			            $previw_icon = product_designer_plugin_url.'assets/admin/images/add-img.png';
 			            $previw_background = product_designer_plugin_url.'assets/admin/images/add-img-bg.png';
@@ -463,7 +482,7 @@ function product_designer_wc_order_meta( $post ) {
 
 				            foreach($side_data as $id=>$side){
 
-					            $name =isset( $side['name']) ?  $side['name'] : '';
+					            $name = isset( $side['name']) ? $side['name'] : '';
 					            $icon = isset($side['icon']) ? $side['icon'] : '';
 					            $background = isset($side['background'])? $side['background'] : '';
 					            $inc_output_background = isset($side['inc_output_background']) ? $side['inc_output_background'] : '0';
@@ -771,7 +790,7 @@ function product_designer_wc_order_meta( $post ) {
 		if ( ! isset( $_POST['product_designer_inner_custom_box_nonce'] ) )
 			return $post_id;
 
-		$nonce = $_POST['product_designer_inner_custom_box_nonce'];
+		$nonce = isset($_POST['product_designer_inner_custom_box_nonce']) ? sanitize_text_field($_POST['product_designer_inner_custom_box_nonce']) : '';
 
 		if ( ! wp_verify_nonce( $nonce, 'product_designer_inner_custom_box' ) )
 			return $post_id;
@@ -795,20 +814,20 @@ function product_designer_wc_order_meta( $post ) {
 
 
 		if(!empty($_POST['canvas'])){
-			$canvas = $_POST['canvas'];
+			$canvas = isset($_POST['canvas']) ? stripslashes_deep($_POST['canvas']) : '';
 		}
 		else{
 			$canvas = array();
 		}
 		if(!empty($_POST['side_data'])){
-			$side_data = $_POST['side_data'];
+			$side_data = isset($_POST['side_data']) ? stripslashes_deep($_POST['side_data']) : '';
 		}
 		else{
 			$side_data = array();
 		}
 
 		if(!empty($_POST['templates'])){
-			$templates = $_POST['templates'];
+			$templates = isset($_POST['templates']) ? stripslashes_deep($_POST['templates']) : '';
 		}
 		else{
 			$templates = array();

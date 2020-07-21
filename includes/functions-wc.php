@@ -124,7 +124,7 @@ function woocommerce_product_data_tab_product_designer_fields() {
         $pd_templates = product_designer_get_pd_templates();
         woocommerce_wp_select( array(
                 'id'      => 'pd_template_id',
-                'label'   => __( 'Choose template', 'product-designer' ),
+                'label'   => __( 'Choose Product designer template', 'product-designer' ),
                 'options' =>  $pd_templates, //this is where I am having trouble
                 'value'   => $pd_template_id,
             )
@@ -145,7 +145,7 @@ function woocommerce_product_data_tab_product_designer_fields() {
 add_action( 'woocommerce_process_product_meta', 'woocommerce_product_data_tab_product_designer_save' );
 function woocommerce_product_data_tab_product_designer_save( $post_id ){
 	// This is the case to save custom field data of checkbox. You have to do it as per your custom fields
-	$pd_template = isset( $_POST['pd_template_id'] ) ? $_POST['pd_template_id'] : '';
+	$pd_template = isset( $_POST['pd_template_id'] ) ? sanitize_text_field($_POST['pd_template_id']) : '';
 	update_post_meta( $post_id, 'pd_template_id', $pd_template );
 }
 
@@ -202,7 +202,7 @@ function product_designer_after_add_to_cart_button() {
 
 			                if($pd_template_id != 'none'):
 				                ?>
-                                <a target="_blank" class="" href="<?php echo $product_designer_page_url; ?>?product_id=<?php echo get_the_ID(); ?>&variation_id=<?php echo $variation_id; ?>"><i class="fa fa-crop" ></i> <?php echo $variation_data->get_formatted_name(); ?></a>
+                                <a target="_blank" class="" href="<?php echo esc_url_raw($product_designer_page_url); ?>?product_id=<?php echo get_the_ID(); ?>&variation_id=<?php echo $variation_id; ?>"><i class="fa fa-crop" ></i> <?php echo $variation_data->get_formatted_name(); ?></a>
 				                <?php
                             endif;
 
@@ -217,7 +217,7 @@ function product_designer_after_add_to_cart_button() {
         else:
 	        ?>
             <div class="product-designer-editor-link">
-                <a target="_blank" class="" href="<?php echo $product_designer_page_url; ?>?product_id=<?php echo get_the_ID(); ?>"><i class="fa fa-crop" ></i> <?php echo __('Customize', 'product-designer'); ?></a>
+                <a target="_blank" class="" href="<?php echo esc_url_raw($product_designer_page_url); ?>?product_id=<?php echo get_the_ID(); ?>"><i class="fa fa-crop" ></i> <?php echo __('Customize', 'product-designer'); ?></a>
 
             </div>
 	        <?php
@@ -272,7 +272,7 @@ function product_designer_woocommerce_after_shop_loop_item() {
 
 							if($pd_template_id != 'none'):
 								?>
-                                <a target="_blank" class="" href="<?php echo $product_designer_page_url; ?>?product_id=<?php echo get_the_ID(); ?>&variation_id=<?php echo $variation_id; ?>"><i class="fa fa-magic" aria-hidden="true"></i> <?php echo $variation_data->get_formatted_name(); ?></a>
+                                <a target="_blank" class="" href="<?php echo esc_url_raw($product_designer_page_url); ?>?product_id=<?php echo get_the_ID(); ?>&variation_id=<?php echo $variation_id; ?>"><i class="fa fa-magic" aria-hidden="true"></i> <?php echo $variation_data->get_formatted_name(); ?></a>
 								<?php
                             endif;
 
@@ -287,7 +287,7 @@ function product_designer_woocommerce_after_shop_loop_item() {
 		else:
 			?>
             <div class="product-designer-editor-link">
-                <a target="_blank" class="" href="<?php echo $product_designer_page_url; ?>?product_id=<?php echo get_the_ID(); ?>"><i class="fa fa-crop" ></i> <?php echo __('Customize', 'product-designer'); ?></a>
+                <a target="_blank" class="" href="<?php echo esc_url_raw($product_designer_page_url); ?>?product_id=<?php echo get_the_ID(); ?>"><i class="fa fa-crop" ></i> <?php echo __('Customize', 'product-designer'); ?></a>
 
             </div>
 			<?php
@@ -328,7 +328,7 @@ function product_designer_variation_settings_fields( $loop, $variation_data, $va
 	woocommerce_wp_select(
 		array(
 			'id'          => 'pd_template_id[' . $variation->ID . ']',
-			'label'       => __( 'Choose template', 'woocommerce' ),
+			'label'       => __( 'Choose Product designer template', 'woocommerce' ),
 			//'description' => __( 'Choose a value.', 'woocommerce' ),
 			'value'       => get_post_meta( $variation->ID, 'pd_template_id', true ),
 			'options' => $pd_templates
@@ -346,7 +346,7 @@ function save_product_designer_variation_settings_fields( $post_id ) {
 
 
 	// Select
-	$select = $_POST['pd_template_id'][ $post_id ];
+	$select = isset($_POST['pd_template_id'][ $post_id ]) ? sanitize_text_field($_POST['pd_template_id'][ $post_id ]) : '';
 	if( ! empty( $select ) ) {
 		update_post_meta( $post_id, 'pd_template_id', esc_attr( $select ) );
 	}
@@ -375,14 +375,14 @@ function product_designer_add_cart_item_data( $cart_item_meta, $product_id ) {
 
 	if ( !empty( $_POST['product_designer_side_attach_ids'] )){
 
-		$cart_item_meta['product_designer_side_attach_ids'] = $_POST['product_designer_side_attach_ids'];
+		$cart_item_meta['product_designer_side_attach_ids'] = sanitize_text_field($_POST['product_designer_side_attach_ids']);
 	}
 
 
 
 	if ( !empty( $_POST['product_designer_side_ids_json'] )){
 
-		$cart_item_meta['product_designer_side_ids_json'] = $_POST['product_designer_side_ids_json'];
+		$cart_item_meta['product_designer_side_ids_json'] = sanitize_text_field($_POST['product_designer_side_ids_json']);
 	}
 
 
@@ -397,13 +397,13 @@ function product_designer_get_cart_item_from_session( $cart_item, $values ) {
 
 	if ( (!empty( $values['product_designer_side_attach_ids'] ) )) {
 
-		$cart_item['product_designer_side_attach_ids'] = $values['product_designer_side_attach_ids'];
+		$cart_item['product_designer_side_attach_ids'] = sanitize_text_field($values['product_designer_side_attach_ids']);
 
 	}
 
 	if ( (!empty( $values['product_designer_side_ids_json'] ) )) {
 
-		$cart_item['product_designer_side_ids_json'] = $values['product_designer_side_ids_json'];
+		$cart_item['product_designer_side_ids_json'] = sanitize_text_field($values['product_designer_side_ids_json']);
 
 	}
 
@@ -478,7 +478,7 @@ function add_custom_price( $cart_object ) {
 add_filter( 'woocommerce_cart_item_thumbnail',  'product_designer_woocommerce_cart_item_thumbnail' , 10, 3 );
 function product_designer_woocommerce_cart_item_thumbnail( $item_thumbnail, $values, $cart_item_key ) {
 
-	//woocommerce_add_order_item_meta( $cart_item_key, 'product_designer_side_attach_ids_hello', 'Hello' );
+	//woocommerce_new_order_item( $cart_item_key, 'product_designer_side_attach_ids_hello', 'Hello' );
 
 
 	$item_thumbnail = $item_thumbnail;
@@ -556,18 +556,18 @@ function product_designer_woocommerce_cart_item_thumbnail( $item_thumbnail, $val
 
 
 
-add_action( 'woocommerce_add_order_item_meta',  'product_designer_add_order_item_meta' , 10, 2 );
+add_action( 'woocommerce_new_order_item',  'product_designer_add_order_item_meta' , 10, 2 );
 function product_designer_add_order_item_meta( $item_id, $cart_item ) {
 
 	if (  (!empty( $cart_item['product_designer_side_attach_ids'] ))){
 
-		woocommerce_add_order_item_meta( $item_id, 'product_designer_side_attach_ids', $cart_item['product_designer_side_attach_ids'] );
+		woocommerce_new_order_item( $item_id, 'product_designer_side_attach_ids', $cart_item['product_designer_side_attach_ids'] );
 
 	}
 
 	if (  (!empty( $cart_item['product_designer_side_ids_json'] ))){
 
-		woocommerce_add_order_item_meta( $item_id, 'product_designer_side_ids_json', $cart_item['product_designer_side_ids_json'] );
+		woocommerce_new_order_item( $item_id, 'product_designer_side_ids_json', $cart_item['product_designer_side_ids_json'] );
 
 	}
 
@@ -583,14 +583,14 @@ function product_designer_ajax_add_to_cart(){
 
 	$response 	= array();
 	$product_id = isset( $_POST['product_id'] ) ? sanitize_text_field($_POST['product_id']) : 0;
-	$variation_id = isset( $_POST['variation_id'] ) ? $_POST['variation_id'] : 0;
+	$variation_id = isset( $_POST['variation_id'] ) ? sanitize_text_field($_POST['variation_id']) : 0;
 
 	parse_str($_POST['values'], $form_data);
 	$pd_template_id = isset( $form_data['pd_template_id'] ) ? sanitize_text_field($form_data['pd_template_id']) : 0;
 	$quantity = isset( $form_data['quantity'] ) ? sanitize_text_field($form_data['quantity']) : 0;
 
-	$product_designer_side_attach_ids = isset( $form_data['product_designer_side_attach_ids'] ) ? $form_data['product_designer_side_attach_ids'] : array();
-	$product_designer_side_ids_json = isset( $form_data['product_designer_side_ids_json'] ) ? $form_data['product_designer_side_ids_json'] : array();
+	$product_designer_side_attach_ids = isset( $form_data['product_designer_side_attach_ids'] ) ? stripslashes_deep($form_data['product_designer_side_attach_ids']) : array();
+	$product_designer_side_ids_json = isset( $form_data['product_designer_side_ids_json'] ) ? stripslashes_deep($form_data['product_designer_side_ids_json']) : array();
 
 	$cart_item_data['product_designer_side_attach_ids'] = $product_designer_side_attach_ids;
 	$cart_item_data['product_designer_side_ids_json'] = $product_designer_side_ids_json;
@@ -606,9 +606,9 @@ function product_designer_ajax_add_to_cart(){
 
 
 
-	$cart_url = WC()->cart->get_cart_url();
+	$cart_url = wc_get_cart_url();
 	$response['form_data'] = $form_data;
-	$response['msg'] = 'Custom design successfully added to <a href="'.$cart_url.'">Cart</a>';
+	$response['msg'] = 'Custom design successfully added to <a href="'.esc_url_raw($cart_url).'">Cart</a>';
 
 
 
@@ -632,8 +632,8 @@ function product_designer_ajax_save_as_template(){
 	$pd_template_id = isset( $form_data['pd_template_id'] ) ? sanitize_text_field($form_data['pd_template_id']) : 0;
 
 
-	$product_designer_side_attach_ids = isset( $form_data['product_designer_side_attach_ids'] ) ? $form_data['product_designer_side_attach_ids'] : array();
-	$product_designer_side_ids_json = isset( $form_data['product_designer_side_ids_json'] ) ? $form_data['product_designer_side_ids_json'] : array();
+	$product_designer_side_attach_ids = isset( $form_data['product_designer_side_attach_ids'] ) ? stripslashes_deep($form_data['product_designer_side_attach_ids']) : array();
+	$product_designer_side_ids_json = isset( $form_data['product_designer_side_ids_json'] ) ? stripslashes_deep($form_data['product_designer_side_ids_json']) : array();
 
 	$cart_item_data['product_designer_side_attach_ids'] = $product_designer_side_attach_ids;
 	$cart_item_data['product_designer_side_ids_json'] = $product_designer_side_ids_json;

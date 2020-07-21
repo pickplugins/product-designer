@@ -3,8 +3,8 @@
 	Donate link: https://www.pickplugins.com/item/product-designer/?ref=wordpress.org
 	Tags: Product Designer, T-Shirt Designer, T-Shirt, Designer, T-Shirt Designer woocommerce, woocommerce, product customizer
 	Requires at least: 3.8
-	Tested up to: 5.3
-	Stable tag: 1.0.9
+	Tested up to: 5.4
+	Stable tag: 1.0.12
 	License: GPLv2 or later
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -84,6 +84,15 @@ Before starting you need to add some clip art via custom post "Clip Art" with th
 
 
 == Changelog ==
+
+	= 1.0.12 =
+    * 2020-01-27 - fix - templates saving issue fixed.
+
+	= 1.0.11 =
+    * 2020-01-27 - fix - minor php issue fixed
+
+	= 1.0.10 =
+    * 2020-01-23 - fix - security issue fixed.
 
 	= 1.0.9 =
     * 30/04/2019 - remove - Remove tooltips to avoid conflict with bootstrap

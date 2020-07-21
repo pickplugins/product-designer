@@ -1,178 +1,174 @@
+jQuery(document).ready(function($){
 
 
-
-jQuery(document).ready(function($)
-	{
-
-
-$('.scrollbar').scrollbar();
+    $('.scrollbar').scrollbar();
 
 
 
 
-function product_designer_editor_busy(status, message, icon){
+    function product_designer_editor_busy(status, message, icon){
 
-    if(status=='busy'){
-        $('.product-designer .editor-busy').fadeIn();
-        $('.product-designer .editor-busy .message').html(message);
-        $('.product-designer .editor-busy .icon').html(icon);
+        if(status=='busy'){
+            $('.product-designer .editor-busy').fadeIn();
+            $('.product-designer .editor-busy .message').html(message);
+            $('.product-designer .editor-busy .icon').html(icon);
+        }
+        else if(status=='ready'){
+
+            $('.product-designer .editor-busy .message').html(message);
+            $('.product-designer .editor-busy .icon').html(icon);
+
+            setTimeout( function () {
+                $('.product-designer .editor-busy').fadeOut();
+            }, 300)
+        }
     }
-    else if(status=='ready'){
 
-        $('.product-designer .editor-busy .message').html(message);
-        $('.product-designer .editor-busy .icon').html(icon);
+
+    function product_designer_editor_toast(icon, message){
+
+        if(icon == "" || icon == null){
+            icon = '<i class="fa fa-check"></i>';
+        }
+
+        $('.product-designer .toast').addClass("active");
+        $('.product-designer .toast .message').html(message);
+        $('.product-designer .toast .icon').html(icon);
 
         setTimeout( function () {
-            $('.product-designer .editor-busy').fadeOut();
-        }, 300)
-    }
-}
+            $('.product-designer .toast').removeClass("active");
+        }, 300);
 
 
-function product_designer_editor_toast(icon, message){
-
-    if(icon == "" || icon == null){
-        icon = '<i class="fa fa-check"></i>';
-    }
-
-    $('.product-designer .toast').addClass("active");
-    $('.product-designer .toast .message').html(message);
-    $('.product-designer .toast .icon').html(icon);
-
-    setTimeout( function () {
-        $('.product-designer .toast').removeClass("active");
-    }, 300);
-
-
-}
-
-
-
-
-function product_designer_editor_save(){
-
-    canvas.renderAll();
-
-   //console.log("Active side id:"+ current_side_id);
-
-    if (typeof product_designer_editor.side_serialized_data[current_side_id] == "undefined")
-        product_designer_editor.side_serialized_data[current_side_id] = ["{}"];
-
-
-
-
-    json_stringify = JSON.stringify(canvas);
-    json = canvas.toJSON();
-    product_designer_editor.side_serialized_data[current_side_id] = json_stringify;
-    product_designer_editor.side_json_data[current_side_id] = json;
-
-    console.log(json);
-
-    base_64 = canvas.toDataURL('png');
-
-
-
-    //$('.product-designer .menu .loading').fadeIn();
-
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-$(document).on('click','.side-list li',function(event){
-
-    side_id = $(this).attr('side_id');
-    $(".side-list li").removeClass("active");
-    $(this).addClass("active");
-    side_data = product_designer_editor.side_data;
-    current_side_data = side_data[side_id];
-
-    if (typeof product_designer_editor.side_serialized_data[current_side_id] == "undefined")
-        product_designer_editor.side_serialized_data[current_side_id] = ["{}"];
-
-
-    if (typeof current_side_data['background_fit_canvas_size'] != "undefined"){
-        var background_fit_canvas_size = current_side_data['background_fit_canvas_size'];
-    }
-
-    if (typeof current_side_data['overlay_fit_canvas_size'] != "undefined"){
-        var overlay_fit_canvas_size = current_side_data['overlay_fit_canvas_size'];
     }
 
 
-    product_designer_editor_toast('','Side loaded.');
-
-    json = JSON.stringify(canvas);
-    product_designer_editor.side_serialized_data[current_side_id] = json;
 
 
+    function product_designer_editor_save(){
 
+        canvas.renderAll();
 
-    if(current_side_id != side_id){
+       //console.log("Active side id:"+ current_side_id);
 
-        current_side_id = side_id;
-        //product_designer_editor_save();
-        if (typeof product_designer_editor.side_serialized_data[current_side_id] == "undefined"){
+        if (typeof product_designer_editor.side_serialized_data[current_side_id] == "undefined")
             product_designer_editor.side_serialized_data[current_side_id] = ["{}"];
-            //canvas.clear();
-            // Canvas default background images
-            if(background_fit_canvas_size == 1){
-
-                canvas.setBackgroundImage(current_side_data['background'], canvas.renderAll.bind(canvas),{
-                    // Needed to position backgroundImage at 0/0
-                    originX: 'left',
-                    originY: 'top',
-                    width: canvas.width,
-                    height: canvas.height,
-                });
-
-            }
-            else{
-
-                canvas.setBackgroundImage(current_side_data['background'], canvas.renderAll.bind(canvas),{
-                    // Needed to position backgroundImage at 0/0
-                    originX: 'left',
-                    originY: 'top',
-//            width: canvas.width,
-//            height: canvas.height,
-                });
-
-            }
 
 
-            if(overlay_fit_canvas_size == 1){
-                canvas.setOverlayImage(current_side_data['overlay'], canvas.renderAll.bind(canvas), {
-                    // Needed to position overlayImage at 0/0
-                    originX: 'left',
-                    originY: 'top',
-                    width: canvas.width,
-                    height: canvas.height, // canvas.height
-                });
-            }
-            else{
-                canvas.setOverlayImage(current_side_data['overlay'], canvas.renderAll.bind(canvas), {
-                    // Needed to position overlayImage at 0/0
-                    originX: 'left',
-                    originY: 'top',
-                    //width: canvas.width,
-                    //height: 'auto', // canvas.height
-                });
+
+
+        json_stringify = JSON.stringify(canvas);
+        json = canvas.toJSON();
+        product_designer_editor.side_serialized_data[current_side_id] = json_stringify;
+        product_designer_editor.side_json_data[current_side_id] = json;
+
+        console.log(json);
+
+        base_64 = canvas.toDataURL('png');
+
+
+
+        //$('.product-designer .menu .loading').fadeIn();
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    $(document).on('click','.side-list li',function(event){
+
+        side_id = $(this).attr('side_id');
+        $(".side-list li").removeClass("active");
+        $(this).addClass("active");
+        side_data = product_designer_editor.side_data;
+        current_side_data = side_data[side_id];
+
+        if (typeof product_designer_editor.side_serialized_data[current_side_id] == "undefined")
+            product_designer_editor.side_serialized_data[current_side_id] = ["{}"];
+
+
+        if (typeof current_side_data['background_fit_canvas_size'] != "undefined"){
+            var background_fit_canvas_size = current_side_data['background_fit_canvas_size'];
+        }
+
+        if (typeof current_side_data['overlay_fit_canvas_size'] != "undefined"){
+            var overlay_fit_canvas_size = current_side_data['overlay_fit_canvas_size'];
+        }
+
+
+        product_designer_editor_toast('','Side loaded.');
+
+        json = JSON.stringify(canvas);
+        product_designer_editor.side_serialized_data[current_side_id] = json;
+
+
+
+
+        if(current_side_id != side_id){
+
+            current_side_id = side_id;
+            //product_designer_editor_save();
+            if (typeof product_designer_editor.side_serialized_data[current_side_id] == "undefined"){
+                product_designer_editor.side_serialized_data[current_side_id] = ["{}"];
+                //canvas.clear();
+                // Canvas default background images
+                if(background_fit_canvas_size == 1){
+
+                    canvas.setBackgroundImage(current_side_data['background'], canvas.renderAll.bind(canvas),{
+                        // Needed to position backgroundImage at 0/0
+                        originX: 'left',
+                        originY: 'top',
+                        width: canvas.width,
+                        height: canvas.height,
+                    });
+
+                }
+                else{
+
+                    canvas.setBackgroundImage(current_side_data['background'], canvas.renderAll.bind(canvas),{
+                        // Needed to position backgroundImage at 0/0
+                        originX: 'left',
+                        originY: 'top',
+    //            width: canvas.width,
+    //            height: canvas.height,
+                    });
+
+                }
+
+
+                if(overlay_fit_canvas_size == 1){
+                    canvas.setOverlayImage(current_side_data['overlay'], canvas.renderAll.bind(canvas), {
+                        // Needed to position overlayImage at 0/0
+                        originX: 'left',
+                        originY: 'top',
+                        width: canvas.width,
+                        height: canvas.height, // canvas.height
+                    });
+                }
+                else{
+                    canvas.setOverlayImage(current_side_data['overlay'], canvas.renderAll.bind(canvas), {
+                        // Needed to position overlayImage at 0/0
+                        originX: 'left',
+                        originY: 'top',
+                        //width: canvas.width,
+                        //height: 'auto', // canvas.height
+                    });
+                }
+
             }
 
         }
-
-    }
 
 
 
@@ -1423,7 +1419,7 @@ canvas.on('object:selected', onObjectSelected);
 		val = $(this).val();
 
 		//alert('Hello');
-		canvas.getActiveObject().setColor('#'+val);
+		canvas.getActiveObject().setColor(val);
 		canvas.renderAll();
 		console.log(val);
 
@@ -1449,7 +1445,7 @@ canvas.on('object:selected', onObjectSelected);
             val = $(this).val();
 
             //alert('Hello');
-            canvas.getActiveObject().set('stroke','#'+val);
+            canvas.getActiveObject().set('stroke',val);
             canvas.renderAll();
             console.log(val);
             product_designer_editor_save();
@@ -1463,7 +1459,7 @@ canvas.on('object:selected', onObjectSelected);
             val = $(this).val();
 
             //alert('Hello');
-            canvas.getActiveObject().set('backgroundColor','#'+val);
+            canvas.getActiveObject().set('backgroundColor',val);
             canvas.renderAll();
             console.log(val);
             product_designer_editor_save();
@@ -1769,7 +1765,7 @@ canvas.on('object:selected', onObjectSelected);
         $(document).on('change','.product-designer #curvedText-font-color',function(){
 
             val = $(this).val();
-            canvas.getActiveObject().setColor('#'+val);
+            canvas.getActiveObject().setColor(val);
             canvas.renderAll();
             product_designer_editor_save();
 
@@ -2072,7 +2068,7 @@ canvas.on('object:selected', onObjectSelected);
 		val = $(this).val();
 
 		//alert('Hello');
-		canvas.getActiveObject().setColor('#'+val);
+		canvas.getActiveObject().setColor(val);
 		canvas.renderAll();
 
         product_designer_editor_save();

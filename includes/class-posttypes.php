@@ -50,7 +50,7 @@ class class_product_designer_posttypes  {
 			'hierarchical' => false,
 			'menu_position' => null,
 			'supports' => array('title','thumbnail'),
-			'show_in_menu' 	=> 'product_designer',
+			//'show_in_menu' 	=> 'product_designer',
 
 		);
 
@@ -87,7 +87,7 @@ class class_product_designer_posttypes  {
                 'hierarchical' => false,
                 'menu_position' => null,
                 'supports' => array('title','thumbnail'),
-                'show_in_menu' 	=> 'product_designer',
+                //'show_in_menu' 	=> 'product_designer',
 
 
         );
