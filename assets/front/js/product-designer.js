@@ -39,7 +39,7 @@ jQuery(document).ready(function($){
 
         setTimeout( function () {
             $('.product-designer .toast').removeClass("active");
-        }, 300);
+        }, 2000);
 
 
     }
@@ -197,9 +197,7 @@ jQuery(document).ready(function($){
 
     });
 
-    setTimeout( function () {
-        product_designer_editor_toast('','Side loaded.');
-    }, 2000)
+
 
 
     //console.log(product_designer_editor.side_serialized_data[current_side_id]);
@@ -2107,6 +2105,9 @@ $(document).on('click','.generate-side-output',function(event){
                     width: 50, height: 50, fill: 'blue', left: 50, top: 50
                 });
                 canvas.add(rectangle);
+                canvas.centerObject(rectangle);
+                rectangle.setCoords();
+                canvas.setActiveObject(rectangle);
                 product_designer_editor_toast('','Rectangle added.');
 
             }
@@ -2115,7 +2116,9 @@ $(document).on('click','.generate-side-output',function(event){
 
                 circle = new fabric.Circle({ radius: 30, fill: '#f55', top: 100, left: 100 })
                 canvas.add(circle);
-
+                canvas.centerObject(circle);
+                circle.setCoords();
+                canvas.setActiveObject(circle);
                 product_designer_editor_toast('','Circle added.');
             }
 
@@ -2124,7 +2127,9 @@ $(document).on('click','.generate-side-output',function(event){
                     width: 50, height: 60, fill: 'blue', left: 50, top: 50
                 });
                 canvas.add(triangle);
-
+                canvas.centerObject(triangle);
+                triangle.setCoords();
+                canvas.setActiveObject(triangle);
                 product_designer_editor_toast('','Triangle added.');
             }
             else if(shape_type =='star-5'){
@@ -2162,7 +2167,9 @@ $(document).on('click','.generate-side-output',function(event){
                 star.set("originY", "center");
 
                 canvas.add(star);
-
+                canvas.centerObject(star);
+                star.setCoords();
+                canvas.setActiveObject(star);
                 product_designer_editor_toast('','Star added.');
 
             }
@@ -2205,7 +2212,9 @@ $(document).on('click','.generate-side-output',function(event){
                 star.set("originY", "center");
 
                 canvas.add(star);
-
+                canvas.centerObject(star);
+                star.setCoords();
+                canvas.setActiveObject(star);
                 product_designer_editor_toast('','Star added.');
 
             }
@@ -2252,6 +2261,9 @@ $(document).on('click','.generate-side-output',function(event){
                 star.set("originY", "center");
 
                 canvas.add(star);
+                canvas.centerObject(star);
+                star.setCoords();
+                canvas.setActiveObject(star);
                 product_designer_editor_toast('','Star added.');
 
             }
@@ -2299,6 +2311,9 @@ $(document).on('click','.generate-side-output',function(event){
                 star.set("originY", "center");
 
                 canvas.add(star);
+                canvas.centerObject(star);
+                star.setCoords();
+                canvas.setActiveObject(star);
                 product_designer_editor_toast('','Star added.');
 
             }
@@ -2350,6 +2365,9 @@ $(document).on('click','.generate-side-output',function(event){
                 star.set("originY", "center");
 
                 canvas.add(star);
+                canvas.centerObject(star);
+                star.setCoords();
+                canvas.setActiveObject(star);
                 product_designer_editor_toast('','Star added.');
 
             }
@@ -2402,6 +2420,9 @@ $(document).on('click','.generate-side-output',function(event){
                 star.set("originY", "center");
 
                 canvas.add(star);
+                canvas.centerObject(polygon);
+                polygon.setCoords();
+                canvas.setActiveObject(polygon);
                 product_designer_editor_toast('','Star added.');
 
             }
@@ -2439,6 +2460,9 @@ $(document).on('click','.generate-side-output',function(event){
                 polygon.set("originY", "center");
 
                 canvas.add(polygon);
+                canvas.centerObject(polygon);
+                polygon.setCoords();
+                canvas.setActiveObject(polygon);
                 product_designer_editor_toast('','Polygon added.');
 
             }
@@ -2477,6 +2501,9 @@ $(document).on('click','.generate-side-output',function(event){
                 polygon.set("originY", "center");
 
                 canvas.add(polygon);
+                canvas.centerObject(polygon);
+                polygon.setCoords();
+                canvas.setActiveObject(polygon);
                 product_designer_editor_toast('','Polygon added.');
 
             }
@@ -2511,6 +2538,9 @@ $(document).on('click','.generate-side-output',function(event){
                 polygon.set("originY", "center");
 
                 canvas.add(polygon);
+                canvas.centerObject(polygon);
+                polygon.setCoords();
+                canvas.setActiveObject(polygon);
                 product_designer_editor_toast('','Polygon added.');
 
             }
@@ -2546,6 +2576,9 @@ $(document).on('click','.generate-side-output',function(event){
                 polygon.set("originY", "center");
 
                 canvas.add(polygon);
+                canvas.centerObject(polygon);
+                polygon.setCoords();
+                canvas.setActiveObject(polygon);
                 product_designer_editor_toast('','Polygon added.');
 
             }
@@ -2584,6 +2617,9 @@ $(document).on('click','.generate-side-output',function(event){
                 polygon.set("originY", "center");
 
                 canvas.add(polygon);
+                canvas.centerObject(polygon);
+                polygon.setCoords();
+                canvas.setActiveObject(polygon);
                 product_designer_editor_toast('','Polygon added.');
 
             }
@@ -2626,6 +2662,9 @@ $(document).on('click','.generate-side-output',function(event){
                 polygon.set("originY", "center");
 
                 canvas.add(polygon);
+                canvas.centerObject(polygon);
+                polygon.setCoords();
+                canvas.setActiveObject(polygon);
                 product_designer_editor_toast('','Polygon added.');
 
             }
@@ -2665,6 +2704,9 @@ $(document).on('click','.generate-side-output',function(event){
                 polygon.set("originY", "center");
 
                 canvas.add(polygon);
+                canvas.centerObject(polygon);
+                polygon.setCoords();
+                canvas.setActiveObject(polygon);
                 product_designer_editor_toast('','Polygon added.');
 
             }
@@ -2705,6 +2747,9 @@ $(document).on('click','.generate-side-output',function(event){
                 polygon.set("originY", "center");
 
                 canvas.add(polygon);
+                canvas.centerObject(polygon);
+                polygon.setCoords();
+                canvas.setActiveObject(polygon);
                 product_designer_editor_toast('','Polygon added.');
 
             }
@@ -2746,6 +2791,9 @@ $(document).on('click','.generate-side-output',function(event){
                 }
 
                 canvas.add(heart);
+                canvas.centerObject(heart);
+                heart.setCoords();
+                canvas.setActiveObject(heart);
                 product_designer_editor_toast('','Heart added.');
 
 
@@ -2783,13 +2831,16 @@ $(document).on('click','.generate-side-output',function(event){
 
         text.id = $.now();
 		canvas.add(text);
-
+        canvas.centerObject(text);
+        text.setCoords();
+        canvas.setActiveObject(text);
+        canvas.renderAll();
 		//console.log($.now());
 
         product_designer_editor_save();
 
 
-		})
+	})
 
 
 
@@ -2808,17 +2859,19 @@ $(document).on('click','.clipart-list img',function(){
         scale = 200 / img.width;
         img.set({
             scaleX: scale,
-            scaleY: scale
+            scaleY: scale,
         });
         canvas.add(img);
+        canvas.centerObject(img);
+        img.setCoords();
+        canvas.setActiveObject(img);
+        canvas.renderAll();
         product_designer_editor_save()
     });
 
-    canvas.renderAll();
 
 
-
-    })
+})
 
 
 
