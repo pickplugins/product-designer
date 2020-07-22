@@ -25,6 +25,8 @@ class class_product_designer_shortcodes  {
 
         //var_dump($font_aw_version);
 
+
+
         if($font_aw_version == 'v_5'){
             $separator_icon = '<i class="fas fa-angle-double-right"></i>';
 
@@ -53,10 +55,14 @@ class class_product_designer_shortcodes  {
         do_action('product_designer_editor', $atts);
 
 
-        wp_enqueue_script('jscolor');
         wp_enqueue_style('hint.min');
+        wp_enqueue_style('PickIcons');
+        wp_enqueue_style('product-designer-editor');
+        wp_enqueue_style('FontCPD');
+        wp_enqueue_style('jquery.scrollbar');
+        wp_enqueue_style('product-designer-style');
 
-
+        wp_enqueue_style('jquery-impromptu');
 
 
         return ob_get_clean();

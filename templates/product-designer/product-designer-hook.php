@@ -933,83 +933,87 @@ function product_designer_scripts(){
     ?>
 
     <script>
+        jQuery(document).ready(function($){
 
-        var product_designer_editor = <?php echo json_encode($product_designer_editor); ?>;
+            var product_designer_editor = <?php echo json_encode($product_designer_editor); ?>;
 
-        //console.log(product_designer_editor);
+            //console.log(product_designer_editor);
 
-        var product_id = product_designer_editor.product_id;
-        var variation_id = product_designer_editor.variation_id;
-        var current_side_id = product_designer_editor.current_side_id;
-        var side_data = product_designer_editor.side_data;
-        var current_side_data = side_data[current_side_id];
-
-
-        if (typeof current_side_data['background_fit_canvas_size'] != "undefined"){
-            var background_fit_canvas_size = current_side_data['background_fit_canvas_size'];
-        }
-
-        if (typeof current_side_data['overlay_fit_canvas_size'] != "undefined"){
-            var overlay_fit_canvas_size = current_side_data['overlay_fit_canvas_size'];
-        }
+            var product_id = product_designer_editor.product_id;
+            var variation_id = product_designer_editor.variation_id;
+            var current_side_id = product_designer_editor.current_side_id;
+            var side_data = product_designer_editor.side_data;
+            var current_side_data = side_data[current_side_id];
 
 
-        var canvas = new fabric.Canvas('c');
+            if (typeof current_side_data['background_fit_canvas_size'] != "undefined"){
+                var background_fit_canvas_size = current_side_data['background_fit_canvas_size'];
+            }
+
+            if (typeof current_side_data['overlay_fit_canvas_size'] != "undefined"){
+                var overlay_fit_canvas_size = current_side_data['overlay_fit_canvas_size'];
+            }
 
 
-
+            var canvas = new fabric.Canvas('c');
 
 
 
-        // console.log(current_side_id);
-        //canvas.backgroundImageStretch = true;
-        // Canvas dimension
-        canvas.setHeight(<?php echo $canvas_settings['height']; ?>);
-        canvas.setWidth(<?php echo $canvas_settings['width']; ?>);
 
-        if(background_fit_canvas_size == 1){
 
-            canvas.setBackgroundImage(current_side_data['background'], canvas.renderAll.bind(canvas),{
-                // Needed to position backgroundImage at 0/0
-                originX: 'left',
-                originY: 'top',
-                width: canvas.width,
-                height: canvas.height,
-            });
 
-        }
-        else{
 
-            canvas.setBackgroundImage(current_side_data['background'], canvas.renderAll.bind(canvas),{
-                // Needed to position backgroundImage at 0/0
-                originX: 'left',
-                originY: 'top',
+            //canvas.backgroundImageStretch = true;
+            // Canvas dimension
+            canvas.setHeight(<?php echo $canvas_settings['height']; ?>);
+            canvas.setWidth(<?php echo $canvas_settings['width']; ?>);
+
+            if(background_fit_canvas_size == 1){
+
+                canvas.setBackgroundImage(current_side_data['background'], canvas.renderAll.bind(canvas),{
+                    // Needed to position backgroundImage at 0/0
+                    originX: 'left',
+                    originY: 'top',
+                    width: canvas.width,
+                    height: canvas.height,
+                });
+
+            }
+            else{
+
+                canvas.setBackgroundImage(current_side_data['background'], canvas.renderAll.bind(canvas),{
+                    // Needed to position backgroundImage at 0/0
+                    originX: 'left',
+                    originY: 'top',
 //            width: canvas.width,
 //            height: canvas.height,
-            });
+                });
 
-        }
+            }
 
 
 
-        if(overlay_fit_canvas_size == 1){
-            canvas.setOverlayImage(current_side_data['overlay'], canvas.renderAll.bind(canvas), {
-                // Needed to position overlayImage at 0/0
-                originX: 'left',
-                originY: 'top',
-                width: canvas.width,
-                height: canvas.height, // canvas.height
-            });
-        }
-        else{
-            canvas.setOverlayImage(current_side_data['overlay'], canvas.renderAll.bind(canvas), {
-                // Needed to position overlayImage at 0/0
-                originX: 'left',
-                originY: 'top',
-                //width: canvas.width,
-                //height: 'auto', // canvas.height
-            });
-        }
+            if(overlay_fit_canvas_size == 1){
+                canvas.setOverlayImage(current_side_data['overlay'], canvas.renderAll.bind(canvas), {
+                    // Needed to position overlayImage at 0/0
+                    originX: 'left',
+                    originY: 'top',
+                    width: canvas.width,
+                    height: canvas.height, // canvas.height
+                });
+            }
+            else{
+                canvas.setOverlayImage(current_side_data['overlay'], canvas.renderAll.bind(canvas), {
+                    // Needed to position overlayImage at 0/0
+                    originX: 'left',
+                    originY: 'top',
+                    //width: canvas.width,
+                    //height: 'auto', // canvas.height
+                });
+            }
+
+
+        })
 
 
 
@@ -1076,6 +1080,22 @@ else{
     </style>
 
     <?php
+
+
+    wp_enqueue_script('jquery');
+
+    wp_enqueue_script('fabric.js');
+    wp_enqueue_script('jquery.scrollbar');
+    wp_enqueue_script('product_designer_js');
+    wp_enqueue_script('fabric.curvedText');
+
+    wp_enqueue_script('jquery-impromptu');
+
+    wp_enqueue_script('jscolor');
+    wp_enqueue_script('plupload-all');
+
+
+
 
 }
 

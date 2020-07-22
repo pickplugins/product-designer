@@ -3,7 +3,10 @@ jQuery(document).ready(function($){
 
     $('.scrollbar').scrollbar();
 
+    alert('Hello');
 
+    if(typeof canvas == 'undefined') return;
+    //console.log();
 
 
     function product_designer_editor_busy(status, message, icon){
@@ -1329,54 +1332,54 @@ $(document).on('click','.generate-side-output',function(event){
 
 
 
-function onObjectSelected(e) {
+    function onObjectSelected(e) {
 
-	type = e.target.get('type')
+        type = e.target.get('type')
 
-	$('.edit-text').removeClass('active');
-	$('.edit-img').removeClass('active');
-	$('.edit-shape').removeClass('active');
-    $('.edit-curvedText').removeClass('active');
+        $('.edit-text').removeClass('active');
+        $('.edit-img').removeClass('active');
+        $('.edit-shape').removeClass('active');
+        $('.edit-curvedText').removeClass('active');
 
-    ActiveObject = canvas.getActiveObject();
-
-
-
-	//console.log(type);
-    //console.log(ActiveObject);
+        ActiveObject = canvas.getActiveObject();
 
 
-	if(type=='text'){
 
-		$('.edit-text').addClass('active');
+        //console.log(type);
+        //console.log(ActiveObject);
 
-		val = canvas.getActiveObject().getText();
-		$('.product-designer #text-content').val(val);
 
-		}
+        if(type=='text'){
 
-    else if(type=='curvedText'){
-        $('.edit-curvedText').addClass('active');
+            $('.edit-text').addClass('active');
 
-        val = canvas.getActiveObject().getText();
-        $('.product-designer #curvedText-content').val(val);
+            val = canvas.getActiveObject().getText();
+            $('.product-designer #text-content').val(val);
+
+            }
+
+        else if(type=='curvedText'){
+            $('.edit-curvedText').addClass('active');
+
+            val = canvas.getActiveObject().getText();
+            $('.product-designer #curvedText-content').val(val);
+
+        }
+
+        else if(type=='image'){
+            $('.edit-img').addClass('active');
+            }
+
+        else if(type=='circle' || type=='triangle' || type=='rect' || type=='polygon'){
+            $('.edit-shape').addClass('active');
+            }
+
+
+        product_designer_editor_save();
 
     }
 
-	else if(type=='image'){
-		$('.edit-img').addClass('active');
-		}
-
-	else if(type=='circle' || type=='triangle' || type=='rect' || type=='polygon'){
-		$('.edit-shape').addClass('active');
-		}
-
-
-    product_designer_editor_save();
-
-}
-
-canvas.on('object:selected', onObjectSelected);
+    canvas.on('object:selected', onObjectSelected);
 
 
 
@@ -3380,7 +3383,8 @@ $(document).on('click','.clipart-list img',function(){
 
 
 
-	});
+
+});
 
 
 
