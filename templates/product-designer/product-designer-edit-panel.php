@@ -8,30 +8,30 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 
     <div class="editor-actions toolbar-section pd-guide-5">
         <div class="toolbar-title"><?php echo __('Editor Actions', 'product-designer'); ?></div>
-        <span class=" pack-button" id="editor-show-grid" title="<?php echo __('Show grid', 'product-designer'); ?>"><i class="cpd-icon-grid" ></i></span>
-        <span class=" pack-button" id="editor-clear" title="<?php echo __('Clear All', 'product-designer'); ?>"><i class="cpd-icon-remove" ></i></span>
-        <span class=" pack-button" id="editor-delete-item" title="<?php echo __('Delete', 'product-designer'); ?>"><i class="fa fa-trash" aria-hidden="true"></i></span>
-        <span class=" pack-button" id="editor-clone-item" title="<?php echo __('Clone', 'product-designer'); ?>"><i class="fa fa-clone" aria-hidden="true"></i></span>
-        <span class=" pack-button" id="editor-DrawingMode" title="<?php echo __('Drawing Mode', 'product-designer'); ?>"><i class="fa fa-pencil" aria-hidden="true"></i></span>
-        <span class=" pack-button" id="editor-zoomin" title="<?php echo __('Zoom in', 'product-designer'); ?>"><i class="fa fa-search-plus"></i></span>
-        <span class=" pack-button" id="editor-zoomout" title="<?php echo __('Zoom Out', 'product-designer'); ?>"><i class="fa fa-search-minus"></i></span>
-        <span class=" pack-button" id="editor-pan" title="<?php echo __('Panning', 'product-designer'); ?>"><i class="fa fa-hand-paper-o" aria-hidden="true"></i></span>
-        <span class=" pack-button" id="editor-item-bringForward" title="<?php echo __('Bring Forward', 'product-designer'); ?>"><i class="cpd-icon-move-up" ></i></span>
-        <span class=" pack-button" id="editor-item-sendBackwards" title="<?php echo __('Send Backwards', 'product-designer'); ?>"><i class="cpd-icon-move-down" ></i></span>
-        <span class=" pack-button" id="editor-flip-v" title="<?php echo __('Flip vertical', 'product-designer'); ?>" ><i class="cpd-icon-flip-vertical" ></i></span>
-        <span class=" pack-button" id="editor-flip-h" title="<?php echo __('Flip horizontal', 'product-designer'); ?>" ><i class="cpd-icon-flip-horizontal" ></i></span>
-        <span class=" pack-button" id="editor-center-h" title="<?php echo __('Center horizontally', 'product-designer'); ?>" ><i class="cpd-icon-align-horizontal-middle"></i></span>
-        <span class=" pack-button" id="editor-center-v" title="<?php echo __('Center vertically', 'product-designer'); ?>" ><i class="cpd-icon-align-vertical-middle"></i></span>
-        <span class=" pack-button" id="editor-lockMovementX" title="<?php echo __('Lock X movement', 'product-designer'); ?>" ><i class="fa fa-arrows-v" aria-hidden="true"></i></span>
-        <span class=" pack-button" id="editor-lockMovementY" title="<?php echo __('Lock Y movement', 'product-designer'); ?>" ><i class="fa fa-arrows-h" aria-hidden="true"></i></span>
-        <span class=" pack-button" id="editor-lockRotation" title="<?php echo __('Lock rotation', 'product-designer'); ?>" ><i class="fa fa-undo" aria-hidden="true"></i></span>
-        <span class=" pack-button" id="editor-lockScalingX" title="<?php echo __('Lock X Scaling', 'product-designer'); ?>" ><i class="fa fa-expand" aria-hidden="true"></i></span>
-        <span class=" pack-button" id="editor-lockScalingY" title="<?php echo __('Lock Y Scaling', 'product-designer'); ?>" ><i class="fa fa-expand" aria-hidden="true"></i></span>
+        <span class="pack-button hint--top" id="editor-show-grid" aria-label="<?php echo __('Show grid', 'product-designer'); ?>"><i class="cpd-icon-grid" ></i></span>
+        <span class="pack-button hint--top" id="editor-clear" aria-label="<?php echo __('Clear All', 'product-designer'); ?>"><i class="cpd-icon-remove" ></i></span>
+        <span class="pack-button hint--top" id="editor-delete-item" aria-label="<?php echo __('Delete', 'product-designer'); ?>"><i class="fa fa-trash" aria-hidden="true"></i></span>
+        <span class="pack-button hint--top" id="editor-clone-item" aria-label="<?php echo __('Clone', 'product-designer'); ?>"><i class="fa fa-clone" aria-hidden="true"></i></span>
+        <span class="pack-button hint--top" id="editor-DrawingMode" aria-label="<?php echo __('Drawing Mode', 'product-designer'); ?>"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+        <span class="pack-button hint--top" id="editor-zoomin" aria-label="<?php echo __('Zoom in', 'product-designer'); ?>"><i class="fa fa-search-plus"></i></span>
+        <span class="pack-button hint--top" id="editor-zoomout" aria-label="<?php echo __('Zoom Out', 'product-designer'); ?>"><i class="fa fa-search-minus"></i></span>
+        <span class="pack-button hint--top" id="editor-pan" aria-label="<?php echo __('Panning', 'product-designer'); ?>"><i class="fa fa-hand-paper-o" aria-hidden="true"></i></span>
+        <span class="pack-button hint--top" id="editor-item-bringForward" aria-label="<?php echo __('Bring Forward', 'product-designer'); ?>"><i class="cpd-icon-move-up" ></i></span>
+        <span class="pack-button hint--top" id="editor-item-sendBackwards" aria-label="<?php echo __('Send Backwards', 'product-designer'); ?>"><i class="cpd-icon-move-down" ></i></span>
+        <span class="pack-button hint--top" id="editor-flip-v" aria-label="<?php echo __('Flip vertical', 'product-designer'); ?>" ><i class="cpd-icon-flip-vertical" ></i></span>
+        <span class="pack-button hint--top" id="editor-flip-h" aria-label="<?php echo __('Flip horizontal', 'product-designer'); ?>" ><i class="cpd-icon-flip-horizontal" ></i></span>
+        <span class="pack-button hint--top" id="editor-center-h" aria-label="<?php echo __('Center horizontally', 'product-designer'); ?>" ><i class="cpd-icon-align-horizontal-middle"></i></span>
+        <span class="pack-button hint--top" id="editor-center-v" aria-label="<?php echo __('Center vertically', 'product-designer'); ?>" ><i class="cpd-icon-align-vertical-middle"></i></span>
+        <span class="pack-button hint--top" id="editor-lockMovementX" aria-label="<?php echo __('Lock X movement', 'product-designer'); ?>" ><i class="fa fa-arrows-v" aria-hidden="true"></i></span>
+        <span class="pack-button hint--top" id="editor-lockMovementY" aria-label="<?php echo __('Lock Y movement', 'product-designer'); ?>" ><i class="fa fa-arrows-h" aria-hidden="true"></i></span>
+        <span class="pack-button hint--top" id="editor-lockRotation" aria-label="<?php echo __('Lock rotation', 'product-designer'); ?>" ><i class="fa fa-undo" aria-hidden="true"></i></span>
+        <span class="pack-button hint--top" id="editor-lockScalingX" aria-label="<?php echo __('Lock X Scaling', 'product-designer'); ?>" ><i class="fa fa-expand" aria-hidden="true"></i></span>
+        <span class="pack-button hint--top" id="editor-lockScalingY" aria-label="<?php echo __('Lock Y Scaling', 'product-designer'); ?>" ><i class="fa fa-expand" aria-hidden="true"></i></span>
 
 
 
-        <span class=" pack-button" title="<?php echo __('Undo', 'product-designer'); ?>" id="editor-undo"><i class="cpd-icon-undo"></i></span>
-        <span class=" pack-button" title="<?php echo __('Redo', 'product-designer'); ?>" id="editor-redo"><i class="cpd-icon-redo"></i></span>
+        <span class="pack-button hint--top" aria-label="<?php echo __('Undo', 'product-designer'); ?>" id="editor-undo"><i class="cpd-icon-undo"></i></span>
+        <span class="pack-button hint--top" aria-label="<?php echo __('Redo', 'product-designer'); ?>" id="editor-redo"><i class="cpd-icon-redo"></i></span>
 
         <div class=""></div>
         <div class="editor-preview pd-guide-6"><i class="fa fa-eye" aria-hidden="true"></i> <?php echo __('Preview', 'product-designer'); ?></div>
@@ -46,43 +46,43 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 
     <div class="edit-text toolbar-section">
         <div class="toolbar-title"><?php echo __('Text Actions', 'product-designer'); ?></div>
-        <textarea style="width: 90%" class="" id="text-content" title="<?php echo __('Text Content', 'product-designer'); ?>"></textarea>
+        <textarea style="width: 90%" class="" id="text-content" aria-label="<?php echo __('Text Content', 'product-designer'); ?>"></textarea>
 
-        <span class=" pack-button" title="<?php echo __('Bold text', 'product-designer'); ?>" id="text-bold"><i class="cpd-icon-format-bold" ></i></span>
-        <span class=" pack-button" title="<?php echo __('Italic text', 'product-designer'); ?>" id="text-italic"><i class="cpd-icon-format-italic" ></i></span>
-        <span class=" pack-button" title="<?php echo __('Underline text', 'product-designer'); ?>" id="text-underline"><i class="cpd-icon-format-underline" ></i></span>
-        <span class=" pack-button" title="<?php echo __('Strikethrough text', 'product-designer'); ?>" id="text-strikethrough"><i class="fa fa-strikethrough" ></i></span>
+        <span class="pack-button hint--top" aria-label="<?php echo __('Bold text', 'product-designer'); ?>" id="text-bold"><i class="cpd-icon-format-bold" ></i></span>
+        <span class="pack-button hint--top" aria-label="<?php echo __('Italic text', 'product-designer'); ?>" id="text-italic"><i class="cpd-icon-format-italic" ></i></span>
+        <span class="pack-button hint--top" aria-label="<?php echo __('Underline text', 'product-designer'); ?>" id="text-underline"><i class="cpd-icon-format-underline" ></i></span>
+        <span class="pack-button hint--top" aria-label="<?php echo __('Strikethrough text', 'product-designer'); ?>" id="text-strikethrough"><i class="fa fa-strikethrough" ></i></span>
 
         <div class="input-group">
             <div class="input-group-title"><?php echo __('Fonts Size:', 'product-designer'); ?></div>
-            <input class="" id="font-size" size="3" title="Fonts Size" type="number" value="16" >px
+            <input class="" id="font-size" size="3" aria-label="Fonts Size" type="number" value="16" >px
         </div>
 
 
         <div class="input-group">
             <div class="input-group-title"><?php echo __('Text Color:', 'product-designer'); ?></div>
-            <input data-jscolor="" class="color  tool-button" id="font-color" title="Text Color" placeholder="rgba(255,255,255,1)" type="text" value="rgba(255,255,255,1)">
+            <input data-jscolor="" class="color  tool-button" id="font-color" aria-label="Text Color" placeholder="rgba(255,255,255,1)" type="text" value="rgba(255,255,255,1)">
         </div>
 
         <div class="input-group">
             <div class="input-group-title"><?php echo __('Background Color:', 'product-designer'); ?></div>
-            <input data-jscolor="" class="color  tool-button" id="font-bg-color" title="Background Color" placeholder="rgba(255,255,255,1)" type="text" value="rgba(255,255,255,1)">
+            <input data-jscolor="" class="color  tool-button" id="font-bg-color" aria-label="Background Color" placeholder="rgba(255,255,255,1)" type="text" value="rgba(255,255,255,1)">
         </div>
 
 
         <div class="input-group">
             <div class="input-group-title"><?php echo __('Outline Color:', 'product-designer'); ?></div>
-            <input data-jscolor="" class="color  tool-button" id="stroke-color" title="Outline Color" placeholder="rgba(255,255,255,1)" type="text" value="rgba(255,255,255,1)">
+            <input data-jscolor="" class="color  tool-button" id="stroke-color" aria-label="Outline Color" placeholder="rgba(255,255,255,1)" type="text" value="rgba(255,255,255,1)">
         </div>
 
 
         <div class="input-group">
             <div class="input-group-title"><?php echo __('Text Outline:', 'product-designer'); ?></div>
-            <input class="" id="stroke-size" title="Text Outline" type="number" placeholder="2" value="2">
+            <input class="" id="stroke-size" aria-label="Text Outline" type="number" placeholder="2" value="2">
         </div>
         <div class="input-group">
             <div class="input-group-title"><?php echo __('Opacity:', 'product-designer'); ?></div>
-            <input  class=" tool-button" title="Opacity" id="font-opacity" type="range" min="0" max="1" step="0.1" value="1" />
+            <input  class=" tool-button" aria-label="Opacity" id="font-opacity" type="range" min="0" max="1" step="0.1" value="1" />
         </div>
 
         <div class="input-group">
@@ -90,7 +90,7 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 	        <?php
 	        $Tdesigner_google_fonts = Tdesigner_google_fonts();
 	        ?>
-            <select class=" font-family" title="<?php echo __('Font family', 'product-designer'); ?>" id="font-family">
+            <select class=" font-family" aria-label="<?php echo __('Font family', 'product-designer'); ?>" id="font-family">
 		        <?php
 		        foreach($Tdesigner_google_fonts as $font){
 			        $name = $font['name'];
@@ -107,9 +107,9 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 
         <!--
 
-							<span class="" title="Align left" id="text-align-left"><i class="fa fa-align-left" ></i></span>
-							<span class="" title="Align center" id="text-align-center"><i class="fa fa-align-center" ></i></span>
-							<span class="" title="Akign right" id="text-align-right"><i class="fa fa-align-right" ></i></span>
+							<span class="" aria-label="Align left" id="text-align-left"><i class="fa fa-align-left" ></i></span>
+							<span class="" aria-label="Align center" id="text-align-center"><i class="fa fa-align-center" ></i></span>
+							<span class="" aria-label="Akign right" id="text-align-right"><i class="fa fa-align-right" ></i></span>
 
 		-->
 
@@ -119,37 +119,37 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
     <div class="edit-curvedText toolbar-section">
         <div class="toolbar-title"><?php echo __('Curved Text Actions', 'product-designer'); ?></div>
 
-        <textarea class="" id="curvedText-content" style="width: 90%" title="<?php echo __('Text Content', 'product-designer'); ?>" rows="1"></textarea>
-        <span class=" pack-button" id="curvedText-bold" title="<?php echo __('Bold text', 'product-designer'); ?>" ><i class="fa fa-bold" ></i></span>
-        <span class=" pack-button" id="curvedText-italic" title="<?php echo __('Italic text', 'product-designer'); ?>" ><i class="fa fa-italic" ></i></span>
-        <span class=" pack-button" id="curvedText-underline" title="<?php echo __('Underline text', 'product-designer'); ?>" ><i class="fa fa-underline" ></i></span>
-        <span class=" pack-button" id="curvedText-strikethrough" title="<?php echo __('Strikethrough text', 'product-designer'); ?>" ><i class="fa fa-strikethrough" ></i></span>
+        <textarea class="" id="curvedText-content" style="width: 90%" aria-label="<?php echo __('Text Content', 'product-designer'); ?>" rows="1"></textarea>
+        <span class="pack-button hint--top" id="curvedText-bold" aria-label="<?php echo __('Bold text', 'product-designer'); ?>" ><i class="fa fa-bold" ></i></span>
+        <span class="pack-button hint--top" id="curvedText-italic" aria-label="<?php echo __('Italic text', 'product-designer'); ?>" ><i class="fa fa-italic" ></i></span>
+        <span class="pack-button hint--top" id="curvedText-underline" aria-label="<?php echo __('Underline text', 'product-designer'); ?>" ><i class="fa fa-underline" ></i></span>
+        <span class="pack-button hint--top" id="curvedText-strikethrough" aria-label="<?php echo __('Strikethrough text', 'product-designer'); ?>" ><i class="fa fa-strikethrough" ></i></span>
 
 
 
 
         <div class="input-group">
             <div class="input-group-title"><?php echo __('Font size:', 'product-designer'); ?></div>
-            <input class=" " title="<?php echo __('Fonts', 'product-designer'); ?>" id="curvedText-font-size" type="number" value="16" />
+            <input class=" " aria-label="<?php echo __('Fonts', 'product-designer'); ?>" id="curvedText-font-size" type="number" value="16" />
         </div>
 
         <div class="input-group">
             <div class="input-group-title"><?php echo __('Radius:', 'product-designer'); ?></div>
-            <input class="" title="<?php echo __('Radius', 'product-designer'); ?>"  id="curvedText-radius" type="number" value="100" />
+            <input class="" aria-label="<?php echo __('Radius', 'product-designer'); ?>"  id="curvedText-radius" type="number" value="100" />
         </div>
 
         <div class="input-group">
             <div class="input-group-title"><?php echo __('Spacing:', 'product-designer'); ?></div>
-            <input class="" title="<?php echo __('Spacing', 'product-designer'); ?>"  id="curvedText-spacing" type="number" value="10" />
+            <input class="" aria-label="<?php echo __('Spacing', 'product-designer'); ?>"  id="curvedText-spacing" type="number" value="10" />
         </div>
 
         <div class="input-group">
             <div class="input-group-title"><?php echo __('Color:', 'product-designer'); ?></div>
-            <input data-jscolor="" class="color " title="Color" id="curvedText-font-color"  placeholder="<?php echo __('Color', 'product-designer'); ?>"  type="text" value="rgba(255,255,255,1)" />
+            <input data-jscolor="" class="color " aria-label="Color" id="curvedText-font-color"  placeholder="<?php echo __('Color', 'product-designer'); ?>"  type="text" value="rgba(255,255,255,1)" />
         </div>
         <div class="input-group">
             <div class="input-group-title"><?php echo __('Opacity:', 'product-designer'); ?></div>
-            <input  class="" title="Opacity" id="curvedText-font-opacity" type="range" min="0" max="1" step="0.1" value="1" />
+            <input  class="" aria-label="Opacity" id="curvedText-font-opacity" type="range" min="0" max="1" step="0.1" value="1" />
         </div>
 
         <div class="input-group">
@@ -157,7 +157,7 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 	        <?php
 	        $Tdesigner_google_fonts = Tdesigner_google_fonts();
 	        ?>
-            <select class=" font-family" title="<?php echo __('Font family', 'product-designer'); ?>" id="curvedText-font-family">
+            <select class=" font-family" aria-label="<?php echo __('Font family', 'product-designer'); ?>" id="curvedText-font-family">
 		        <?php
 		        foreach($Tdesigner_google_fonts as $font){
 			        $name = $font['name'];
@@ -193,31 +193,31 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
         <div class="toolbar-title"><?php echo __('Images Actions', 'product-designer'); ?></div>
         <div class="input-group">
             <div class="input-group-title"><?php echo __('Opacity:', 'product-designer'); ?></div>
-            <input  class="" title="Opacity" id="img-opacity" type="range" min="0" max="1" step="0.1" value="1" />
+            <input  class="" aria-label="Opacity" id="img-opacity" type="range" min="0" max="1" step="0.1" value="1" />
         </div>
 
         <div class="input-group">
             <div class="input-group-title"><?php echo __('Filters:', 'product-designer'); ?></div>
-            <label><input class="" title="<?php echo __('Grayscale', 'product-designer'); ?>"  id="img-filter-grayscale" type="checkbox" value="1" /><?php echo __('Grayscale', 'product-designer'); ?></label>
+            <label><input class="" aria-label="<?php echo __('Grayscale', 'product-designer'); ?>"  id="img-filter-grayscale" type="checkbox" value="1" /><?php echo __('Grayscale', 'product-designer'); ?></label>
         </div>
 
         <div class="input-group">
             <div class="input-group-title"></div>
-            <label><input class="" title="<?php echo __('Invert', 'product-designer'); ?>"  id="img-filter-invert" type="checkbox" value="1" /><?php echo __('Invert', 'product-designer'); ?></label>
+            <label><input class="" aria-label="<?php echo __('Invert', 'product-designer'); ?>"  id="img-filter-invert" type="checkbox" value="1" /><?php echo __('Invert', 'product-designer'); ?></label>
         </div>
 
         <div class="input-group">
             <div class="input-group-title"></div>
-            <label><input class="" title="<?php echo __('Sepia', 'product-designer'); ?>"  id="img-filter-sepia" type="checkbox" value="1" /><?php echo __('Sepia', 'product-designer'); ?></label>
+            <label><input class="" aria-label="<?php echo __('Sepia', 'product-designer'); ?>"  id="img-filter-sepia" type="checkbox" value="1" /><?php echo __('Sepia', 'product-designer'); ?></label>
         </div>
         <div class="input-group">
             <div class="input-group-title"></div>
-            <label><input class="" title="<?php echo __('Noise', 'product-designer'); ?>"  id="img-filter-noise" type="checkbox" value="1" /><?php echo __('Noise', 'product-designer'); ?></label>
+            <label><input class="" aria-label="<?php echo __('Noise', 'product-designer'); ?>"  id="img-filter-noise" type="checkbox" value="1" /><?php echo __('Noise', 'product-designer'); ?></label>
         </div>
 
         <div class="input-group">
             <div class="input-group-title"></div>
-            <label><input class="" title="<?php echo __('Pixelate', 'product-designer'); ?>"  id="img-filter-pixelate" type="checkbox" value="1" /><?php echo __('Pixelate', 'product-designer'); ?></label>
+            <label><input class="" aria-label="<?php echo __('Pixelate', 'product-designer'); ?>"  id="img-filter-pixelate" type="checkbox" value="1" /><?php echo __('Pixelate', 'product-designer'); ?></label>
         </div>
 
 
@@ -233,11 +233,11 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 
         <div class="input-group">
             <div class="input-group-title"><?php echo __('Opacity:', 'product-designer'); ?></div>
-            <input  class="" title="Opacity" id="shape-opacity" type="range" min="0" max="1" step="0.1" value="1" />
+            <input  class="" aria-label="Opacity" id="shape-opacity" type="range" min="0" max="1" step="0.1" value="1" />
         </div>
         <div class="input-group">
             <div class="input-group-title"><?php echo __('Color:', 'product-designer'); ?></div>
-            <input  data-jscolor="" title="<?php echo __('Color', 'product-designer'); ?>" id="shape-color" class="color " placeholder="<?php echo __('Color', 'product-designer'); ?>"  type="text" value="rgba(255,255,255,1)" />
+            <input  data-jscolor="" aria-label="<?php echo __('Color', 'product-designer'); ?>" id="shape-color" class="color " placeholder="<?php echo __('Color', 'product-designer'); ?>"  type="text" value="rgba(255,255,255,1)" />
         </div>
 
     </div>
@@ -289,7 +289,7 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 
                 <div class="input-group-title"><?php echo __('You are editing:', 'product-designer'); ?></div><span><?php echo get_the_title($product_id); ?></span>
                 <div class="input-group-title"><?php echo __('Base Price:', 'product-designer'); ?></div> <span><?php echo $product_price; ?></span>
-                <div class="input-group-title"><?php echo __('Quantity:', 'product-designer'); ?></div> <span><input class="input-text quantity text" type="number" size="4" title="<?php echo __('Quantity', 'product-designer'); ?>" value="1" name="quantity" min="1" step="1"></span>
+                <div class="input-group-title"><?php echo __('Quantity:', 'product-designer'); ?></div> <span><input class="input-text quantity text" type="number" size="4" aria-label="<?php echo __('Quantity', 'product-designer'); ?>" value="1" name="quantity" min="1" step="1"></span>
 
             </div>
 

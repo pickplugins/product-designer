@@ -20,12 +20,44 @@ class class_product_designer_shortcodes  {
                 ),
             $atts);
 
+        $product_designer_settings = get_option('product_designer_settings');
+        $font_aw_version = isset($product_designer_settings['font_aw_version']) ? $product_designer_settings['font_aw_version'] : 'v_4';
+
+        //var_dump($font_aw_version);
+
+        if($font_aw_version == 'v_5'){
+            $separator_icon = '<i class="fas fa-angle-double-right"></i>';
+
+
+
+            wp_enqueue_style('font-awesome-5');
+        }elseif ($font_aw_version == 'v_4'){
+
+            $separator_icon = '<i class="fa fa-angle-double-right"></i>';
+
+
+
+            wp_enqueue_style('font-awesome-4');
+        }
+
+        $atts['icons'] = array(
+            'separator_icon' => $separator_icon,
+
+        );
+
 
         $atts = apply_filters('product_designer_atts', $atts);
 
         ob_start();
 
-        do_action('product_designer', $atts);
+        do_action('product_designer_editor', $atts);
+
+
+        wp_enqueue_script('jscolor');
+        wp_enqueue_style('hint.min');
+
+
+
 
         return ob_get_clean();
 

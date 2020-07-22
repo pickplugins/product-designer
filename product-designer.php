@@ -91,14 +91,15 @@ class ProductDesigner{
 
 
 		$product_designer_sticker_size = get_option( 'product_designer_sticker_size' );
-		if(empty($product_designer_sticker_size))
-			{
-				$product_designer_sticker_size = intval(2*1000*1000);
-			}
-		else
-			{
-				$product_designer_sticker_size = intval($product_designer_sticker_size*1000*1000);
-			}
+		if(empty($product_designer_sticker_size)) {
+
+		    $product_designer_sticker_size = intval(2*1000*1000);
+
+		}else {
+
+		    $product_designer_sticker_size = intval($product_designer_sticker_size*1000*1000);
+
+		}
 
 
 
@@ -133,20 +134,32 @@ class ProductDesigner{
 
 
 
-				wp_enqueue_script( 'jscolor.js', plugins_url( 'assets/front/js/jscolor.js', __FILE__ ), array('jquery'), '1.0', false);
 
 
 
 				wp_enqueue_style('product-designer-editor', product_designer_plugin_url.'assets/front/css/product-designer.css');
 				wp_enqueue_style('FontCPD', product_designer_plugin_url.'assets/front/css/FontCPD/FontCPD.css');
-				wp_enqueue_style('font-awesome.min', product_designer_plugin_url.'assets/global/css/font-awesome.min.css');
+				//wp_enqueue_style('font-awesome.min', product_designer_plugin_url.'assets/global/css/font-awesome.min.css');
 				wp_enqueue_script('plupload-all');
 
 				wp_enqueue_style('PickIcons', product_designer_plugin_url.'assets/front/css/PickIcons/PickIcons.css');
 			}
 		}
 
-		do_action('product_designer_action_front_scripts');
+
+        wp_register_script( 'jscolor', plugins_url( 'assets/front/js/jscolor.js', __FILE__ ), array('jquery'), '1.0', false);
+
+
+        wp_register_style('font-awesome-4', product_designer_plugin_url.'assets/global/css/font-awesome-4.css');
+        wp_register_style('font-awesome-5', product_designer_plugin_url.'assets/global/css/font-awesome-5.css');
+        wp_register_style('hint.min', product_designer_plugin_url.'assets/front/css/hint.min.css');
+
+
+
+
+
+
+        do_action('product_designer_action_front_scripts');
 		}		
 		
 	public function _admin_scripts(){

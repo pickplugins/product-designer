@@ -31,12 +31,13 @@
   cursor: pointer;
   position: relative;
   text-align: center;
+
+  border-bottom: 1px solid #d2d2d2;
+  padding: 5px 0;
 }
 
 .product-designer .menu .item .icon{
-
-  font-size: 30px;
-
+  font-size: 25px;
 }
 
 
@@ -71,6 +72,18 @@
   display: none;
   text-align: left;
 }
+
+
+
+.product-designer textarea {
+  width: 95%;
+}
+
+
+
+
+
+
 
 
 
@@ -523,6 +536,7 @@ display:none;
   margin-top: 10%;
   text-align: center;
   position: relative;
+  padding: 20px;
 }
 
 .product-designer .preview .preview-close {
