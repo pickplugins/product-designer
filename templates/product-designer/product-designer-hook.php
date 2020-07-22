@@ -55,7 +55,7 @@ function product_designer_wrap_start(){
 
 
 
-add_action('product_designer_editor', 'product_designer_editor');
+add_action('product_designer_editor', 'product_designer_editor', 10);
 
 function product_designer_editor(){
 
@@ -142,12 +142,11 @@ function product_designer_editor(){
 
 
 
-
     endif;
 
 }
 
-add_action('product_designer_editor', 'product_designer_menu', 99);
+add_action('product_designer_editor', 'product_designer_menu', 15);
 
 function product_designer_menu(){
 
@@ -383,7 +382,7 @@ function product_designer_menu(){
 
 }
 
-add_action('product_designer_editor', 'product_designer_edit_panel', 99);
+add_action('product_designer_editor', 'product_designer_edit_panel', 20);
 
 function product_designer_edit_panel(){
     $product_id = isset($_GET['product_id']) ? sanitize_text_field($_GET['product_id']) : '';
@@ -745,7 +744,7 @@ function product_designer_edit_panel(){
 
 
 
-add_action('product_designer_editor', 'product_designer_canvas', 99);
+add_action('product_designer_editor', 'product_designer_canvas', 25);
 
 function product_designer_canvas(){
     $product_designer_canvas_width = get_option( 'product_designer_canvas_width', '500' );
@@ -762,7 +761,7 @@ function product_designer_canvas(){
 
 
 
-add_action('product_designer_editor', 'product_designer_scripts', 99);
+add_action('product_designer_editor', 'product_designer_scripts', 30);
 
 function product_designer_scripts(){
 
@@ -933,7 +932,7 @@ function product_designer_scripts(){
     ?>
 
     <script>
-        jQuery(document).ready(function($){
+        //jQuery(document).ready(function($){
 
             var product_designer_editor = <?php echo json_encode($product_designer_editor); ?>;
 
@@ -1013,10 +1012,7 @@ function product_designer_scripts(){
             }
 
 
-        })
-
-
-
+        //})
 
 
 
@@ -1082,17 +1078,7 @@ else{
     <?php
 
 
-    wp_enqueue_script('jquery');
 
-    wp_enqueue_script('fabric.js');
-    wp_enqueue_script('jquery.scrollbar');
-    wp_enqueue_script('product_designer_js');
-    wp_enqueue_script('fabric.curvedText');
-
-    wp_enqueue_script('jquery-impromptu');
-
-    wp_enqueue_script('jscolor');
-    wp_enqueue_script('plupload-all');
 
 
 
@@ -1104,7 +1090,7 @@ else{
 
 
 
-add_action('product_designer_editor', 'product_designer_loading', 99);
+add_action('product_designer_editor', 'product_designer_loading', 35);
 
 function product_designer_loading(){
 
@@ -1120,7 +1106,7 @@ function product_designer_loading(){
 }
 
 
-add_action('product_designer_editor', 'product_designer_welcome_tour', 99);
+add_action('product_designer_editor', 'product_designer_welcome_tour', 40);
 
 function product_designer_welcome_tour(){
 
@@ -1139,7 +1125,7 @@ function product_designer_welcome_tour(){
 
 
 
-add_action('product_designer_editor', 'product_designer_preview', 99);
+add_action('product_designer_editor', 'product_designer_preview', 45);
 
 function product_designer_preview(){
 
@@ -1157,7 +1143,7 @@ function product_designer_preview(){
 
 
 
-add_action('product_designer_editor', 'product_designer_toast', 99);
+add_action('product_designer_editor', 'product_designer_toast', 50);
 
 function product_designer_toast(){
 

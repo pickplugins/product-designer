@@ -61,7 +61,6 @@ class class_product_designer_shortcodes  {
         wp_enqueue_style('FontCPD');
         wp_enqueue_style('jquery.scrollbar');
         wp_enqueue_style('product-designer-style');
-
         wp_enqueue_style('jquery-impromptu');
 
 

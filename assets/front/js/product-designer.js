@@ -3,10 +3,9 @@ jQuery(document).ready(function($){
 
     $('.scrollbar').scrollbar();
 
-    alert('Hello');
+    //alert('Hello');
 
-    if(typeof canvas == 'undefined') return;
-    //console.log();
+    console.log(typeof canvas);
 
 
     function product_designer_editor_busy(status, message, icon){
