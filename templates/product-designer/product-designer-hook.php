@@ -153,6 +153,37 @@ function product_designer_menu(){
 
     $product_id = isset($_GET['product_id']) ? sanitize_text_field($_GET['product_id']) : '';
 
+
+    $product_data = wc_get_product($product_id);
+    $is_variable = $product_data->is_type('variable');
+
+
+    if($is_variable):
+
+        $variation_id = isset($_GET['variation_id']) ? sanitize_text_field($_GET['variation_id']): '';
+        $pd_template_id = get_post_meta( $variation_id, 'pd_template_id', true );
+        $canvas_settings = get_post_meta( $pd_template_id, 'canvas', true );
+
+        $side_data = get_post_meta( $pd_template_id, 'side_data', true );
+
+
+        if(empty($variation_id)):
+            $product_designer_error['variation_id_missing'] = 'Variation id is missing';
+        endif;
+
+
+
+    else:
+
+        $pd_template_id = get_post_meta( $product_id, 'pd_template_id', true );
+        $canvas_settings = get_post_meta( $pd_template_id, 'canvas', true );
+
+        $side_data = get_post_meta( $pd_template_id, 'side_data', true );
+
+
+    endif;
+
+
    ?>
 
     <div class="menu">
