@@ -660,6 +660,14 @@ display:none;
   border: none;
 }
 
+.product-designer .welcome-tour .end-tour {
+  padding: 10px 25px;
+  font-size: 14px;
+  background: #f16f61;
+  color: #fff;
+  border: none;
+}
+
 .product-designer .output-side-items-attach-ids, .product-designer .output-side-items-json{
   display: none;
 }

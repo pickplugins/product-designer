@@ -52,7 +52,7 @@ class ProductDesigner{
 		
 		add_filter('widget_text', 'do_shortcode');
 		
-		register_activation_hook( __FILE__, array( $this, 'product_designer_install' ) );
+		register_activation_hook( __FILE__, array( $this, '_activation' ) );
 
 		}
 
@@ -67,27 +67,54 @@ class ProductDesigner{
 	}
 	
 		
-	public function product_designer_install(){
+	public function _activation(){
 
-		do_action( 'product_designer_action_install' );
+        $product_designer_settings = get_option('product_designer_settings');
+        $product_designer_page_id = get_option('product_designer_page_id');
+        $designer_page_id = isset($product_designer_settings['designer_page_id']) ? $product_designer_settings['designer_page_id'] : '';
+
+
+        if( empty( $designer_page_id ) ) :
+
+            if(!empty($product_designer_page_id)){
+                $page_id = $product_designer_page_id;
+            }else{
+                $page_id = wp_insert_post( array(
+                    'post_title' 	=> __('Designer', 'product-designer'),
+                    'slug' 			=> 'designer',
+                    'post_type' 	=> 'page',
+                    'post_status' 	=> 'publish',
+                    'post_content' 	=> '[product_designer]',
+                ) );
+            }
+
+
+
+            $product_designer_settings['designer_page_id'] = $page_id;
+
+            update_option('product_designer_settings', $product_designer_settings);
+
+        endif;
+
+		do_action( 'product_designer_activation' );
 		
 		}		
 		
-	public function product_designer_uninstall(){
+	public function _uninstall(){
 		
-		do_action( 'product_designer_action_uninstall' );
+		do_action( 'product_designer_uninstall' );
 		}		
 		
-	public function product_designer_deactivation(){
+	public function _deactivation(){
 		
-		do_action( 'product_designer_action_deactivation' );
+		do_action( 'product_designer_deactivation' );
 		}
 		
 		
 	public function _front_scripts(){
 
 
-        wp_register_script('product-designer-style', product_designer_plugin_url.'assets/front/css/style.css');
+        wp_register_style('customize-link', product_designer_plugin_url.'assets/front/css/customize-link.css');
 
 
         wp_register_script('jquery-impromptu', plugins_url( '/assets/front/js/jquery-impromptu.min.js' , __FILE__ ) , array( 'jquery' ));

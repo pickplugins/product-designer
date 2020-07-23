@@ -224,6 +224,10 @@ function product_designer_after_add_to_cart_button() {
 
 
 	}
+
+    wp_enqueue_style('customize-link');
+
+
 }
 
 function product_designer_woocommerce_after_shop_loop_item() {
@@ -306,6 +310,9 @@ function product_designer_woocommerce_after_shop_loop_item() {
 <!--        </div>-->
 <!--		--><?php
 	}
+
+    wp_enqueue_style('customize-link');
+
 }
 
 

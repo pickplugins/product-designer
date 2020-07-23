@@ -3364,7 +3364,7 @@ $(document).on('click','.clipart-list img',function(){
 
 
 
-     var tour_guide = product_designer_editor.tour_guide;
+    var tour_guide = product_designer_editor.tour_guide;
     var tour_enable = tour_guide.enable;
     var tour_complete = tour_guide.tour_complete;
     var tour_hide = tour_guide.tour_hide;

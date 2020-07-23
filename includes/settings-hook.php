@@ -9,7 +9,7 @@ function product_designer_settings_content_general(){
     $product_designer_settings = get_option('product_designer_settings');
 
     $font_aw_version = isset($product_designer_settings['font_aw_version']) ? $product_designer_settings['font_aw_version'] : 'none';
-    $post_grid_preview = isset($product_designer_settings['post_grid_preview']) ? $product_designer_settings['post_grid_preview'] : 'yes';
+    $designer_page_id = isset($product_designer_settings['designer_page_id']) ? $product_designer_settings['designer_page_id'] : '';
     $post_options_post_types = isset($product_designer_settings['post_options_post_types']) ? $product_designer_settings['post_options_post_types'] : array();
 
     //echo '<pre>'.var_export($product_designer_settings, true).'</pre>';
@@ -21,7 +21,18 @@ function product_designer_settings_content_general(){
 
         <?php
 
+        $args = array(
+            'id'		=> 'designer_page_id',
+            'parent'		=> 'product_designer_settings',
+            'title'		=> __('Designer page','post-grid'),
+            'details'	=> __('Display product desginer, use shortcode <code>[product_designer]</code> on that page.','post-grid'),
+            'type'		=> 'select',
+            'value'		=> $designer_page_id,
+            'default'		=> '',
+            'args'		=> product_designer_get_pages(),
+        );
 
+        $settings_tabs_field->generate_field($args);
 
         $args = array(
             'id'		=> 'font_aw_version',
@@ -330,4 +341,17 @@ function product_designer_settings_save(){
 
     $product_designer_settings = isset($_POST['product_designer_settings']) ?  stripslashes_deep($_POST['product_designer_settings']) : array();
     update_option('product_designer_settings', $product_designer_settings);
+}
+
+
+
+function product_designer_get_pages(){
+
+    $pages_array = array( '' => __( 'Select Page', 'woo-wishlist' ) );
+
+    foreach( get_pages() as $page ):
+        $pages_array[ $page->ID ] = $page->post_title;
+    endforeach;
+
+    return $pages_array;
 }
