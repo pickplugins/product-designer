@@ -448,7 +448,7 @@ display:none;
 
 }
 
-.toolbar-section{margin-bottom: 20px;}
+.toolbar-section{margin-bottom: 20px;margin: 0 10px;}
 .toolbar-section .pack-button {
   width: 25px;
   height: 25px;

@@ -295,20 +295,6 @@ function product_designer_woocommerce_after_shop_loop_item() {
 
 		endif;
 
-
-
-
-
-
-
-
-
-//		?>
-<!--        <div class="product-designer-editor-link">-->
-<!--            <a class="button" href="--><?php //echo $product_designer_page_url; ?><!--?product_id=--><?php //echo get_the_ID(); ?><!--"><i class="fa fa-crop" ></i> --><?php //echo __('Customize', 'product-designer'); ?><!--</a>-->
-<!---->
-<!--        </div>-->
-<!--		--><?php
 	}
 
     wp_enqueue_style('customize-link');
@@ -366,12 +352,88 @@ function save_product_designer_variation_settings_fields( $post_id ) {
 
 
 
+add_filter( 'woocommerce_cart_item_thumbnail',  'product_designer_woocommerce_cart_item_thumbnail' , 10, 3 );
+function product_designer_woocommerce_cart_item_thumbnail( $item_thumbnail, $values, $cart_item_key ) {
+
+    //woocommerce_new_order_item( $cart_item_key, 'product_designer_side_attach_ids_hello', 'Hello' );
+
+
+    if ( !empty( $values['product_designer_side_attach_ids'] )){
+
+        ob_start();
+        ?>
+        <div class="cart-sides">
+            <div class="">Customized:</div>
+            <?php
+
+            $product_designer_side_attach_ids = $values['product_designer_side_attach_ids'];
+
+
+            foreach ($product_designer_side_attach_ids as $side_id=>$attach_id){
+                ?>
+                <div style="display: inline" title="<?php echo $side_id; ?>" class="side side-">
+                    <img  width="50" src="<?php echo wp_get_attachment_url($attach_id); ?>">
+                </div>
+                <?php
+
+            }
+
+
+            ?>
+
+        </div>
+        <?php
+
+        $item_thumbnail .= ob_get_clean();
+
+    }
+
+    return $item_thumbnail;
+}
+
+
+
+
+add_filter( 'woocommerce_get_item_data',  'product_designer_get_item_data' , 10, 2 );
+function product_designer_get_item_data( $item_data, $cart_item ) {
+
+    //var_dump($cart_item);
+
+    // at cart page, checkout page
+    if ( !empty( $cart_item['product_designer_side_attach_ids'] )){
+
+        $item_data[] = array(
+            'name'    => __( 'Custom design', 'product-designer' ),
+            'value'   => $cart_item['product_designer_side_attach_ids'],
+            'display' => 'Display Custom Design 1'
+        );
+    }
+
+
+    if ( !empty( $cart_item['product_designer_side_ids_json'] )){
+
+        $item_data[] = array(
+            'name'    => __( 'Custom design', 'product-designer' ),
+            'value'   => $cart_item['product_designer_side_ids_json'],
+            'display' => 'Display Custom Design 2'
+        );
+    }
+
+
+    return $item_data;
+}
+
+
+
+
+
+
 
 
 
 //cart_item_data
 
-add_filter( 'woocommerce_add_cart_item_data', 'product_designer_add_cart_item_data', 10, 2 );
+//add_filter( 'woocommerce_add_cart_item_data', 'product_designer_add_cart_item_data', 10, 2 );
 function product_designer_add_cart_item_data( $cart_item_meta, $product_id ) {
 	global $woocommerce;
 
@@ -421,32 +483,7 @@ function product_designer_get_cart_item_from_session( $cart_item, $values ) {
 
 
 
-//add_filter( 'woocommerce_get_item_data',  'product_designer_get_item_data' , 10, 2 );
-function product_designer_get_item_data( $item_data, $cart_item ) {
 
-	// at cart page, checkout page
-	if ( !empty( $cart_item['product_designer_side_attach_ids'] )){
-
-		$item_data[] = array(
-			'name'    => __( 'Custom design', 'product-designer' ),
-			'value'   => $cart_item['product_designer_side_attach_ids'],
-			'display' => 'Display Custom Design'
-		);
-	}
-
-
-	if ( !empty( $cart_item['product_designer_side_ids_json'] )){
-
-		$item_data[] = array(
-			'name'    => __( 'Custom design', 'product-designer' ),
-			'value'   => $cart_item['product_designer_side_ids_json'],
-			'display' => 'Display Custom Design'
-		);
-	}
-
-
-	return $item_data;
-}
 
 
 //add_action( 'woocommerce_before_calculate_totals', 'add_custom_price' , 1, 1);
@@ -476,78 +513,6 @@ function add_custom_price( $cart_object ) {
 	    $i++;
 	}
 
-}
-
-
-add_filter( 'woocommerce_cart_item_thumbnail',  'product_designer_woocommerce_cart_item_thumbnail' , 10, 3 );
-function product_designer_woocommerce_cart_item_thumbnail( $item_thumbnail, $values, $cart_item_key ) {
-
-	//woocommerce_new_order_item( $cart_item_key, 'product_designer_side_attach_ids_hello', 'Hello' );
-
-
-	$item_thumbnail = $item_thumbnail;
-
-
-
-
-	?>
-<!--    <pre>-->
-<!--        --><?php
-//        //echo var_export($cart_item_key, true);
-//        //echo var_export($values, true);
-//        //echo var_export($values['product_designer_side_attach_ids'], true);
-//        //echo var_export($values['product_designer_side_ids_json'], true);
-//        ?>
-<!--    </pre>-->
-    <?php
-
-
-
-
-
-        if ( !empty( $values['product_designer_side_attach_ids'] )){
-
-
-	        ob_start();
-	        ?>
-
-            <div class="cart-sides">
-                <div class="">Customized:</div>
-		        <?php
-
-
-	        $product_designer_side_attach_ids = $values['product_designer_side_attach_ids'];
-
-
-	        foreach ($product_designer_side_attach_ids as $side_id=>$attach_id){
-	            ?>
-                <div style="display: inline" title="<?php echo $side_id; ?>" class="side side-">
-                    <img  width="50" src="<?php echo wp_get_attachment_url($attach_id); ?>">
-                </div>
-                <?php
-
-	        }
-
-
-	        ?>
-
-            </div>
-	        <?php
-
-	        $item_thumbnail .= ob_get_clean();
-
-        }
-
-
-
-
-
-
-
-
-
-
-	return $item_thumbnail;
 }
 
 

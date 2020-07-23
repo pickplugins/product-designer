@@ -286,17 +286,6 @@ function product_designer_wc_order_meta( $post ) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 	            $product_id = $order_item['product_id'];
 	            $product_title = get_the_title($product_id);
 	            $pd_template_id = get_post_meta( $product_id, 'pd_template_id', true );
@@ -318,13 +307,15 @@ function product_designer_wc_order_meta( $post ) {
 	            <?php
 
 
-	            //var_dump($side_data);
 
+                var_dump($item_meta);
 
 	            if(!empty($item_meta))
 	            foreach($item_meta as $side_id=>$attach_id){
 
 		            $attach_url = wp_get_attachment_url( $attach_id );
+
+
 
 		            ?>
                     <tr class="item">
