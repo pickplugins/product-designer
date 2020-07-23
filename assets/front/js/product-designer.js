@@ -71,7 +71,7 @@ jQuery(document).ready(function($){
 
 
         //$('.product-designer .menu .loading').fadeIn();
-
+        prpduct_designer_get_object_list();
 
 
     }
@@ -1251,6 +1251,94 @@ $(document).on('click','.generate-side-output',function(event){
 
 
 
+
+
+    function prpduct_designer_get_object_list(){
+
+
+        html = '';
+
+        objectList_arr = [];
+        var objectList = [];
+        objectList = canvas.getObjects();
+
+
+        length = objectList.length;
+
+        objectName = '';
+        objectId = '';
+
+        for (var i = 0, len = length; i < len; i++) {
+
+
+            type = objectList[i].type;
+            id = objectList[i].id;
+
+
+            objectList_arr[i] = {'id': objectList[i].id, 'type': objectList[i].type};
+
+
+            //objectList_arr[i]['id'] = id;
+
+
+            html += '<div class="item" obj-id="'+i+'">';
+
+
+            if(type=='text'){
+                objectName = objectList[i].text;
+                objectType = 'Text';
+                objectName = objectName;
+
+
+
+            }
+            else if(type=='image'){
+                objectType = 'Image';
+            }
+            else if(type=='curvedText'){
+                objectName = objectList[i].text;
+                objectType = 'Curved Text';
+                objectName = objectName;
+            }
+            else if(type=='path'){
+                objectType = 'Path';
+            }
+
+            else if(type=='rect'){
+                objectType = 'Rect';
+            }
+
+            else if(type=='circle'){
+                objectType = 'Circle';
+            }
+            else if(type=='triangle'){
+                objectType = 'Triangle';
+            }
+            else if(type=='polygon'){
+                objectType = 'Polygon';
+            }
+            else{
+                objectType = 'Others';
+            }
+
+
+            html += '<span class="remove"><i class="fa fa-times" aria-hidden="true"></i></span>';
+            html += '<span class="type">'+objectType+'</span>';
+            //html += '<span class="name">'+objectName+'</span>';
+
+
+
+            //console.log(objectList[i]);
+            html += '</div>';
+
+
+        }
+
+        $('.layer-item').html(html);
+
+        // return objectList_arr;
+
+    }
 
 
 
