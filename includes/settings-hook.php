@@ -85,15 +85,15 @@ if(!function_exists('product_designer_settings_content_help_support')) {
             <a class="button" href="https://www.pickplugins.com/create-support-ticket/"><?php echo __('Create support ticket', 'post-grid'); ?></a>
 
             <p><?php echo __('Read our documentation before asking your question.', 'post-grid'); ?></p>
-            <a class="button" href="https://www.pickplugins.com/documentation/post-grid/"><?php echo __('Documentation', 'post-grid'); ?></a>
+            <a class="button" href="https://www.pickplugins.com/documentation/product-designer/"><?php echo __('Documentation', 'post-grid'); ?></a>
 
-            <p><?php echo __('Watch video tutorials.', 'post-grid'); ?></p>
-            <a class="button" href="https://www.youtube.com/playlist?list=PL0QP7T2SN94Yut5Y0MSVg1wqmqWz0UYpt"><i class="fab fa-youtube"></i> <?php echo __('All tutorials', 'post-grid'); ?></a>
+<!--            <p>--><?php //echo __('Watch video tutorials.', 'post-grid'); ?><!--</p>-->
+<!--            <a class="button" href="https://www.youtube.com/playlist?list=PL0QP7T2SN94Yut5Y0MSVg1wqmqWz0UYpt"><i class="fab fa-youtube"></i> --><?php //echo __('All tutorials', 'post-grid'); ?><!--</a>-->
 
-            <ul>
-                <li><i class="far fa-dot-circle"></i> <a href="https://youtu.be/YVtsIbEb9zs">Latest Version 2.0.46 Overview</a></li>
-
-            </ul>
+<!--            <ul>-->
+<!--                <li><i class="far fa-dot-circle"></i> <a href="https://youtu.be/YVtsIbEb9zs">Latest Version 2.0.46 Overview</a></li>-->
+<!---->
+<!--            </ul>-->
 
 
 
@@ -119,7 +119,7 @@ if(!function_exists('product_designer_settings_content_help_support')) {
 
             <p class="">We wish your 2 minutes to write your feedback about the <b>Post Grid</b> plugin. give us <span style="color: #ffae19"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span></p>
 
-            <a target="_blank" href="https://wordpress.org/support/plugin/post-grid/reviews/#new-post" class="button"><i class="fab fa-wordpress"></i> Write a review</a>
+            <a target="_blank" href="https://wordpress.org/support/plugin/product-designer/reviews/#new-post" class="button"><i class="fab fa-wordpress"></i> Write a review</a>
 
 
             <?php
@@ -203,8 +203,8 @@ if(!function_exists('product_designer_settings_content_buy_pro')) {
             ?>
 
             <p><?php echo __('If you love our plugin and want more feature please consider to buy pro version.', 'post-grid'); ?></p>
-            <a class="button" href="https://www.pickplugins.com/item/post-grid-create-awesome-grid-from-any-post-type-for-wordpress/?ref=dashobard"><?php echo __('Buy premium', 'post-grid'); ?></a>
-            <a class="button" href="http://www.pickplugins.com/demo/post-grid/?ref=dashobard"><?php echo __('See all demo', 'post-grid'); ?></a>
+            <a class="button" href="https://www.pickplugins.com/item/product-designer/?ref=dashobard"><?php echo __('Buy premium', 'post-grid'); ?></a>
+            <a class="button" href="http://www.pickplugins.com/demo/product-designer/?ref=dashobard"><?php echo __('See all demo', 'post-grid'); ?></a>
 
             <h2><?php echo __('See the differences','post-grid'); ?></h2>
 
@@ -256,7 +256,7 @@ if(!function_exists('product_designer_settings_content_buy_pro')) {
                 <tr>
                     <td class="col-features"><?php echo __('Buy now','post-grid'); ?></td>
                     <td> </td>
-                    <td><a class="button" href="https://www.pickplugins.com/item/post-grid-create-awesome-grid-from-any-post-type-for-wordpress/?ref=dashobard"><?php echo __('Buy premium', 'post-grid'); ?></a></td>
+                    <td><a class="button" href="https://www.pickplugins.com/item/product-designer/?ref=dashobard"><?php echo __('Buy premium', 'post-grid'); ?></a></td>
                 </tr>
 
             </table>

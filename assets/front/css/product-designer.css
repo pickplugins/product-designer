@@ -14,7 +14,7 @@
 
 
 .product-designer .menu {
-  background: #ddd none repeat scroll 0 0;
+  background: #3a5673 none repeat scroll 0 0;
   height: 100%;
   left: 0px;
   position: absolute;
@@ -32,9 +32,14 @@
   position: relative;
   text-align: center;
 
-  border-bottom: 1px solid #d2d2d2;
+  border-bottom: 1px solid #4e6a88;
   padding: 5px 0;
 }
+
+.product-designer .menu .item:hover{
+  background: #314861 none repeat scroll 0 0;
+}
+
 
 .product-designer .menu .item .icon{
   font-size: 25px;
@@ -58,7 +63,7 @@
 
 
 .product-designer .menu .item:hover .child {
-  background: #ddd none repeat scroll 0 0;
+  background: #314861 none repeat scroll 0 0;
   display: block;
   left: 80px;
   padding: 10px;
@@ -204,7 +209,7 @@
 }
 .product-designer .clipart-pagination{}
 .product-designer .clipart-pagination .page-numbers {
-  background: #f2f2f2 none repeat scroll 0 0;
+  background: #daebfd87  none repeat scroll 0 0;
   color: rgba(0, 0, 0, 0.57);
   display: inline-block;
   margin: 5px 0 0 2px;
@@ -213,7 +218,7 @@
 }
 
 .product-designer .clipart-pagination .current {
-  background: rgba(0, 0, 0, 0.15) none repeat scroll 0 0;
+  background: rgb(255 255 255) none repeat scroll 0 0;
 }
 
 .product-designer .clipart-pagination .next, .product-designer .clipart-pagination .prev {
@@ -238,13 +243,14 @@ display:none;
   position: absolute;
   top: 0;
   right: 0px;
-  width: 250px;
+  width: 300px;
   height: 100%;
-  background: #ddd;
+  background: #3a5673;
   padding: 10px 10px 0px 10px;
   transition: all 1s ease 0s;
   z-index: 100;
   overflow-y: scroll;
+  color: #fff;
 }
 
 
@@ -448,33 +454,52 @@ display:none;
 
 }
 
-.toolbar-section{margin-bottom: 20px;margin: 0 10px;}
-.toolbar-section .pack-button {
-  width: 25px;
-  height: 25px;
-  display: inline-block;
-  border: 1px solid #c9c9c9;
-  text-align: center;
-  background: #f0f0f0;
-  font-size: 15px;
-  cursor: pointer;
-  margin: 2px 1px;
+.toolbar-section{
+  margin-bottom: 20px;
+  clear: both;}
+.toolbar-section-inner{
+  margin: 0 10px;
+  clear: both;
 }
+
+.toolbar-section .pack-button {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  /* border: 1px solid #c9c9c9; */
+  text-align: center;
+  background: #ffffff;
+  font-size: 20px;
+  cursor: pointer;
+  margin: 4px 4px;
+  color: #3a5673;
+  float: left;
+  border-radius: 3px;
+}
+
+.toolbar-section .pack-button:hover{
+  background: #ffffff5c;
+}
+
 
 .toolbar-section .pack-button:hover, .editor-actions .pack-button.active {
 
-  background: #a1a1a1;
+  background: #ffffff5c;
 
 }
 
 
 .toolbar-section .toolbar-title {
   text-align: center;
-  background: #ccc;
-  margin-bottom: 10px;
-  font-size: 14px;
-  border-left: 5px solid #a1a1a1;
-  border-right: 5px solid #a1a1a1;
+  background: #6087af8c;
+  margin-bottom: 20px;
+  font-size: 15px;
+  /* border-left: 5px solid #a1a1a1; */
+  /* border-right: 5px solid #a1a1a1; */
+  color: #ffffff;
+  font-weight: bold;
+  padding: 5px 0;
+  text-transform: uppercase;
 }
 
 .toolbar-section select {
@@ -493,11 +518,13 @@ display:none;
 
 
 .toolbar-section .input-group {
-  margin-bottom: 3px;
+  margin-bottom: 10px;
+  display: block;
 }
 .toolbar-section .input-group-title {
   display: inline-block;
   width: 50%;
+  font-size: 13px;
 }
 
 
@@ -507,10 +534,11 @@ display:none;
   display: inline-block;
   width: 49%;
   text-align: center;
-  background: #f0f0f0;
+  background: #ffffff;
   margin: 8px 0;
   cursor: pointer;
   border-radius: 2px;
+  color: #3a5673;
 }
 
 
@@ -537,6 +565,9 @@ display:none;
   text-align: center;
   position: relative;
   padding: 20px;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0px 0px 11px 1px rgb(0 0 0 .2);
 }
 
 .product-designer .preview .preview-close {

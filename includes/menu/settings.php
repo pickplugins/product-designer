@@ -23,12 +23,12 @@ $tabs[] = array(
 
 
 
-$tabs[] = array(
-    'id' => 'buy_pro',
-    'title' => sprintf(__('%s Buy Pro','post-grid'),'<i class="fas fa-store"></i>'),
-    'priority' => 95,
-    'active' => ($current_tab == 'buy_pro') ? true : false,
-);
+//$tabs[] = array(
+//    'id' => 'buy_pro',
+//    'title' => sprintf(__('%s Buy Pro','post-grid'),'<i class="fas fa-store"></i>'),
+//    'priority' => 95,
+//    'active' => ($current_tab == 'buy_pro') ? true : false,
+//);
 
 
 

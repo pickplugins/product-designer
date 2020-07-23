@@ -88,6 +88,7 @@ Before starting you need to add some clip art via custom post "Clip Art" with th
 	= 1.0.13 =
     * 2020-07-22 - fix - js error issue fixed.
     * 2020-07-22 - update - settings page update
+    * 2020-07-23 - fix - download preview issue fixed.
 
 
 	= 1.0.12 =

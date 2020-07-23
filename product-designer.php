@@ -88,15 +88,17 @@ class ProductDesigner{
                 ) );
             }
 
-
-
             $product_designer_settings['designer_page_id'] = $page_id;
-
-            update_option('product_designer_settings', $product_designer_settings);
 
         endif;
 
-		do_action( 'product_designer_activation' );
+        $product_designer_settings['font_aw_version'] = 'v_4';
+
+
+        update_option('product_designer_settings', $product_designer_settings);
+
+
+        do_action( 'product_designer_activation' );
 		
 		}		
 		
