@@ -1372,7 +1372,7 @@ $(document).on('click','.generate-side-output',function(event){
 
     function onObjectSelected(e) {
 
-        type = e.target.get('type')
+        type = e.target.get('type');
 
         $('.edit-text').removeClass('active');
         $('.edit-img').removeClass('active');
@@ -1383,7 +1383,7 @@ $(document).on('click','.generate-side-output',function(event){
 
 
 
-        //console.log(type);
+        //console.log(e.keyCode);
         //console.log(ActiveObject);
 
 
@@ -1392,10 +1392,15 @@ $(document).on('click','.generate-side-output',function(event){
             $('.edit-text').addClass('active');
 
             val = canvas.getActiveObject().getText();
+            fontSize = canvas.getActiveObject().fontSize;
+
+            console.log(fontSize);
+            console.log(canvas.getActiveObject());
+
             $('.product-designer #text-content').val(val);
+            $('.product-designer #font-size').val(fontSize);
 
-            }
-
+        }
         else if(type=='curvedText'){
             $('.edit-curvedText').addClass('active');
 
@@ -1403,14 +1408,14 @@ $(document).on('click','.generate-side-output',function(event){
             $('.product-designer #curvedText-content').val(val);
 
         }
-
         else if(type=='image'){
             $('.edit-img').addClass('active');
-            }
 
+        }
         else if(type=='circle' || type=='triangle' || type=='rect' || type=='polygon'){
             $('.edit-shape').addClass('active');
-            }
+
+        }
 
 
         product_designer_editor_save();
@@ -1419,6 +1424,28 @@ $(document).on('click','.generate-side-output',function(event){
 
     canvas.on('object:selected', onObjectSelected);
 
+
+    function onObjectKeydown(e) {
+
+        type = e.target.get('type');
+
+
+
+    }
+
+
+    canvas.on('onKeyDown', onObjectKeydown);
+
+
+    function onObjectSelectedClear(e) {
+
+        type = e.target.get('type');
+
+
+
+    }
+
+    canvas.on('selection:cleared', onObjectSelectedClear);
 
 
 
