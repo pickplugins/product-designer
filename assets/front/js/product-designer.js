@@ -651,37 +651,78 @@ $(document).on('click','.generate-side-output',function(event){
 
             var preview_file_format = product_designer_editor.preview_file_format;
 
-            base_64 = canvas.toDataURL({format: preview_file_format});
+            // base_64 = canvas.toDataURL({format: preview_file_format});
+            //
+            // console.log(base_64);
+            //
+            // window.open(base_64, '_blank');
 
-            window.open(base_64, '_blank');
+            if(preview_file_format == 'png' || preview_file_format == 'jpeg'){
+                const dataURL = canvas.toDataURL({
+                    width: canvas.width,
+                    height: canvas.height,
+                    left: 0,
+                    top: 0,
+                    format: preview_file_format,
+                });
+                const link = document.createElement('a');
+                link.download = 'download.'+preview_file_format;
+                link.href = dataURL;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }else if(preview_file_format == 'svg'){
+
+
+                var trsvg = canvas.toSVG();
+
+                var dataUrl = 'data:image/svg+xml,'+encodeURIComponent(trsvg);
+
+                console.log(dataUrl);
+                //window.open(trsvg, '_blank');
+
+                var dl = document.createElement("a");
+                document.body.appendChild(dl); // This line makes it work in Firefox.
+                dl.setAttribute("href", dataUrl);
+                dl.setAttribute("download", "download.svg");
+                dl.click();
+
+            }
+
+
+
+
+
 
         })
 
 
+
+
         $(document).on('change','#clipart-cat',function(){
 
-		$('.product-designer .menu .loading').fadeIn();
+            $('.product-designer .menu .loading').fadeIn();
 
-		var cat = $(this).val();
+            var cat = $(this).val();
 
-		$.ajax(
-			{
-		type: 'POST',
-		url: product_designer_ajax.product_designer_ajaxurl,
-		data: {"action": "product_designer_ajax_get_clipart_list","cat":cat},
-		success: function(data)
-				{
+            $.ajax(
+                {
+            type: 'POST',
+            url: product_designer_ajax.product_designer_ajaxurl,
+            data: {"action": "product_designer_ajax_get_clipart_list","cat":cat},
+            success: function(data)
+                {
 
-					var response 		= JSON.parse(data)
-					var clip_list 	= response['clip_list'];
-					var paginatioon 	= response['paginatioon'];
+                    var response 		= JSON.parse(data)
+                    var clip_list 	= response['clip_list'];
+                    var paginatioon 	= response['paginatioon'];
 
-					$('.clipart-list').html(clip_list);
-					$('.clipart-pagination').html(paginatioon);
-					$('.product-designer .menu .loading').fadeOut();
+                    $('.clipart-list').html(clip_list);
+                    $('.clipart-pagination').html(paginatioon);
+                    $('.product-designer .menu .loading').fadeOut();
 
-				}
-			});
+                }
+            });
 
 	})
 
