@@ -681,7 +681,7 @@ function product_designer_edit_panel(){
                 <form class="cart" enctype="multipart/form-data" method="post" action="#">
                     <input type="hidden" value="<?php echo $product_id; ?>" name="add-to-cart">
                     <input type="hidden" value="<?php echo $pd_template_id; ?>" name="pd_template_id">
-                    <div class="input-group">
+
 
                         <?php
                         $product_data = wc_get_product($product_id);
@@ -718,12 +718,17 @@ function product_designer_edit_panel(){
 
 
                         ?>
+                        <div class="input-group">
+                            <div class="input-group-title"><?php echo __('You are editing:', 'product-designer'); ?></div><span><?php echo get_the_title($product_id); ?></span>
+                        </div>
+                        <div class="input-group">
+                            <div class="input-group-title"><?php echo __('Base Price:', 'product-designer'); ?></div> <span><?php echo $product_price; ?></span>
+                        </div>
+                        <div class="input-group">
+                            <div class="input-group-title"><?php echo __('Quantity:', 'product-designer'); ?></div> <span><input class="input-text quantity text" type="number" size="4" aria-label="<?php echo __('Quantity', 'product-designer'); ?>" value="1" name="quantity" min="1" step="1"></span>
 
-                        <div class="input-group-title"><?php echo __('You are editing:', 'product-designer'); ?></div><span><?php echo get_the_title($product_id); ?></span>
-                        <div class="input-group-title"><?php echo __('Base Price:', 'product-designer'); ?></div> <span><?php echo $product_price; ?></span>
-                        <div class="input-group-title"><?php echo __('Quantity:', 'product-designer'); ?></div> <span><input class="input-text quantity text" type="number" size="4" aria-label="<?php echo __('Quantity', 'product-designer'); ?>" value="1" name="quantity" min="1" step="1"></span>
-
-                    </div>
+                        </div>
+                   
 
 
                     <div class="input-group product">
