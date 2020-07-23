@@ -559,7 +559,7 @@ display:none;
 .product-designer .preview .preview-img {
   width: 600px;
   height: 600px;
-  background: #fff;
+  background-image: url(../images/tile.png);
   margin: 0 auto;
   margin-top: 10%;
   text-align: center;
@@ -567,8 +567,14 @@ display:none;
   padding: 20px;
   border-radius: 5px;
   overflow: hidden;
-  box-shadow: 0px 0px 11px 1px rgb(0 0 0 .2);
+  box-shadow: 0px 0px 11px 1px rgba(0 0 0 .2);
+  overflow-y: scroll;
 }
+
+.product-designer .preview .preview-img img{
+  box-shadow: none;
+}
+
 
 .product-designer .preview .preview-close {
   position: absolute;
