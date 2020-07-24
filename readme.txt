@@ -11,10 +11,8 @@
 	Awesome Product Designer for WooCommerce.
 
 == Description ==
-This plugin allows you to display an awesome Product Designer on your website via short-code anywhere in page,
-add unlimited clip art via custom post and display on designer and easy to use on Product.
-Also text can be use with fancy font family, font size and color.
 
+Product Designer plugin is ready and simple way to add WooCommerce product customize or product designer on your eCommerce shop. Allow your customer to design or customize themselves before submit order. you customer can add custom clipart, text, shapes and etc. You can add unlimited  product sides for different kind of products. our product designer is based on templates so you can use same template for many products. User can download or preview their design before submit order. there is ton of options for customize text art, clipart and shapes.
 
 ### Product Designer by http://pickplugins.com
 
@@ -26,12 +24,24 @@ Also text can be use with fancy font family, font size and color.
 
 # Plugin Features
 
-* WooCommerce ready.
-* Unlimited cliparts with category & ajax pagination.
-* Text art.
-* Unlimited product sides.
-* Design preview.
-* 50+ hand pick stylish google font.
+**WooCommerce ready**
+Product Designer is WooCommerce ready and your customer will able to submit order by customizing products, you will able to see design files via order data.
+
+**Clipt Arts**
+You can add unlimited clipart, image, picture for design assest, so your user can add them to designer. there is category based filter and ajax pagination for accessing cliparts.
+
+**Text Arts**
+Your customer can add text on the product desginer, there is many option to customize text, font size, color, font families, we added 50+ hand picked Google fonts, you can add your own.
+
+**Unlimited product sides**
+Based on different product you can add any number of product sides, so user can customize each side on the designer.
+
+**Design preview**
+User can preview their design before submit order.
+
+**Design download**
+Your customer can download design before submit order.
+
 
 # Premium Features
 
