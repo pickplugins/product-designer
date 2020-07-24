@@ -259,21 +259,12 @@ function product_designer_wc_order_meta( $post ) {
 
 
 		?>
-
-        <pre>
-
-            <?php
-            //echo var_export($order_items, true);
-            ?>
-        </pre>
-
-
         <table class="product-designer order-items widefat">
 
             <thead>
                 <tr>
                     <td><?php echo __('Sides', 'product-designer'); ?></td>
-                    <td><?php echo __('Preview', 'product-designer'); ?></td>
+                    <td style="text-align: center;"><?php echo __('Preview', 'product-designer'); ?></td>
                     <td><?php echo __('Download', 'product-designer'); ?></td>
                 </tr>
             </thead>
@@ -284,6 +275,7 @@ function product_designer_wc_order_meta( $post ) {
             foreach ($order_items as $order_item_id => $order_item) {
 
 
+                //echo '<pre>'.var_export($order_item, true).'</pre>';
 
 
 	            $product_id = $order_item['product_id'];
@@ -308,7 +300,7 @@ function product_designer_wc_order_meta( $post ) {
 
 
 
-                var_dump($item_meta);
+                //var_dump($item_meta);
 
 	            if(!empty($item_meta))
 	            foreach($item_meta as $side_id=>$attach_id){
@@ -327,10 +319,12 @@ function product_designer_wc_order_meta( $post ) {
 
                         </td>
                         <td class="">
-                            <img  style="width: 100px" src="<?php echo esc_url_raw($attach_url); ?>" />
+                            <div class="pd-preview-src" style="text-align: center;">
+                                <img  style="width: 100px" src="<?php echo esc_url_raw($attach_url); ?>" />
+                            </div>
                         </td>
                         <td class="">
-                            <button onclick="prepHref(this)" data-src="<?php echo esc_url_raw($attach_url); ?>" class="button download-btn">Download</button>
+                            <div data-src="<?php echo esc_url_raw($attach_url); ?>" class="button download-btn">Download</div>
                         </td>
                     </tr>
                     <?php
@@ -343,10 +337,11 @@ function product_designer_wc_order_meta( $post ) {
 
 
     <script type="text/javascript">
-        $(document).ready(function (){
+        jQuery(document).ready(function ($){
 
-            $('.download-btn').click(function(){
+            $('.download-btn').click(function(e){
 
+                e.preventDefault;
                 img_url = $(this).attr('data-src');
                 window.open(img_url);
             });
@@ -354,6 +349,12 @@ function product_designer_wc_order_meta( $post ) {
     </script>
 
 
+    <style type="text/css">
+        .pd-preview-src{
+            background-image: url("<?php echo product_designer_plugin_url; ?>assets/front/images/tile.png");
+            padding: 20px 0;
+        }
+    </style>
 
 
 

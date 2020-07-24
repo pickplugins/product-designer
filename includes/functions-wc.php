@@ -394,46 +394,9 @@ function product_designer_woocommerce_cart_item_thumbnail( $item_thumbnail, $val
 
 
 
-add_filter( 'woocommerce_get_item_data',  'product_designer_get_item_data' , 10, 2 );
-function product_designer_get_item_data( $item_data, $cart_item ) {
-
-    //var_dump($cart_item);
-
-    // at cart page, checkout page
-    if ( !empty( $cart_item['product_designer_side_attach_ids'] )){
-
-        $item_data[] = array(
-            'name'    => __( 'Custom design', 'product-designer' ),
-            'value'   => $cart_item['product_designer_side_attach_ids'],
-            'display' => 'Display Custom Design 1'
-        );
-    }
-
-
-    if ( !empty( $cart_item['product_designer_side_ids_json'] )){
-
-        $item_data[] = array(
-            'name'    => __( 'Custom design', 'product-designer' ),
-            'value'   => $cart_item['product_designer_side_ids_json'],
-            'display' => 'Display Custom Design 2'
-        );
-    }
-
-
-    return $item_data;
-}
-
-
-
-
-
-
-
-
-
 //cart_item_data
 
-//add_filter( 'woocommerce_add_cart_item_data', 'product_designer_add_cart_item_data', 10, 2 );
+add_filter( 'woocommerce_add_cart_item_data', 'product_designer_add_cart_item_data', 10, 2 );
 function product_designer_add_cart_item_data( $cart_item_meta, $product_id ) {
 	global $woocommerce;
 
@@ -441,78 +404,50 @@ function product_designer_add_cart_item_data( $cart_item_meta, $product_id ) {
 
 	if ( !empty( $_POST['product_designer_side_attach_ids'] )){
 
-		$cart_item_meta['product_designer_side_attach_ids'] = sanitize_text_field($_POST['product_designer_side_attach_ids']);
+		$cart_item_meta['product_designer_side_attach_ids'] = ($_POST['product_designer_side_attach_ids']);
 	}
 
 
 
 	if ( !empty( $_POST['product_designer_side_ids_json'] )){
 
-		$cart_item_meta['product_designer_side_ids_json'] = sanitize_text_field($_POST['product_designer_side_ids_json']);
+		$cart_item_meta['product_designer_side_ids_json'] = ($_POST['product_designer_side_ids_json']);
 	}
-
-
-
 
 
 	return $cart_item_meta;
 }
 
-//add_filter( 'woocommerce_get_cart_item_from_session', 'product_designer_get_cart_item_from_session' , 10, 2 );
-function product_designer_get_cart_item_from_session( $cart_item, $values ) {
-
-	if ( (!empty( $values['product_designer_side_attach_ids'] ) )) {
-
-		$cart_item['product_designer_side_attach_ids'] = sanitize_text_field($values['product_designer_side_attach_ids']);
-
-	}
-
-	if ( (!empty( $values['product_designer_side_ids_json'] ) )) {
-
-		$cart_item['product_designer_side_ids_json'] = sanitize_text_field($values['product_designer_side_ids_json']);
-
-	}
 
 
 
+add_action( 'woocommerce_checkout_create_order_line_item', 'custom_checkout_create_order_line_item', 20, 4 );
+function custom_checkout_create_order_line_item( $item, $cart_item_key, $values, $order ) {
+    // Get a product custom field value
 
-	return $cart_item;
+    // Get cart item custom data and update order item meta
+    if( isset( $values['product_designer_side_attach_ids'] ) ) {
+        $item->update_meta_data( 'product_designer_side_attach_ids', $values['product_designer_side_attach_ids'] );
+    }
 }
 
 
 
-
-
-
-
-
-//add_action( 'woocommerce_before_calculate_totals', 'add_custom_price' , 1, 1);
-
-function add_custom_price( $cart_object ) {
-
-
-    //var_dump($cart_object);
-
-    $i = 1;
-	foreach ( $cart_object->cart_contents as $key => $value ) {
-
-	    //var_dump($i);
-
-	    $clip_art_price = isset($value['clip_art_price']) ? $value['clip_art_price'] : 0;
-
-	    if($clip_art_price != 0){
-		    $price = $value['data']->get_price() + $clip_art_price;
+add_action('woocommerce_before_cart_item_quantity_zero','wdm_remove_user_custom_data_options_from_cart',1,1);
+if(!function_exists('wdm_remove_user_custom_data_options_from_cart'))
+{
+    function wdm_remove_user_custom_data_options_from_cart($cart_item_key)
+    {
+        global $woocommerce;
+        // Get cart
+        $cart = $woocommerce->cart->get_cart();
+        // For each item in cart, if item is upsell of deleted product, delete it
+        foreach( $cart as $key => $values)
+        {
+            if ( $values['product_designer_side_attach_ids'] == $cart_item_key )
+                unset( $woocommerce->cart->cart_contents[ $key ] );
         }
-
-
-	    //var_dump($clip_art_price);
-
-
-		$value['data']->set_price( $price );
-
-	    $i++;
-	}
-
+    }
 }
 
 
@@ -521,28 +456,6 @@ function add_custom_price( $cart_object ) {
 
 
 
-
-
-
-
-add_action( 'woocommerce_new_order_item',  'product_designer_add_order_item_meta' , 10, 2 );
-function product_designer_add_order_item_meta( $item_id, $cart_item ) {
-
-	if (  (!empty( $cart_item['product_designer_side_attach_ids'] ))){
-
-		woocommerce_new_order_item( $item_id, 'product_designer_side_attach_ids', $cart_item['product_designer_side_attach_ids'] );
-
-	}
-
-	if (  (!empty( $cart_item['product_designer_side_ids_json'] ))){
-
-		woocommerce_new_order_item( $item_id, 'product_designer_side_ids_json', $cart_item['product_designer_side_ids_json'] );
-
-	}
-
-
-
-}
 
 
 

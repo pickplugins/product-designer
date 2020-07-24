@@ -164,7 +164,7 @@ function product_designer_menu($atts){
 
 
 }
-add_action('product_designer_menu', 'product_designer_pre_templates', 15);
+//add_action('product_designer_menu', 'product_designer_pre_templates', 15);
 
 function product_designer_pre_templates(){
 
@@ -488,7 +488,7 @@ function product_designer_menu_shapes(){
 }
 
 
-add_action('product_designer_menu', 'product_designer_menu_export', 15);
+//add_action('product_designer_menu', 'product_designer_menu_export', 15);
 
 function product_designer_menu_export(){
 
@@ -608,8 +608,8 @@ function product_designer_tools_editor_actions(){
             <span class="pack-button hint--top" id="editor-lockMovementX" aria-label="<?php echo __('Lock X movement', 'product-designer'); ?>" ><i class="fa fa-arrows-v" aria-hidden="true"></i></span>
             <span class="pack-button hint--top" id="editor-lockMovementY" aria-label="<?php echo __('Lock Y movement', 'product-designer'); ?>" ><i class="fa fa-arrows-h" aria-hidden="true"></i></span>
             <span class="pack-button hint--top" id="editor-lockRotation" aria-label="<?php echo __('Lock rotation', 'product-designer'); ?>" ><i class="fa fa-undo" aria-hidden="true"></i></span>
-            <span class="pack-button hint--top" id="editor-lockScalingX" aria-label="<?php echo __('Lock X Scaling', 'product-designer'); ?>" ><i class="fa fa-expand" aria-hidden="true"></i></span>
-            <span class="pack-button hint--top" id="editor-lockScalingY" aria-label="<?php echo __('Lock Y Scaling', 'product-designer'); ?>" ><i class="fa fa-expand" aria-hidden="true"></i></span>
+            <span class="pack-button hint--top" id="editor-lockScalingX" aria-label="<?php echo __('Lock X Scaling', 'product-designer'); ?>" ><i style="transform: rotate(45deg);" class="fa fa-expand" aria-hidden="true"></i></span>
+            <span class="pack-button hint--top" id="editor-lockScalingY" aria-label="<?php echo __('Lock Y Scaling', 'product-designer'); ?>" ><i style="transform: rotate(-45deg);" class="fa fa-expand" aria-hidden="true"></i></span>
             <span class="pack-button hint--top" aria-label="<?php echo __('Undo', 'product-designer'); ?>" id="editor-undo"><i class="cpd-icon-undo"></i></span>
             <span class="pack-button hint--top" aria-label="<?php echo __('Redo', 'product-designer'); ?>" id="editor-redo"><i class="cpd-icon-redo"></i></span>
 
@@ -637,11 +637,11 @@ function product_designer_tools_object_list(){
     ?>
     <div class="object-list toolbar-section pd-guide-8">
         <div class="toolbar-title">Layers</div>
-
-        <div class="layer-item-scrollbar scrollbar-dynamic">
-            <div class="layer-item "></div>
+        <div class="toolbar-section-inner">
+            <div class="layer-item ">
+                No layers
+            </div>
         </div>
-
 
     </div>
     <?php
