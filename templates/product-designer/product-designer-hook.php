@@ -702,6 +702,32 @@ add_action('product_designer_tools', 'product_designer_tools_editor_actions', 20
 
 function product_designer_tools_editor_actions(){
 
+    if(!empty($_GET['product_id'])):
+
+        $product_id = isset($_GET['product_id']) ? sanitize_text_field($_GET['product_id']) : '';
+
+        $product_data = wc_get_product($product_id);
+        $is_variable = $product_data->is_type('variable');
+
+
+        if($is_variable):
+
+            $variation_id = isset($_GET['variation_id']) ? sanitize_text_field($_GET['variation_id']): '';
+            $pd_template_id = get_post_meta( $variation_id, 'pd_template_id', true );
+
+        else:
+
+            $pd_template_id = get_post_meta( $product_id, 'pd_template_id', true );
+
+
+        endif;
+    endif;
+
+
+    $canvas = get_post_meta($pd_template_id, 'canvas', true);
+
+    $enable_download = !empty($canvas['download']['enable']) ? $canvas['download']['enable'] : 'yes';
+    $enable_preview = !empty($canvas['preview']['enable']) ? $canvas['preview']['enable'] : 'yes';
 
 
     ?>
@@ -734,8 +760,24 @@ function product_designer_tools_editor_actions(){
 
         <div class="editor-actions toolbar-section">
             <div class="toolbar-section-inner">
-                <div class="editor-preview pd-guide-6"><i class="fa fa-eye" aria-hidden="true"></i> <?php echo __('Preview', 'product-designer'); ?></div>
-                <div class="editor-download pd-guide-7"><i class="fa fa-download" aria-hidden="true"></i> <?php echo __('Download', 'product-designer'); ?></div>
+
+
+                <?php
+                if($enable_preview =='yes'): ?>
+                    <div class="editor-preview pd-guide-6"><i class="fa fa-eye" aria-hidden="true"></i> <?php echo __('Preview', 'product-designer'); ?></div>
+
+                <?php
+                endif;
+                ?>
+
+
+                <?php
+                if($enable_download =='yes'): ?>
+                    <div class="editor-download pd-guide-7"><i class="fa fa-download" aria-hidden="true"></i> <?php echo __('Download', 'product-designer'); ?></div>
+
+                <?php
+                endif;
+                ?>
             </div>
         </div>
 
