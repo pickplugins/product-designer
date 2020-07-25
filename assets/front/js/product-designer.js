@@ -3090,18 +3090,23 @@ $(document).on('click','.clipart-list img',function(){
 
 		})
 
-        $(document).on('submit','#template_create',function(event){
+        $(document).on('submit','#save_as_template',function(event){
 
             event.preventDefault();
             var form_data = $(this).serialize();
 
-            console.log(form_data);
+            $(this).children('.loading').fadeIn();
+            //$(this)[0].reset();
+
 
             $('.product-designer .menu .loading').fadeIn();
             json = JSON.stringify(canvas);
 
+            __this = this;
+
             $.ajax({
                 type: 'POST',
+                context: $(this),
                 url: product_designer_ajax.product_designer_ajaxurl,
                 data: {"action": "product_designer_ajax_create_template","form_data":form_data,"json":json},
                 success: function(response){
@@ -3114,11 +3119,11 @@ $(document).on('click','.clipart-list img',function(){
                     html = '<li class="template" side_id="'+side_id+'" t_id="'+template_id+'">'+template_id+'</li>';
 
                     $('.template-list').append(html);
-                    $('.product-designer .menu .loading').fadeOut();
+                    $(__this).children('.loading').fadeOut();
+                    $(__this).trigger("reset");
 
-                    console.log(side_id);
-                    console.log(template_id);
-                    console.log(mgs);
+                    console.log(data);
+
                 }
             });
 

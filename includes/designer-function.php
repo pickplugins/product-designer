@@ -163,7 +163,7 @@ function product_designer_ajax_create_template(){
 	$json = isset($_POST['json']) ? sanitize_text_field($_POST['json']) : '';
 
 	parse_str($_POST['form_data'], $form_data);
-	$product_id = isset($form_data['product_id']) ? sanitize_text_field($form_data['product_id']) : '';
+	$template_id = isset($form_data['template_id']) ? sanitize_text_field($form_data['template_id']) : '';
 	$side_id = isset($form_data['side_id']) ? sanitize_text_field($form_data['side_id']) : '';
 	$template_id = time();
 	$template_name = isset($form_data['template_name']) ? sanitize_text_field($form_data['template_name']) : '';
@@ -171,22 +171,25 @@ function product_designer_ajax_create_template(){
 
 
 	
-	$templates = get_post_meta($product_id, 'templates', true);
+	$templates = get_post_meta($template_id, 'pre_templates', true);
+
+    $templates = !empty($templates) ? $templates : array();
 	
 	if(!empty($templates)){
 		
 		$templates[$side_id][$template_id]['name'] = $template_name;
 		$templates[$side_id][$template_id]['content'] = $json;
 		
-		}
-	else{
+
+	}else{
 		
 		$templates[$side_id][$template_id]['name'] = $template_name;
 		$templates[$side_id][$template_id]['content'] = $json;
 		
-		}
+
+	}
 	
-	update_post_meta( $product_id, 'templates', $templates );
+	update_post_meta( $product_id, 'pre_templates', $templates );
 	//update_post_meta($product_id, 'templates', $templates);
 
 	$response['template_id'] = $template_id;
@@ -203,11 +206,12 @@ function product_designer_ajax_create_template(){
 	}
 	
 add_action('wp_ajax_product_designer_ajax_create_template', 'product_designer_ajax_create_template');
+add_action('wp_ajax_nopriv_product_designer_ajax_create_template', 'product_designer_ajax_create_template');
 
-	
-	
-	
-	
+
+
+
+
 function product_designer_ajax_update_template(){
 	
 	$json = isset( $_POST['json']) ?  sanitize_text_field($_POST['json']) : '';
