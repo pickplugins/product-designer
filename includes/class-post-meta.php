@@ -14,7 +14,7 @@ class class_product_designer_post_meta  {
     public function __construct(){
 
 		
-		//add_action('add_meta_boxes', array( $this, 'product_designer_meta_boxes' ));
+		add_action('add_meta_boxes', array( $this, 'product_designer_meta_boxes' ));
 	   // add_action( 'save_post', array( $this, 'product_designer_pd_template_meta_save' ) );
 		add_action( 'save_post', array( $this, 'product_designer_clipart_meta_save' ) );
 	    add_action( 'save_post', array( $this, 'product_designer_save_postdata' ) );
