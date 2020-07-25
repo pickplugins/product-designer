@@ -14,8 +14,8 @@ class class_product_designer_post_meta  {
     public function __construct(){
 
 		
-		add_action('add_meta_boxes', array( $this, 'product_designer_meta_boxes' ));
-	    add_action( 'save_post', array( $this, 'product_designer_pd_template_meta_save' ) );
+		//add_action('add_meta_boxes', array( $this, 'product_designer_meta_boxes' ));
+	   // add_action( 'save_post', array( $this, 'product_designer_pd_template_meta_save' ) );
 		add_action( 'save_post', array( $this, 'product_designer_clipart_meta_save' ) );
 	    add_action( 'save_post', array( $this, 'product_designer_save_postdata' ) );
 	    //add_action( 'save_post', array( $this, 'product_meta_save_postdata' ) );
@@ -29,7 +29,7 @@ class class_product_designer_post_meta  {
 		//add_meta_box('product_designer_pd_template_meta_box', __( 'Template Options', 'product-designer' ), array( $this, 'product_designer_pd_template_meta' ), 'pd_template' );
 		add_meta_box('product_designer_clipart_meta_box', __( 'Clip Art Options', 'product-designer' ), array( $this, 'product_designer_clipart_meta' ), 'clipart' );
 		add_meta_box('product_designer_wc_order_meta_box', __( 'Product Designer data', 'product-designer' ), array( $this, 'product_designer_wc_order_meta' ), 'shop_order' );
-		add_meta_box( 'product_designer_add_images', __( 'Product Designer Options', 'product-designer' ), array( $this, 'product_designer_inner_custom_box' ), 'pd_template' );
+		//add_meta_box( 'product_designer_add_images', __( 'Product Designer Options', 'product-designer' ), array( $this, 'product_designer_inner_custom_box' ), 'pd_template' );
 		//add_meta_box( 'product_designer', __( 'Product Designer', 'product-designer' ), array( $this, 'product_designer_product_metabox' ), 'product' );
 
 
@@ -391,7 +391,7 @@ function product_designer_wc_order_meta( $post ) {
 
         //var_dump($pre_templates);
 
-
+        wp_enqueue_style('font-awesome-5');
 
 		?>
 
@@ -491,7 +491,6 @@ function product_designer_wc_order_meta( $post ) {
 
                                 <div class="side">
                                     <div class="inline actions">
-                                        <div class=""><?php echo __('Actions', 'product-designer'); ?></div>
                                         <span class="remove"><i class="fa fa-times" aria-hidden="true"></i></span>
                                         <span class="move"><i class="fa fa-bars" aria-hidden="true"></i></span>
                                     </div>
@@ -639,7 +638,6 @@ function product_designer_wc_order_meta( $post ) {
 
                             html = '<div class="side">\n' +
                                 '<div class="inline actions">\n' +
-                                '<div class="">Actions</div>\n' +
                                 '<span class="remove"><i class="fa fa-times" aria-hidden="true"></i></span>\n' +
                                 '<span class="move ui-sortable-handle"><i class="fa fa-bars" aria-hidden="true"></i></span>\n' +
                                 '</div>\n' +
