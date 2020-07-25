@@ -16,7 +16,7 @@ class class_product_designer_post_meta  {
 		
 		add_action('add_meta_boxes', array( $this, 'product_designer_meta_boxes' ));
 	   // add_action( 'save_post', array( $this, 'product_designer_pd_template_meta_save' ) );
-		add_action( 'save_post', array( $this, 'product_designer_clipart_meta_save' ) );
+//		add_action( 'save_post', array( $this, 'product_designer_clipart_meta_save' ) );
 	    add_action( 'save_post', array( $this, 'product_designer_save_postdata' ) );
 	    //add_action( 'save_post', array( $this, 'product_meta_save_postdata' ) );
 
@@ -27,7 +27,7 @@ class class_product_designer_post_meta  {
 	public function product_designer_meta_boxes(){
 
 		//add_meta_box('product_designer_pd_template_meta_box', __( 'Template Options', 'product-designer' ), array( $this, 'product_designer_pd_template_meta' ), 'pd_template' );
-		add_meta_box('product_designer_clipart_meta_box', __( 'Clip Art Options', 'product-designer' ), array( $this, 'product_designer_clipart_meta' ), 'clipart' );
+//		add_meta_box('product_designer_clipart_meta_box', __( 'Clip Art Options', 'product-designer' ), array( $this, 'product_designer_clipart_meta' ), 'clipart' );
 		add_meta_box('product_designer_wc_order_meta_box', __( 'Product Designer data', 'product-designer' ), array( $this, 'product_designer_wc_order_meta' ), 'shop_order' );
 		//add_meta_box( 'product_designer_add_images', __( 'Product Designer Options', 'product-designer' ), array( $this, 'product_designer_inner_custom_box' ), 'pd_template' );
 		//add_meta_box( 'product_designer', __( 'Product Designer', 'product-designer' ), array( $this, 'product_designer_product_metabox' ), 'product' );

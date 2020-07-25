@@ -24,7 +24,7 @@ class product_designer_meta_boxes{
 
     public function clipart($post_type){
 
-        add_meta_box('post-grid',__('Post Grid Options', 'post-grid'), array($this, 'clipart_display'), 'clipart', 'normal', 'high');
+        add_meta_box('post-grid',__('Clipart Options', 'post-grid'), array($this, 'clipart_display'), 'clipart', 'normal', 'high');
 
     }
 
@@ -198,27 +198,19 @@ class product_designer_meta_boxes{
         $post_id = $post->ID;
         $clipart_meta_options = get_post_meta($post_id, 'clipart_meta_options', true);
 
-        $grid_type =     $post_types = !empty($clipart_meta_options['grid_type']) ? $clipart_meta_options['grid_type'] : 'grid';
 
-        $current_tab = isset($clipart_meta_options['current_tab']) ? $clipart_meta_options['current_tab'] : 'query_post';
+        $current_tab = isset($clipart_meta_options['current_tab']) ? $clipart_meta_options['current_tab'] : 'general';
 
-        $settings_tabs_field =  new settings_tabs_field();
 
         $settings_tabs = array();
 
 
 
-        $settings_tabs[] = array(
-            'id' => 'shortcode',
-            'title' => sprintf(__('%s Shortcode','post-grid'), '<i class="fas fa-laptop-code"></i>'),
-            'priority' => 5,
-            'active' => ($current_tab == 'shortcode') ? true : false,
-        );
 
         $settings_tabs[] = array(
             'id' => 'general',
             'title' => sprintf(__('%s General','post-grid'), '<i class="fas fa-cogs"></i>'),
-            'priority' => 10,
+            'priority' => 5,
             'active' => ($current_tab == 'general') ? true : false,
         );
 
@@ -344,10 +336,8 @@ class product_designer_meta_boxes{
         //$clipart_collapsible = sanitize_text_field( $_POST['clipart_collapsible'] );
 
 
-        $clipart_meta_options = stripslashes_deep( $_POST['clipart_meta_options'] );
-        update_post_meta( $post_id, 'clipart_meta_options', $clipart_meta_options );
 
-
+        do_action('product_designer_clipart_metabox_save', $post_id);
 
 
 
