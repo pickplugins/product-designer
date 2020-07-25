@@ -19,7 +19,9 @@ function product_designer_template_metabox_content_canvas( $post_id){
     $canvas_width = !empty($canvas['width']) ? $canvas['width'] : '500';
     $canvas_height = !empty($canvas['height']) ? $canvas['height'] : '500';
     $output_file_format = !empty($canvas['output']['file_format']) ? $canvas['output']['file_format'] : 'jpeg';
+    $enable_preview = !empty($canvas['preview']['enable']) ? $canvas['preview']['enable'] : 'yes';
     $preview_file_format = !empty($canvas['preview']['file_format']) ? $canvas['preview']['file_format'] : 'jpeg';
+    $enable_download = !empty($canvas['download']['enable']) ? $canvas['download']['enable'] : 'yes';
     $download_file_format = !empty($canvas['download']['file_format']) ? $canvas['download']['file_format'] : 'jpeg';
 
 
@@ -75,6 +77,22 @@ function product_designer_template_metabox_content_canvas( $post_id){
 
         $settings_tabs_field->generate_field($args, $post_id);
 
+        $args = array(
+            'id'		=> 'enable',
+            'parent'		=> 'canvas[preview]',
+            'title'		=> __('Enable preview','post-grid'),
+            'details'	=> __('Choose enable preview.','post-grid'),
+            'type'		=> 'radio',
+            'value'		=> $enable_preview,
+            'default'		=> 'yes',
+            'args'		=> array(
+                'yes'=>__('Yes','post-grid'),
+                'no'=>__('No','post-grid'),
+
+            ),
+        );
+
+        $settings_tabs_field->generate_field($args, $post_id);
 
 
         $args = array(
@@ -94,6 +112,26 @@ function product_designer_template_metabox_content_canvas( $post_id){
         );
 
         $settings_tabs_field->generate_field($args, $post_id);
+
+
+
+        $args = array(
+            'id'		=> 'enable',
+            'parent'		=> 'canvas[download]',
+            'title'		=> __('Enable download','post-grid'),
+            'details'	=> __('Choose enable download preview.','post-grid'),
+            'type'		=> 'radio',
+            'value'		=> $enable_download,
+            'default'		=> 'yes',
+            'args'		=> array(
+                'yes'=>__('Yes','post-grid'),
+                'no'=>__('No','post-grid'),
+
+            ),
+        );
+
+        $settings_tabs_field->generate_field($args, $post_id);
+
 
 
         $args = array(

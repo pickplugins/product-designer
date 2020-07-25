@@ -562,7 +562,7 @@ function product_designer_menu_shapes(){
 }
 
 
-add_action('product_designer_menu', 'product_designer_menu_export', 15);
+//add_action('product_designer_menu', 'product_designer_menu_export', 15);
 
 function product_designer_menu_export(){
 
@@ -701,6 +701,8 @@ function product_designer_tools(){
 add_action('product_designer_tools', 'product_designer_tools_editor_actions', 20);
 
 function product_designer_tools_editor_actions(){
+
+
 
     ?>
     <div class="editor-actions toolbar-section pd-guide-5">
