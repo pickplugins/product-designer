@@ -1638,6 +1638,9 @@ function product_designer_scripts(){
                 heightStyle: "full",
             })
 
+            //$( ".draggable" ).draggable({ handle: ".handle" });
+
+
         })
 
         //jQuery(document).ready(function($){
