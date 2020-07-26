@@ -237,6 +237,19 @@ display:none;
   padding: 3px 10px;
 }
 
+.product-designer .quotes-list {
+
+  max-height: 250px;
+  clear: both;
+}
+
+.product-designer .quotes-list .quote {
+  padding: 5px 5px;
+}
+
+.product-designer .quotes-list .quote:nth-child(2n+1) {
+  background: rgba(176, 176, 176, 0.18);
+}
 
 
 
@@ -252,23 +265,26 @@ display:none;
 }
 .product-designer .tabs .nav {
   display: inline-block;
-  /* float: left; */
+  float: left;
   list-style: none;
-  margin: 0;
-  padding: 0 10px;
-  background: #efefef;
-  border-right: 1px solid #ddd;
+  margin: 0 0 10px 0;
+  padding: 5px 10px;
+  background: #3a5673;
+  border-right: 1px solid #314861;
+  text-transform: uppercase;
+  font-size: 12px;
 }
 
 .product-designer .tabs .nav.ui-tabs-active {
-  background: #fff;
+  background: #4f7194;
 }
 
 .product-designer .tabs .nav a {
   padding: 0 0;
   margin: 0;
-  text-decoration: navajowhite;
+  text-decoration: none;
   outline: none;
+  color: #fff;
 }
 
 .product-designer .tabs .nav-content{}
@@ -496,19 +512,18 @@ display:none;
   background-position: 12px 12px;
 }
 
-.editor-actions {
+.product-designer .editor-actions {
 
 }
 
-.toolbar-section{
+.product-designer .toolbar-section{
   margin-bottom: 20px;
   clear: both;}
 .toolbar-section-inner{
   margin: 0 10px;
   clear: both;
 }
-
-.toolbar-section .pack-button {
+.product-designer .pack-button {
   width: 30px;
   height: 30px;
   display: inline-block;
@@ -523,19 +538,19 @@ display:none;
   border-radius: 3px;
 }
 
-.toolbar-section .pack-button:hover{
+.product-designer .pack-button:hover{
   background: #ffffff5c;
 }
 
 
-.toolbar-section .pack-button:hover, .editor-actions .pack-button.active {
+.product-designer .pack-button:hover, .editor-actions .pack-button.active {
 
   background: #ffffff5c;
 
 }
 
 
-.toolbar-section .toolbar-title {
+.product-designer .toolbar-title {
   text-align: center;
   background: #6087af8c;
   margin-bottom: 20px;
@@ -548,26 +563,26 @@ display:none;
   text-transform: uppercase;
 }
 
-.toolbar-section select {
+.product-designer select {
   padding: 0;
   height: 28px;
 }
 
-.toolbar-section input[type="text"], .toolbar-section input[type="number"] {
+.product-designer input[type="text"], .toolbar-section input[type="number"] {
   width: 70px;
 }
 
-.toolbar-section input[type="range"]{
+.product-designer input[type="range"]{
   margin: 0;
   width: 70px;
 }
 
 
-.toolbar-section .input-group {
+.product-designer .input-group {
   margin-bottom: 10px;
   display: block;
 }
-.toolbar-section .input-group-title {
+.product-designer .input-group-title {
   display: inline-block;
   width: 50%;
   font-size: 13px;

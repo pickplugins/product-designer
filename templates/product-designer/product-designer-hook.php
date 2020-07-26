@@ -486,32 +486,32 @@ function product_designer_image_type_content_qrcode(){
     <div class="input-group">
         <div class="input-group-title"></div>
         <div id="qrcode"></div>
-        <textarea rows="1" class="qr-text"></textarea>
+        <textarea rows="2" class="qr-text"></textarea>
 
     </div>
 
     <br>
     <div class="input-group">
         <div class="input-group-title">QR size:</div>
-        <div class="input-group-input"><input size="4" type="text" class="qr-size" placeholder="200" value="200"></div>
+        <div class="input-group-input"><input size="4" type="number" class="qr-size" placeholder="200" value="200"></div>
 
     </div>
 
     <div class="input-group">
         <div class="input-group-title">Background color:</div>
-        <div class="input-group-input"><input size="4"  type="text" class="color qr-bg-color" placeholder="#fff" value="#fff"></div>
+        <div class="input-group-input"><input data-jscolor=""   type="text" class="color qr-bg-color" placeholder="#fff" value="#fff"></div>
 
     </div>
 
     <div class="input-group">
         <div class="input-group-title">Fill color:</div>
-        <div class="input-group-input"><input size="4"  type="text" class="color qr-fill-color" placeholder="#000" value="#000"></div>
+        <div class="input-group-input"><input data-jscolor=""   type="text" class="color qr-fill-color" placeholder="#000" value="#000"></div>
 
     </div>
 
     <div class="input-group">
         <div class="input-group-title">Radius:</div>
-        <div class="input-group-input"><input size="4"  type="text" class="qr-radius" placeholder="50%" value="50%"></div>
+        <div class="input-group-input"><input type="text" class="qr-radius" placeholder="50%" value="50%"></div>
 
     </div>
 
@@ -535,7 +535,7 @@ function product_designer_image_type_content_barcode(){
     <img id="barcode"></img>
     <div class="input-group">
         <div class="input-group-title">Barcode Text</div>
-        <textarea rows="1" class="barcode-text"></textarea>
+        <textarea rows="2" class="barcode-text"></textarea>
     </div>
     <div class="input-group">
         <div class="input-group-title">Width:</div>
@@ -547,7 +547,7 @@ function product_designer_image_type_content_barcode(){
     </div>
     <div class="input-group">
         <div class="input-group-title">Color:</div>
-        <div class="input-group-input"><input size="" type="text" class="barcode-color color" placeholder="" value="#000"></div>
+        <div class="input-group-input"><input data-jscolor=""  type="text" class="barcode-color color" placeholder="" value="#000"></div>
     </div>
 
 
