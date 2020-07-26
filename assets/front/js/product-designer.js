@@ -3570,6 +3570,145 @@ $(document).on('click','.clipart-list img',function(){
 
 
 
+
+
+
+
+
+
+
+
+    $(document).on('keyup','.product-designer .menu .qr-text',function(){
+
+        text = $('.qr-text').val();
+        size = $('.qr-size').val();
+        bg_color = $('.qr-bg-color').val();
+        fill_color = $('.qr-fill-color').val();
+        radius = $('.qr-radius').val();
+
+        //$('#qrcode').html('');
+
+        console.log(size);
+        console.log(bg_color);
+        console.log(fill_color);
+        console.log(radius);
+
+
+
+        var qrcode = $('#qrcode').empty().qrcode({
+            render: 'image',
+            size: size,
+            fill: fill_color,
+            background: bg_color,
+            text: text,
+        });
+
+
+        product_designer_editor_save();
+        product_designer_editor_toast('','Text added.', 2000);
+
+        prpduct_designer_get_object_list();
+
+    })
+
+
+    $(document).on('click','.product-designer .menu .add-qr-code',function(){
+
+        src = $('#qrcode img').attr('src');
+
+        //src = jQuery(this).attr('src');
+        var newImg = new Image();
+        newImg.src = src;
+        var height = newImg.height;
+        var width = newImg.width;
+
+        fabric.Image.fromURL(src, function(img){
+            scale = 200 / img.width;
+            img.set({
+                scaleX: scale,
+                scaleY: scale
+            });
+            img.id = $.now();
+            //img.clipart_data = clipart_data;
+            //console.log(img);
+
+            canvas.add(img);
+            product_designer_editor_save();
+            prpduct_designer_get_object_list();
+        });
+
+        canvas.renderAll();
+
+        product_designer_editor_toast('','QR added.', 2000);
+
+    })
+
+
+    $(document).on('keyup','.product-designer .menu .barcode-text',function(){
+
+        text = $('.barcode-text').val();
+        width = $('.barcode-width').val();
+        height = $('.barcode-height').val();
+        color = $('.barcode-color').val();
+
+        console.log(text);
+
+        JsBarcode("#barcode", text, {
+            format: "CODE128A",
+            lineColor: color,
+            width:width,
+            height:height,
+            displayValue: false
+        });
+
+        product_designer_editor_save();
+        product_designer_editor_toast('','Text added.', 2000);
+
+        prpduct_designer_get_object_list();
+
+    })
+
+    $(document).on('click','.product-designer .menu .add-barcode',function(){
+
+        src = $('img#barcode').attr('src');
+
+        //src = jQuery(this).attr('src');
+        var newImg = new Image();
+        newImg.src = src;
+        var height = newImg.height;
+        var width = newImg.width;
+
+        fabric.Image.fromURL(src, function(img){
+            scale = 200 / img.width;
+            img.set({
+                scaleX: scale,
+                scaleY: scale
+            });
+            img.id = $.now();
+            //img.clipart_data = clipart_data;
+            //console.log(img);
+
+            canvas.add(img);
+            product_designer_editor_save();
+            prpduct_designer_get_object_list();
+        });
+
+        canvas.renderAll();
+
+        product_designer_editor_toast('','Barcode added.', 2000);
+
+
+    })
+
+
+
+
+
+
+
+
+
+
 });
 
 

@@ -142,6 +142,8 @@ class ProductDesigner{
         wp_register_style('product-designer-editor', product_designer_plugin_url.'assets/front/css/product-designer.css');
         wp_register_style('FontCPD', product_designer_plugin_url.'assets/front/css/FontCPD/FontCPD.css');
         wp_register_style('jquery.scrollbar', product_designer_plugin_url.'assets/front/css/jquery.scrollbar.css');
+        wp_enqueue_script('jquery-qrcode.min', plugins_url( '/assets/front/js/jquery-qrcode.min.js' , __FILE__ ) , array( 'jquery' ));
+        wp_enqueue_script( 'JsBarcode.all.min.js', plugins_url( 'assets/front/js/JsBarcode.all.min.js', __FILE__ ), array('jquery'), '1.0', false);
 
 
         wp_enqueue_script('jquery');

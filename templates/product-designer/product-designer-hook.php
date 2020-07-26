@@ -245,7 +245,7 @@ function product_designer_pre_templates(){
     ?>
 
     <div class="pre_templates item tooltip" title="Templates">
-        <span class="icon"><i class="fa fa-film" ></i></span>
+        <span class="icon"><i class="fa fa-film" ></i> Templates</span>
         <div class="child">
             <span><?php echo __('Sample templates:', "product-designer"); ?></span>
             <ul class="pre-templates-list scrollbar-dynamic">
@@ -338,7 +338,7 @@ function product_designer_side_list(){
 
 
 
-        <div class="side item  pd-guide-1" title="Sides"><span class="icon"><i class="fa fa-cube" ></i></span>
+        <div class="side item  pd-guide-1" title="Sides"><span class="icon"><i class="fa fa-cube" ></i> Sides</span>
             <div class="child">
                 <ul class="side-list scrollbar">
 
@@ -430,7 +430,7 @@ function product_designer_menu_clipart(){
 
     ?>
     <div class="clipart item pd-guide-2" title="<?php echo __('Clip Art', "product-designer"); ?>">
-        <span class="icon"><i class="fa fa-file-image-o" ></i></span>
+        <span class="icon"><i class="fa fa-file-image-o" ></i> Clipart & Assets</span>
         <div class="child">
 
             <div class="tabs">
@@ -484,13 +484,11 @@ function product_designer_image_type_content_qrcode(){
 
     ?>
     <div class="input-group">
-        <div class="input-group-title"></div>
         <div id="qrcode"></div>
+        <div class="input-group-title">QR Text</div>
         <textarea rows="2" class="qr-text"></textarea>
 
     </div>
-
-    <br>
     <div class="input-group">
         <div class="input-group-title">QR size:</div>
         <div class="input-group-input"><input size="4" type="number" class="qr-size" placeholder="200" value="200"></div>
@@ -612,7 +610,7 @@ function product_designer_image_type_content_clipart(){
 
 
 
-    <div class="clipart-list scrollbar">
+    <div class="clipart-list">
 
         <?php
         $product_designer_posts_per_page = get_option('product_designer_posts_per_page', 10);
@@ -690,7 +688,7 @@ function product_designer_menu_text(){
 
     ?>
     <div class="text item  pd-guide-3" title="<?php echo __('Text Art', 'product-designer'); ?>">
-        <span class="icon"><i class="fa fa-file-word-o" ></i></span>
+        <span class="icon"><i class="fa fa-file-word-o" ></i> Text & Quotes</span>
         <div class="child">
 
 
@@ -745,7 +743,7 @@ function product_designer_text_type_content_text(){
     <textarea class="input-text"></textarea><br>
     <input type="button" class="button add-text" value="<?php echo __('Add Text', "product-designer"); ?>">
     <input type="button" class="button add-curvedText" value="<?php echo __('Add Curved Text', "product-designer"); ?>">
-    <input type="button" class="button add-word-cloud" value="<?php echo __('Add Word Cloud', "product-designer"); ?>">
+<!--    <input type="button" class="button add-word-cloud" value="--><?php //echo __('Add Word Cloud', "product-designer"); ?><!--">-->
     <?php
 }
 
