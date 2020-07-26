@@ -32,7 +32,7 @@
   position: relative;
   /* text-align: center; */
   border-bottom: 1px solid #4e6a88;
-  padding: 10px;
+  padding: 0px;
 }
 
 .product-designer .menu .item:hover{
@@ -42,6 +42,7 @@
 
 .product-designer .menu .item .icon{
   outline: none;
+  padding: 10px;
 }
 
 .product-designer .menu .item .icon.ui-state-active{
@@ -178,7 +179,7 @@ margin-top: 55px;
   text-align: center;
   /* width: 100%; */
   float: left;
-  margin-left: 0px;
+  margin-left: 15px;
 }
 
 .product-designer .designer .bg-main{
