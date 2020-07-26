@@ -32,7 +32,7 @@
   position: relative;
   /* text-align: center; */
   border-bottom: 1px solid #4e6a88;
-  padding: 5px 10px;
+  padding: 10px;
 }
 
 .product-designer .menu .item:hover{
@@ -41,7 +41,12 @@
 
 
 .product-designer .menu .item .icon{
+  outline: none;
+}
 
+.product-designer .menu .item .icon.ui-state-active{
+  outline: none;
+  background: #314861 none repeat scroll 0 0;
 }
 
 
@@ -63,7 +68,7 @@
 
 .product-designer .menu .item:hover .child {
   background: #314861 none repeat scroll 0 0;
-  display: block;
+
   /* left: 80px; */
   /*padding: 10px;*/
 /* position: absolute; */
@@ -73,7 +78,7 @@
 
 
 .product-designer .menu .item .child {
-display: none;
+
 text-align: left;
   padding: 10px;
 }
@@ -109,8 +114,7 @@ background: rgba(176, 176, 176, 0.18);
 
 
 .product-designer .side-list {
-max-height: 350px;
-overflow-y: scroll;
+
 }
 .product-designer .side-list li {
 display: block;

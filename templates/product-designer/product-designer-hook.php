@@ -252,8 +252,8 @@ function product_designer_pre_templates(){
 
     ?>
 
-    <div class="pre_templates item tooltip" title="Templates">
-        <span class="icon"><i class="fa fa-film" ></i> Templates</span>
+    <div class="pre_templates item accordions" title="Templates">
+        <div class="icon"><i class="fa fa-film" ></i> Templates</div>
         <div class="child">
             <span><?php echo __('Sample templates:', "product-designer"); ?></span>
             <ul class="pre-templates-list scrollbar-dynamic">
@@ -346,7 +346,8 @@ function product_designer_side_list(){
 
 
 
-        <div class="side item  pd-guide-1" title="Sides"><span class="icon"><i class="fa fa-cube" ></i> Sides</span>
+        <div class="side item accordions  pd-guide-1" title="Sides">
+            <div class="icon"><i class="fa fa-cube" ></i> Sides</div>
             <div class="child">
                 <ul class="side-list scrollbar">
 
@@ -437,8 +438,8 @@ function product_designer_menu_clipart(){
 
 
     ?>
-    <div class="clipart item pd-guide-2" title="<?php echo __('Clip Art', "product-designer"); ?>">
-        <span class="icon"><i class="fa fa-file-image-o" ></i> Clipart & Assets</span>
+    <div class="clipart accordions item pd-guide-2" title="<?php echo __('Clip Art', "product-designer"); ?>">
+        <div class="icon"><i class="fa fa-file-image-o" ></i> Clipart & Assets</div>
         <div class="child">
 
             <div class="tabs">
@@ -695,8 +696,8 @@ function product_designer_menu_text(){
 
 
     ?>
-    <div class="text item  pd-guide-3" title="<?php echo __('Text Art', 'product-designer'); ?>">
-        <span class="icon"><i class="fa fa-file-word-o" ></i> Text & Quotes</span>
+    <div class="text item accordions pd-guide-3" title="<?php echo __('Text Art', 'product-designer'); ?>">
+        <div class="icon"><i class="fa fa-file-word-o" ></i> Text & Quotes</div>
         <div class="child">
 
 
@@ -788,9 +789,8 @@ add_action('product_designer_menu', 'product_designer_menu_shapes', 15);
 function product_designer_menu_shapes(){
 
     ?>
-    <div class="shapes item  pd-guide-4" title="<?php echo __('Shapes', "product-designer"); ?>">
-        <span class="icon"><i class="fas fa-draw-polygon"></i> Shapes</span>
-
+    <div class="shapes item accordions pd-guide-4" title="<?php echo __('Shapes', "product-designer"); ?>">
+        <div class="icon"><i class="fas fa-draw-polygon"></i> Shapes</div>
         <div class="child">
             <div class="shape-list scrollbar">
 
@@ -901,8 +901,8 @@ function product_designer_menu_export(){
 
 
         ?>
-        <div title="Export" class="export item tooltip" >
-            <span class="icon"><i class="fa fa-file-code-o" ></i></span>
+        <div title="Export" class="export item" >
+            <div class="icon"><i class="fa fa-file-code-o" ></i></div>
             <div class="child">
                 <div class="export-list">
 
@@ -1630,6 +1630,16 @@ function product_designer_scripts(){
     ?>
 
     <script>
+
+        jQuery(document).ready(function($){
+            $(".accordions").accordion({
+                collapsible:true,
+                active: 999,
+                heightStyle: "full",
+            })
+
+        })
+
         //jQuery(document).ready(function($){
 
             var product_designer_editor = <?php echo json_encode($product_designer_editor); ?>;
