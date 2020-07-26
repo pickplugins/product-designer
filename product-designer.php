@@ -150,7 +150,6 @@ class ProductDesigner{
         wp_enqueue_script( 'jquery-ui-core' );
         wp_enqueue_script( 'jquery-ui-tabs' );
         wp_enqueue_script('jquery-ui-accordion');
-        wp_enqueue_script('jquery-ui-draggable');
 
 
 
