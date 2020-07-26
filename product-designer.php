@@ -145,6 +145,9 @@ class ProductDesigner{
 
 
         wp_enqueue_script('jquery');
+        wp_enqueue_script( 'jquery-ui-core' );
+        wp_enqueue_script( 'jquery-ui-tabs' );
+
 
         wp_enqueue_script('fabric.js');
         wp_enqueue_script('jquery.scrollbar');

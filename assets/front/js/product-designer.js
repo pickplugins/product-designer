@@ -2,7 +2,7 @@ jQuery(document).ready(function($){
 
 
     $('.scrollbar').scrollbar();
-
+    $('.product-designer .tabs').tabs();
     //alert('Hello');
 
     console.log(typeof canvas);

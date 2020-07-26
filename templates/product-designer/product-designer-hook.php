@@ -410,112 +410,324 @@ add_action('product_designer_menu', 'product_designer_menu_clipart', 15);
 
 function product_designer_menu_clipart(){
 
+
+    $img_types = array(
+        'clipart' => __('Clipart','product-designer'),
+        'qrcode' => __('QR Code','product-designer'),
+        'barcode' => __('Barcode','product-designer'),
+
+    );
+
+
+    $img_types = apply_filters('product_designer_image_types', $img_types);
+
+
+
+
+
+
+
+
     ?>
     <div class="clipart item pd-guide-2" title="<?php echo __('Clip Art', "product-designer"); ?>">
         <span class="icon"><i class="fa fa-file-image-o" ></i></span>
         <div class="child">
 
-            <select title="<?php echo __('Categories', "product-designer"); ?>" id="clipart-cat">
+            <div class="tabs">
+                <ul class="navs">
+                    <?php
+
+                    foreach ($img_types as $typeIndex => $type):
+
+                        ?>
+                        <li class="nav"><a href="#tabs-<?php echo $typeIndex; ?>"><?php echo $type; ?></a></li>
+                    <?php
+                    endforeach;
+
+                    ?>
+
+                </ul>
 
                 <?php
 
-                $args=array(
-                    'orderby' => 'name',
-                    'order' => 'ASC',
-                    'taxonomy' => 'clipart_cat',
-                );
+                foreach ($img_types as $typeIndex => $type):
 
+                    ?>
+                    <div class="nav-content" id="tabs-<?php echo $typeIndex; ?>">
+                        <?php
 
+                        do_action('product_designer_image_type_content_'.$typeIndex);
 
-                echo '<option value="all">'.__('All', "product-designer").'</option>';
-
-                $categories = get_categories($args);
-
-                foreach($categories as $category){
-
-                    echo '<option value='.$category->cat_ID.'>'.$category->cat_name.'</option>';
-
-                }
-
-
-                //echo '<span class="sticker-cat-loading">Loading...</span>';
-
-                ?>
-
-            </select>
-
-
-
-
-            <div class="clipart-list scrollbar">
-
+                        ?>
+                    </div>
                 <?php
-                $product_designer_posts_per_page = get_option('product_designer_posts_per_page', 10);
+                endforeach;
 
-
-                $args = array(
-                    'post_type'=>'clipart',
-                    'posts_per_page'=> $product_designer_posts_per_page,
-                );
-
-
-                $wp_query = new WP_Query($args);
-
-                if ( $wp_query->have_posts() ) :
-                    while ( $wp_query->have_posts() ) : $wp_query->the_post();
-                        $thumb = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()), 'full' );
-                        $thumb_url = $thumb['0'];
-
-                        if(!empty($thumb_url))
-                            echo '<img class="" title="'.get_the_title().'" src="'.esc_url_raw($thumb_url).'" />';
-
-                    endwhile;
-                    wp_reset_query();
-                endif;
                 ?>
-
 
             </div>
 
-            <div class="clipart-pagination">
-
-                <?php
-                $paged = 1;
-                $big = 999999999; // need an unlikely integer
-                echo paginate_links( array(
-                    'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
-                    'format' => '?paged=%#%',
-                    'current' => max( 1, $paged ),
-
-                    'prev_text'          => '',
-                    'next_text'          => '',
-                    'total' => $wp_query->max_num_pages
-                ) );
-
-                ?>
 
 
-
-            </div>
 
         </div>
     </div>
 
     <?php
 }
+
+
+
+add_action('product_designer_image_type_content_qrcode', 'product_designer_image_type_content_qrcode', 15);
+
+function product_designer_image_type_content_qrcode(){
+
+    ?>
+    <div class="input-group">
+        <div class="input-group-title"></div>
+        <div id="qrcode"></div>
+        <textarea rows="1" class="qr-text"></textarea>
+
+    </div>
+
+    <br>
+    <div class="input-group">
+        <div class="input-group-title">QR size:</div>
+        <div class="input-group-input"><input size="4" type="text" class="qr-size" placeholder="200" value="200"></div>
+
+    </div>
+
+    <div class="input-group">
+        <div class="input-group-title">Background color:</div>
+        <div class="input-group-input"><input size="4"  type="text" class="color qr-bg-color" placeholder="#fff" value="#fff"></div>
+
+    </div>
+
+    <div class="input-group">
+        <div class="input-group-title">Fill color:</div>
+        <div class="input-group-input"><input size="4"  type="text" class="color qr-fill-color" placeholder="#000" value="#000"></div>
+
+    </div>
+
+    <div class="input-group">
+        <div class="input-group-title">Radius:</div>
+        <div class="input-group-input"><input size="4"  type="text" class="qr-radius" placeholder="50%" value="50%"></div>
+
+    </div>
+
+
+    <input type="button" class="button add-qr-code" value="<?php echo __('Add QR Code', "product-designer"); ?>">
+
+    <?php
+
+}
+
+
+
+
+
+add_action('product_designer_image_type_content_barcode', 'product_designer_image_type_content_barcode', 15);
+
+function product_designer_image_type_content_barcode(){
+
+    ?>
+
+    <img id="barcode"></img>
+    <div class="input-group">
+        <div class="input-group-title">Barcode Text</div>
+        <textarea rows="1" class="barcode-text"></textarea>
+    </div>
+    <div class="input-group">
+        <div class="input-group-title">Width:</div>
+        <div class="input-group-input"><input size="" type="range" min="1" max="4" step="1" class="barcode-width" placeholder="" value=""></div>
+    </div>
+    <div class="input-group">
+        <div class="input-group-title">Height:</div>
+        <div class="input-group-input"><input size="" type="text" class="barcode-height" placeholder="" value="40"></div>
+    </div>
+    <div class="input-group">
+        <div class="input-group-title">Color:</div>
+        <div class="input-group-input"><input size="" type="text" class="barcode-color color" placeholder="" value="#000"></div>
+    </div>
+
+
+    <input type="button" class="button add-barcode" value="<?php echo __('Add Barcode', "product-designer"); ?>">
+
+
+    <?php
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+add_action('product_designer_image_type_content_clipart', 'product_designer_image_type_content_clipart', 15);
+
+function product_designer_image_type_content_clipart(){
+
+
+    ?>
+
+    <select title="<?php echo __('Categories', "product-designer"); ?>" id="clipart-cat">
+
+        <?php
+
+        $args=array(
+            'orderby' => 'name',
+            'order' => 'ASC',
+            'taxonomy' => 'clipart_cat',
+        );
+
+
+
+        echo '<option value="all">'.__('All', "product-designer").'</option>';
+
+        $categories = get_categories($args);
+
+        foreach($categories as $category){
+
+            echo '<option value='.$category->cat_ID.'>'.$category->cat_name.'</option>';
+
+        }
+
+
+        //echo '<span class="sticker-cat-loading">Loading...</span>';
+
+        ?>
+
+    </select>
+
+
+
+
+    <div class="clipart-list scrollbar">
+
+        <?php
+        $product_designer_posts_per_page = get_option('product_designer_posts_per_page', 10);
+
+
+        $args = array(
+            'post_type'=>'clipart',
+            'posts_per_page'=> $product_designer_posts_per_page,
+        );
+
+
+        $wp_query = new WP_Query($args);
+
+        if ( $wp_query->have_posts() ) :
+            while ( $wp_query->have_posts() ) : $wp_query->the_post();
+                $thumb = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()), 'full' );
+                $thumb_url = $thumb['0'];
+
+                if(!empty($thumb_url))
+                    echo '<img class="" title="'.get_the_title().'" src="'.esc_url_raw($thumb_url).'" />';
+
+            endwhile;
+            wp_reset_query();
+        endif;
+        ?>
+
+
+    </div>
+
+    <div class="clipart-pagination">
+
+        <?php
+        $paged = 1;
+        $big = 999999999; // need an unlikely integer
+        echo paginate_links( array(
+            'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+            'format' => '?paged=%#%',
+            'current' => max( 1, $paged ),
+
+            'prev_text'          => '',
+            'next_text'          => '',
+            'total' => $wp_query->max_num_pages
+        ) );
+
+        ?>
+
+
+
+    </div>
+
+    <?php
+
+}
+
+
+
+
+
 
 
 
 add_action('product_designer_menu', 'product_designer_menu_text', 15);
 
 function product_designer_menu_text(){
+    $text_types = array(
+        'text' => __('text','product-designer'),
+        'quotes' => __('Quotes','product-designer'),
+
+    );
+
+
+    $text_types = apply_filters('product_designer_text_types', $text_types);
+
+
 
     ?>
     <div class="text item  pd-guide-3" title="<?php echo __('Text Art', 'product-designer'); ?>">
         <span class="icon"><i class="fa fa-file-word-o" ></i></span>
         <div class="child">
-            <textarea class="input-text"></textarea><br>
-            <input type="button" class="button add-text" value="<?php echo __('Add Text', "product-designer"); ?>">
+
+
+
+            <div class="tabs">
+                <ul class="navs">
+                    <?php
+
+                    foreach ($text_types as $typeIndex => $type):
+
+                        ?>
+                        <li class="nav"><a href="#tabs-<?php echo $typeIndex; ?>"><?php echo $type; ?></a></li>
+                        <?php
+                    endforeach;
+
+                    ?>
+
+                </ul>
+
+                <?php
+
+                foreach ($text_types as $typeIndex => $type):
+
+                    ?>
+                    <div class="nav-content" id="tabs-<?php echo $typeIndex; ?>">
+                        <?php
+
+                        do_action('product_designer_text_type_content_'.$typeIndex);
+
+                        ?>
+                    </div>
+                    <?php
+                endforeach;
+
+                ?>
+
+            </div>
 
         </div>
 
@@ -524,6 +736,44 @@ function product_designer_menu_text(){
     <?php
 
 }
+
+add_action('product_designer_text_type_content_text', 'product_designer_text_type_content_text', 15);
+
+function product_designer_text_type_content_text(){
+
+    ?>
+    <textarea class="input-text"></textarea><br>
+    <input type="button" class="button add-text" value="<?php echo __('Add Text', "product-designer"); ?>">
+    <input type="button" class="button add-curvedText" value="<?php echo __('Add Curved Text', "product-designer"); ?>">
+    <input type="button" class="button add-word-cloud" value="<?php echo __('Add Word Cloud', "product-designer"); ?>">
+    <?php
+}
+
+
+add_action('product_designer_text_type_content_quotes', 'product_designer_text_type_content_quotes', 15);
+
+function product_designer_text_type_content_quotes(){
+    $product_designer_quotes = get_option('product_designer_quotes');
+
+    ?>
+    <div class="quotes-list scrollbar-dynamic">
+        <?php
+
+
+        if(!empty($product_designer_quotes))
+            foreach ($product_designer_quotes as $quote){
+                $content = $quote['content'];
+                ?>
+                <div class="quote"><?php echo $content; ?></div>
+                <?php
+            }
+
+
+        ?>
+    </div>
+    <?php
+}
+
 
 add_action('product_designer_menu', 'product_designer_menu_shapes', 15);
 
@@ -1570,11 +1820,13 @@ add_action('product_designer_editor', 'product_designer_preview', 45);
 function product_designer_preview(){
 
     ?>
-    <div class="preview">
-        <div class="preview-img">
-            <span class="preview-close"><i class="fa fa-times" aria-hidden="true"></i></span>
-            <div class="img"></div>
-        </div>
+    <div class="preview ">
+
+            <div class="preview-img ">
+                <span class="preview-close"><i class="fa fa-times" aria-hidden="true"></i></span>
+                <div class="img"></div>
+            </div>
+
     </div>
     <?php
 
