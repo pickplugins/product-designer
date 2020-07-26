@@ -16,6 +16,14 @@ function product_designer_notice($atts){
         </div>
     </div>
 
+    <style type="text/css">
+        body {
+            margin-left: 280px;
+        }
+        .admin-bar .product-designer .menu{
+            top: 32px;
+        }
+    </style>
     <?php
 
 }
@@ -781,7 +789,7 @@ function product_designer_menu_shapes(){
 
     ?>
     <div class="shapes item  pd-guide-4" title="<?php echo __('Shapes', "product-designer"); ?>">
-        <span class="icon"><i class="fa fa-map-o" ></i></span>
+        <span class="icon"><i class="fas fa-draw-polygon"></i> Shapes</span>
 
         <div class="child">
             <div class="shape-list scrollbar">

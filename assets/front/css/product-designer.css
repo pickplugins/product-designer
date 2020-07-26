@@ -17,7 +17,7 @@
   background: #3a5673 none repeat scroll 0 0;
   height: 100%;
   left: 0px;
-  position: absolute;
+  position: fixed;
   top: 0;
   transition: all 1s ease 0s;
   width: 280px;
@@ -174,7 +174,7 @@ margin-top: 55px;
   text-align: center;
   /* width: 100%; */
   float: left;
-  margin-left: 90px;
+  margin-left: 0px;
 }
 
 .product-designer .designer .bg-main{
