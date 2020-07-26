@@ -755,16 +755,18 @@ add_action('product_designer_text_type_content_quotes', 'product_designer_text_t
 function product_designer_text_type_content_quotes(){
     $product_designer_quotes = get_option('product_designer_quotes');
 
+    $product_designer_settings = get_option('product_designer_settings');
+    $quotes = isset($product_designer_settings['quotes']) ? $product_designer_settings['quotes'] : array();
+
     ?>
     <div class="quotes-list scrollbar-dynamic">
         <?php
 
 
-        if(!empty($product_designer_quotes))
-            foreach ($product_designer_quotes as $quote){
-                $content = $quote['content'];
+        if(!empty($quotes))
+            foreach ($quotes as $quote){
                 ?>
-                <div class="quote"><?php echo $content; ?></div>
+                <div class="quote"><?php echo $quote; ?></div>
                 <?php
             }
 

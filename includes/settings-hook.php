@@ -10,7 +10,10 @@ function product_designer_settings_content_general(){
 
     $font_aw_version = isset($product_designer_settings['font_aw_version']) ? $product_designer_settings['font_aw_version'] : 'none';
     $designer_page_id = isset($product_designer_settings['designer_page_id']) ? $product_designer_settings['designer_page_id'] : '';
-    $post_options_post_types = isset($product_designer_settings['post_options_post_types']) ? $product_designer_settings['post_options_post_types'] : array();
+    $allow_upload_clipart = isset($product_designer_settings['allow_upload_clipart']) ? $product_designer_settings['allow_upload_clipart'] : 'no';
+    $quotes = isset($product_designer_settings['quotes']) ? $product_designer_settings['quotes'] : array();
+    $google_fonts = isset($product_designer_settings['google_fonts']) ? $product_designer_settings['google_fonts'] : array();
+    $custom_fonts = isset($product_designer_settings['custom_fonts']) ? $product_designer_settings['custom_fonts'] : array();
 
     //echo '<pre>'.var_export($product_designer_settings, true).'</pre>';
 
@@ -43,6 +46,126 @@ function product_designer_settings_content_general(){
             'value'		=> $font_aw_version,
             'default'		=> '',
             'args'		=> array('v_5'=>__('Version 5+','post-grid'), 'v_4'=>__('Version 4+','post-grid'), 'none'=>__('None','post-grid')  ),
+        );
+
+        $settings_tabs_field->generate_field($args);
+
+
+        $args = array(
+            'id'		=> 'allow_upload_clipart',
+            'parent'		=> 'product_designer_settings',
+            'title'		=> __('Can user upload clipart?','post-grid'),
+            'details'	=> __('Choose to allow upload cliparts','post-grid'),
+            'type'		=> 'select',
+            'value'		=> $allow_upload_clipart,
+            'default'		=> '',
+            'args'		=> array('no'=>__('No','post-grid'), 'yes'=>__('Yes','post-grid')  ),
+        );
+
+        $settings_tabs_field->generate_field($args);
+
+
+        $args = array(
+            'id'		=> 'quotes',
+            'parent'		=> 'product_designer_settings',
+            'title'		=> __('Quotes','post-grid'),
+            'details'	=> __('Add quotes','post-grid'),
+            'type'		=> 'text_multi',
+            'value'		=> $quotes,
+            'default'		=> array(),
+        );
+
+        $settings_tabs_field->generate_field($args);
+
+
+
+        $font_fields = array(
+
+            array(
+                'id'		=> 'name',
+                'title'		=> __('Font Name','team'),
+                'details'	=> __('Write font name here.','team'),
+                'type'		=> 'text',
+                'value'		=> '',
+                'default'		=> '',
+                'placeholder'		=> 'Open Sans',
+            ),
+            array(
+                'id'		=> 'url',
+                'title'		=> __('Font URL','team'),
+                'details'	=> __('Write font source url.','team'),
+                'type'		=> 'text',
+                'value'		=> '',
+                'default'		=> '',
+                'placeholder'		=> 'url',
+            ),
+
+
+        );
+
+
+        $args = array(
+            'id'		=> 'google_fonts',
+            'parent'		=> 'product_designer_fonts',
+            'title'		=> __('Google Fonts','text-domain'),
+            'details'	=> __('Add google fonts','text-domain'),
+            'collapsible'=> true,
+            'type'		=> 'repeatable',
+            'limit'		=> 10,
+            'title_field'		=> 'name',
+            'value'		=> $google_fonts,
+            'fields'    => $font_fields,
+        );
+
+        $settings_tabs_field->generate_field($args);
+
+
+
+        $font_fields = array(
+
+            array(
+                'id'		=> 'font_family',
+                'title'		=> __('Font family','team'),
+                'details'	=> __('Write font family here.','team'),
+                'type'		=> 'text',
+                'value'		=> '',
+                'default'		=> '',
+                'placeholder'		=> 'My Font',
+            ),
+            array(
+                'id'		=> 'src',
+                'title'		=> __('Font URL','team'),
+                'details'	=> __('Write font source url.','team'),
+                'type'		=> 'text',
+                'value'		=> '',
+                'default'		=> '',
+                'placeholder'		=> 'http://www.yourwebsite.com/fonts/my-font.ttf',
+            ),
+            array(
+                'id'		=> 'font_weight',
+                'title'		=> __('Font weight','team'),
+                'details'	=> __('Write font weight.','team'),
+                'type'		=> 'text',
+                'value'		=> '',
+                'default'		=> '',
+                'placeholder'		=> 'normal',
+            ),
+
+
+
+        );
+
+        $args = array(
+            'id'		=> 'custom_fonts',
+            'parent'		=> 'product_designer_fonts',
+            'title'		=> __('Custom Fonts','text-domain'),
+            'details'	=> __('Add custom fonts','text-domain'),
+            'collapsible'=> true,
+            'type'		=> 'repeatable',
+            'limit'		=> 10,
+            'title_field'		=> 'name',
+            'value'		=> $custom_fonts,
+            'fields'    => $font_fields,
         );
 
         $settings_tabs_field->generate_field($args);
