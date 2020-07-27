@@ -62,7 +62,7 @@ class class_product_designer_shortcodes  {
         wp_enqueue_style('jquery.scrollbar');
         wp_enqueue_style('product-designer-style');
         wp_enqueue_style('jquery-impromptu');
-
+        wp_enqueue_script('plupload-all');
         //wp_enqueue_script('product_designer_vue');
 
         return ob_get_clean();

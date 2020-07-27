@@ -487,6 +487,7 @@ function product_designer_menu_clipart(){
 
 
 
+
 add_action('product_designer_image_type_content_qrcode', 'product_designer_image_type_content_qrcode', 15);
 
 function product_designer_image_type_content_qrcode(){
@@ -677,6 +678,129 @@ function product_designer_image_type_content_clipart(){
 
 
 
+add_action('product_designer_image_type_content_clipart', 'product_designer_image_type_content_clipart_upload', 15);
+
+function product_designer_image_type_content_clipart_upload(){
+
+
+        $field_id = 'clipart';
+
+
+        echo '<div id="plupload-'.$field_id.'">
+			<div id="plupload-drag-drop'.$field_id.'" >
+				<span id="plupload-browse-'.$field_id.'" class="clipart-upload button tooltip" title="'.__('Upload custom clipart', "product-designer").'"><i class="fa fa-upload"></i> '.__('Upload', "product-designer").'</span>	  
+			 </div>
+		  </div>';
+
+
+        $plupload_init = array(
+            'runtimes'            => 'html5,silverlight,flash,html4',
+            'browse_button'       => 'plupload-browse-'.$field_id.'',
+            //'multi_selection'	  =>false,
+            'container'           => 'plupload-'.$field_id.'',
+            'drop_element'        => 'plupload-drag-drop'.$field_id.'',
+            'file_data_name'      => 'async-upload',
+            'multiple_queues'     => true,
+            'max_file_size'       => wp_max_upload_size().'b',
+            'url'                 => admin_url('admin-ajax.php'),
+            //'flash_swf_url'       => includes_url('js/plupload/plupload.flash.swf'),
+            //'silverlight_xap_url' => includes_url('js/plupload/plupload.silverlight.xap'),
+            'filters'             => array(array('title' => __('Allowed Files', "product-designer"), 'extensions' => 'gif,png,jpg,jpeg')),
+            'multipart'           => true,
+            'urlstream_upload'    => true,
+
+            // additional post data to send to our ajax hook
+            'multipart_params'    => array(
+                '_ajax_nonce' => wp_create_nonce('photo-upload'),
+                'action'      => 'clipart_upload',            // the ajax action name
+            ),
+        );
+
+        // we should probably not apply this filter, plugins may expect wp's media uploader...
+        $plupload_init = apply_filters('plupload_init', $plupload_init);
+
+
+        echo '
+  			
+		 <script>
+		
+			jQuery(document).ready(function($){
+		
+			  // create the uploader and pass the config from above
+			  var uploader_'.$field_id.' = new plupload.Uploader('.json_encode($plupload_init).');
+		
+			  // checks if browser supports drag and drop upload, makes some css adjustments if necessary
+			  uploader_'.$field_id.'.bind("Init", function(up){
+				var uploaddiv = $("#plupload-'.$field_id.'");
+		
+				if(up.features.dragdrop){
+				  uploaddiv.addClass("drag-drop");
+					$("#plupload-drag-drop'.$field_id.'")
+					  .bind("dragover.wp-uploader", function(){ uploaddiv.addClass("drag-over"); })
+					  .bind("dragleave.wp-uploader, drop.wp-uploader", function(){ uploaddiv.removeClass("drag-over"); });
+		
+				}else{
+				  uploaddiv.removeClass("drag-drop");
+				  $("#plupload-drag-drop'.$field_id.'").unbind(".wp-uploader");
+				}
+			  });
+		
+			  uploader_'.$field_id.'.init();
+		
+			  // a file was added in the queue
+			  uploader_'.$field_id.'.bind("FilesAdded", function(up, files){
+				var hundredmb = 100 * 1024 * 1024, max = parseInt(up.settings.max_file_size, 10);
+		
+				plupload.each(files, function(file){
+				  if (max > hundredmb && file.size > hundredmb && up.runtime != "html5"){
+					// file size error?
+					console.log("Error...");
+				  }else{
+
+					
+				  }
+				});
+		
+				up.refresh();
+				up.start();
+			  });
+		
+			  // a file was uploaded 
+			  uploader_'.$field_id.'.bind("FileUploaded", function(up, file, response) {
+
+				var result = $.parseJSON(response.response);
+
+				var attach_url = result.html.attach_url;
+				var attach_id = result.html.attach_id;
+				var attach_title = result.html.attach_title;
+				
+				//alert(attach_url);
+				
+				
+				
+				var html_new = "<img src="+attach_url+" />";
+				
+				$(".clipart-list").prepend(html_new); 
+				 
+			  });
+		
+			});   
+		
+		  </script>
+  
+  
+  ';
+
+
+
+
+
+    ?>
+
+
+    <?php
+
+}
 
 
 
