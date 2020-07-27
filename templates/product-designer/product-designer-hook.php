@@ -27,7 +27,7 @@ function product_designer_notice($atts){
         if($menu_position == 'left'){
             ?>
             body {
-                margin-left: 280px;
+                margin-left: 370px;
             }
             .product-designer .menu {
                 left: 0px !important;
@@ -36,7 +36,7 @@ function product_designer_notice($atts){
         }else{
             ?>
             body {
-                margin-right: 280px;
+                margin-right: 370px;
             }
             .product-designer .menu {
                 right: 0px !important;
@@ -63,6 +63,7 @@ add_action('product_designer_editor', 'product_designer_wrap_start', 5);
 function product_designer_wrap_start($atts){
 
     ?>
+
     <div class="product-designer">
 
     <?php
@@ -578,13 +579,13 @@ function product_designer_image_type_content_qrcode(){
 
     <div class="input-group">
         <div class="input-group-title">Background color:</div>
-        <div class="input-group-input"><input data-jscolor=""   type="text" class="color qr-bg-color" placeholder="#fff" value="#fff"></div>
+        <div class="input-group-input"><input data-jscolor=""   type="text" class="qr-bg-color" placeholder="#fff" value="#fff"></div>
 
     </div>
 
     <div class="input-group">
         <div class="input-group-title">Fill color:</div>
-        <div class="input-group-input"><input data-jscolor=""   type="text" class="color qr-fill-color" placeholder="#000" value="#000"></div>
+        <div class="input-group-input"><input data-jscolor=""   type="text" class="qr-fill-color" placeholder="#000" value="#000"></div>
 
     </div>
 
@@ -626,7 +627,7 @@ function product_designer_image_type_content_barcode(){
     </div>
     <div class="input-group">
         <div class="input-group-title">Color:</div>
-        <div class="input-group-input"><input data-jscolor=""  type="text" class="barcode-color color" placeholder="" value="#000"></div>
+        <div class="input-group-input"><input data-jscolor=""  type="text" class="barcode-color" placeholder="" value="#000"></div>
     </div>
 
 
@@ -1285,18 +1286,18 @@ function product_designer_tools_edit_text(){
 
             <div class="input-group">
                 <div class="input-group-title"><?php echo __('Text Color:', 'product-designer'); ?></div>
-                <input data-jscolor="" class="color  tool-button" id="font-color" aria-label="Text Color" placeholder="rgba(255,255,255,1)" type="text" value="rgba(255,255,255,1)">
+                <input data-jscolor="" class="tool-button" id="font-color" aria-label="Text Color" placeholder="rgba(255,255,255,1)" type="text" value="rgba(255,255,255,1)">
             </div>
 
             <div class="input-group">
                 <div class="input-group-title"><?php echo __('Background Color:', 'product-designer'); ?></div>
-                <input data-jscolor="" class="color  tool-button" id="font-bg-color" aria-label="Background Color" placeholder="rgba(255,255,255,1)" type="text" value="rgba(255,255,255,1)">
+                <input data-jscolor="" class="tool-button" id="font-bg-color" aria-label="Background Color" placeholder="rgba(255,255,255,1)" type="text" value="rgba(255,255,255,1)">
             </div>
 
 
             <div class="input-group">
                 <div class="input-group-title"><?php echo __('Outline Color:', 'product-designer'); ?></div>
-                <input data-jscolor="" class="color  tool-button" id="stroke-color" aria-label="Outline Color" placeholder="rgba(255,255,255,1)" type="text" value="rgba(255,255,255,1)">
+                <input data-jscolor="" class="tool-button" id="stroke-color" aria-label="Outline Color" placeholder="rgba(255,255,255,1)" type="text" value="rgba(255,255,255,1)">
             </div>
 
 
@@ -1385,7 +1386,7 @@ function product_designer_tools_edit_curvedText(){
 
             <div class="input-group">
                 <div class="input-group-title"><?php echo __('Color:', 'product-designer'); ?></div>
-                <input data-jscolor="" class="color " aria-label="Color" id="curvedText-font-color"  placeholder="<?php echo __('Color', 'product-designer'); ?>"  type="text" value="rgba(255,255,255,1)" />
+                <input data-jscolor="" class=" " aria-label="Color" id="curvedText-font-color"  placeholder="<?php echo __('Color', 'product-designer'); ?>"  type="text" value="rgba(255,255,255,1)" />
             </div>
             <div class="input-group">
                 <div class="input-group-title"><?php echo __('Opacity:', 'product-designer'); ?></div>
@@ -1498,7 +1499,7 @@ function product_designer_tools_edit_shape(){
             </div>
             <div class="input-group">
                 <div class="input-group-title"><?php echo __('Color:', 'product-designer'); ?></div>
-                <input  data-jscolor="" aria-label="<?php echo __('Color', 'product-designer'); ?>" id="shape-color" class="color " placeholder="<?php echo __('Color', 'product-designer'); ?>"  type="text" value="rgba(255,255,255,1)" />
+                <input  data-jscolor="" aria-label="<?php echo __('Color', 'product-designer'); ?>" id="shape-color" class=" " placeholder="<?php echo __('Color', 'product-designer'); ?>"  type="text" value="rgba(255,255,255,1)" />
             </div>
         </div>
 

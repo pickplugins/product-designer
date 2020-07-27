@@ -18,8 +18,8 @@
   position: fixed;
   /* top: 0; */
   /* transition: all 1s ease 0s; */
-  width: 330px;
-  z-index: 9999;
+  width: 360px;
+  z-index: 999;
   overflow-y: scroll;
 }
 
@@ -927,6 +927,7 @@ display:none;
   padding: 10px 8px;
   text-align: center;
   display: none;
+  margin-bottom: 30px;
 }
 
 .product-designer .pd-save-template.active {
