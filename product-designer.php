@@ -134,6 +134,8 @@ class ProductDesigner{
         wp_register_script('product_designer_js', plugins_url( '/assets/front/js/product-designer.js' , __FILE__ ) , array( 'jquery' ));
         wp_localize_script( 'product_designer_js', 'product_designer_ajax', array( 'product_designer_ajaxurl' => admin_url( 'admin-ajax.php')));
         wp_register_script('fabric.curvedText', plugins_url( '/assets/front/js/fabric.curvedText.js' , __FILE__ ) , array( 'jquery' ));
+        wp_register_script('product_designer_vue', plugins_url( '/assets/front/js/product-designer-vue.js' , __FILE__ ) , array( 'jquery' ));
+        //wp_register_script('vue.js', plugins_url( '/assets/front/js/vue.js' , __FILE__ ) , array( 'jquery' ));
 
         wp_register_style('font-awesome-4', product_designer_plugin_url.'assets/global/css/font-awesome-4.css');
         wp_register_style('font-awesome-5', product_designer_plugin_url.'assets/global/css/font-awesome-5.css');
@@ -152,6 +154,8 @@ class ProductDesigner{
         wp_enqueue_script('jquery-ui-accordion');
 
 
+
+        //wp_enqueue_script('vue.js');
 
 
         wp_enqueue_script('fabric.js');

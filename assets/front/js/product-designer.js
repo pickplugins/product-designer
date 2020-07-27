@@ -64,7 +64,7 @@ jQuery(document).ready(function($){
         product_designer_editor.side_serialized_data[current_side_id] = json_stringify;
         product_designer_editor.side_json_data[current_side_id] = json;
 
-        console.log(json);
+        //console.log(json);
 
         base_64 = canvas.toDataURL('png');
 
@@ -1342,8 +1342,49 @@ $(document).on('click','.generate-side-output',function(event){
 
 
 
+    $(document).on('click','.product-designer .object-list .layer-item .item',function(event){
+
+        $('.layer-item .item').removeClass('active');
 
 
+        obj_id = $(this).attr('obj-id');
+        //canvas.setActiveObject(obj_id);
+        canvas.setActiveObject(canvas.item(obj_id));
+
+        if($(this).hasClass('active')){
+            $(this).removeClass('active');
+
+        }else{
+            $(this).addClass('active');
+
+        }
+
+
+        product_designer_editor_save();
+
+        console.log(obj_id);
+    })
+
+
+    $(document).on('click','.product-designer .object-list .layer-item .item .remove',function(event){
+
+        event.preventDefault();
+
+        $('.layer-item .item').removeClass('active');
+
+
+        obj_id = $(this).parent().attr('obj-id');
+        //canvas.setActiveObject(obj_id);
+        canvas.setActiveObject(canvas.item(obj_id));
+
+        var selected_object = canvas.getActiveObject();
+
+        selected_object.remove();
+
+        product_designer_editor_save()
+
+        console.log(obj_id);
+    })
 
 
 
@@ -3568,7 +3609,23 @@ $(document).on('click','.clipart-list img',function(){
     }
 
 
+    $(document).on('click','.product-designer .quote',function(){
 
+        var quote = $(this).text();
+
+
+        var text = new fabric.Text(quote, { left: 100, top: 100 });
+        text.id = $.now();
+        canvas.add(text);
+
+        product_designer_editor_save();
+        product_designer_editor_toast('','Quote added.', 2000);
+
+        prpduct_designer_get_object_list();
+
+
+
+    })
 
 
 
