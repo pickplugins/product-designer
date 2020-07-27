@@ -202,7 +202,51 @@ function product_designer_menu($atts){
 }
 
 
-add_action('product_designer_menu', 'product_designer_pre_templates', 15);
+add_action('product_designer_menu', 'product_designer_menu_main_tabs', 15);
+
+function product_designer_menu_main_tabs(){
+
+
+    ?>
+    <div class="editor-tabs">
+        <ul class="editor-tab-navs">
+            <li class="nav tab-nav" data-id="1">Editor</li>
+            <li class="nav tab-nav" data-id="2">Assets</li>
+            <li class="nav tab-nav" data-id="3">Templates</li>
+        </ul>
+
+        <div class="editor-tab-content data-id-1">
+            <?php
+            do_action('editor_tab_content_editor');
+            ?>
+        </div>
+        <div class="editor-tab-content data-id-2">
+            <?php
+            do_action('editor_tab_content_assets');
+            ?>
+        </div>
+        <div class="editor-tab-content data-id-3">
+            <?php
+            do_action('editor_tab_content_templates');
+            ?>
+        </div>
+
+    </div>
+    <?php
+
+}
+
+
+add_action('editor_tab_content_assets', 'editor_tab_content_assets', 15);
+
+function editor_tab_content_assets(){
+
+}
+
+
+
+
+add_action('editor_tab_content_templates', 'product_designer_pre_templates', 15);
 
 function product_designer_pre_templates(){
 
@@ -280,11 +324,9 @@ function product_designer_pre_templates(){
 
     ?>
 
-    <div class="pre_templates item accordions" title="Templates">
-        <div class="icon"><i class="fa fa-film" ></i> Templates</div>
-        <div class="child">
-            <span><?php echo __('Sample templates:', "product-designer"); ?></span>
-            <ul class="pre-templates-list scrollbar-dynamic">
+    <div class="pre_templates" title="Templates">
+
+            <ul class="pre-templates-list">
 
                 <?php
 
@@ -327,13 +369,13 @@ function product_designer_pre_templates(){
 
             </ul>
         </div>
-    </div>
+
 
     <?php
 
 }
 
-add_action('product_designer_menu', 'product_designer_side_list', 15);
+add_action('editor_tab_content_assets', 'product_designer_side_list', 15);
 
 function product_designer_side_list(){
 
@@ -444,7 +486,7 @@ function product_designer_side_list(){
 }
 
 
-add_action('product_designer_menu', 'product_designer_menu_clipart', 15);
+add_action('editor_tab_content_assets', 'product_designer_menu_clipart', 15);
 
 function product_designer_menu_clipart(){
 
@@ -707,7 +749,7 @@ function product_designer_image_type_content_clipart(){
 
 
 
-add_action('product_designer_image_type_content_clipart', 'product_designer_image_type_content_clipart_upload', 15);
+add_action('product_designer_image_type_content_clipart', 'product_designer_image_type_content_clipart_upload', 10);
 
 function product_designer_image_type_content_clipart_upload(){
 
@@ -834,7 +876,7 @@ function product_designer_image_type_content_clipart_upload(){
 
 
 
-add_action('product_designer_menu', 'product_designer_menu_text', 15);
+add_action('editor_tab_content_assets', 'product_designer_menu_text', 15);
 
 function product_designer_menu_text(){
     $text_types = array(
@@ -902,7 +944,7 @@ add_action('product_designer_text_type_content_text', 'product_designer_text_typ
 function product_designer_text_type_content_text(){
 
     ?>
-    <textarea class="input-text"></textarea><br>
+    <textarea class="input-text asset-text"></textarea><br>
     <input type="button" class="button add-text" value="<?php echo __('Add Text', "product-designer"); ?>">
     <input type="button" class="button add-curvedText" value="<?php echo __('Add Curved Text', "product-designer"); ?>">
 <!--    <input type="button" class="button add-word-cloud" value="--><?php //echo __('Add Word Cloud', "product-designer"); ?><!--">-->
@@ -937,13 +979,13 @@ function product_designer_text_type_content_quotes(){
 }
 
 
-add_action('product_designer_menu', 'product_designer_menu_shapes', 15);
+add_action('editor_tab_content_assets', 'product_designer_menu_shapes', 15);
 
 function product_designer_menu_shapes(){
 
     ?>
     <div class="shapes item accordions pd-guide-4" title="<?php echo __('Shapes', "product-designer"); ?>">
-        <div class="icon"><i class="fas fa-draw-polygon"></i> Shapes</div>
+        <div class="icon"><i class="cpd-icon-flip-horizontal"></i> Shapes</div>
         <div class="child">
             <div class="shape-list scrollbar">
 
@@ -1090,12 +1132,12 @@ function product_designer_menu_export(){
 
 
 
-add_action('product_designer_editor', 'product_designer_tools', 20);
+add_action('editor_tab_content_editor', 'product_designer_tools', 20);
 
 function product_designer_tools(){
 
     ?>
-    <div class="editing scrollbar">
+    <div class="editing">
 
         <?php
 
@@ -1558,7 +1600,7 @@ function product_designer_tools_product_info(){
 
                 <div class="input-group product">
 
-                    <button class="generate-side-output"><?php echo __('Generate', 'product-designer'); ?> </button>
+                    <div class="generate-side-output"><?php echo __('Generate', 'product-designer'); ?> </div>
                     <div class="output-side-items">
 
                     </div>
@@ -1574,7 +1616,7 @@ function product_designer_tools_product_info(){
 
                     <br>
 
-                    <button class="pd-addtocart button alt addtocart" type="submit" name="addtocart" value="addtocart"><?php echo __('Add to cart', 'product-designer'); ?></button>
+                    <button class="pd-addtocart button alt addtocart" type="submit" name="addtocart" value="addtocart"><?php echo __('Add to cart', 'product-designer'); ?></button><br>
                     <button class="pd-save-template button alt" name="save-template" value="save-template"  ><?php echo __('Save as Template', 'product-designer'); ?></button>
 
 

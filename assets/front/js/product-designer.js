@@ -1,5 +1,92 @@
 jQuery(document).ready(function($){
 
+    editorTabNavs = document.querySelectorAll('.editor-tab-navs .nav');
+    tabsContent = document.querySelectorAll('.editor-tab-content');
+
+
+
+
+    tools_tabs_switch();
+
+    function tools_tabs_switch(){
+        activeTab = 0;
+
+
+        i = 0;
+        editorTabNavs.forEach((tabNav) => {
+            content = tabsContent[i]
+
+            tabNav.classList.remove("active");
+            tabNav.classList.remove("inactive");
+
+            content.classList.remove("active");
+            content.classList.remove("inactive");
+
+
+            if(i == activeTab){
+
+                tabNav.classList.add("active");
+                content.classList.add("active");
+                content.style.display = 'block';
+
+            }else{
+                tabNav.classList.add("inactive");
+                content.classList.add("inactive");
+                content.style.display = 'none';
+            }
+            i++;
+        });
+
+    }
+
+
+// Listen click event for tabs
+//
+    editorTabNavs.forEach((nav) => {
+        nav.addEventListener('click', () => {
+
+            dataId = nav.getAttribute('data-id');
+            data_id_nav = 'data-id-'+dataId;
+
+            editorTabNavs.forEach((navItem) => {
+                navClasses = navItem.className;
+                navItem.classList.remove("active");
+
+                nav.classList.add("active");
+            })
+
+            tabsContent.forEach((tabContent) => {
+                tabContentClasses = tabContent.className;
+
+                if(tabContentClasses.indexOf(data_id_nav) < 0){
+                    tabContent.style.display = 'none';
+                }else{
+                    tabContent.style.display = 'block';
+                }
+
+            });
+
+        });
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     $('.scrollbar').scrollbar();
     $('.product-designer .tabs').tabs();
@@ -1856,7 +1943,7 @@ $(document).on('click','.generate-side-output',function(event){
         $(document).on('click','.product-designer .menu .add-curvedText',function(){
 
             product_designer_editor_toast('','Curved text added.');
-            text = $('.input-text').val();
+            text = $('.asset-text').val();
 
             var text = new fabric.CurvedText(text, {
 
@@ -2992,7 +3079,7 @@ $(document).on('click','.generate-side-output',function(event){
 	$(document).on('click','.product-designer .menu .add-text',function(){
 
         product_designer_editor_toast('','Text added.');
-		text = $('.input-text').val();
+		text = $('.asset-text').val();
 
 
 		//console.log(product_designer_editor.side_data);

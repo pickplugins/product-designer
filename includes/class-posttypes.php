@@ -15,6 +15,8 @@ class class_product_designer_posttypes  {
 
 
 	    add_action('init', array( $this, 'posttype_pd_template' ));
+        //add_action('init', array( $this, 'posttype_pd_pre_template' ));
+
 		add_action('init', array( $this, 'posttype_clipart' ));
 		add_action( 'init', array( $this, 'clipart_taxonomies' ), 0 );
 		
@@ -59,21 +61,71 @@ class class_product_designer_posttypes  {
 
 	}
 
-	    public function posttype_clipart(){
-			
-	        $labels = array(
-                'name' => _x('Clip Art', 'product-designer'),
-                'singular_name' => _x('Clip Art', 'product-designer'),
-                'add_new' => _x('Add Clip Art', 'product-designer'),
-                'add_new_item' => __('Add Clip Art', 'product-designer'),
-                'edit_item' => __('Edit Clip Art', 'product-designer'),
-                'new_item' => __('New Clip Art', 'product-designer'),
-                'view_item' => __('View Clip Art', 'product-designer'),
-                'search_items' => __('Search Clip Art', 'product-designer'),
-                'not_found' =>  __('Nothing found', 'product-designer'),
-                'not_found_in_trash' => __('Nothing found in Trash', 'product-designer'),
-                'parent_item_colon' => ''
+
+
+
+    public function posttype_pd_pre_template(){
+
+        $labels = array(
+            'name' => _x('Saved Templates', 'product-designer'),
+            'singular_name' => _x('Saved Template', 'product-designer'),
+            'add_new' => _x('Add Template', 'product-designer'),
+            'add_new_item' => __('Add Template', 'product-designer'),
+            'edit_item' => __('Edit Template', 'product-designer'),
+            'new_item' => __('New Template', 'product-designer'),
+            'view_item' => __('View Template', 'product-designer'),
+            'search_items' => __('Search Template', 'product-designer'),
+            'not_found' =>  __('Nothing found', 'product-designer'),
+            'not_found_in_trash' => __('Nothing found in Trash', 'product-designer'),
+            'parent_item_colon' => ''
         );
+
+        $args = array(
+            'labels' => $labels,
+            'public' => true,
+            'publicly_queryable' => true,
+            'show_ui' => true,
+            'query_var' => true,
+            'menu_icon' => 'dashicons-nametag',
+            'rewrite' => true,
+            'capability_type' => 'post',
+            'hierarchical' => false,
+            'menu_position' => null,
+            'supports' => array('title'),
+            //'show_in_menu' 	=> 'pd_template',
+            'show_in_menu' 	=> 'edit.php?post_type=pd_template',
+
+
+        );
+
+        register_post_type( 'pd_pre_template' , $args );
+
+
+    }
+
+
+
+
+
+
+
+
+
+    public function posttype_clipart(){
+
+        $labels = array(
+            'name' => _x('Clip Art', 'product-designer'),
+            'singular_name' => _x('Clip Art', 'product-designer'),
+            'add_new' => _x('Add Clip Art', 'product-designer'),
+            'add_new_item' => __('Add Clip Art', 'product-designer'),
+            'edit_item' => __('Edit Clip Art', 'product-designer'),
+            'new_item' => __('New Clip Art', 'product-designer'),
+            'view_item' => __('View Clip Art', 'product-designer'),
+            'search_items' => __('Search Clip Art', 'product-designer'),
+            'not_found' =>  __('Nothing found', 'product-designer'),
+            'not_found_in_trash' => __('Nothing found in Trash', 'product-designer'),
+            'parent_item_colon' => ''
+    );
 
         $args = array(
                 'labels' => $labels,
