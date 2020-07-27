@@ -10,6 +10,10 @@ add_action('product_designer_editor', 'product_designer_notice', 0);
 
 function product_designer_notice($atts){
 
+
+    $product_designer_settings = get_option('product_designer_settings');
+    $menu_position = isset($product_designer_settings['menu_position']) ? $product_designer_settings['menu_position'] : 'left';
+
     ?>
     <div class="product-designer-notice">
         <div class="notices">
@@ -17,9 +21,31 @@ function product_designer_notice($atts){
     </div>
 
     <style type="text/css">
-        body {
-            margin-left: 280px;
+
+        <?php
+
+        if($menu_position == 'left'){
+            ?>
+            body {
+                margin-left: 280px;
+            }
+            .product-designer .menu {
+                left: 0px !important;
+            }
+            <?php
+        }else{
+            ?>
+            body {
+                margin-right: 280px;
+            }
+            .product-designer .menu {
+                right: 0px !important;
+            }
+            <?php
         }
+    ?>
+
+
         .admin-bar .product-designer .menu{
             top: 32px;
         }
@@ -161,12 +187,14 @@ add_action('product_designer_editor', 'product_designer_menu', 15);
 function product_designer_menu($atts){
 
     ?>
-    <div class="menu">
+    <div class="menu ">
         <?php
 
         do_action('product_designer_menu', $atts);
 
         ?>
+
+
     </div>
     <?php
 
@@ -349,7 +377,7 @@ function product_designer_side_list(){
         <div class="side item accordions  pd-guide-1" title="Sides">
             <div class="icon"><i class="fa fa-cube" ></i> Sides</div>
             <div class="child">
-                <ul class="side-list scrollbar">
+                <ul class="side-list">
 
                     <?php
 
@@ -382,6 +410,7 @@ function product_designer_side_list(){
                                 <li side_id="<?php echo $id; ?>" >
                                     <img src="<?php echo $icon; ?>" />
                                     <span class="name"><?php echo $name; ?></span>
+
                                 </li>
                                 <?php
 

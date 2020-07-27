@@ -15,6 +15,10 @@ function product_designer_settings_content_general(){
     $google_fonts = isset($product_designer_settings['google_fonts']) ? $product_designer_settings['google_fonts'] : array();
     $custom_fonts = isset($product_designer_settings['custom_fonts']) ? $product_designer_settings['custom_fonts'] : array();
 
+    $menu_position = isset($product_designer_settings['menu_position']) ? $product_designer_settings['menu_position'] : '';
+
+
+
     //echo '<pre>'.var_export($product_designer_settings, true).'</pre>';
 
     ?>
@@ -51,6 +55,7 @@ function product_designer_settings_content_general(){
         $settings_tabs_field->generate_field($args);
 
 
+
         $args = array(
             'id'		=> 'allow_upload_clipart',
             'parent'		=> 'product_designer_settings',
@@ -63,6 +68,8 @@ function product_designer_settings_content_general(){
         );
 
         $settings_tabs_field->generate_field($args);
+
+
 
 
         $args = array(
@@ -171,7 +178,18 @@ function product_designer_settings_content_general(){
         $settings_tabs_field->generate_field($args);
 
 
+        $args = array(
+            'id'		=> 'menu_position',
+            'parent'		=> 'product_designer_settings',
+            'title'		=> __('Menu position?','post-grid'),
+            'details'	=> __('Choose menu position','post-grid'),
+            'type'		=> 'select',
+            'value'		=> $menu_position,
+            'default'		=> '',
+            'args'		=> array('left'=>__('Left','post-grid'), 'right'=>__('Right','post-grid')  ),
+        );
 
+        $settings_tabs_field->generate_field($args);
 
         ?>
 

@@ -127,7 +127,7 @@ function Tdesigner_google_fonts(){
 	$fonts[] = array('name'=>'Rye');		
 	$fonts[] = array('name'=>'Nosifer');				
 	
-	$fonts[] = array('name'=>'myFirstFont', 'src'=>'http://www.w3schools.com/cssref/sansation_light.woff');	
+	//$fonts[] = array('name'=>'myFirstFont', 'src'=>'http://www.w3schools.com/cssref/sansation_light.woff');
 	
 	$fonts = apply_filters('product_designer_filter_fonts', $fonts);
 	return $fonts;
