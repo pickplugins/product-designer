@@ -5,7 +5,12 @@
 if ( ! defined('ABSPATH')) exit;  // if direct access
 
 
+add_filter( 'jetpack_lazy_images_blacklisted_classes', 'product_designer_exclude_jetpack_lazy', 999, 1 );
 
+function product_designer_exclude_jetpack_lazy( $classes ) {
+    $classes[] = 'customClipart';
+    return $classes;
+}
 
 
 function product_designer_is_customizable($post_id) {

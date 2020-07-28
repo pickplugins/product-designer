@@ -64,6 +64,98 @@ function product_designer_wrap_start($atts){
 
     ?>
 
+    <script>
+
+
+        function product_desginer_input_controls(args) {
+
+            type = args.type;
+
+            html = '';
+
+            if(type == 'text'){
+
+                fieldTitle = args.fieldTitle;
+                defaultValue = args.defaultValue;
+                fieldValue = args.fieldValue;
+                placeholder = args.placeholder;
+                fieldId = args.fieldId;
+                wrapperClass = args.wrapClass;
+                wrapperId = args.wrapperId;
+                lableClass = args.lableClass;
+                lableClass = args.lableClass;
+
+                fieldname = args.fieldname;
+
+                inputClass = args.wrapClass;
+                inputWrapperClass = args.inputWrapperClass;
+
+
+
+                html += '<div class="setting-field '+wrapperClass+'" id="'+wrapperId+'">';
+                html += '<div class="field-lable '+lableClass+'">';
+                html += fieldTitle;
+                html += '</div>';
+
+                html += '<div class="field-input '+inputWrapperClass+'">';
+                html += '<input id="'+fieldId+'" class="'+inputClass+'" type="text" placeholder="'+placeholder+'" name="'+fieldname+'"  value="'+fieldValue+'">';
+                html += '</div>';
+
+                html += '</div>';
+
+
+            }else if(type == 'number'){
+
+                defaultValue = args.defaultValue;
+                fieldValue = args.fieldValue;
+                fieldname = args.fieldname;
+                placeholder = args.placeholder;
+                fieldId = args.fieldId;
+                wrapperClass = args.wrapperClass;
+                wrapperId = args.wrapperId;
+                lableClass = args.lableClass;
+                lableText = args.lableText;
+
+
+
+                inputClass = args.inputClass;
+                inputWrapperClass = args.inputWrapperClass;
+
+
+
+                html += '<div class="setting-field '+wrapperClass+'" id="'+wrapperId+'">';
+                html += '<div class="field-lable '+lableClass+'">';
+                html += fieldTitle;
+                html += '</div>';
+
+                html += '<div class="field-input '+inputWrapperClass+'">';
+                html += '<input id="'+fieldId+'" class="'+inputClass+'" type="number" placeholder="'+placeholder+'" name="'+fieldname+'"  value="'+fieldValue+'">';
+                html += '</div>';
+
+                html += '</div>';
+
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+            return html;
+
+        }
+
+
+
+
+    </script>
+
     <div class="product-designer">
 
     <?php
@@ -596,7 +688,7 @@ function product_designer_image_type_content_qrcode(){
     </div>
 
 
-    <input type="button" class="button add-qr-code" value="<?php echo __('Add QR Code', "product-designer"); ?>">
+    <div class="add-qr-code" ><?php echo __('Add QR Code', "product-designer"); ?></div>
 
     <?php
 
@@ -631,7 +723,7 @@ function product_designer_image_type_content_barcode(){
     </div>
 
 
-    <input type="button" class="button add-barcode" value="<?php echo __('Add Barcode', "product-designer"); ?>">
+    <div class="add-barcode" value=""><?php echo __('Add Barcode', "product-designer"); ?></div>
 
 
     <?php
@@ -850,7 +942,7 @@ function product_designer_image_type_content_clipart_upload(){
 				
 				
 				
-				var html_new = "<img src="+attach_url+" />";
+				var html_new = "<img class=customClipart src="+attach_url+" />";
 				
 				$(".clipart-list").prepend(html_new); 
 				 
@@ -1271,14 +1363,58 @@ function product_designer_tools_edit_text(){
     ?>
 
     <div class="edit-text toolbar-section">
-        <div class="toolbar-title"><?php echo __('Text Actions', 'product-designer'); ?></div>
+        <div class="toolbar-title"><?php echo __('Edit Text', 'product-designer'); ?></div>
         <div class="toolbar-section-inner">
+
+            <div id="edit-assets-text">
+
+            </div>
+
+
             <textarea style="width: 90%" class="" id="text-content" aria-label="<?php echo __('Text Content', 'product-designer'); ?>"></textarea>
 
             <span class="pack-button hint--top" aria-label="<?php echo __('Bold text', 'product-designer'); ?>" id="text-bold"><i class="cpd-icon-format-bold" ></i></span>
             <span class="pack-button hint--top" aria-label="<?php echo __('Italic text', 'product-designer'); ?>" id="text-italic"><i class="cpd-icon-format-italic" ></i></span>
             <span class="pack-button hint--top" aria-label="<?php echo __('Underline text', 'product-designer'); ?>" id="text-underline"><i class="cpd-icon-format-underline" ></i></span>
             <span class="pack-button hint--top" aria-label="<?php echo __('Strikethrough text', 'product-designer'); ?>" id="text-strikethrough"><i class="fa fa-strikethrough" ></i></span>
+
+
+            <script>
+
+
+
+
+                //edit_assets_text = document.getElementById('edit-assets-text');
+                edit_assets_text = document.querySelectorAll('#edit-assets-text');
+
+                args = {
+                    type: 'text',
+                    fieldTitle: '',
+                    defaultValue: '',
+                    fieldValue: '',
+                    placeholder: '',
+                    fieldId: '',
+                    wrapperClass: '',
+                    wrapperId: '',
+                    lableClass: '',
+                    lableText: '',
+                    fieldname: '',
+                    inputClass: '',
+                    inputWrapperClass: '',
+
+
+                }
+
+               html = product_desginer_input_controls(args);
+
+                console.log(html);
+
+                edit_assets_text.innerHTML = html;
+
+
+            </script>
+
+
 
             <div class="input-group">
                 <div class="input-group-title"><?php echo __('Fonts Size:', 'product-designer'); ?></div>

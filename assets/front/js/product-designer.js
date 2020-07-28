@@ -3861,8 +3861,6 @@ $(document).on('click','.clipart-list img',function(){
 
 
 
-
-
 });
 
 
