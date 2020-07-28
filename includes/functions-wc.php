@@ -156,7 +156,7 @@ function woocommerce_product_data_tab_product_designer_save( $post_id ){
 
 
 
-add_action( 'woocommerce_after_add_to_cart_button', 'product_designer_after_add_to_cart_button', 90 );
+add_action( 'woocommerce_after_add_to_cart_form', 'product_designer_after_add_to_cart_button', 90 );
 add_action( 'woocommerce_after_shop_loop_item', 'product_designer_woocommerce_after_shop_loop_item',90 );
 
 
@@ -165,6 +165,9 @@ function product_designer_after_add_to_cart_button() {
 	$product_designer_page_id = get_option( 'product_designer_page_id' );
 	$product_designer_page_url = get_permalink($product_designer_page_id);
 	$is_customizable = product_designer_is_customizable($product->get_id());
+    wp_enqueue_style('font-awesome-4');
+
+
 
 	if($is_customizable ){
 

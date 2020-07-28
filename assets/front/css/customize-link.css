@@ -2,15 +2,22 @@
 /* CSS Document */
 
 .product-designer-editor-link {
-  display: block;
-  clear: both;
   margin: 5px 0;
-  background: #ebe9eb;
-  padding: 10px 15px;
+  background: #009688;
+  padding: 5px 25px;
   border-radius: 3px;
   text-align: center;
-  position: relative;
+  /* position: relative; */
+  display: inline-block;
 }
+
+.product-designer-editor-link a{
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+
 
 .product-designer-editor-link .variation-link {
   color: #515151;

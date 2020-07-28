@@ -638,12 +638,12 @@ display:none;
   border-radius: 3px;
 }
 
-.product-designer .pack-button i {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
+/*.product-designer .pack-button i {*/
+/*  position: absolute;*/
+/*  top: 50%;*/
+/*  left: 50%;*/
+/*  transform: translate(-50%, -50%);*/
+/*}*/
 
 
 .product-designer .pack-button:hover{
