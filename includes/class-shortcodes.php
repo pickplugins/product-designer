@@ -50,6 +50,9 @@ class class_product_designer_shortcodes  {
 
         $atts = apply_filters('product_designer_atts', $atts);
 
+
+
+
         ob_start();
 
         do_action('product_designer_editor', $atts);
@@ -64,6 +67,28 @@ class class_product_designer_shortcodes  {
         wp_enqueue_style('jquery-impromptu');
         wp_enqueue_script('plupload-all');
         //wp_enqueue_script('product_designer_vue');
+
+
+
+        wp_enqueue_script('jquery');
+        wp_enqueue_script( 'jquery-ui-core' );
+        wp_enqueue_script( 'jquery-ui-tabs' );
+        wp_enqueue_script('jquery-ui-accordion');
+
+
+
+        wp_enqueue_script('jquery.scrollbar');
+
+        wp_enqueue_script('jquery-impromptu');
+
+        wp_enqueue_script('jscolor');
+        wp_enqueue_script('plupload-all');
+        wp_enqueue_script('product_designer_js');
+
+
+
+
+
 
         return ob_get_clean();
 

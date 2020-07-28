@@ -15,7 +15,7 @@ function product_designer_notice($atts){
     $menu_position = isset($product_designer_settings['menu_position']) ? $product_designer_settings['menu_position'] : 'left';
 
     ?>
-    <div class="product-designer-notice">
+    <div class="product-designer-notice" id="product-designer-notice">
         <div class="notices">
         </div>
     </div>
@@ -945,10 +945,11 @@ add_action('product_designer_text_type_content_text', 'product_designer_text_typ
 function product_designer_text_type_content_text(){
 
     ?>
-    <textarea class="input-text asset-text"></textarea><br>
-    <input type="button" class="button add-text" value="<?php echo __('Add Text', "product-designer"); ?>">
-    <input type="button" class="button add-curvedText" value="<?php echo __('Add Curved Text', "product-designer"); ?>">
-<!--    <input type="button" class="button add-word-cloud" value="--><?php //echo __('Add Word Cloud', "product-designer"); ?><!--">-->
+    <textarea class="input-text asset-text"></textarea>
+    <div class="add-text"><?php echo __('Add Text', "product-designer"); ?></div>
+    <div class="add-curvedText"><?php echo __('Add Curved Text', "product-designer"); ?></div>
+<!--    <div class="add-word-cloud">--><?php //echo __('Add Word Cloud', "product-designer"); ?><!--</div>-->
+
     <?php
 }
 
@@ -1210,30 +1211,31 @@ function product_designer_tools_editor_actions(){
             <span class="pack-button hint--top" aria-label="<?php echo __('Undo', 'product-designer'); ?>" id="editor-undo"><i class="cpd-icon-undo"></i></span>
             <span class="pack-button hint--top" aria-label="<?php echo __('Redo', 'product-designer'); ?>" id="editor-redo"><i class="cpd-icon-redo"></i></span>
 
+            <?php
+            if($enable_preview =='yes'): ?>
+                <div class="editor-preview pd-guide-6"><i class="fa fa-eye" aria-hidden="true"></i> <?php echo __('Preview', 'product-designer'); ?></div>
+
+            <?php
+            endif;
+            ?>
+
+
+            <?php
+            if($enable_download =='yes'): ?>
+                <div class="editor-download pd-guide-7"><i class="fa fa-download" aria-hidden="true"></i> <?php echo __('Download', 'product-designer'); ?></div>
+
+            <?php
+            endif;
+            ?>
+
+
         </div>
 
-        <div class="editor-actions toolbar-section">
-            <div class="toolbar-section-inner">
 
 
-                <?php
-                if($enable_preview =='yes'): ?>
-                    <div class="editor-preview pd-guide-6"><i class="fa fa-eye" aria-hidden="true"></i> <?php echo __('Preview', 'product-designer'); ?></div>
-
-                <?php
-                endif;
-                ?>
 
 
-                <?php
-                if($enable_download =='yes'): ?>
-                    <div class="editor-download pd-guide-7"><i class="fa fa-download" aria-hidden="true"></i> <?php echo __('Download', 'product-designer'); ?></div>
 
-                <?php
-                endif;
-                ?>
-            </div>
-        </div>
 
 
 
@@ -1251,7 +1253,7 @@ function product_designer_tools_object_list(){
     <div class="object-list toolbar-section pd-guide-8">
         <div class="toolbar-title">Layers</div>
         <div class="toolbar-section-inner">
-            <div class="layer-item ">
+            <div class="layer-item layers-list ">
                 No layers
             </div>
         </div>
@@ -1602,22 +1604,10 @@ function product_designer_tools_product_info(){
                 <div class="input-group product">
 
                     <div class="generate-side-output"><?php echo __('Generate', 'product-designer'); ?> </div>
-                    <div class="output-side-items">
-
-                    </div>
-                    <br>
-                    <div class="output-side-items-attach-ids">
-
-                    </div>
-
-                    <div class="output-side-items-json">
-
-                    </div>
-
-
-                    <br>
-
-                    <button class="pd-addtocart button alt addtocart" type="submit" name="addtocart" value="addtocart"><?php echo __('Add to cart', 'product-designer'); ?></button><br>
+                    <div class="output-side-items"></div>
+                    <div class="output-side-items-attach-ids"></div>
+                    <div class="output-side-items-json"></div>
+                    <button class="pd-addtocart button alt addtocart" type="submit" name="addtocart" value="addtocart"><?php echo __('Add to cart', 'product-designer'); ?></button>
                     <button class="pd-save-template button alt" name="save-template" value="save-template"  ><?php echo __('Save as Template', 'product-designer'); ?></button>
 
 

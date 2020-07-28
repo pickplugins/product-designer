@@ -146,21 +146,8 @@ class ProductDesigner{
         wp_enqueue_script( 'JsBarcode.all.min.js', plugins_url( 'assets/front/js/JsBarcode.all.min.js', __FILE__ ), array('jquery'), '1.0', false);
 
 
-        wp_enqueue_script('jquery');
-        wp_enqueue_script( 'jquery-ui-core' );
-        wp_enqueue_script( 'jquery-ui-tabs' );
-        wp_enqueue_script('jquery-ui-accordion');
-
-
         wp_enqueue_script('fabric.js');
-        wp_enqueue_script('jquery.scrollbar');
-        wp_enqueue_script('product_designer_js');
         wp_enqueue_script('fabric.curvedText');
-
-        wp_enqueue_script('jquery-impromptu');
-
-        wp_enqueue_script('jscolor');
-        wp_enqueue_script('plupload-all');
 
 
 

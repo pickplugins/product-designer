@@ -6,6 +6,10 @@ jQuery(document).ready(function($){
 
 
 
+
+
+
+
     tools_tabs_switch();
 
     function tools_tabs_switch(){
@@ -1368,7 +1372,7 @@ $(document).on('click','.generate-side-output',function(event){
             //objectList_arr[i]['id'] = id;
 
 
-            html += '<div class="item" obj-id="'+i+'">';
+            html += '<div class="layer" obj-id="'+i+'">';
 
 
             if(type=='text'){
@@ -1421,7 +1425,7 @@ $(document).on('click','.generate-side-output',function(event){
 
         }
 
-        $('.layer-item').html(html);
+        $('.layers-list').html(html);
 
         // return objectList_arr;
 
@@ -1429,14 +1433,18 @@ $(document).on('click','.generate-side-output',function(event){
 
 
 
-    $(document).on('click','.product-designer .object-list .layer-item .item',function(event){
+    $(document).on('click','.product-designer .object-list .layers-list .layer',function(event){
 
-        $('.layer-item .item').removeClass('active');
+        event.stopPropagation();
+
+        $('.layers-list .layer').removeClass('active');
 
 
         obj_id = $(this).attr('obj-id');
         //canvas.setActiveObject(obj_id);
         canvas.setActiveObject(canvas.item(obj_id));
+
+
 
         if($(this).hasClass('active')){
             $(this).removeClass('active');
@@ -1444,20 +1452,22 @@ $(document).on('click','.generate-side-output',function(event){
         }else{
             $(this).addClass('active');
 
+            console.log('layer');
+
         }
 
 
         product_designer_editor_save();
 
-        console.log(obj_id);
+        //console.log(obj_id);
     })
 
 
-    $(document).on('click','.product-designer .object-list .layer-item .item .remove',function(event){
+    $(document).on('click','.product-designer .object-list .layers-list .layer .remove',function(event){
 
         event.preventDefault();
 
-        $('.layer-item .item').removeClass('active');
+        $('.layers-list .layer').removeClass('active');
 
 
         obj_id = $(this).parent().attr('obj-id');

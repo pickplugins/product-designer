@@ -73,9 +73,10 @@
   color: #fff;
   cursor: pointer;
   position: relative;
-  /* text-align: center; */
-  padding: 0px;
+  margin-bottom: 20px;
   clear: both;
+  border: 1px solid #4f647b;
+  background: #3c526b;
 }
 
 .product-designer .menu .item:hover{
@@ -87,11 +88,10 @@
   outline: none;
   padding: 10px;
   background: #3a5673;
-  margin: 5px 0;
 }
 
 .product-designer .menu .item .icon.ui-state-active{
-  outline: none;
+outline: none;
 }
 
 
@@ -105,16 +105,16 @@
 
 
 .product-designer .menu .loading{
-  display: none;
-	}
+display: none;
+  }
 
 
 
 
 .product-designer .menu .item:hover .child {
-  background: #314861 none repeat scroll 0 0;
+background: #314861 none repeat scroll 0 0;
 
-  /* left: 80px; */
+/* left: 80px; */
   /*padding: 10px;*/
 /* position: absolute; */
 /* top: 0; */
@@ -261,17 +261,24 @@ margin-top: 55px;
 }
 
 .product-designer .clipart-list {
-  background: #f2f2f2 none repeat scroll 0 0;
   padding: 10px 0;
+  background-image: url(../images/tile.png);
 }
 
 .product-designer .clipart-list img {
-  border-radius: 0;
   box-shadow: none;
   display: inline-block;
   margin: 5px;
   max-width: 45px;
   vertical-align: top;
+  padding: 0px;
+  border-radius: 5px;
+  border: 1px solid rgba(0,0,0,0);
+  transition: all ease 1s 0s;
+}
+.product-designer .clipart-list img:hover {
+  background: #56565673;
+  border: 1px solid #ddd;
 }
 .product-designer .clipart-pagination{
   margin: 10px 0px;
@@ -299,11 +306,11 @@ display:none;
 }
 
 .product-designer .clipart-upload {
-  background: #f2f2f2 none repeat scroll 0 0;
+  background: #009688;
   display: inline-block;
-  padding: 3px 15px;
+  padding: 5px 15px;
   border-radius: 3px;
-  color: #314861;
+  color: #fff;
 }
 
 .product-designer .quotes-list {
@@ -405,6 +412,20 @@ display:none;
 }
 
 
+.product-designer .add-text, .product-designer .add-curvedText, .product-designer .add-word-cloud{
+  display: inline-block;
+  /* width: 49%; */
+  text-align: center;
+  background: #009688;
+  margin: 5px 0;
+  cursor: pointer;
+  border-radius: 2px;
+  color: #ffffff;
+  padding: 5px 15px;
+}
+
+
+
 
 .product-designer .editing .edit-img {
   display: none;
@@ -492,7 +513,9 @@ display:none;
 }
 
 
-.output-side-items{}
+.output-side-items{
+  display: none;
+}
 .output-side-items .item{
     clear: both;
     display: block;
@@ -589,9 +612,12 @@ display:none;
 
 .product-designer .toolbar-section{
   margin-bottom: 20px;
-  clear: both;}
+  clear: both;
+  border: 1px solid #4f647b;
+  background: #3c526b;
+}
 .toolbar-section-inner{
-  margin: 0 10px;
+  padding: 10px;
   clear: both;
 }
 .product-designer .pack-button {
@@ -624,10 +650,8 @@ display:none;
 .product-designer .toolbar-title {
   text-align: center;
   background: #6087af8c;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   font-size: 13px;
-  /* border-left: 5px solid #a1a1a1; */
-  /* border-right: 5px solid #a1a1a1; */
   color: #ffffff;
   font-weight: 500;
   padding: 5px 0;
@@ -666,11 +690,12 @@ display:none;
   display: inline-block;
   width: 49%;
   text-align: center;
-  background: #ffffff;
+  background: #009688;
   margin: 8px 0;
   cursor: pointer;
   border-radius: 2px;
-  color: #3a5673;
+  color: #ffffff;
+  padding: 5px 0;
 }
 
 
@@ -739,11 +764,19 @@ display:none;
 .product-designer .object-list{
 
 }
+
+.layers-list .layer {
+  cursor: pointer;
+  padding: 2px 5px;
+  display: block;
+}
+.layers-list .layer:hover {
+  background: #506f9075;
+}
  
 .product-designer .object-list .list-item {
   max-height: 120px;
 }
-.product-designer .object-list .list-item{}
 .product-designer .object-list .list-item ul {
   margin: 0;
   padding: 0;
@@ -765,11 +798,14 @@ display:none;
 
 
 .product-designer .object-list .remove {
-  padding: 1px 5px;
-  background: #ff6123;
+  padding: 0px 7px;
+  background: #f16f61;
   color: #fff;
   margin-right: 5px;
   cursor: pointer;
+  vertical-align: middle;
+  display: inline-block;
+  border-radius: 3px;
 }
 .product-designer .object-list .type {
   margin-right: 5px;
@@ -777,6 +813,7 @@ display:none;
   border: 1px solid #a1a1a1;
   padding: 1px 4px;
   vertical-align: middle;
+  display: inline-block;
 
 
 }
@@ -890,7 +927,7 @@ display:none;
   padding: 5px 0px;
   text-align: center;
   margin-bottom: 10px;
-  background: #4b6a8c;
+  background: #009688;
   border-radius: 3px;
   cursor: pointer;
   transition: all ease 1s 0s;
