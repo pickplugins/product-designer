@@ -875,8 +875,8 @@ function product_designer_image_type_content_clipart_upload(){
 
             // additional post data to send to our ajax hook
             'multipart_params'    => array(
-                '_ajax_nonce' => wp_create_nonce('photo-upload'),
-                'action'      => 'clipart_upload',            // the ajax action name
+                '_ajax_nonce' => wp_create_nonce('pd_clipart_upload'),
+                'action'      => 'pd_clipart_upload',            // the ajax action name
             ),
         );
 
@@ -884,83 +884,101 @@ function product_designer_image_type_content_clipart_upload(){
         $plupload_init = apply_filters('plupload_init', $plupload_init);
 
 
-        echo '
-  			
-		 <script>
-		
-			jQuery(document).ready(function($){
-		
-			  // create the uploader and pass the config from above
-			  var uploader_'.$field_id.' = new plupload.Uploader('.json_encode($plupload_init).');
-		
-			  // checks if browser supports drag and drop upload, makes some css adjustments if necessary
-			  uploader_'.$field_id.'.bind("Init", function(up){
-				var uploaddiv = $("#plupload-'.$field_id.'");
-		
-				if(up.features.dragdrop){
-				  uploaddiv.addClass("drag-drop");
-					$("#plupload-drag-drop'.$field_id.'")
-					  .bind("dragover.wp-uploader", function(){ uploaddiv.addClass("drag-over"); })
-					  .bind("dragleave.wp-uploader, drop.wp-uploader", function(){ uploaddiv.removeClass("drag-over"); });
-		
-				}else{
-				  uploaddiv.removeClass("drag-drop");
-				  $("#plupload-drag-drop'.$field_id.'").unbind(".wp-uploader");
-				}
-			  });
-		
-			  uploader_'.$field_id.'.init();
-		
-			  // a file was added in the queue
-			  uploader_'.$field_id.'.bind("FilesAdded", function(up, files){
-				var hundredmb = 100 * 1024 * 1024, max = parseInt(up.settings.max_file_size, 10);
-		
-				plupload.each(files, function(file){
-				  if (max > hundredmb && file.size > hundredmb && up.runtime != "html5"){
-					// file size error?
-					console.log("Error...");
-				  }else{
-
-					
-				  }
-				});
-		
-				up.refresh();
-				up.start();
-			  });
-		
-			  // a file was uploaded 
-			  uploader_'.$field_id.'.bind("FileUploaded", function(up, file, response) {
-
-				var result = $.parseJSON(response.response);
-
-				var attach_url = result.html.attach_url;
-				var attach_id = result.html.attach_id;
-				var attach_title = result.html.attach_title;
-				
-				//alert(attach_url);
-				
-				
-				
-				var html_new = "<img class=customClipart src="+attach_url+" />";
-				
-				$(".clipart-list").prepend(html_new); 
-				 
-			  });
-		
-			});   
-		
-		  </script>
-  
-  
-  ';
-
 
 
 
 
     ?>
+    <script>
 
+        jQuery(document).ready(function($){
+
+            // create the uploader and pass the config from above
+            var uploader_<?php echo $field_id; ?> = new plupload.Uploader(<?php echo json_encode($plupload_init); ?>);
+
+            // checks if browser supports drag and drop upload, makes some css adjustments if necessary
+            uploader_<?php echo $field_id; ?>.bind("Init", function(up){
+                var uploaddiv = $("#plupload-<?php echo $field_id; ?>");
+
+                if(up.features.dragdrop){
+                    uploaddiv.addClass("drag-drop");
+                    $("#plupload-drag-drop<?php echo $field_id; ?>")
+                        .bind("dragover.wp-uploader", function(){ uploaddiv.addClass("drag-over"); })
+                        .bind("dragleave.wp-uploader, drop.wp-uploader", function(){ uploaddiv.removeClass("drag-over"); });
+
+                }else{
+                    uploaddiv.removeClass("drag-drop");
+                    $("#plupload-drag-drop<?php echo $field_id; ?>").unbind(".wp-uploader");
+                }
+            });
+
+            uploader_<?php echo $field_id; ?>.init();
+
+            // a file was added in the queue
+            uploader_<?php echo $field_id; ?>.bind("FilesAdded", function(up, files){
+
+
+                $("#plupload-browse-clipart").html("<i class='fa fa-spinner fa-spin'></i> Uploading");
+
+
+
+                var hundredmb = 100 * 1024 * 1024, max = parseInt(up.settings.max_file_size, 10);
+
+                plupload.each(files, function(file){
+                    if (max > hundredmb && file.size > hundredmb && up.runtime != "html5"){
+                        // file size error?
+                        console.log("Error...");
+                    }else{
+
+
+                    }
+                });
+
+                up.refresh();
+                up.start();
+            });
+
+            // a file was uploaded
+            uploader_<?php echo $field_id; ?>.bind("FileUploaded", function(up, file, response) {
+
+                var result = $.parseJSON(response.response);
+
+                var attach_url = result.html.attach_url;
+                var attach_id = result.html.attach_id;
+                var attach_title = result.html.attach_title;
+
+                //alert(attach_url);
+
+
+                var newImg = new Image();
+                newImg.src = attach_url;
+                var height = newImg.height;
+                var width = newImg.width;
+
+                fabric.Image.fromURL(attach_url, function(img){
+                    scale = 200 / img.width;
+                    img.set({
+                        scaleX: scale,
+                        scaleY: scale,
+                    });
+                    canvas.add(img);
+                    canvas.centerObject(img);
+                    img.setCoords();
+                    canvas.setActiveObject(img);
+                    canvas.renderAll();
+                });
+
+
+                var html_new = "<img class=customClipart src="+attach_url+" />";
+
+                $(".clipart-list").prepend(html_new);
+                $("#plupload-browse-clipart").html("<i class='fa fa-upload'></i> Upload");
+
+            });
+
+        });
+
+    </script>
 
     <?php
 

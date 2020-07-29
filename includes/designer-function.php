@@ -6,17 +6,17 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 
 
 
-add_action('wp_ajax_clipart_upload', function(){
+add_action('wp_ajax_pd_clipart_upload', function(){
 
-    check_ajax_referer('photo-upload');
+    check_ajax_referer('pd_clipart_upload');
 
     // you can use WP's wp_handle_upload() function:
     $file = $_FILES['async-upload'];
 
-    $status = wp_handle_upload($file, array('action' => 'clipart_upload'));
+    $status = wp_handle_upload($file, array('action' => 'pd_clipart_upload'));
 
     $file_loc = $status['file'];
-    $file_name = basename($status['name']);
+    $file_name = isset($status['name']) ? basename($status['name']) : '';
     $file_type = wp_check_filetype($file_name);
 
     $attachment = array(
@@ -35,7 +35,7 @@ add_action('wp_ajax_clipart_upload', function(){
     $user_id = get_current_user_id();
 
     $clipart_post = array(
-        'post_title'    => __('Custom clipart', product_designer_textdomain),
+        'post_title'    => __('Custom clipart', 'product-designer'),
         'post_status'   => 'publish',
         'post_author'   => $user_id,
         'post_type'     =>'clipart'
