@@ -453,9 +453,6 @@ function product_designer_menu_clipart(){
 
     $img_types = array(
         'clipart' => __('Clipart','product-designer'),
-        'qrcode' => __('QR Code','product-designer'),
-        'barcode' => __('Barcode','product-designer'),
-
     );
 
 
@@ -639,7 +636,6 @@ add_action('editor_tab_content_assets', 'product_designer_menu_text', 15);
 function product_designer_menu_text(){
     $text_types = array(
         'text' => __('text','product-designer'),
-        'quotes' => __('Quotes','product-designer'),
 
     );
 
@@ -704,8 +700,6 @@ function product_designer_text_type_content_text(){
     ?>
     <textarea class="input-text asset-text"></textarea>
     <div class="add-text"><?php echo __('Add Text', "product-designer"); ?></div>
-    <div class="add-curvedText"><?php echo __('Add Curved Text', "product-designer"); ?></div>
-<!--    <div class="add-word-cloud">--><?php //echo __('Add Word Cloud', "product-designer"); ?><!--</div>-->
 
     <?php
 }
@@ -746,112 +740,6 @@ function product_designer_menu_shapes(){
     <?php
 
 }
-
-
-//add_action('product_designer_menu', 'product_designer_menu_export', 15);
-
-function product_designer_menu_export(){
-
-
-
-    if(!empty($_GET['product_id'])):
-
-        $product_id = isset($_GET['product_id']) ? sanitize_text_field($_GET['product_id']) : '';
-
-        $product_data = wc_get_product($product_id);
-        $is_variable = $product_data->is_type('variable');
-
-
-        if($is_variable):
-
-            $variation_id = isset($_GET['variation_id']) ? sanitize_text_field($_GET['variation_id']): '';
-            $pd_template_id = get_post_meta( $variation_id, 'pd_template_id', true );
-            $canvas_settings = get_post_meta( $pd_template_id, 'canvas', true );
-
-            $side_data = get_post_meta( $pd_template_id, 'side_data', true );
-
-
-            if(empty($variation_id)):
-                $product_designer_error['variation_id_missing'] = 'Variation id is missing';
-            endif;
-
-
-
-        else:
-
-            $pd_template_id = get_post_meta( $product_id, 'pd_template_id', true );
-            $canvas_settings = get_post_meta( $pd_template_id, 'canvas', true );
-
-            $side_data = get_post_meta( $pd_template_id, 'side_data', true );
-
-
-        endif;
-
-
-
-        if(empty($side_data)) $side_data = array();
-
-        $pre_templates = get_post_meta( $pd_template_id, 'pre_templates', true );
-
-
-
-
-
-
-        if(!empty($_GET['side'])){
-            $current_side = isset($_GET['side']) ? sanitize_text_field($_GET['side']) : '';
-
-        }
-        else{
-            $current_side = '';
-            $current_side_empty = array();
-            if(!empty($side_data))
-                foreach($side_data as $id=>$side){
-                    $current_side_empty[] = $id;
-                }
-            if(!empty($current_side_empty[0])){
-                $current_side = $current_side_empty[0];
-            }
-            else{
-                $current_side = '';
-            }
-        }
-
-
-
-
-
-    endif;
-
-
-
-        $product_id = isset($_GET['product_id']) ? sanitize_text_field($_GET['product_id']) : '';
-
-
-        ?>
-        <div title="Export" class="export item" >
-            <div class="icon"><i class="fa fa-file-code-o" ></i></div>
-            <div class="child">
-                <div class="export-list">
-
-                    <form id="save_as_template" method="" action="">
-                        <input name="product_id" type="hidden"  value="<?php echo $product_id; ?>">
-                        <input name="side_id" type="hidden"  value="<?php echo $current_side; ?>">
-                        <input  name="template_name" type="text" placeholder="Template Name" value="">
-                        <input name="template_id" type="hidden"  value="<?php echo time(); ?>">
-                        <input name="action" type="submit" value="<?php echo __('Save as template', "product-designer"); ?>">
-                        <span class="loading"><i class="fa fa-spinner fa-spin"></i></span>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <?php
-
-
-
-}
-
-
 
 
 
