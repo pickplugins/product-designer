@@ -569,7 +569,7 @@ $(document).on('submit', ".product-designer .cart", function(event) {
 $(document).on('click','.generate-side-output',function(event){
 
     event.preventDefault();
-    var preview_file_format = product_designer_editor.preview_file_format;
+    var output_file_format = product_designer_editor.output_file_format;
     var side_serialized_data = product_designer_editor.side_serialized_data;
     var side_data_ids = product_designer_editor.side_data_ids;
     var side_data = product_designer_editor.side_data;
@@ -577,7 +577,7 @@ $(document).on('click','.generate-side-output',function(event){
     var inc_preview_background = side_data[current_side_id].inc_preview_background;
     var inc_preview_overlay = side_data[current_side_id].inc_preview_overlay;
 
-    ////console(preview_file_format);
+    console.log(output_file_format);
 
 
     product_designer_editor_busy('busy', 'Working...', '<i class="fa fa-spinner fa-spin"></i>');
@@ -615,14 +615,14 @@ $(document).on('click','.generate-side-output',function(event){
                 side_id = side_data_ids[i];
 
                 ////console(i +':'+ side_id);
-                ////console(side_serialized_data[side_id]);
+                console.log(side_serialized_data[side_id]);
 
                 if (typeof side_serialized_data[side_id] != "undefined"){
 
 
                     canvas.loadFromJSON(product_designer_editor.side_serialized_data[side_id], function () {
 
-                        if(preview_file_format == 'png' || preview_file_format == 'jpeg'){
+                        if(output_file_format == 'png' || output_file_format == 'jpeg'){
 
                             canvas.renderAll();
                             base_64 = canvas.toDataURL({format: 'png'});
@@ -637,7 +637,26 @@ $(document).on('click','.generate-side-output',function(event){
 
 
                             $('.output-side-items').append(html);
+
+                        }else if(output_file_format == 'svg' ){
+
+                            canvas.renderAll();
+                            var svg = canvas.toSVG();
+
+                            html = '';
+
+                            html += '<div class="item" title="'+side_id+'">';
+                            html += '<div class="preview-object">'+svg+'</div>';
+                            html += '<div class="preview-name">'+side_data[side_id]['name']+'</div>';
+                            html += '<div class="inc-preview"><label><input class="inc_side_to_cart" type="checkbox" side_id="'+side_id+'" value="" name="product_designer">Include to cart</label></div>';
+                            html += '</div>';
+
+
+                            $('.output-side-items').append(html);
+
                         }
+
+                        $('.output-side-items').fadeIn();
 
                     });
 

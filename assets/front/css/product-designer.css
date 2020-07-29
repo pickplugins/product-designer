@@ -542,6 +542,11 @@ display:none;
 }
 
 
+.output-side-items svg {
+  width: 100%;
+  height: auto;
+}
+
 .product-designer .templates  .template{}
 
 .product-designer .templates .template.active {
