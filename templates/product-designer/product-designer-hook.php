@@ -932,11 +932,11 @@ function product_designer_tools_edit_text(){
 
                 }
 
-               html = product_desginer_input_controls(args);
+               //html = product_desginer_input_controls(args);
 
-                console.log(html);
+                //console.log(html);
 
-                edit_assets_text.innerHTML = html;
+                //edit_assets_text.innerHTML = html;
 
 
             </script>
@@ -1418,7 +1418,7 @@ function product_designer_scripts(){
 
             var product_designer_editor = <?php echo json_encode($product_designer_editor); ?>;
 
-            console.log(product_designer_editor);
+            //console.log(product_designer_editor);
 
             var product_id = product_designer_editor.product_id;
             var variation_id = product_designer_editor.variation_id;

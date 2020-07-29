@@ -96,7 +96,7 @@ jQuery(document).ready(function($){
     $('.product-designer .tabs').tabs();
     //alert('Hello');
 
-    console.log(typeof canvas);
+    //console(typeof canvas);
 
 
     function product_designer_editor_busy(status, message, icon){
@@ -142,7 +142,7 @@ jQuery(document).ready(function($){
 
         canvas.renderAll();
 
-       //console.log("Active side id:"+ current_side_id);
+       ////console("Active side id:"+ current_side_id);
 
         if (typeof product_designer_editor.side_serialized_data[current_side_id] == "undefined")
             product_designer_editor.side_serialized_data[current_side_id] = ["{}"];
@@ -155,7 +155,7 @@ jQuery(document).ready(function($){
         product_designer_editor.side_serialized_data[current_side_id] = json_stringify;
         product_designer_editor.side_json_data[current_side_id] = json;
 
-        //console.log(json);
+        ////console(json);
 
         base_64 = canvas.toDataURL('png');
 
@@ -281,7 +281,7 @@ jQuery(document).ready(function($){
 
         product_designer_editor['side_ids_preview_data'][current_side_id] = base_64;
 
-        //console.log(product_designer_editor['side_ids_preview_data']);
+        ////console(product_designer_editor['side_ids_preview_data']);
 
 
         //product_designer_editor_update_previews();
@@ -291,7 +291,7 @@ jQuery(document).ready(function($){
 
 
 
-    //console.log(product_designer_editor.side_serialized_data[current_side_id]);
+    ////console(product_designer_editor.side_serialized_data[current_side_id]);
 
 
 
@@ -302,7 +302,7 @@ function product_designer_editor_update_previews(){
      var side_data_ids = product_designer_editor.side_data_ids;
 
 
-    //console.log(product_designer_editor.side_ids_preview_data);
+    ////console(product_designer_editor.side_ids_preview_data);
     html = '';
     html_input = '';
     for(i=0; i<side_data_ids.length; i++){
@@ -339,7 +339,7 @@ function product_designer_inc_attach_ids_to_cart(side_id, attach_id, attach_url,
     var side_json_data =product_designer_editor.side_json_data;
 
 
-    //console.log(side_json_data);
+    ////console(side_json_data);
 
     if(action=='add'){
         product_designer_editor.cart_attach_ids[side_id] = {'attach_id':attach_id, 'attach_url': attach_url };
@@ -375,7 +375,7 @@ function product_designer_inc_attach_ids_to_cart(side_id, attach_id, attach_url,
     $('.output-side-items-json').html(html_json);
 
 
-    console.log(cart_attach_ids);
+    //console(cart_attach_ids);
 
     var total_side = 0;
     for(var i in cart_attach_ids) {
@@ -428,7 +428,7 @@ $(document).on('click', ".pd-save-template", function(event) {
                 var data = JSON.parse( response );
                 var form_data	= data['form_data'];
                 var msg	= data['msg'];
-                console.log(form_data);
+                //console(form_data);
 
                 $('.product-designer-notice .notices').html(msg).fadeIn();
                 $('.product-designer-notice').fadeIn();
@@ -474,7 +474,7 @@ $(document).on('submit', ".product-designer .cart", function(event) {
                 var data = JSON.parse( response );
                 var form_data	= data['form_data'];
                 var msg	= data['msg'];
-                console.log(form_data);
+                //console(form_data);
 
                 $('.product-designer-notice .notices').html(msg).fadeIn();
                 $('.product-designer-notice').fadeIn();
@@ -519,7 +519,7 @@ $(document).on('submit', ".product-designer .cart", function(event) {
                         //_this.setAttribute("attach_id", attach_id);
                         product_designer_inc_attach_ids_to_cart(side_id, attach_id, attach_url, 'add');
 
-                        //console.log('Temp Save done');
+                        ////console('Temp Save done');
 
                         product_designer_editor_toast('<i class="fa fa-check" ></i>','Added to cart.');
                         product_designer_editor_busy('ready', 'Ready...', '<i class="fa fa-check"></i>');
@@ -577,7 +577,7 @@ $(document).on('click','.generate-side-output',function(event){
     var inc_preview_background = side_data[current_side_id].inc_preview_background;
     var inc_preview_overlay = side_data[current_side_id].inc_preview_overlay;
 
-    //console.log(preview_file_format);
+    ////console(preview_file_format);
 
 
     product_designer_editor_busy('busy', 'Working...', '<i class="fa fa-spinner fa-spin"></i>');
@@ -592,11 +592,11 @@ $(document).on('click','.generate-side-output',function(event){
         canvas.backgroundImage = null;
     }
 
-    //console.log(side_data_ids);
-    //console.log(side_serialized_data);
-    //console.log(side_data);
+    ////console(side_data_ids);
+    ////console(side_serialized_data);
+    ////console(side_data);
 
-    //console.log(side_serialized_data);
+    ////console(side_serialized_data);
 
     $('.output-side-items').html('');
 
@@ -614,8 +614,8 @@ $(document).on('click','.generate-side-output',function(event){
 
                 side_id = side_data_ids[i];
 
-                //console.log(i +':'+ side_id);
-                //console.log(side_serialized_data[side_id]);
+                ////console(i +':'+ side_id);
+                ////console(side_serialized_data[side_id]);
 
                 if (typeof side_serialized_data[side_id] != "undefined"){
 
@@ -677,13 +677,13 @@ $(document).on('click','.generate-side-output',function(event){
         $(document).on('click','.product-designer .editor-preview',function(){
 
 
-            //console.log(side_data[current_side_id]);
+            ////console(side_data[current_side_id]);
 
             var inc_preview_background = side_data[current_side_id].inc_preview_background;
             var inc_preview_overlay = side_data[current_side_id].inc_preview_overlay;
             var preview_file_format = product_designer_editor.preview_file_format;
 
-            console.log(preview_file_format);
+            //console(preview_file_format);
 
 
 
@@ -719,7 +719,7 @@ $(document).on('click','.generate-side-output',function(event){
                 $('.product-designer .preview').fadeIn();
 
             }
-            // console.log(base_64);
+            // //console(base_64);
 
         })
 
@@ -728,7 +728,7 @@ $(document).on('click','.generate-side-output',function(event){
 
             $('.product-designer .preview').fadeOut();
 
-            //console.log(canvas.getObjects());
+            ////console(canvas.getObjects());
 
 
         })
@@ -744,7 +744,7 @@ $(document).on('click','.generate-side-output',function(event){
 
             // base_64 = canvas.toDataURL({format: preview_file_format});
             //
-            // console.log(base_64);
+            // //console(base_64);
             //
             // window.open(base_64, '_blank');
 
@@ -769,7 +769,7 @@ $(document).on('click','.generate-side-output',function(event){
 
                 var dataUrl = 'data:image/svg+xml,'+encodeURIComponent(trsvg);
 
-                console.log(dataUrl);
+                //console(dataUrl);
                 //window.open(trsvg, '_blank');
 
                 var dl = document.createElement("a");
@@ -872,7 +872,7 @@ $(document).on('click','.generate-side-output',function(event){
             e.preventDefault();
             $(".product-designer .upper-canvas").toggleClass("canvas-grid");
 
-            console.log('Clear');
+            //console('Clear');
 
 
 
@@ -886,7 +886,7 @@ $(document).on('click','.generate-side-output',function(event){
             e.preventDefault();
             var selected_object = canvas.getActiveObject();
 
-            console.log(selected_object);
+            //console(selected_object);
 
             if(selected_object != null){
                 selected_object.remove();
@@ -927,7 +927,7 @@ $(document).on('click','.generate-side-output',function(event){
 
             product_designer_editor_save()
 
-            console.log('delete');
+            //console('delete');
         })
 
 
@@ -950,7 +950,7 @@ $(document).on('click','.generate-side-output',function(event){
                 product_designer_editor_toast('<i class="fa fa-pencil"></i>','Drawing mode enabled.');
             }
             product_designer_editor_save()
-            console.log('DrawingMode');
+            //console('DrawingMode');
 
         })
 
@@ -1031,7 +1031,7 @@ $(document).on('click','.generate-side-output',function(event){
             //canvas.getActiveObject().setAngle(val);
             //canvas.getActiveObject().set("textDecoration", 'line-through');
             canvas.renderAll();
-            //console.log(val);
+            ////console(val);
             product_designer_editor_save()
         })
 
@@ -1108,7 +1108,7 @@ $(document).on('click','.generate-side-output',function(event){
 
 
             canvas.renderAll();
-            console.log('flipY');
+            //console('flipY');
             product_designer_editor_save()
 
         })
@@ -1320,7 +1320,7 @@ $(document).on('click','.generate-side-output',function(event){
 
         $(document).on('click','.product-designer #editor-undo',function(){
 
-           console.log('Undo');
+           //console('Undo');
 
            undo();
 
@@ -1330,7 +1330,7 @@ $(document).on('click','.generate-side-output',function(event){
 
         $(document).on('click','.product-designer #editor-redo',function(){
 
-            console.log('Redo');
+            //console('Redo');
             redo();
 
 
@@ -1419,7 +1419,7 @@ $(document).on('click','.generate-side-output',function(event){
 
 
 
-            //console.log(objectList[i]);
+            ////console(objectList[i]);
             html += '</div>';
 
 
@@ -1452,14 +1452,14 @@ $(document).on('click','.generate-side-output',function(event){
         }else{
             $(this).addClass('active');
 
-            console.log('layer');
+            //console('layer');
 
         }
 
 
         product_designer_editor_save();
 
-        //console.log(obj_id);
+        ////console(obj_id);
     })
 
 
@@ -1480,7 +1480,7 @@ $(document).on('click','.generate-side-output',function(event){
 
         product_designer_editor_save()
 
-        console.log(obj_id);
+        //console(obj_id);
     })
 
 
@@ -1558,7 +1558,7 @@ $(document).on('click','.generate-side-output',function(event){
 
 
 
-                console.log(objectList[i]);
+                //console(objectList[i]);
                 html += '</li>';
             }
 
@@ -1590,7 +1590,7 @@ $(document).on('click','.generate-side-output',function(event){
 
             product_designer_editor_save()
 
-            console.log(obj_id);
+            //console(obj_id);
         })
 
 
@@ -1609,8 +1609,8 @@ $(document).on('click','.generate-side-output',function(event){
 
 
 
-        //console.log(type);
-        //console.log(ActiveObject);
+        ////console(type);
+        ////console(ActiveObject);
 
 
         if(type=='text'){
@@ -1659,7 +1659,7 @@ $(document).on('click','.generate-side-output',function(event){
 		//alert(val);
 		canvas.getActiveObject().setText(val);
 		canvas.renderAll();
-		console.log(val);
+		//console(val);
 
         product_designer_editor_save();
 
@@ -1676,7 +1676,7 @@ $(document).on('click','.generate-side-output',function(event){
 		//alert(val);
 		canvas.getActiveObject().set("fontSize", val);
 		canvas.renderAll();
-		console.log(val);
+		//console(val);
         product_designer_editor_save();
 		})
 
@@ -1688,7 +1688,7 @@ $(document).on('click','.generate-side-output',function(event){
 		//alert('Hello');
 		canvas.getActiveObject().setColor(val);
 		canvas.renderAll();
-		console.log(val);
+		//console(val);
 
         product_designer_editor_save();
 
@@ -1703,7 +1703,7 @@ $(document).on('click','.generate-side-output',function(event){
             //alert('Hello');
             canvas.getActiveObject().set('strokeWidth',val);
             canvas.renderAll();
-            console.log(val);
+            //console(val);
             product_designer_editor_save();
         })
 
@@ -1714,7 +1714,7 @@ $(document).on('click','.generate-side-output',function(event){
             //alert('Hello');
             canvas.getActiveObject().set('stroke',val);
             canvas.renderAll();
-            console.log(val);
+            //console(val);
             product_designer_editor_save();
         })
 
@@ -1728,7 +1728,7 @@ $(document).on('click','.generate-side-output',function(event){
             //alert('Hello');
             canvas.getActiveObject().set('backgroundColor',val);
             canvas.renderAll();
-            console.log(val);
+            //console(val);
             product_designer_editor_save();
         })
 
@@ -1758,7 +1758,7 @@ $(document).on('click','.generate-side-output',function(event){
         canvas.getActiveObject().set({fill: fill_color});
 
 		canvas.renderAll();
-		console.log(fill_color);
+		//console(fill_color);
         product_designer_editor_save();
 		})
 
@@ -1771,7 +1771,7 @@ $(document).on('click','.generate-side-output',function(event){
 		canvas.getActiveObject().set("opacity", val);
 		//canvas.getActiveObject().opacity(val);
 		canvas.renderAll();
-		console.log(val);
+		//console(val);
         product_designer_editor_save();
 		})
 
@@ -1812,7 +1812,7 @@ $(document).on('click','.generate-side-output',function(event){
 
 		//canvas.getActiveObject().set("fontStyle", 'italic');
 		canvas.renderAll();
-		//console.log(val);
+		////console(val);
         product_designer_editor_save();
 		})
 
@@ -1833,7 +1833,7 @@ $(document).on('click','.generate-side-output',function(event){
 		//canvas.getActiveObject().fontWeight('bold');
 		//canvas.getActiveObject().set("textDecoration", 'underline');
 		canvas.renderAll();
-		//console.log(val);
+		////console(val);
         product_designer_editor_save();
 		})
 
@@ -1853,7 +1853,7 @@ $(document).on('click','.generate-side-output',function(event){
 		//canvas.getActiveObject().fontWeight('bold');
 		//canvas.getActiveObject().set("textDecoration", 'line-through');
 		canvas.renderAll();
-		//console.log(val);
+		////console(val);
         product_designer_editor_save();
 		})
 
@@ -1868,7 +1868,7 @@ $(document).on('click','.generate-side-output',function(event){
 		canvas.getActiveObject().setAngle(-val);
 		//canvas.getActiveObject().set("textDecoration", 'line-through');
 		canvas.renderAll();
-		//console.log(val);
+		////console(val);
 
 		})
 
@@ -1882,7 +1882,7 @@ $(document).on('click','.generate-side-output',function(event){
 		canvas.getActiveObject().setAngle(val);
 		//canvas.getActiveObject().set("textDecoration", 'line-through');
 		canvas.renderAll();
-		//console.log(val);
+		////console(val);
 
 		})
 
@@ -1914,7 +1914,7 @@ $(document).on('click','.generate-side-output',function(event){
             product_designer_editor_save();
 
 
-            console.log(text);
+            //console(text);
             $('.edit-curvedText').addClass('active');
             $('.edit-text').removeClass('active');
 
@@ -1927,7 +1927,7 @@ $(document).on('click','.generate-side-output',function(event){
 
             //alert(val);
             old_text = canvas.getActiveObject().getText();
-            console.log(canvas.getActiveObject());
+            //console(canvas.getActiveObject());
             canvas.getActiveObject().remove();
 
             var text = new fabric.Text(old_text, { left: 100, top: 100 });
@@ -1938,7 +1938,7 @@ $(document).on('click','.generate-side-output',function(event){
             product_designer_editor_save();
 
 
-            console.log(old_text);
+            //console(old_text);
             $('.edit-curvedText').removeClass('active');
             $('.edit-text').addClass('active');
 
@@ -1974,7 +1974,7 @@ $(document).on('click','.generate-side-output',function(event){
             //var text = new fabric.Text(text, { left: 100, top: 100 });
             //canvas.add(text);
 
-            //console.log(JSON.stringify(canvas));
+            ////console(JSON.stringify(canvas));
 
         })
 
@@ -1988,7 +1988,7 @@ $(document).on('click','.generate-side-output',function(event){
 
             product_designer_editor_save();
 
-            console.log(val);
+            //console(val);
 
         })
 
@@ -2001,7 +2001,7 @@ $(document).on('click','.generate-side-output',function(event){
 
             product_designer_editor_save();
 
-            console.log(val);
+            //console(val);
 
         })
 
@@ -2013,7 +2013,7 @@ $(document).on('click','.generate-side-output',function(event){
             canvas.renderAll();
             product_designer_editor_save();
 
-            console.log(val);
+            //console(val);
 
         })
 
@@ -2025,7 +2025,7 @@ $(document).on('click','.generate-side-output',function(event){
             product_designer_editor_save();
 
 
-            console.log(val);
+            //console(val);
 
         })
 
@@ -2036,7 +2036,7 @@ $(document).on('click','.generate-side-output',function(event){
             canvas.renderAll();
             product_designer_editor_save();
 
-            console.log(val);
+            //console(val);
 
         })
 
@@ -2050,7 +2050,7 @@ $(document).on('click','.generate-side-output',function(event){
             product_designer_editor_save();
 
 
-            console.log(val);
+            //console(val);
 
         })
 
@@ -2061,7 +2061,7 @@ $(document).on('click','.generate-side-output',function(event){
             canvas.getActiveObject().set("opacity", val);
 
             canvas.renderAll();
-            //console.log(val);
+            ////console(val);
             product_designer_editor_save();
         })
 
@@ -2104,7 +2104,7 @@ $(document).on('click','.generate-side-output',function(event){
 
             //canvas.getActiveObject().set("fontStyle", 'italic');
             canvas.renderAll();
-            //console.log(val);
+            ////console(val);
             product_designer_editor_save();
         })
 
@@ -2125,7 +2125,7 @@ $(document).on('click','.generate-side-output',function(event){
             //canvas.getActiveObject().fontWeight('bold');
             //canvas.getActiveObject().set("textDecoration", 'underline');
             canvas.renderAll();
-            //console.log(val);
+            ////console(val);
             product_designer_editor_save();
         })
 
@@ -2145,7 +2145,7 @@ $(document).on('click','.generate-side-output',function(event){
             //canvas.getActiveObject().fontWeight('bold');
             //canvas.getActiveObject().set("textDecoration", 'line-through');
             canvas.renderAll();
-            //console.log(val);
+            ////console(val);
             product_designer_editor_save();
         })
 
@@ -2165,7 +2165,7 @@ $(document).on('click','.generate-side-output',function(event){
             canvas.getActiveObject().set("opacity", val);
             //canvas.getActiveObject().opacity(val);
             canvas.renderAll();
-            console.log(val);
+            //console(val);
             product_designer_editor_save();
         })
 
@@ -2340,7 +2340,7 @@ $(document).on('click','.generate-side-output',function(event){
 
         product_designer_editor_save();
 
-		console.log(val);
+		//console(val);
 
 		})
 
@@ -2356,7 +2356,7 @@ $(document).on('click','.generate-side-output',function(event){
             product_designer_editor_save();
 
 
-            console.log(val);
+            //console(val);
 
         })
 
@@ -3092,7 +3092,7 @@ $(document).on('click','.generate-side-output',function(event){
 		text = $('.asset-text').val();
 
 
-		//console.log(product_designer_editor.side_data);
+		////console(product_designer_editor.side_data);
 
 		var text = new fabric.Text(text, { left: 100, top: 100 });
 
@@ -3102,7 +3102,7 @@ $(document).on('click','.generate-side-output',function(event){
         text.setCoords();
         canvas.setActiveObject(text);
         canvas.renderAll();
-		//console.log($.now());
+		////console($.now());
 
         product_designer_editor_save();
 
@@ -3164,7 +3164,7 @@ $(document).on('click','.clipart-list img',function(){
 			success: function(data)
 					{
 
-					    //console.log(data);
+					    ////console(data);
 						$('.product-designer .menu .loading').fadeOut();
 
                         //location.reload();
@@ -3260,7 +3260,7 @@ $(document).on('click','.clipart-list img',function(){
                     $(__this).children('.loading').fadeOut();
                     $(__this).trigger("reset");
 
-                    console.log(data);
+                    //console(data);
 
                 }
             });
@@ -3272,7 +3272,7 @@ $(document).on('click','.clipart-list img',function(){
         //
         //     var values = $(this).serialize();
         //
-        //     console.log(values);
+        //     //console(values);
         //
         //
         //     $('.product-designer .menu .loading').fadeIn();
@@ -3296,7 +3296,7 @@ $(document).on('click','.clipart-list img',function(){
 
 	$(document).on('click','.product-designer .menu .export #export-update',function(){
 
-		//console.log(t_id);
+		////console(t_id);
 
 		$('.product-designer .menu .loading').fadeIn();
 		json = JSON.stringify(canvas);
@@ -3348,7 +3348,7 @@ $(document).on('click','.clipart-list img',function(){
                     var data = JSON.parse( response );
                     side_json_data = data['side_json_data'];
 
-					console.log(current_side_id);
+					//console(current_side_id);
                     product_designer_editor.side_serialized_data = side_json_data;
                     product_designer_editor.pre_template_id = pre_template_id;
 
@@ -3405,7 +3405,7 @@ $(document).on('click','.clipart-list img',function(){
                 }
                 _config.currentStateIndex = _config.canvasState.length-1;
 
-                //console.log(_config.currentStateIndex);
+                ////console(_config.currentStateIndex);
 
 
                 if((_config.currentStateIndex == _config.canvasState.length-1) && _config.currentStateIndex != -1){
@@ -3649,7 +3649,7 @@ $(document).on('click','.clipart-list img',function(){
 
         if(product_designer_tour != 'false'){
 
-            console.log(product_designer_editor.tour_guide);
+            //console(product_designer_editor.tour_guide);
             $('.product-designer .welcome-tour').addClass('active');
         }
         else{
@@ -3742,10 +3742,10 @@ $(document).on('click','.clipart-list img',function(){
 
         //$('#qrcode').html('');
 
-        console.log(size);
-        console.log(bg_color);
-        console.log(fill_color);
-        console.log(radius);
+        //console(size);
+        //console(bg_color);
+        //console(fill_color);
+        //console(radius);
 
 
 
@@ -3784,7 +3784,7 @@ $(document).on('click','.clipart-list img',function(){
             });
             img.id = $.now();
             //img.clipart_data = clipart_data;
-            //console.log(img);
+            ////console(img);
 
             canvas.add(img);
             product_designer_editor_save();
@@ -3805,7 +3805,7 @@ $(document).on('click','.clipart-list img',function(){
         height = $('.barcode-height').val();
         color = $('.barcode-color').val();
 
-        console.log(text);
+        //console(text);
 
         JsBarcode("#barcode", text, {
             format: "CODE128A",
@@ -3840,7 +3840,7 @@ $(document).on('click','.clipart-list img',function(){
             });
             img.id = $.now();
             //img.clipart_data = clipart_data;
-            //console.log(img);
+            ////console(img);
 
             canvas.add(img);
             product_designer_editor_save();

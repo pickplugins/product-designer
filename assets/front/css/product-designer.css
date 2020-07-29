@@ -461,12 +461,18 @@ display:none;
 
 
 .product-designer .shape-list{}
+.product-designer .shape-list span:hover {
+  background: #4f7094;
+}
 .product-designer .shape-list span {
   width: 45px;
   height: 45px;
   display: inline-block;
   font-size: 30px;
   color: #fff;
+  text-align: center;
+  transition: all ease 0.5s 0s;
+  border-radius: 5px;
 }
 
 
