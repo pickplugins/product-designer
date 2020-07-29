@@ -70,7 +70,7 @@ add_action('wp_ajax_pd_clipart_upload', function(){
 
 
 
-function Tdesigner_google_fonts(){
+function product_designer_fonts(){
 	
 	$fonts = array();
 	
@@ -129,7 +129,7 @@ function Tdesigner_google_fonts(){
 	
 	//$fonts[] = array('name'=>'myFirstFont', 'src'=>'http://www.w3schools.com/cssref/sansation_light.woff');
 	
-	$fonts = apply_filters('product_designer_filter_fonts', $fonts);
+	$fonts = apply_filters('product_designer_fonts', $fonts);
 	return $fonts;
 	
 	}

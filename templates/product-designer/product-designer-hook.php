@@ -978,11 +978,11 @@ function product_designer_tools_edit_text(){
             <div class="input-group">
                 <div class="input-group-title"><?php echo __('Font family:', 'product-designer'); ?></div>
                 <?php
-                $Tdesigner_google_fonts = Tdesigner_google_fonts();
+                $product_designer_fonts = product_designer_fonts();
                 ?>
                 <select class=" font-family" aria-label="<?php echo __('Font family', 'product-designer'); ?>" id="font-family">
                     <?php
-                    foreach($Tdesigner_google_fonts as $font){
+                    foreach($product_designer_fonts as $font){
                         $name = $font['name'];
                         $name_id = str_replace(' ','+',$name);
                         ?>
@@ -1236,7 +1236,7 @@ function product_designer_scripts(){
 
     $product_id = isset($_GET['product_id']) ? sanitize_text_field($_GET['product_id']) : '';
     $session_id = session_id();
-    $Tdesigner_google_fonts = Tdesigner_google_fonts();
+    $product_designer_fonts = product_designer_fonts();
 
 
     $product_data = wc_get_product($product_id);
@@ -1504,7 +1504,7 @@ function product_designer_scripts(){
 
     <style>
         <?php
-        foreach($Tdesigner_google_fonts as $font){
+        foreach($product_designer_fonts as $font){
 
 
             $Fontname = $font['name'];
@@ -1513,21 +1513,21 @@ function product_designer_scripts(){
             if(!empty($font['src'])){
                 $src = isset($font['src']) ? esc_url_raw($font['src']) : '';
                 ?>
-        @font-face {
-            font-family: <?php echo $Fontname; ?>;
-            src: url("<?php echo $src; ?>");
-        }
+                @font-face{
+                    font-family: <?php echo $Fontname; ?>;
+                    src: url("<?php echo $src; ?>");
+                }
 
-        <?php
+                <?php
 
 
-}
-else{
-?>
-        @import url('https://fonts.googleapis.com/css?family=<?php echo $name; ?>');
+            }
+            else{
+                ?>
+                @import url('https://fonts.googleapis.com/css?family=<?php echo $name; ?>');
 
-        <?php
-        }
+                <?php
+            }
 
 
     }
