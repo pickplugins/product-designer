@@ -1207,11 +1207,11 @@ $(document).on('click','.generate-side-output',function(event){
                 if($this.hasClass('active')){
                     $this.removeClass('active').addClass('inactive')
                     selected_object.set("lockMovementX", false);
-                    product_designer_editor_toast('<i class="fa fa-arrows-v" aria-hidden="true"></i>','Unlocked to move horizontally.');
+                    product_designer_editor_toast('<i class="fa fa-arrows-v" ></i>','Unlocked to move horizontally.');
                 }else{
                     $this.removeClass('inactive').addClass('active');
                     selected_object.set("lockMovementX", true);
-                    product_designer_editor_toast('<i class="fa fa-arrows-v" aria-hidden="true"></i>','Locked to move horizontally.');
+                    product_designer_editor_toast('<i class="fa fa-arrows-v" ></i>','Locked to move horizontally.');
                 }
             }
             else{
@@ -1232,11 +1232,11 @@ $(document).on('click','.generate-side-output',function(event){
                 if($this.hasClass('active')){
                     $this.removeClass('active').addClass('inactive')
                     selected_object.set("lockMovementY", false);
-                    product_designer_editor_toast('<i class="fa fa-arrows-h" aria-hidden="true"></i>','Unlocked to move vertically.');
+                    product_designer_editor_toast('<i class="fa fa-arrows-h" ></i>','Unlocked to move vertically.');
                 }else{
                     $this.removeClass('inactive').addClass('active');
                     selected_object.set("lockMovementY", true);
-                    product_designer_editor_toast('<i class="fa fa-arrows-h" aria-hidden="true"></i>','Locked to move vertically.');
+                    product_designer_editor_toast('<i class="fa fa-arrows-h" ></i>','Locked to move vertically.');
                 }
             }
             else{
@@ -1262,11 +1262,11 @@ $(document).on('click','.generate-side-output',function(event){
                 if($this.hasClass('active')){
                     $this.removeClass('active').addClass('inactive')
                     canvas.getActiveObject().set("lockRotation", false);
-                    product_designer_editor_toast('<i class="fa fa-undo" aria-hidden="true"></i>','Rotation unlocked.');
+                    product_designer_editor_toast('<i class="fa fa-undo" ></i>','Rotation unlocked.');
                 }else{
                     $this.removeClass('inactive').addClass('active');
                     canvas.getActiveObject().set("lockRotation", true);
-                    product_designer_editor_toast('<i class="fa fa-undo" aria-hidden="true"></i>','Rotation locked.');
+                    product_designer_editor_toast('<i class="fa fa-undo" ></i>','Rotation locked.');
                 }
             }
             else{
@@ -1292,11 +1292,11 @@ $(document).on('click','.generate-side-output',function(event){
                 if($this.hasClass('active')){
                     $this.removeClass('active').addClass('inactive')
                     selected_object.set("lockScalingX", false);
-                    product_designer_editor_toast('<i class="fa fa-expand" aria-hidden="true"></i>','Scaling horizontally unlocked.');
+                    product_designer_editor_toast('<i class="fa fa-expand" ></i>','Scaling horizontally unlocked.');
                 }else{
                     $this.removeClass('inactive').addClass('active');
                     selected_object.set("lockScalingX", true);
-                    product_designer_editor_toast('<i class="fa fa-expand" aria-hidden="true"></i>','Scaling horizontally locked.');
+                    product_designer_editor_toast('<i class="fa fa-expand" ></i>','Scaling horizontally locked.');
                 }
             }
             else{
@@ -1319,11 +1319,11 @@ $(document).on('click','.generate-side-output',function(event){
                 if($this.hasClass('active')){
                     $this.removeClass('active').addClass('inactive')
                     canvas.getActiveObject().set("lockScalingY", false);
-                    product_designer_editor_toast('<i class="fa fa-expand" aria-hidden="true"></i>','Scaling vertically unlocked.');
+                    product_designer_editor_toast('<i class="fa fa-expand" ></i>','Scaling vertically unlocked.');
                 }else{
                     $this.removeClass('inactive').addClass('active');
                     canvas.getActiveObject().set("lockScalingY", true);
-                    product_designer_editor_toast('<i class="fa fa-expand" aria-hidden="true"></i>','Scaling vertically locked.');
+                    product_designer_editor_toast('<i class="fa fa-expand" ></i>','Scaling vertically locked.');
                 }
             }
             else{
@@ -1432,10 +1432,9 @@ $(document).on('click','.generate-side-output',function(event){
             }
 
 
-            html += '<span class="remove"><i class="fa fa-times" aria-hidden="true"></i></span>';
-            html += '<span class="hide"><i class="fa fa-eye" aria-hidden="true"></i></span>';
-
-            html += '<span class="lock"><i class="fa fa-lock" aria-hidden="true"></i></span>';
+            html += '<span class="remove"><i class="fa fa-times" ></i></span>';
+            html += '<span class="hide"><i class="fa fa-eye" ></i></span>';
+            html += '<span class="lock"><i class="fa fa-lock" ></i></span>';
 
             html += '<span class="type">'+objectType+'</span>';
             //html += '<span class="name">'+objectName+'</span>';
@@ -1501,10 +1500,52 @@ $(document).on('click','.generate-side-output',function(event){
 
         selected_object.remove();
 
+        product_designer_editor_save();
+
+        //console(obj_id);
+    })
+
+    $(document).on('click','.product-designer .layers-list .layer .hide',function(event){
+
+
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        event.stopPropagation();
+
+
+
+
+
+        obj_id = $(this).parent().attr('obj-id');
+        canvas.setActiveObject(canvas.item(obj_id));
+        var selected_object = canvas.getActiveObject();
+
+
+        if($(this).hasClass('active')){
+
+            console.log('Has class');
+
+
+        }else{
+
+            $(this).addClass('active');
+
+            console.log('No class');
+
+        }
+
+
+
+
+
+
         product_designer_editor_save()
 
         //console(obj_id);
     })
+
+
+
 
 
 
@@ -1575,7 +1616,7 @@ $(document).on('click','.generate-side-output',function(event){
 
 
 
-                html += '<span class="remove"><i class="fa fa-times" aria-hidden="true"></i></span>';
+                html += '<span class="remove"><i class="fa fa-times" ></i></span>';
                 html += '<span class="type">'+objectType+'</span>';
                 //html += '<span class="name">'+objectName+'</span>';
 

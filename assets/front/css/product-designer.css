@@ -28,8 +28,12 @@
 
 .editor-tabs{}
 .editor-tabs .editor-tab-navs{
+  z-index: 999;
   margin: 0;
   padding: 0;
+  position: sticky;
+  top: 0;
+  display: block;
 }
 .editor-tabs .editor-tab-navs .nav{
   display: inline-block;
@@ -830,6 +834,30 @@ display:none;
   display: inline-block;
   border-radius: 3px;
 }
+
+.product-designer .object-list .hide {
+  padding: 0px 7px;
+  background: #3388f7;
+  color: #fff;
+  margin-right: 5px;
+  cursor: pointer;
+  vertical-align: middle;
+  display: inline-block;
+  border-radius: 3px;
+}
+
+
+.product-designer .object-list .lock {
+  padding: 0px 7px;
+  background: #e6971a;
+  color: #fff;
+  margin-right: 5px;
+  cursor: pointer;
+  vertical-align: middle;
+  display: inline-block;
+  border-radius: 3px;
+}
+
 .product-designer .object-list .type {
   margin-right: 5px;
   font-size: 9px;
