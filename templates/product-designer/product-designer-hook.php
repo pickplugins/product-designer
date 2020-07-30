@@ -800,8 +800,8 @@ function product_designer_tools_editor_actions(){
 
     $canvas = get_post_meta($pd_template_id, 'canvas', true);
 
-    $enable_download = !empty($canvas['download']['enable']) ? $canvas['download']['enable'] : 'yes';
-    $enable_preview = !empty($canvas['preview']['enable']) ? $canvas['preview']['enable'] : 'yes';
+    $enable_download = !empty($canvas['download']['enable']) ? $canvas['download']['enable'] : 'no';
+    $enable_preview = !empty($canvas['preview']['enable']) ? $canvas['preview']['enable'] : 'no';
 
 
     ?>

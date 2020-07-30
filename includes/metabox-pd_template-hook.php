@@ -21,8 +21,6 @@ function product_designer_template_metabox_content_canvas( $post_id){
     $output_file_format = !empty($canvas['output']['file_format']) ? $canvas['output']['file_format'] : 'jpeg';
     $enable_preview = !empty($canvas['preview']['enable']) ? $canvas['preview']['enable'] : 'yes';
     $preview_file_format = !empty($canvas['preview']['file_format']) ? $canvas['preview']['file_format'] : 'jpeg';
-    $enable_download = !empty($canvas['download']['enable']) ? $canvas['download']['enable'] : 'yes';
-    $download_file_format = !empty($canvas['download']['file_format']) ? $canvas['download']['file_format'] : 'jpeg';
 
 
     ?>
@@ -114,50 +112,6 @@ function product_designer_template_metabox_content_canvas( $post_id){
         $settings_tabs_field->generate_field($args, $post_id);
 
 
-
-        $args = array(
-            'id'		=> 'enable',
-            'parent'		=> 'canvas[download]',
-            'title'		=> __('Enable download','post-grid'),
-            'details'	=> __('Choose enable download preview.','post-grid'),
-            'type'		=> 'radio',
-            'value'		=> $enable_download,
-            'default'		=> 'yes',
-            'args'		=> array(
-                'yes'=>__('Yes','post-grid'),
-                'no'=>__('No','post-grid'),
-
-            ),
-        );
-
-        $settings_tabs_field->generate_field($args, $post_id);
-
-
-
-        $args = array(
-            'id'		=> 'file_format',
-            'parent'		=> 'canvas[download]',
-            'title'		=> __('Download file format','post-grid'),
-            'details'	=> __('Choose download file format.','post-grid'),
-            'type'		=> 'radio',
-            'value'		=> $download_file_format,
-            'default'		=> 'jpeg',
-            'args'		=> array(
-                'jpeg'=>__('JPEG','post-grid'),
-                'png'=>__('PNG','post-grid'),
-                'svg'=>__('SVG','post-grid'),
-
-            ),
-        );
-
-        $settings_tabs_field->generate_field($args, $post_id);
-
-
-
-
-
-
-
         ?>
 
 
@@ -170,119 +124,6 @@ function product_designer_template_metabox_content_canvas( $post_id){
 }
 
 
-
-add_action('product_designer_template_metabox_content_saved_templates', 'product_designer_template_metabox_content_saved_templates', 10);
-
-function product_designer_template_metabox_content_saved_templates( $post_id){
-
-    $settings_tabs_field = new settings_tabs_field();
-
-    $pre_templates = get_post_meta( $post_id, 'pre_templates', true );
-
-
-    ?>
-    <div class="section">
-        <div class="section-title"><?php echo __('templates settings', 'post-grid'); ?></div>
-        <p class="description section-description"><?php echo __('Choose options for saved templates.', 'post-grid'); ?></p>
-
-        <?php
-
-        ob_start();
-
-        ?>
-
-        <div class="templates">
-
-
-            <div class="templates-list">
-
-                <?php
-
-                //delete_post_meta(get_the_id(), 'pre_templates');
-
-                //echo '<pre>'.var_export($pre_templates, true).'</pre>';
-
-
-                if(!empty($pre_templates)){
-
-                    foreach($pre_templates as $index=>$template_data){
-
-                        $template_name = isset($template_data['title']) ? $template_data['title'] : '';
-                        $template_side_json_data = isset($template_data['side_json_data']) ? $template_data['side_json_data'] : '';
-                        $template_side_attach_ids = isset($template_data['side_attach_ids']) ? $template_data['side_attach_ids'] : '';
-
-                        ?>
-                        <div class="template">
-
-                            <div>
-                                <span class="remove remove-pre-template" pre_template_id="<?php echo $index; ?>" pd_template_id="<?php echo get_the_id(); ?>"><i class="fa fa-times" aria-hidden="true"></i></span>
-                                <span class="move"><i class="fa fa-bars" aria-hidden="true"></i></span>
-                                <?php echo $template_name; ?>
-                                <?php
-
-                                foreach ($template_side_json_data as $side_index=>$side_json){
-                                    ?>
-                                    <img width="150" src="<?php echo wp_get_attachment_url($template_side_attach_ids[$side_index]); ?>" >
-
-                                    <?php
-
-                                }
-
-
-                                ?>
-                            </div>
-                        </div>
-                        <?php
-
-                        //}
-                    }
-                }
-
-
-
-
-
-                ?>
-
-
-
-            </div>
-
-        </div>
-
-        <?php
-
-
-        $html = ob_get_clean();
-
-
-        $args = array(
-            'id'		=> 'width',
-            'parent'		=> 'canvas',
-            'title'		=> __('Saved templates','post-grid'),
-            'details'	=> __('Pre saved templates.','post-grid'),
-            'type'		=> 'custom_html',
-            'html'		=> $html,
-        );
-
-        $settings_tabs_field->generate_field($args, $post_id);
-
-
-
-
-
-
-
-        ?>
-
-
-    </div>
-
-
-
-    <?php
-
-}
 
 
 add_action('product_designer_template_metabox_content_product_sides', 'product_designer_template_metabox_content_product_sides', 10);

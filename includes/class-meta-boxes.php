@@ -60,14 +60,6 @@ class product_designer_meta_boxes{
         );
 
 
-        $clipart_settings_tab[] = array(
-            'id' => 'saved_templates',
-            'title' => sprintf(__('%s Saved templates','post-grid'),'<i class="far fa-newspaper"></i>'),
-            'priority' => 15,
-            'active' => false,
-        );
-
-
 
         $clipart_settings_tab = apply_filters('product_designer_template_metabox_navs', $clipart_settings_tab);
 

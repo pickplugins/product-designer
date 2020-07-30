@@ -4,7 +4,7 @@
 	Tags: Product Designer, T-Shirt Designer, T-Shirt, Designer, T-Shirt Designer woocommerce, woocommerce, product customizer
 	Requires at least: 3.8
 	Tested up to: 5.4
-	Stable tag: 1.0.14
+	Stable tag: 1.0.15
 	License: GPLv2 or later
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -94,6 +94,9 @@ Before starting you need to add some clip art via custom post "Clip Art" with th
 
 
 == Changelog ==
+
+	= 1.0.15 =
+    * 2020-07-30 - update - redesigned editor
 
 	= 1.0.14 =
     * 2020-07-24 - fix - WooCommerce order data issue fixed.

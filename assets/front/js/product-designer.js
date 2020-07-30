@@ -1665,10 +1665,25 @@ $(document).on('click','.generate-side-output',function(event){
     canvas.on('object:selected', onObjectSelected);
 
 
+    canvas.on('object:modified', onObjectModified);
 
 
 
-	$(document).on('keyup','.product-designer #text-content',function(){
+    function onObjectModified(e) {
+
+        type = e.target.get('type');
+
+        //console.log(type);
+
+
+        product_designer_editor_save();
+
+    }
+
+
+
+
+    $(document).on('keyup','.product-designer #text-content',function(){
 
 
 
