@@ -1433,6 +1433,10 @@ $(document).on('click','.generate-side-output',function(event){
 
 
             html += '<span class="remove"><i class="fa fa-times" aria-hidden="true"></i></span>';
+            html += '<span class="hide"><i class="fa fa-eye" aria-hidden="true"></i></span>';
+
+            html += '<span class="lock"><i class="fa fa-lock" aria-hidden="true"></i></span>';
+
             html += '<span class="type">'+objectType+'</span>';
             //html += '<span class="name">'+objectName+'</span>';
 
