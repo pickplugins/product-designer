@@ -6,14 +6,14 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 
 
 
-add_action('wp_ajax_pd_clipart_upload', function(){
+function product_designer_clipart_upload(){
 
     check_ajax_referer('pd_clipart_upload');
 
     // you can use WP's wp_handle_upload() function:
     $file = $_FILES['async-upload'];
 
-    $status = wp_handle_upload($file, array('action' => 'pd_clipart_upload'));
+    $status = wp_handle_upload($file, array('action' => 'product_designer_clipart_upload'));
 
     $file_loc = $status['file'];
     $file_name = isset($status['name']) ? basename($status['name']) : '';
@@ -64,7 +64,11 @@ add_action('wp_ajax_pd_clipart_upload', function(){
     echo json_encode($response);
 
     exit;
-});
+}
+
+add_action('wp_ajax_product_designer_clipart_upload', 'product_designer_clipart_upload');
+add_action('wp_ajax_nopriv_product_designer_clipart_upload', 'product_designer_clipart_upload');
+
 
 
 

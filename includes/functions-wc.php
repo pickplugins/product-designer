@@ -186,7 +186,7 @@ function product_designer_after_add_to_cart_button() {
 
 	            ?>
 
-                <div class="">Customize</div>
+                <div class=""><i class="fa fa-crop" ></i> Customize</div>
                 <div class="variation-link">
 	                <?php
 
@@ -263,7 +263,7 @@ function product_designer_woocommerce_after_shop_loop_item() {
 
 				?>
 
-                <div class="">Customize</div>
+                <div class=""><i class="fa fa-crop" ></i> Customize</div>
                 <div class="variation-link">
 					<?php
 
@@ -304,6 +304,7 @@ function product_designer_woocommerce_after_shop_loop_item() {
 		endif;
 
 	}
+    wp_enqueue_style('font-awesome-4');
 
     wp_enqueue_style('customize-link');
 

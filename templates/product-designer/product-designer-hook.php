@@ -1193,8 +1193,6 @@ function product_designer_tools_product_info(){
                     <div class="output-side-items-attach-ids"></div>
                     <div class="output-side-items-json"></div>
                     <button class="pd-addtocart button alt addtocart" type="submit" name="addtocart" value="addtocart"><?php echo __('Add to cart', 'product-designer'); ?></button>
-                    <button class="pd-save-template button alt" name="save-template" value="save-template"  ><?php echo __('Save as Template', 'product-designer'); ?></button>
-
 
                 </div>
             </form>
