@@ -1622,7 +1622,21 @@ function product_designer_preview(){
 
 }
 
+    add_action('editor_tab_content_templates', 'product_designer_pre_templates_promo', 15);
 
+    function product_designer_pre_templates_promo(){
+
+        ?>
+        <div class="pre_templates" title="Templates" style="color: #fff">
+            <?php
+
+            echo __('Sorry no pre-saved template found.');
+
+            ?>
+        </div>
+        <?php
+
+    }
 
 
 add_action('product_designer_editor', 'product_designer_toast', 50);

@@ -265,30 +265,146 @@ if(!function_exists('product_designer_settings_content_buy_pro')) {
 
                 <tr>
                     <td colspan="3" class="col-features">
-                        <h3><?php echo __('Post Query','post-grid'); ?></h3>
+                        <h3><?php echo __('Canvas Options','post-grid'); ?></h3>
                     </td>
                 </tr>
                 <tr>
-                    <td class="col-features"><?php echo __('Lazy load','post-grid'); ?> </td>
+                    <td class="col-features"><?php echo __('Canvas width','post-grid'); ?> </td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
+
                 <tr>
-                    <td class="col-features"><?php echo __('Lazy load image source','post-grid'); ?> </td>
+                    <td class="col-features"><?php echo __('Canvas height','post-grid'); ?> </td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
-                
+
                 <tr>
-                    <td class="col-features"><?php echo __('Event Organiser','post-grid'); ?> </td>
+                    <td class="col-features"><?php echo __('Output file format','post-grid'); ?> </td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features"><?php echo __('Design preview','post-grid'); ?> </td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features"><?php echo __('Preview file format','post-grid'); ?> </td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+
+
+                <tr>
+                    <td class="col-features"><?php echo __('Download preview','post-grid'); ?> </td>
+                    <td><i class="fas fa-times"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features"><?php echo __('Download file format','post-grid'); ?> </td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
 
+                <tr>
+                    <td class="col-features"><?php echo __('Product sides','post-grid'); ?> </td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features"><?php echo __('Pre-saved templates','post-grid'); ?> </td>
+                    <td><i class="fas fa-times"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
 
 
+                <tr>
+                    <td class="col-features"><?php echo __('Unlimited Clip-art','post-grid'); ?> </td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
 
+                <tr>
+                    <td class="col-features"><?php echo __('Clip-art categories.','post-grid'); ?> </td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-features"><?php echo __('Custom Clip-art upload','post-grid'); ?> </td>
+                    <td><i class="fas fa-times"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-features"><?php echo __('Custom Clip-art price','post-grid'); ?> </td>
+                    <td><i class="fas fa-times"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features"><?php echo __('Text art.','post-grid'); ?> </td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features"><?php echo __('Curve text.','post-grid'); ?> </td>
+                    <td><i class="fas fa-times"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features"><?php echo __('Quotes text.','post-grid'); ?> </td>
+                    <td><i class="fas fa-times"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features"><?php echo __('Bar code','post-grid'); ?> </td>
+                    <td><i class="fas fa-times"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features"><?php echo __('QR Code','post-grid'); ?> </td>
+                    <td><i class="fas fa-times"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features"><?php echo __('Custom shapes.','post-grid'); ?> </td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-features"><?php echo __('Google Fonts.','post-grid'); ?> </td>
+                    <td><i class="fas fa-times"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features"><?php echo __('Custom Fonts.','post-grid'); ?> </td>
+                    <td><i class="fas fa-times"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+                <tr>
+                    <td class="col-features"><?php echo __('Menu position.','post-grid'); ?> </td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
 
 
 
