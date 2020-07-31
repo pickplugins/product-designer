@@ -858,6 +858,18 @@ display:none;
   border-radius: 3px;
 }
 
+.product-designer .object-list .selectLayer {
+  padding: 0px 7px;
+  background: #e6971a;
+  color: #fff;
+  margin-right: 5px;
+  cursor: pointer;
+  vertical-align: middle;
+  display: inline-block;
+  border-radius: 3px;
+}
+
+
 .product-designer .object-list .type {
   margin-right: 5px;
   font-size: 9px;

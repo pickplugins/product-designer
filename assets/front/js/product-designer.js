@@ -162,7 +162,7 @@ jQuery(document).ready(function($){
 
 
         //$('.product-designer .menu .loading').fadeIn();
-        prpduct_designer_get_object_list();
+        product_designer_get_object_list();
 
 
     }
@@ -1363,7 +1363,7 @@ $(document).on('click','.generate-side-output',function(event){
 
 
 
-    function prpduct_designer_get_object_list(){
+    function product_designer_get_object_list(){
 
 
         html = '';
@@ -1435,8 +1435,9 @@ $(document).on('click','.generate-side-output',function(event){
             html += '<span class="remove"><i class="fa fa-times" ></i></span>';
             html += '<span class="hide"><i class="fa fa-eye" ></i></span>';
             html += '<span class="lock"><i class="fa fa-lock" ></i></span>';
+            html += '<span class="selectLayer"><i class="fa fa-check" ></i></span>';
 
-            html += '<span class="type">'+objectType+'</span>';
+            html += '<span class="type ">'+objectType+'</span>';
             //html += '<span class="name">'+objectName+'</span>';
 
 
@@ -1455,28 +1456,20 @@ $(document).on('click','.generate-side-output',function(event){
 
 
 
-    $(document).on('click','.product-designer .object-list .layers-list .layer',function(event){
+    $(document).on('click','.product-designer .layers-list .selectLayer',function(event){
 
         event.stopPropagation();
-
+        event.preventDefault();
         $('.layers-list .layer').removeClass('active');
 
 
-        obj_id = $(this).attr('obj-id');
+        obj_id = $(this).parent().attr('obj-id');
         //canvas.setActiveObject(obj_id);
-        canvas.setActiveObject(canvas.item(obj_id));
+        //canvas.setActiveObject(canvas.item(obj_id));
+
+        console.log(obj_id);
 
 
-
-        if($(this).hasClass('active')){
-            $(this).removeClass('active');
-
-        }else{
-            $(this).addClass('active');
-
-            //console('layer');
-
-        }
 
 
         product_designer_editor_save();
@@ -1485,7 +1478,7 @@ $(document).on('click','.generate-side-output',function(event){
     })
 
 
-    $(document).on('click','.product-designer .object-list .layers-list .layer .remove',function(event){
+    $(document).on('click','.product-designer .layers-list .layer .remove',function(event){
 
         event.preventDefault();
 
@@ -1509,7 +1502,6 @@ $(document).on('click','.generate-side-output',function(event){
 
 
         event.preventDefault();
-        event.stopImmediatePropagation();
         event.stopPropagation();
 
 
@@ -1517,8 +1509,10 @@ $(document).on('click','.generate-side-output',function(event){
 
 
         obj_id = $(this).parent().attr('obj-id');
-        canvas.setActiveObject(canvas.item(obj_id));
-        var selected_object = canvas.getActiveObject();
+        //canvas.setActiveObject(canvas.item(obj_id));
+        //var selected_object = canvas.getActiveObject();
+
+        console.log(obj_id);
 
 
         if($(this).hasClass('active')){
@@ -1544,118 +1538,6 @@ $(document).on('click','.generate-side-output',function(event){
         //console(obj_id);
     })
 
-
-
-
-
-
-
-
-
-        $(document).on('click','.product-designer .object-list .toolbar-title',function(event){
-
-            event.preventDefault();
-
-            html = '';
-            html += '<ul>';
-            var objectList = [],
-                objectList = canvas.getObjects();
-
-
-            length = objectList.length;
-
-            objectName = '';
-            objectId = '';
-
-            for (var i = 0, len = length; i < len; i++) {
-
-
-                type = objectList[i].type;
-                id = objectList[i].id;
-
-                html += '<li obj-id="'+i+'">';
-
-
-                if(type=='text'){
-                    objectName = objectList[i].text;
-                    objectType = 'Text';
-                    objectName = objectName;
-
-
-
-                }
-                else if(type=='image'){
-                    objectType = 'Image';
-                }
-                else if(type=='curvedText'){
-                    objectName = objectList[i].text;
-                    objectType = 'Curved Text';
-                    objectName = objectName;
-                }
-                else if(type=='path'){
-                    objectType = 'Path';
-                }
-
-                else if(type=='rect'){
-                    objectType = 'Rect';
-                }
-
-                else if(type=='circle'){
-                    objectType = 'Circle';
-                }
-                else if(type=='triangle'){
-                    objectType = 'Triangle';
-                }
-                else if(type=='polygon'){
-                    objectType = 'Polygon';
-                }
-                else{
-                    objectType = 'Others';
-                }
-
-
-
-
-                html += '<span class="remove"><i class="fa fa-times" ></i></span>';
-                html += '<span class="type">'+objectType+'</span>';
-                //html += '<span class="name">'+objectName+'</span>';
-
-
-
-                //console(objectList[i]);
-                html += '</li>';
-            }
-
-            html += '</ul>';
-
-            $('.list-item').html(html);
-
-        })
-
-
-
-        $(document).on('click','.product-designer .object-list .list-item li',function(event){
-
-            $('.list-item li').removeClass('active');
-
-
-            obj_id = $(this).attr('obj-id');
-            //canvas.setActiveObject(obj_id);
-            canvas.setActiveObject(canvas.item(obj_id));
-
-            if($(this).hasClass('active')){
-                $(this).removeClass('active');
-
-            }else{
-                $(this).addClass('active');
-
-            }
-
-
-            product_designer_editor_save()
-
-            //console(obj_id);
-        })
 
 
 
@@ -1702,7 +1584,7 @@ $(document).on('click','.generate-side-output',function(event){
             $('.edit-shape').addClass('active');
             }
 
-        tools_tabs_switch(0);
+        //tools_tabs_switch(0);
         product_designer_editor_save();
 
     }
@@ -3797,7 +3679,7 @@ $(document).on('click','.clipart-list img',function(){
         product_designer_editor_save();
         product_designer_editor_toast('','Quote added.', 2000);
 
-        prpduct_designer_get_object_list();
+        product_designer_get_object_list();
 
 
 
@@ -3840,7 +3722,7 @@ $(document).on('click','.clipart-list img',function(){
         product_designer_editor_save();
         product_designer_editor_toast('','Text added.', 2000);
 
-        prpduct_designer_get_object_list();
+        product_designer_get_object_list();
 
     })
 
@@ -3867,7 +3749,7 @@ $(document).on('click','.clipart-list img',function(){
 
             canvas.add(img);
             product_designer_editor_save();
-            prpduct_designer_get_object_list();
+            product_designer_get_object_list();
         });
 
         canvas.renderAll();
@@ -3897,7 +3779,7 @@ $(document).on('click','.clipart-list img',function(){
         product_designer_editor_save();
         product_designer_editor_toast('','Text added.', 2000);
 
-        prpduct_designer_get_object_list();
+        product_designer_get_object_list();
 
     })
 
@@ -3923,7 +3805,7 @@ $(document).on('click','.clipart-list img',function(){
 
             canvas.add(img);
             product_designer_editor_save();
-            prpduct_designer_get_object_list();
+            product_designer_get_object_list();
         });
 
         canvas.renderAll();
