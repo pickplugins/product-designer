@@ -587,11 +587,22 @@ function product_designer_image_type_content_clipart(){
 
         if ( $wp_query->have_posts() ) :
             while ( $wp_query->have_posts() ) : $wp_query->the_post();
-                $thumb = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()), 'full' );
-                $thumb_url = $thumb['0'];
 
-                if(!empty($thumb_url))
-                    echo '<img class="" title="'.get_the_title().'" src="'.esc_url_raw($thumb_url).'" />';
+                $clipart_thumb_id = get_post_meta(get_the_ID(),'clipart_thumb_id', true);
+
+                //var_dump($clipart_thumb_id);
+
+                $clipart_url = wp_get_attachment_image_src($clipart_thumb_id, 'full' );
+                $clipart_url = isset($clipart_url['0']) ? $clipart_url['0']  : '';
+
+                $thumb = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()), 'full' );
+                $thumb_url = isset($thumb['0']) ? $thumb['0']  : '';
+
+
+                $clipart_url = !empty($clipart_url) ? $clipart_url : $thumb_url;
+
+                if(!empty($clipart_url))
+                    echo '<img class="" title="'.get_the_title().'" src="'.esc_url_raw($clipart_url).'" />';
 
             endwhile;
             wp_reset_query();

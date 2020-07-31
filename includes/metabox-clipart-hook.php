@@ -40,10 +40,11 @@ function clipart_metabox_tabs_content_general($tab, $post_id){
             'id'		=> 'clipart_price',
 //            'parent'		=> 'canvas',
             'title'		=> __('Price','post-grid'),
-            'details'	=> __('Set clipart price.','post-grid'),
+            'details'	=> __('Set clipart price, use number only, ex: 2','post-grid'),
             'type'		=> 'text',
             'value'		=> $clipart_price,
             'default'		=> '',
+            'placeholder'		=> '2',
         );
 
         $settings_tabs_field->generate_field($args, $post_id);

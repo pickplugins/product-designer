@@ -4,7 +4,7 @@
 	Tags: Product Designer, T-Shirt Designer, T-Shirt, Designer, T-Shirt Designer woocommerce, woocommerce, product customizer
 	Requires at least: 3.8
 	Tested up to: 5.4
-	Stable tag: 1.0.15
+	Stable tag: 1.0.16
 	License: GPLv2 or later
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -45,12 +45,34 @@ Your customer can download design before submit order.
 
 # Premium Features
 
-* Unlimited Pre Saved templates.
-* Upload custom cliparts.
-* Curve Text.
-* Unlimited Quotes Text.
-* QR code.
-* Barcode.
+**Pre Saved templates**
+You can save unlimited pre saved templates for each templates, so use can choose from pre saved template to get quickly order their expected design or start work from existing templates.
+
+**Upload custom cliparts**
+Allow users to upload their own clipart so that users can design their products as they want.
+
+**Curve Text**
+Displaying curve text on the product is fancy and our product designer allow users to editing curve text.
+
+**Quotes Text**
+You can add your own quotes text, so user can use these quotes on their products.
+
+**QR code**
+Allow user to add their QR code on the design.
+
+**Barcode**
+User can generate their own Barcode on the design.
+
+**Download preview**
+Allow user to download preview on editing their design.
+
+*Google Fonts**
+We have already added 50+ handpicked Google fonts, you can add your own Google font via settings.
+
+**Custom Fonts**
+You can add your own custom fonts on the designer.
+
+
 
 # Video tutorials
 
@@ -94,6 +116,9 @@ Before starting you need to add some clip art via custom post "Clip Art" with th
 
 
 == Changelog ==
+
+	= 1.0.16 =
+    * 2020-07-31 - fix - newly added clipart display issue fixed.
 
 	= 1.0.15 =
     * 2020-07-30 - update - redesigned editor
