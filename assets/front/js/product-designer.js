@@ -1702,7 +1702,7 @@ $(document).on('click','.generate-side-output',function(event){
             $('.edit-shape').addClass('active');
             }
 
-
+        tools_tabs_switch(0);
         product_designer_editor_save();
 
     }
