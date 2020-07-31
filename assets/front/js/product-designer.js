@@ -1367,6 +1367,9 @@ $(document).on('click','.generate-side-output',function(event){
 
 
         html = '';
+        now = $.now();
+
+        console.log(now);
 
         objectList_arr = [];
         var objectList = [];
@@ -1440,8 +1443,6 @@ $(document).on('click','.generate-side-output',function(event){
             html += '<span class="type ">'+objectType+'</span>';
             //html += '<span class="name">'+objectName+'</span>';
 
-
-
             ////console(objectList[i]);
             html += '</div>';
 
@@ -1462,10 +1463,9 @@ $(document).on('click','.generate-side-output',function(event){
         event.preventDefault();
         $('.layers-list .layer').removeClass('active');
 
-
         obj_id = $(this).parent().attr('obj-id');
-        //canvas.setActiveObject(obj_id);
-        //canvas.setActiveObject(canvas.item(obj_id));
+        canvas.setActiveObject(obj_id);
+        canvas.setActiveObject(canvas.item(obj_id));
 
         console.log(obj_id);
 
@@ -1510,7 +1510,7 @@ $(document).on('click','.generate-side-output',function(event){
 
         obj_id = $(this).parent().attr('obj-id');
         //canvas.setActiveObject(canvas.item(obj_id));
-        //var selected_object = canvas.getActiveObject();
+        var selected_object = canvas.getActiveObject();
 
         console.log(obj_id);
 
