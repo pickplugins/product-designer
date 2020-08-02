@@ -6,8 +6,8 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 
 
 
-add_filter( 'woocommerce_available_variation', 'custom_variation_price_addition', 10, 3 );
-function custom_variation_price_addition( $data, $product, $variation ) {
+add_filter( 'woocommerce_available_variation', 'product_designer_variation_customize_link', 10, 3 );
+function product_designer_variation_customize_link( $data, $product, $variation ) {
 
 
     $product_designer_settings = get_option( 'product_designer_settings' );
@@ -23,7 +23,7 @@ function custom_variation_price_addition( $data, $product, $variation ) {
 
 
 
-    $price  = wc_get_price_to_display( $variation );
+    //$price  = wc_get_price_to_display( $variation );
     //$suffix = sprintf( __("Ou simplement en 4 x %s sans frais"), wc_price($price / 4) );
     //http://localhost/wp/product-designer/?product_id=1346&variation_id=1369
 
