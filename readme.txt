@@ -19,7 +19,7 @@ Product Designer plugin is ready and simple way to add WooCommerce product custo
 * [See Premium &raquo;](https://www.pickplugins.com/item/product-designer/?ref=wordpress.org)
 * [Live Demo &raquo;](https://www.pickplugins.com/demo/product-designer/?ref=wordpress.org)
 * [Documentation &raquo;](https://www.pickplugins.com/documentation/product-designer/faq/how-to-display-product-designer-editor/?ref=wordpress.org)
-* [support &raquo;](https://www.pickplugins.com/support/?ref=wordpress.org)
+* [Support &raquo;](https://www.pickplugins.com/support/?ref=wordpress.org)
 
 
 # Plugin Features
@@ -45,16 +45,16 @@ Your customer can download design before submit order.
 
 # Premium Features
 
-**Pre Saved templates**
+**Pre saved templates**
 You can save unlimited pre saved templates for each templates, so use can choose from pre saved template to get quickly order their expected design or start work from existing templates.
 
 **Upload custom cliparts**
 Allow users to upload their own clipart so that users can design their products as they want.
 
-**Curve Text**
+**Curve text**
 Displaying curve text on the product is fancy and our product designer allow users to editing curve text.
 
-**Quotes Text**
+**Quotes text**
 You can add your own quotes text, so user can use these quotes on their products.
 
 **QR code**
@@ -66,10 +66,10 @@ User can generate their own Barcode on the design.
 **Download preview**
 Allow user to download preview on editing their design.
 
-*Google Fonts**
+**Google fonts**
 We have already added 50+ handpicked Google fonts, you can add your own Google font via settings.
 
-**Custom Fonts**
+**Custom fonts**
 You can add your own custom fonts on the designer.
 
 

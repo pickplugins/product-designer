@@ -12,9 +12,7 @@ jQuery(document).ready(function($){
 
     tools_tabs_switch();
 
-    function tools_tabs_switch(){
-        activeTab = 0;
-
+    function tools_tabs_switch(activeTab = 0){
 
         i = 0;
         editorTabNavs.forEach((tabNav) => {
@@ -3032,7 +3030,7 @@ $(document).on('click','.generate-side-output',function(event){
             canvas.renderAll();
 
             product_designer_editor_save();
-
+            tools_tabs_switch(0);
 
 
 
@@ -3067,7 +3065,7 @@ $(document).on('click','.generate-side-output',function(event){
 
         product_designer_editor_save();
 
-
+        tools_tabs_switch(0);
 	})
 
 
@@ -3098,6 +3096,7 @@ $(document).on('click','.clipart-list img',function(){
     });
 
 
+    tools_tabs_switch(0);
 
 })
 
@@ -3503,6 +3502,17 @@ $(document).on('click','.clipart-list img',function(){
 
 
     var tourSubmitFunc = function(e,v,m,f){
+        console.log(e);
+        console.log(v);
+        console.log(m);
+        console.log(f);
+
+        stateName = e.stateName;
+
+        if(stateName == 3){
+            tools_tabs_switch(0);
+        }
+
             if(v === -1){
                 $.prompt.prevState();
                 return false;
@@ -3511,89 +3521,90 @@ $(document).on('click','.clipart-list img',function(){
                 $.prompt.nextState();
                 return false;
             }
+        };
+
+    tourStates = [
+        {
+            title: '#1 Product Sides',
+            html: 'Click here to load side and ready for edit.',
+            buttons: { Next: 1 },
+            focus: 1,
+            position: { container: '.pd-guide-1', x: -350, y: 0, width: 300, arrow: 'rt' },
+            submit: tourSubmitFunc
         },
-        tourStates = [
-            {
-                title: '#1 Product Sides',
-                html: 'Click here to load side and ready for edit.',
-                buttons: { Next: 1 },
-                focus: 1,
-                position: { container: '.pd-guide-1', x: 80, y: 0, width: 300, arrow: 'lt' },
-                submit: tourSubmitFunc
-            },
-            {
-                title: '#2 Clipart & Assets',
-                html: 'You can add some clipart here also you can upload your own.',
-                buttons: { Prev: -1, Next: 1 },
-                focus: 1,
-                position: { container: '.pd-guide-2', x: 80, y: 0, width: 300, arrow: 'lt' },
-                submit: tourSubmitFunc
-            },
-            {
-                title: "#3 Text",
-                html: 'You can add text from here, there also curved text available.',
-                buttons: { Prev: -1, Next: 1 },
-                focus: 1,
-                position: { container: '.pd-guide-3', x: 80, y: 0, width: 300, arrow: 'lt' },
-                submit: tourSubmitFunc
-            },
-            {
-                title: '#4 Shapes',
-                html: 'Some exclusive shapes here, you can add them to your design.',
-                buttons: { Prev: -1, Next: 1 },
-                focus: 1,
-                position: { container: '.pd-guide-4', x: 80, y: 0, width: 300, arrow: 'lt' },
-                submit: tourSubmitFunc
-            },
+        {
+            title: '#2 Clipart & Assets',
+            html: 'You can add some clipart here also you can upload your own.',
+            buttons: { Prev: -1, Next: 1 },
+            focus: 1,
+            position: { container: '.pd-guide-2', x: -350, y: 0, width: 300, arrow: 'rt' },
+            submit: tourSubmitFunc
+        },
+        {
+            title: "#3 Text",
+            html: 'You can add text from here, there also curved text available.',
+            buttons: { Prev: -1, Next: 1 },
+            focus: 1,
+            position: { container: '.pd-guide-3', x: -350, y: 0, width: 300, arrow: 'rt' },
+            submit: tourSubmitFunc
+        },
+        {
+            title: '#4 Shapes',
+            html: 'Some exclusive shapes here, you can add them to your design.',
+            buttons: { Prev: -1, Next: 1 },
+            focus: 1,
+            position: { container: '.pd-guide-4', x: -350, y: 0, width: 300, arrow: 'rt' },
+            submit: tourSubmitFunc
+        },
 
-            {
-                title: '#5 Editor actions',
-                html: 'Some exclusive shapes here, you can add them to your design.',
-                buttons: { Prev: -1, Next: 1 },
-                focus: 1,
-                position: { container: '.pd-guide-5', x: -350, y: 0, width: 300, arrow: 'rt' },
-                submit: tourSubmitFunc
-            },
+        {
+            title: '#5 Editor actions',
+            html: 'Some exclusive shapes here, you can add them to your design.',
+            buttons: { Prev: -1, Next: 1 },
+            focus: 1,
+            position: { container: '.pd-guide-5', x: -350, y: 0, width: 300, arrow: 'rt' },
+            submit: tourSubmitFunc
+        },
 
-            {
-                title: '#6 Preview',
-                html: 'Click preview button to see current canvas preview.',
-                buttons: { Prev: -1, Next: 1 },
-                focus: 1,
-                position: { container: '.pd-guide-6', x: -330, y: -10, width: 300, arrow: 'rt' },
-                submit: tourSubmitFunc
-            },
+        {
+            title: '#6 Preview',
+            html: 'Click preview button to see current canvas preview.',
+            buttons: { Prev: -1, Next: 1 },
+            focus: 1,
+            position: { container: '.pd-guide-6', x: -330, y: -10, width: 300, arrow: 'rt' },
+            submit: tourSubmitFunc
+        },
 
-            {
-                title: '#7 Download',
-                html: 'Click download your customized design.',
-                buttons: { Prev: -1, Next: 1 },
-                focus: 1,
-                position: { container: '.pd-guide-7', x: -330, y: -10, width: 300, arrow: 'rt' },
-                submit: tourSubmitFunc
-            },
+        {
+            title: '#7 Download',
+            html: 'Click download your customized design.',
+            buttons: { Prev: -1, Next: 1 },
+            focus: 1,
+            position: { container: '.pd-guide-7', x: -330, y: -10, width: 300, arrow: 'rt' },
+            submit: tourSubmitFunc
+        },
 
 
-            {
-                title: '#8 Item list',
-                html: 'Click to see object added on canvas for current view.',
-                buttons: { Prev: -1, Next: 1 },
-                focus: 1,
-                position: { container: '.pd-guide-8', x: -330, y: -10, width: 300, arrow: 'rt' },
-                submit: tourSubmitFunc
-            },
+        {
+            title: '#8 Item list',
+            html: 'Click to see object added on canvas for current view.',
+            buttons: { Prev: -1, Next: 1 },
+            focus: 1,
+            position: { container: '.pd-guide-8', x: -330, y: -10, width: 300, arrow: 'rt' },
+            submit: tourSubmitFunc
+        },
 
 
-            {
-                title: '#9 Product info & Cart',
-                html: 'After finishing the design you will see the preview and add them to cart and proceed to submit order.',
-                buttons: { Prev: -1, Next: 1,  Done: 2 },
-                focus: 1,
-                position: { container: '.pd-guide-9', x: -330, y: -10, width: 300, arrow: 'rt' },
-                submit: tourSubmitFunc
-            },
+        {
+            title: '#9 Product info & Cart',
+            html: 'After finishing the design you will see the preview and add them to cart and proceed to submit order.',
+            buttons: { Prev: -1, Next: 1,  Done: 2 },
+            focus: 1,
+            position: { container: '.pd-guide-9', x: -330, y: -10, width: 300, arrow: 'rt' },
+            submit: tourSubmitFunc
+        },
 
-        ];
+    ];
 
 
 
@@ -3628,6 +3639,9 @@ $(document).on('click','.clipart-list img',function(){
     $(document).on('click','.product-designer .welcome-tour .start-tour',function(){
 
         $('.product-designer .welcome-tour').fadeOut();
+        tools_tabs_switch(1);
+
+        console.log('Tour start');
 
         $.prompt(tourStates);
 
@@ -3641,6 +3655,7 @@ $(document).on('click','.clipart-list img',function(){
 
         document.cookie = "product_designer_tour=false";
 
+        console.log('Tour end');
 
         //$.prompt(tourStates);
         // anno2.show();
