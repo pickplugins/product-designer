@@ -17,13 +17,21 @@ function custom_variation_price_addition( $data, $product, $variation ) {
     $product_id = $product->get_id();
     $variation_id = $variation->get_id();
 
+    $pd_template_id = get_post_meta($variation_id, 'pd_template_id', true);
+
+    //var_dump($pd_template_id);
+
 
 
     $price  = wc_get_price_to_display( $variation );
     //$suffix = sprintf( __("Ou simplement en 4 x %s sans frais"), wc_price($price / 4) );
     //http://localhost/wp/product-designer/?product_id=1346&variation_id=1369
 
-    $data['price_html'] .= '<div class="product-designer-editor-link"><a href="'.$product_designer_page_url.'?product_id='.$product_id.'&variation_id='.$variation_id.'" class="4xcb"><i class="fa fa-crop" ></i> Customize</a></div>';
+    if(($pd_template_id != 'none')){
+        $data['price_html'] .= '<div class="product-designer-editor-link"><a href="'.$product_designer_page_url.'?product_id='.$product_id.'&variation_id='.$variation_id.'" class="4xcb"><i class="fa fa-crop" ></i> Customize</a></div>';
+
+    }
+
 
     return $data;
 }
