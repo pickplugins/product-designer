@@ -5,6 +5,35 @@
 if ( ! defined('ABSPATH')) exit;  // if direct access
 
 
+
+add_filter( 'woocommerce_available_variation', 'custom_variation_price_addition', 10, 3 );
+function custom_variation_price_addition( $data, $product, $variation ) {
+
+
+    $product_designer_settings = get_option( 'product_designer_settings' );
+    $product_designer_page_id = isset($product_designer_settings['designer_page_id']) ? $product_designer_settings['designer_page_id'] : '';
+    $product_designer_page_url = get_permalink($product_designer_page_id);
+
+    $product_id = $product->get_id();
+    $variation_id = $variation->get_id();
+
+
+
+    $price  = wc_get_price_to_display( $variation );
+    //$suffix = sprintf( __("Ou simplement en 4 x %s sans frais"), wc_price($price / 4) );
+    //http://localhost/wp/product-designer/?product_id=1346&variation_id=1369
+
+    $data['price_html'] .= '<div class="product-designer-editor-link"><a href="'.$product_designer_page_url.'?product_id='.$product_id.'&variation_id='.$variation_id.'" class="4xcb"><i class="fa fa-crop" ></i> Customize</a></div>';
+
+    return $data;
+}
+
+
+
+
+
+
+
 add_filter( 'jetpack_lazy_images_blacklisted_classes', 'product_designer_exclude_jetpack_lazy', 999, 1 );
 
 function product_designer_exclude_jetpack_lazy( $classes ) {
@@ -177,46 +206,7 @@ function product_designer_after_add_to_cart_button() {
 		if($is_variable):
 
 			?>
-            <div class="product-designer-editor-link has-child">
 
-	            <?php
-
-	            $available_variations = $product->get_available_variations();
-	            $all_variation = array();
-
-	            ?>
-
-                <div class=""><i class="fa fa-crop" ></i> Customize</div>
-                <div class="variation-link">
-	                <?php
-
-	                if(!empty($available_variations))
-		                foreach ( $available_variations as $variation ){
-
-			                //var_dump($variation);
-
-			                $variation_id = $variation['variation_id'];
-			                $variation_data = wc_get_product($variation_id);
-
-
-
-			                $pd_template_id = get_post_meta($variation_id, 'pd_template_id', true);
-
-			               // echo var_export($pd_template_id);
-
-
-			                if($pd_template_id != 'none'):
-				                ?>
-                                <a target="_blank" class="" href="<?php echo esc_url_raw($product_designer_page_url); ?>?product_id=<?php echo get_the_ID(); ?>&variation_id=<?php echo $variation_id; ?>"><i class="fa fa-crop" ></i> <?php echo $variation_data->get_formatted_name(); ?></a>
-				                <?php
-                            endif;
-
-
-		                }
-
-	                ?>
-                </div>
-            </div>
 			<?php
 
         else:
@@ -254,43 +244,7 @@ function product_designer_woocommerce_after_shop_loop_item() {
 		if($is_variable):
 
 			?>
-            <div class="product-designer-editor-link has-child">
 
-				<?php
-
-				$available_variations = $product->get_available_variations();
-				$all_variation = array();
-
-				?>
-
-                <div class=""><i class="fa fa-crop" ></i> Customize</div>
-                <div class="variation-link">
-					<?php
-
-					if(!empty($available_variations))
-						foreach ( $available_variations as $variation ){
-
-							//var_dump($variation);
-
-							$variation_id = $variation['variation_id'];
-							$variation_data = wc_get_product($variation_id);
-
-
-
-							$pd_template_id = get_post_meta($variation_id, 'pd_template_id', true);
-
-							if($pd_template_id != 'none'):
-								?>
-                                <a target="_blank" class="" href="<?php echo esc_url_raw($product_designer_page_url); ?>?product_id=<?php echo get_the_ID(); ?>&variation_id=<?php echo $variation_id; ?>"><i class="fa fa-magic" aria-hidden="true"></i> <?php echo $variation_data->get_formatted_name(); ?></a>
-								<?php
-                            endif;
-
-
-						}
-
-					?>
-                </div>
-            </div>
 			<?php
 
 		else:
