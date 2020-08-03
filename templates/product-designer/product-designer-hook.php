@@ -845,7 +845,7 @@ function product_designer_tools_edit_text(){
 
 
                 <div class="setting-field half">
-                    <div class="field-label"><?php echo __('Text Color:', 'product-designer'); ?></div>
+                    <div class="field-label"><?php echo __('Text color:', 'product-designer'); ?></div>
                     <div class="field-input">
                         <input data-jscolor="" class="tool-button" id="font-color" aria-label="Text Color" placeholder="rgba(255,255,255,1)" type="text" value="rgba(255,255,255,1)">
                     </div>
@@ -853,7 +853,7 @@ function product_designer_tools_edit_text(){
                 </div>
 
                 <div class="setting-field half">
-                    <div class="field-label"><?php echo __('Background Color:', 'product-designer'); ?></div>
+                    <div class="field-label"><?php echo __('Background color:', 'product-designer'); ?></div>
                     <div class="field-input">
                         <input data-jscolor="" class="tool-button" id="font-bg-color" aria-label="Background Color" placeholder="rgba(255,255,255,1)" type="text" value="rgba(255,255,255,1)">
                     </div>
@@ -862,7 +862,7 @@ function product_designer_tools_edit_text(){
 
 
                 <div class="setting-field half">
-                    <div class="field-label"><?php echo __('Outline Color:', 'product-designer'); ?></div>
+                    <div class="field-label"><?php echo __('Outline color:', 'product-designer'); ?></div>
                     <div class="field-input">
                         <input data-jscolor="" class="tool-button" id="stroke-color" aria-label="Outline Color" placeholder="rgba(255,255,255,1)" type="text" value="rgba(255,255,255,1)">
                     </div>
@@ -871,7 +871,7 @@ function product_designer_tools_edit_text(){
 
 
                 <div class="setting-field half">
-                    <div class="field-label"><?php echo __('Text Outline:', 'product-designer'); ?></div>
+                    <div class="field-label"><?php echo __('Text outline:', 'product-designer'); ?></div>
                     <div class="field-input">
                         <input class="" id="stroke-size" aria-label="Text Outline" type="number" placeholder="2" value="2">
                     </div>
