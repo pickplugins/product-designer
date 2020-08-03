@@ -1102,17 +1102,30 @@ function product_designer_tools_product_info(){
 
 
                 ?>
-                <div class="input-group">
-                    <div class="input-group-title"><?php echo __('You are editing:', 'product-designer'); ?></div><span><?php echo get_the_title($product_id); ?></span>
-                </div>
-                <div class="input-group">
-                    <div class="input-group-title"><?php echo __('Base Price:', 'product-designer'); ?></div> <span><?php echo $product_price; ?></span>
-                </div>
-                <div class="input-group">
-                    <div class="input-group-title"><?php echo __('Quantity:', 'product-designer'); ?></div> <span><input class="input-text quantity text" type="number" size="4" aria-label="<?php echo __('Quantity', 'product-designer'); ?>" value="1" name="quantity" min="1" step="1"></span>
 
+
+                <div class="setting-field full">
+                    <div class="field-label"><?php echo __('You are editing', 'product-designer'); ?></div>
+                    <div class="field-input">
+                        <?php echo get_the_title($product_id); ?>
+                    </div>
                 </div>
 
+
+                <div class="setting-field half">
+                    <div class="field-label"><?php echo __('Base Price', 'product-designer'); ?></div>
+                    <div class="field-input">
+                        <?php echo $product_price; ?>
+                    </div>
+                </div>
+
+
+                <div class="setting-field half">
+                    <div class="field-label"><?php echo __('Quantity', 'product-designer'); ?></div>
+                    <div class="field-input">
+                        <input class="input-text quantity text" type="number" size="4" aria-label="<?php echo __('Quantity', 'product-designer'); ?>" value="1" name="quantity" min="1" step="1">
+                    </div>
+                </div>
 
 
                 <div class="input-group product">
@@ -1152,9 +1165,24 @@ function product_designer_tools_keyboard(){
             <div class="">
                 <kbd>Shift + Delete: Clear canvas</kbd>
             </div>
+            <div class="">
+                <kbd>+: Zoom in</kbd>
+            </div>
+            <div class="">
+                <kbd>-: Zoom out</kbd>
+            </div>
 
+            <div class="">
+                <kbd>Space: Panning</kbd>
+            </div>
 
+            <div class="">
+                <kbd>Ctrl + Z: Undo</kbd>
+            </div>
 
+            <div class="">
+                <kbd>Ctrl + Y: Redo</kbd>
+            </div>
 
 
         </div>

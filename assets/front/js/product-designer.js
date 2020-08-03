@@ -870,8 +870,11 @@ $(document).on('click','.generate-side-output',function(event){
         */
        // e.preventDefault();
 
+        //console.log(e.ctrlKey);
+        //console.log(e.shiftKey);
+
         console.log(e.keyCode);
-        console.log(e.shiftKey);
+
 
         if(e.keyCode == 46){
             var selected_object = canvas.getActiveObject();
@@ -886,6 +889,18 @@ $(document).on('click','.generate-side-output',function(event){
         }
 
 
+        if(e.ctrlKey && e.keyCode == 90){
+            undo();
+
+        }
+
+        if(e.ctrlKey && e.keyCode == 89){
+            redo();
+
+        }
+
+
+
         if(e.shiftKey && e.keyCode == 46){
             canvas.clear();
 
@@ -897,6 +912,92 @@ $(document).on('click','.generate-side-output',function(event){
 
             product_designer_editor_save();
         }
+
+
+        if(e.keyCode == 187){
+            canvas.setZoom(canvas.getZoom() + 0.10 ) ;
+            zoom_val = (canvas.getZoom() -1);
+
+            product_designer_editor_toast('<i class="fa fa-search-plus"></i>', '+'+zoom_val.toFixed(2)*100+'% Zoom-in.');
+            product_designer_editor_save()
+        }
+
+
+        if(e.keyCode == 189){
+            canvas.setZoom(canvas.getZoom() - 0.10 ) ;
+            zoom_val = (canvas.getZoom() -1);
+
+            product_designer_editor_toast('<i class="fa fa-search-plus"></i>', zoom_val.toFixed(2)*100+'% Zoom-out.');
+            product_designer_editor_save();
+        }
+
+
+
+
+
+
+        if(e.keyCode == 32){
+            e.preventDefault();
+
+            var panButton = $('#editor-pan');
+            var panning = false;
+
+            if(panButton.hasClass('active')){
+                panButton.removeClass('active').addClass('inactive')
+                //canvas.getActiveObject().set("lockMovementY", false);
+                panButton.attr('title','Panning On');
+
+                canvas.selection = true;
+
+                product_designer_editor_toast('<i class="fa fa-hand-paper-o"></i>', 'Panning disabled.');
+
+
+            }else{
+                panButton.removeClass('inactive').addClass('active');
+                //canvas.getActiveObject().set("lockMovementY", true);
+                panButton.attr('title','Panning On');
+
+                canvas.selection = false;
+                product_designer_editor_toast('<i class="fa fa-hand-paper-o"></i>', 'Panning enabled.');
+
+                var panning = false;
+
+                canvas.on('mouse:up', function (e) {
+
+                    panning = false;
+                });
+
+                canvas.on('mouse:down', function (e) {
+                    panning = true;
+
+                });
+                canvas.on('mouse:move', function (e) {
+                    if (panning && e && e.e && canvas.selection==false) {
+                        //debugger;
+                        var units = 10;
+                        var delta = new fabric.Point(e.e.movementX, e.e.movementY);
+                        canvas.relativePan(delta);
+                    }
+                });
+
+
+
+
+
+
+            }
+            //val = $(this).val();
+
+
+            //canvas.getActiveObject().setAngle(val);
+            //canvas.getActiveObject().set("textDecoration", 'line-through');
+            canvas.renderAll();
+            ////console(val);
+            product_designer_editor_save()
+
+
+        }
+
 
 
 
