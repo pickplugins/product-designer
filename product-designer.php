@@ -43,7 +43,6 @@ class ProductDesigner{
 
 
 		//require_once( product_designer_plugin_dir . 'includes/tshirt-designer-meta.php');
-		//require_once( product_designer_plugin_dir . 'includes/functions.php');
 
 		//require_once( product_designer_plugin_dir . 'includes/designer.php');
 		require_once( product_designer_plugin_dir . 'includes/designer-function.php');
@@ -74,6 +73,8 @@ class ProductDesigner{
 
         $product_designer_settings = get_option('product_designer_settings');
         $product_designer_page_id = get_option('product_designer_page_id');
+
+
         $designer_page_id = isset($product_designer_settings['designer_page_id']) ? $product_designer_settings['designer_page_id'] : '';
 
 

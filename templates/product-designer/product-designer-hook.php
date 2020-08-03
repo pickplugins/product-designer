@@ -190,11 +190,11 @@ function product_designer_editor($atts){
     $session_id = session_id();
 
 
-    $product_designer_upload_clipart = get_option('product_designer_upload_clipart');
-    $product_designer_page_id = get_option('product_designer_page_id');
-    $product_designer_page_url = get_permalink($product_designer_page_id);
-    $product_designer_canvas_width = get_option( 'product_designer_canvas_width', '500' );
-    $product_designer_canvas_height = get_option( 'product_designer_canvas_height', '600' );
+    $product_designer_settings = get_option('product_designer_settings');
+    $designer_page_id = isset($product_designer_settings['designer_page_id']) ? $product_designer_settings['designer_page_id'] : '';
+
+
+    $product_designer_page_url = get_permalink($designer_page_id);
     $product_designer_error = array();
 
 
@@ -574,12 +574,14 @@ function product_designer_image_type_content_clipart(){
     <div class="clipart-list">
 
         <?php
-        $product_designer_posts_per_page = get_option('product_designer_posts_per_page', 10);
+
+        $product_designer_settings = get_option('product_designer_settings');
+        $posts_per_page = isset($product_designer_settings['posts_per_page']) ? $product_designer_settings['posts_per_page'] : '';
 
 
         $args = array(
             'post_type'=>'clipart',
-            'posts_per_page'=> $product_designer_posts_per_page,
+            'posts_per_page'=> $posts_per_page,
         );
 
 
@@ -1225,12 +1227,11 @@ function product_designer_tools_product_info(){
 add_action('product_designer_editor', 'product_designer_canvas', 25);
 
 function product_designer_canvas(){
-    $product_designer_canvas_width = get_option( 'product_designer_canvas_width', '500' );
-    $product_designer_canvas_height = get_option( 'product_designer_canvas_height', '600' );
+
 
     ?>
     <div id="designer" class="designer">
-        <canvas id="c" width="<?php echo $product_designer_canvas_width; ?>" height="<?php echo $product_designer_canvas_height; ?>"></canvas>
+        <canvas id="c"></canvas>
     </div>
     <?php
 }

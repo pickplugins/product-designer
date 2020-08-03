@@ -616,9 +616,13 @@ add_action('wp_ajax_nopriv_product_designer_ajax_delete_attach_id', 'product_des
 
 	
 function product_designer_ajax_paged_clipart_list(){
-	
-		$product_designer_posts_per_page = get_option('product_designer_posts_per_page');
-		
+
+
+    $product_designer_settings = get_option('product_designer_settings');
+    $posts_per_page = isset($product_designer_settings['posts_per_page']) ? $product_designer_settings['posts_per_page'] : '';
+
+
+
 		
 		
 		$response = array();
@@ -642,7 +646,7 @@ function product_designer_ajax_paged_clipart_list(){
 		
 		$args = array(
 					'post_type'=>'clipart',
-					'posts_per_page'=>$product_designer_posts_per_page,
+					'posts_per_page'=> $posts_per_page,
 					'tax_query' => $tax_query,
 					'paged' => $paged,
 
@@ -694,8 +698,12 @@ add_action('wp_ajax_nopriv_product_designer_ajax_paged_clipart_list', 'product_d
 	
 function product_designer_ajax_get_clipart_list(){
 	
-		$product_designer_posts_per_page = get_option('product_designer_posts_per_page');
-		
+
+    $product_designer_settings = get_option('product_designer_settings');
+    $posts_per_page = isset($product_designer_settings['posts_per_page']) ? $product_designer_settings['posts_per_page'] : '';
+
+
+
 		$response = array();
 		$cat_id = isset($_POST['cat']) ? sanitize_text_field($_POST['cat']) : '';
 		
@@ -716,7 +724,7 @@ function product_designer_ajax_get_clipart_list(){
 		
 		$args = array(
 					'post_type'=>'clipart',
-					'posts_per_page'=>$product_designer_posts_per_page,
+					'posts_per_page'=>$posts_per_page,
 					'tax_query' => $tax_query,
 
 			);

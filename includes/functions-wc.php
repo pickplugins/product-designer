@@ -10,9 +10,11 @@ add_filter( 'woocommerce_available_variation', 'product_designer_variation_custo
 function product_designer_variation_customize_link( $data, $product, $variation ) {
 
 
-    $product_designer_settings = get_option( 'product_designer_settings' );
-    $product_designer_page_id = isset($product_designer_settings['designer_page_id']) ? $product_designer_settings['designer_page_id'] : '';
-    $product_designer_page_url = get_permalink($product_designer_page_id);
+    $product_designer_settings = get_option('product_designer_settings');
+    $designer_page_id = isset($product_designer_settings['designer_page_id']) ? $product_designer_settings['designer_page_id'] : '';
+
+
+    $product_designer_page_url = get_permalink($designer_page_id);
 
     $product_id = $product->get_id();
     $variation_id = $variation->get_id();
@@ -199,8 +201,12 @@ add_action( 'woocommerce_after_shop_loop_item', 'product_designer_woocommerce_af
 
 function product_designer_after_add_to_cart_button() {
 	global $product;
-	$product_designer_page_id = get_option( 'product_designer_page_id' );
-	$product_designer_page_url = get_permalink($product_designer_page_id);
+
+    $product_designer_settings = get_option('product_designer_settings');
+    $designer_page_id = isset($product_designer_settings['designer_page_id']) ? $product_designer_settings['designer_page_id'] : '';
+
+
+    $product_designer_page_url = get_permalink($designer_page_id);
 	$is_customizable = product_designer_is_customizable($product->get_id());
     wp_enqueue_style('font-awesome-4');
 
@@ -239,8 +245,13 @@ function product_designer_after_add_to_cart_button() {
 function product_designer_woocommerce_after_shop_loop_item() {
 
 	global $product;
-	$product_designer_page_id = get_option( 'product_designer_page_id' );
-	$product_designer_page_url = get_permalink($product_designer_page_id);
+
+    $product_designer_settings = get_option('product_designer_settings');
+    $designer_page_id = isset($product_designer_settings['designer_page_id']) ? $product_designer_settings['designer_page_id'] : '';
+
+
+
+	$product_designer_page_url = get_permalink($designer_page_id);
 	$is_customizable = product_designer_is_customizable($product->get_id());
 
 	if(is_shop() && $is_customizable){

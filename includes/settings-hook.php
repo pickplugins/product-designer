@@ -11,6 +11,7 @@ function product_designer_settings_content_general(){
     $font_aw_version = isset($product_designer_settings['font_aw_version']) ? $product_designer_settings['font_aw_version'] : 'none';
     $designer_page_id = isset($product_designer_settings['designer_page_id']) ? $product_designer_settings['designer_page_id'] : '';
     $menu_position = isset($product_designer_settings['menu_position']) ? $product_designer_settings['menu_position'] : '';
+    $posts_per_page = isset($product_designer_settings['posts_per_page']) ? $product_designer_settings['posts_per_page'] : '';
 
 
 
@@ -45,6 +46,21 @@ function product_designer_settings_content_general(){
             'value'		=> $font_aw_version,
             'default'		=> '',
             'args'		=> array('v_5'=>__('Version 5+','post-grid'), 'v_4'=>__('Version 4+','post-grid'), 'none'=>__('None','post-grid')  ),
+        );
+
+        $settings_tabs_field->generate_field($args);
+
+
+        $args = array(
+            'id'		=> 'posts_per_page',
+            'parent'		=> 'product_designer_settings',
+            'title'		=> __('Post per page','post-grid'),
+            'details'	=> __('Set custom number of posts per page, ex: 10','post-grid'),
+            'type'		=> 'text',
+            'value'		=> $posts_per_page,
+            'default'		=> '',
+            'placeholder'		=> '',
+
         );
 
         $settings_tabs_field->generate_field($args);
