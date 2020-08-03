@@ -1095,7 +1095,9 @@ display:none;
   width: 95%;
 }
 
-
+.product-designer .setting-field label{
+  display: block;
+}
 
 
 
