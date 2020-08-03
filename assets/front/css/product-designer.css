@@ -684,19 +684,9 @@ display:none;
   text-transform: uppercase;
 }
 
-.product-designer select {
-  padding: 0;
-  height: 28px;
-}
 
-.product-designer input[type="text"], .toolbar-section input[type="number"] {
-  width: 70px;
-}
 
-.product-designer input[type="range"]{
-  margin: 0;
-  width: 70px;
-}
+
 
 
 .product-designer .input-group {
@@ -1042,6 +1032,7 @@ display:none;
 
 .product-designer .setting-field{
   margin: 10px 0;
+  clear: both;
 }
 
 .product-designer .setting-field .field-label{
@@ -1078,6 +1069,21 @@ display:none;
   width: 90%;
 }
 
+.product-designer .setting-field input[data-jscolor]{
+  width: 68%;
+}
+
+
+.product-designer .setting-field select{
+  width: 100%;
+}
+
+.product-designer .setting-field input[type="range"]{
+  width: 90%;
+}
+
+
+
 
 
 .product-designer .setting-field.full .field-label{
@@ -1091,3 +1097,18 @@ display:none;
   width: 99%;
   vertical-align: top;
 }
+
+.product-designer .setting-field.full textarea{
+  width: 95%;
+}
+
+
+
+
+
+
+
+
+
+
+

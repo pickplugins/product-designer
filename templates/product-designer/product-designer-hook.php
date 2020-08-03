@@ -824,6 +824,18 @@ function product_designer_tools_edit_text(){
                     </div>
                 </div>
 
+                <div class="setting-field full">
+
+                        <span class="pack-button hint--top" aria-label="<?php echo __('Bold text', 'product-designer'); ?>" id="text-bold"><i class="cpd-icon-format-bold" ></i></span>
+                        <span class="pack-button hint--top" aria-label="<?php echo __('Italic text', 'product-designer'); ?>" id="text-italic"><i class="cpd-icon-format-italic" ></i></span>
+                        <span class="pack-button hint--top" aria-label="<?php echo __('Underline text', 'product-designer'); ?>" id="text-underline"><i class="cpd-icon-format-underline" ></i></span>
+                        <span class="pack-button hint--top" aria-label="<?php echo __('Strikethrough text', 'product-designer'); ?>" id="text-strikethrough"><i class="fa fa-strikethrough" ></i></span>
+
+
+                </div>
+
+
+
                 <div class="setting-field half">
                     <div class="field-label hint--top" aria-label="Set text size">Text size</div>
                     <div class="field-input">
@@ -867,6 +879,36 @@ function product_designer_tools_edit_text(){
                 </div>
 
 
+                <div class="setting-field half">
+                    <div class="field-label"><?php echo __('Font family:', 'product-designer'); ?></div>
+                    <div class="field-input">
+                        <?php
+                        $product_designer_fonts = product_designer_fonts();
+                        ?>
+                        <select class=" font-family" aria-label="<?php echo __('Font family', 'product-designer'); ?>" id="font-family">
+                            <?php
+                            foreach($product_designer_fonts as $font){
+                                $name = $font['name'];
+                                $name_id = str_replace(' ','+',$name);
+                                ?>
+                                <option style="font-family:<?php echo $name_id; ?>" value="<?php echo $name; ?>"><?php echo $name; ?></option>
+                                <?php
+                            }
+                            ?>
+                        </select>
+                    </div>
+
+                </div>
+
+
+
+                <div class="setting-field half">
+                    <div class="field-label"><?php echo __('Opacity:', 'product-designer'); ?></div>
+                    <div class="field-input">
+                        <input  class=" tool-button" aria-label="Opacity" id="font-opacity" type="range" min="0" max="1" step="0.1" value="1" />
+                    </div>
+
+                </div>
 
 
 
@@ -875,35 +917,7 @@ function product_designer_tools_edit_text(){
 
 
 
-            <span class="pack-button hint--top" aria-label="<?php echo __('Bold text', 'product-designer'); ?>" id="text-bold"><i class="cpd-icon-format-bold" ></i></span>
-            <span class="pack-button hint--top" aria-label="<?php echo __('Italic text', 'product-designer'); ?>" id="text-italic"><i class="cpd-icon-format-italic" ></i></span>
-            <span class="pack-button hint--top" aria-label="<?php echo __('Underline text', 'product-designer'); ?>" id="text-underline"><i class="cpd-icon-format-underline" ></i></span>
-            <span class="pack-button hint--top" aria-label="<?php echo __('Strikethrough text', 'product-designer'); ?>" id="text-strikethrough"><i class="fa fa-strikethrough" ></i></span>
 
-
-
-            <div class="input-group">
-                <div class="input-group-title"><?php echo __('Opacity:', 'product-designer'); ?></div>
-                <input  class=" tool-button" aria-label="Opacity" id="font-opacity" type="range" min="0" max="1" step="0.1" value="1" />
-            </div>
-
-            <div class="input-group">
-                <div class="input-group-title"><?php echo __('Font family:', 'product-designer'); ?></div>
-                <?php
-                $product_designer_fonts = product_designer_fonts();
-                ?>
-                <select class=" font-family" aria-label="<?php echo __('Font family', 'product-designer'); ?>" id="font-family">
-                    <?php
-                    foreach($product_designer_fonts as $font){
-                        $name = $font['name'];
-                        $name_id = str_replace(' ','+',$name);
-                        ?>
-                        <option style="font-family:<?php echo $name_id; ?>" value="<?php echo $name; ?>"><?php echo $name; ?></option>
-                        <?php
-                    }
-                    ?>
-                </select>
-            </div>
 
 
         </div>
