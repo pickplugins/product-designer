@@ -1553,7 +1553,7 @@ $(document).on('click','.generate-side-output',function(event){
 
 
 
-        ////console(type);
+        console.log(type);
         ////console(ActiveObject);
 
 
@@ -1578,7 +1578,7 @@ $(document).on('click','.generate-side-output',function(event){
             $('.edit-img').addClass('active');
             }
 
-        else if(type=='circle' || type=='triangle' || type=='rect' || type=='polygon'){
+        else if(type=='circle' || type=='triangle' || type=='rect' || type=='polygon' || type=='path' ){
             $('.edit-shape').addClass('active');
             }
 

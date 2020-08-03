@@ -481,13 +481,6 @@ display:none;
 
 
 
-.product-designer .editing #shape-color {
-  display: inline-block;
-  vertical-align: top;
-  width: 70px;
-}
-
-
 
 .product-designer .editing .tool-button.active{
   background: rgba(0, 0, 0, 0.4) none repeat scroll 0 0;

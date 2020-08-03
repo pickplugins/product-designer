@@ -953,34 +953,27 @@ function product_designer_tools_edit_img(){
     <div class="edit-img toolbar-section">
         <div class="toolbar-title"><?php echo __('Images Actions', 'product-designer'); ?></div>
         <div class="toolbar-section-inner">
-            <div class="input-group">
-                <div class="input-group-title"><?php echo __('Opacity:', 'product-designer'); ?></div>
-                <input  class="" aria-label="Opacity" id="img-opacity" type="range" min="0" max="1" step="0.1" value="1" />
+
+            <div class="setting-field half">
+                <div class="field-label"><?php echo __('Opacity', 'product-designer'); ?></div>
+                <div class="field-input">
+                    <input  class="" aria-label="Opacity" id="img-opacity" type="range" min="0" max="1" step="0.1" value="1" />
+                </div>
             </div>
 
-            <div class="input-group">
-                <div class="input-group-title"><?php echo __('Filters:', 'product-designer'); ?></div>
-                <label><input class="" aria-label="<?php echo __('Grayscale', 'product-designer'); ?>"  id="img-filter-grayscale" type="checkbox" value="1" /><?php echo __('Grayscale', 'product-designer'); ?></label>
+            <div class="setting-field half">
+                <div class="field-label"><?php echo __('Filters', 'product-designer'); ?></div>
+                <div class="field-input">
+                    <label><input class="" aria-label="<?php echo __('Grayscale', 'product-designer'); ?>"  id="img-filter-grayscale" type="checkbox" value="1" /><?php echo __('Grayscale', 'product-designer'); ?></label>
+                    <label><input class="" aria-label="<?php echo __('Invert', 'product-designer'); ?>"  id="img-filter-invert" type="checkbox" value="1" /><?php echo __('Invert', 'product-designer'); ?></label>
+                    <label><input class="" aria-label="<?php echo __('Sepia', 'product-designer'); ?>"  id="img-filter-sepia" type="checkbox" value="1" /><?php echo __('Sepia', 'product-designer'); ?></label>
+                    <label><input class="" aria-label="<?php echo __('Noise', 'product-designer'); ?>"  id="img-filter-noise" type="checkbox" value="1" /><?php echo __('Noise', 'product-designer'); ?></label>
+                    <label><input class="" aria-label="<?php echo __('Pixelate', 'product-designer'); ?>"  id="img-filter-pixelate" type="checkbox" value="1" /><?php echo __('Pixelate', 'product-designer'); ?></label>
+
+
+                </div>
             </div>
 
-            <div class="input-group">
-                <div class="input-group-title"></div>
-                <label><input class="" aria-label="<?php echo __('Invert', 'product-designer'); ?>"  id="img-filter-invert" type="checkbox" value="1" /><?php echo __('Invert', 'product-designer'); ?></label>
-            </div>
-
-            <div class="input-group">
-                <div class="input-group-title"></div>
-                <label><input class="" aria-label="<?php echo __('Sepia', 'product-designer'); ?>"  id="img-filter-sepia" type="checkbox" value="1" /><?php echo __('Sepia', 'product-designer'); ?></label>
-            </div>
-            <div class="input-group">
-                <div class="input-group-title"></div>
-                <label><input class="" aria-label="<?php echo __('Noise', 'product-designer'); ?>"  id="img-filter-noise" type="checkbox" value="1" /><?php echo __('Noise', 'product-designer'); ?></label>
-            </div>
-
-            <div class="input-group">
-                <div class="input-group-title"></div>
-                <label><input class="" aria-label="<?php echo __('Pixelate', 'product-designer'); ?>"  id="img-filter-pixelate" type="checkbox" value="1" /><?php echo __('Pixelate', 'product-designer'); ?></label>
-            </div>
         </div>
 
 
@@ -1006,14 +999,24 @@ function product_designer_tools_edit_shape(){
     <div class="edit-shape toolbar-section">
         <div class="toolbar-title"><?php echo __('Shapes Actions', 'product-designer'); ?></div>
         <div class="toolbar-section-inner">
-            <div class="input-group">
-                <div class="input-group-title"><?php echo __('Opacity:', 'product-designer'); ?></div>
-                <input  class="" aria-label="Opacity" id="shape-opacity" type="range" min="0" max="1" step="0.1" value="1" />
+
+            <div class="setting-field half">
+                <div class="field-label"><?php echo __('Opacity', 'product-designer'); ?></div>
+                <div class="field-input">
+                    <input  class="" aria-label="Opacity" id="shape-opacity" type="range" min="0" max="1" step="0.1" value="1" />
+                </div>
             </div>
-            <div class="input-group">
-                <div class="input-group-title"><?php echo __('Color:', 'product-designer'); ?></div>
-                <input  data-jscolor="" aria-label="<?php echo __('Color', 'product-designer'); ?>" id="shape-color" class=" " placeholder="<?php echo __('Color', 'product-designer'); ?>"  type="text" value="rgba(255,255,255,1)" />
+
+            <div class="setting-field half">
+                <div class="field-label"><?php echo __('Color', 'product-designer'); ?></div>
+                <div class="field-input">
+                    <input  data-jscolor="" aria-label="<?php echo __('Color', 'product-designer'); ?>" id="shape-color" class=" " placeholder="<?php echo __('Color', 'product-designer'); ?>"  type="text" value="rgba(255,255,255,1)" />
+                </div>
             </div>
+
+
+
+
         </div>
 
 
