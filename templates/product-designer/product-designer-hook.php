@@ -64,98 +64,6 @@ function product_designer_wrap_start($atts){
 
     ?>
 
-    <script>
-
-
-        function product_desginer_input_controls(args) {
-
-            type = args.type;
-
-            html = '';
-
-            if(type == 'text'){
-
-                fieldTitle = args.fieldTitle;
-                defaultValue = args.defaultValue;
-                fieldValue = args.fieldValue;
-                placeholder = args.placeholder;
-                fieldId = args.fieldId;
-                wrapperClass = args.wrapClass;
-                wrapperId = args.wrapperId;
-                lableClass = args.lableClass;
-                lableClass = args.lableClass;
-
-                fieldname = args.fieldname;
-
-                inputClass = args.wrapClass;
-                inputWrapperClass = args.inputWrapperClass;
-
-
-
-                html += '<div class="setting-field '+wrapperClass+'" id="'+wrapperId+'">';
-                html += '<div class="field-lable '+lableClass+'">';
-                html += fieldTitle;
-                html += '</div>';
-
-                html += '<div class="field-input '+inputWrapperClass+'">';
-                html += '<input id="'+fieldId+'" class="'+inputClass+'" type="text" placeholder="'+placeholder+'" name="'+fieldname+'"  value="'+fieldValue+'">';
-                html += '</div>';
-
-                html += '</div>';
-
-
-            }else if(type == 'number'){
-
-                defaultValue = args.defaultValue;
-                fieldValue = args.fieldValue;
-                fieldname = args.fieldname;
-                placeholder = args.placeholder;
-                fieldId = args.fieldId;
-                wrapperClass = args.wrapperClass;
-                wrapperId = args.wrapperId;
-                lableClass = args.lableClass;
-                lableText = args.lableText;
-
-
-
-                inputClass = args.inputClass;
-                inputWrapperClass = args.inputWrapperClass;
-
-
-
-                html += '<div class="setting-field '+wrapperClass+'" id="'+wrapperId+'">';
-                html += '<div class="field-lable '+lableClass+'">';
-                html += fieldTitle;
-                html += '</div>';
-
-                html += '<div class="field-input '+inputWrapperClass+'">';
-                html += '<input id="'+fieldId+'" class="'+inputClass+'" type="number" placeholder="'+placeholder+'" name="'+fieldname+'"  value="'+fieldValue+'">';
-                html += '</div>';
-
-                html += '</div>';
-
-
-            }
-
-
-
-
-
-
-
-
-
-
-
-            return html;
-
-        }
-
-
-
-
-    </script>
-
     <div class="product-designer">
 
     <?php
@@ -906,12 +814,66 @@ function product_designer_tools_edit_text(){
         <div class="toolbar-title"><?php echo __('Edit Text', 'product-designer'); ?></div>
         <div class="toolbar-section-inner">
 
-            <div id="edit-assets-text">
-
-            </div>
+            <form id="edit-assets-text" action="#" method="get">
 
 
-            <textarea style="width: 90%" class="" id="text-content" aria-label="<?php echo __('Text Content', 'product-designer'); ?>"></textarea>
+                <div class="setting-field full">
+                    <div class="field-label" aria-label="<?php echo __('Write text content', 'product-designer'); ?>"><?php echo __('Text Content', 'product-designer'); ?></div>
+                    <div class="field-input">
+                        <textarea class="" id="text-content"></textarea>
+                    </div>
+                </div>
+
+                <div class="setting-field half">
+                    <div class="field-label hint--top" aria-label="Set text size">Text size</div>
+                    <div class="field-input">
+                        <input type="number" id="font-size" name="fontSize" placeholder="15" value="">
+                    </div>
+                </div>
+
+
+                <div class="setting-field half">
+                    <div class="field-label"><?php echo __('Text Color:', 'product-designer'); ?></div>
+                    <div class="field-input">
+                        <input data-jscolor="" class="tool-button" id="font-color" aria-label="Text Color" placeholder="rgba(255,255,255,1)" type="text" value="rgba(255,255,255,1)">
+                    </div>
+
+                </div>
+
+                <div class="setting-field half">
+                    <div class="field-label"><?php echo __('Background Color:', 'product-designer'); ?></div>
+                    <div class="field-input">
+                        <input data-jscolor="" class="tool-button" id="font-bg-color" aria-label="Background Color" placeholder="rgba(255,255,255,1)" type="text" value="rgba(255,255,255,1)">
+                    </div>
+
+                </div>
+
+
+                <div class="setting-field half">
+                    <div class="field-label"><?php echo __('Outline Color:', 'product-designer'); ?></div>
+                    <div class="field-input">
+                        <input data-jscolor="" class="tool-button" id="stroke-color" aria-label="Outline Color" placeholder="rgba(255,255,255,1)" type="text" value="rgba(255,255,255,1)">
+                    </div>
+
+                </div>
+
+
+                <div class="setting-field half">
+                    <div class="field-label"><?php echo __('Text Outline:', 'product-designer'); ?></div>
+                    <div class="field-input">
+                        <input class="" id="stroke-size" aria-label="Text Outline" type="number" placeholder="2" value="2">
+                    </div>
+
+                </div>
+
+
+
+
+
+
+            </form>
+
+
 
             <span class="pack-button hint--top" aria-label="<?php echo __('Bold text', 'product-designer'); ?>" id="text-bold"><i class="cpd-icon-format-bold" ></i></span>
             <span class="pack-button hint--top" aria-label="<?php echo __('Italic text', 'product-designer'); ?>" id="text-italic"><i class="cpd-icon-format-italic" ></i></span>
@@ -919,70 +881,7 @@ function product_designer_tools_edit_text(){
             <span class="pack-button hint--top" aria-label="<?php echo __('Strikethrough text', 'product-designer'); ?>" id="text-strikethrough"><i class="fa fa-strikethrough" ></i></span>
 
 
-            <script>
 
-
-
-
-                //edit_assets_text = document.getElementById('edit-assets-text');
-                edit_assets_text = document.querySelectorAll('#edit-assets-text');
-
-                args = {
-                    type: 'text',
-                    fieldTitle: '',
-                    defaultValue: '',
-                    fieldValue: '',
-                    placeholder: '',
-                    fieldId: '',
-                    wrapperClass: '',
-                    wrapperId: '',
-                    lableClass: '',
-                    lableText: '',
-                    fieldname: '',
-                    inputClass: '',
-                    inputWrapperClass: '',
-
-
-                }
-
-               //html = product_desginer_input_controls(args);
-
-                //console.log(html);
-
-                //edit_assets_text.innerHTML = html;
-
-
-            </script>
-
-
-
-            <div class="input-group">
-                <div class="input-group-title"><?php echo __('Fonts Size:', 'product-designer'); ?></div>
-                <input class="" id="font-size" size="3" aria-label="Fonts Size" type="number" value="16" >px
-            </div>
-
-
-            <div class="input-group">
-                <div class="input-group-title"><?php echo __('Text Color:', 'product-designer'); ?></div>
-                <input data-jscolor="" class="tool-button" id="font-color" aria-label="Text Color" placeholder="rgba(255,255,255,1)" type="text" value="rgba(255,255,255,1)">
-            </div>
-
-            <div class="input-group">
-                <div class="input-group-title"><?php echo __('Background Color:', 'product-designer'); ?></div>
-                <input data-jscolor="" class="tool-button" id="font-bg-color" aria-label="Background Color" placeholder="rgba(255,255,255,1)" type="text" value="rgba(255,255,255,1)">
-            </div>
-
-
-            <div class="input-group">
-                <div class="input-group-title"><?php echo __('Outline Color:', 'product-designer'); ?></div>
-                <input data-jscolor="" class="tool-button" id="stroke-color" aria-label="Outline Color" placeholder="rgba(255,255,255,1)" type="text" value="rgba(255,255,255,1)">
-            </div>
-
-
-            <div class="input-group">
-                <div class="input-group-title"><?php echo __('Text Outline:', 'product-designer'); ?></div>
-                <input class="" id="stroke-size" aria-label="Text Outline" type="number" placeholder="2" value="2">
-            </div>
             <div class="input-group">
                 <div class="input-group-title"><?php echo __('Opacity:', 'product-designer'); ?></div>
                 <input  class=" tool-button" aria-label="Opacity" id="font-opacity" type="range" min="0" max="1" step="0.1" value="1" />

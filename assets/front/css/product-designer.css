@@ -1038,4 +1038,56 @@ display:none;
 }
 
 
+/*setting-field*/
 
+.product-designer .setting-field{
+  margin: 10px 0;
+}
+
+.product-designer .setting-field .field-label{
+
+}
+
+.product-designer .setting-field .field-input{
+
+}
+
+.product-designer .setting-field .description{
+
+}
+
+.product-designer .setting-field .half{
+
+}
+
+
+
+.product-designer .setting-field.half .field-label{
+  display: inline-block;
+  width: 49%;
+  vertical-align: top;
+}
+
+.product-designer .setting-field.half .field-input{
+  display: inline-block;
+  width: 49%;
+  vertical-align: top;
+}
+
+.product-designer .setting-field input[type="text"], .product-designer .setting-field input[type="number"], .product-designer .setting-field textarea{
+  width: 90%;
+}
+
+
+
+.product-designer .setting-field.full .field-label{
+  display: block;
+  width: 99%;
+  vertical-align: top;
+}
+
+.product-designer .setting-field.full .field-input{
+  display: block;
+  width: 99%;
+  vertical-align: top;
+}

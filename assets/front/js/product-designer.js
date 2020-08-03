@@ -1434,9 +1434,9 @@ $(document).on('click','.generate-side-output',function(event){
 
 
             html += '<span class="remove"><i class="fa fa-times" ></i></span>';
-            html += '<span class="hide"><i class="fa fa-eye" ></i></span>';
-            html += '<span class="lock"><i class="fa fa-lock" ></i></span>';
-            html += '<span class="selectLayer"><i class="fa fa-check" ></i></span>';
+            //html += '<span class="hide"><i class="fa fa-eye" ></i></span>';
+            //html += '<span class="lock"><i class="fa fa-lock" ></i></span>';
+            //html += '<span class="selectLayer"><i class="fa fa-check" ></i></span>';
 
             html += '<span class="type ">'+objectType+'</span>';
             //html += '<span class="name">'+objectName+'</span>';
@@ -1455,17 +1455,17 @@ $(document).on('click','.generate-side-output',function(event){
 
 
 
-    $(document).on('click','.product-designer .layers-list .selectLayer',function(event){
+    $(document).on('click','.product-designer .layers-list .layer',function(event){
 
         event.stopPropagation();
         event.preventDefault();
-        $('.layers-list .layer').removeClass('active');
-
-        obj_id = $(this).parent().attr('obj-id');
-        canvas.setActiveObject(obj_id);
-        canvas.setActiveObject(canvas.item(obj_id));
-
-        console.log(obj_id);
+        //$('.layers-list .layer').removeClass('active');
+        //
+         obj_id = $(this).attr('obj-id');
+         //canvas.setActiveObject(obj_id);
+         canvas.setActiveObject(canvas.item(obj_id));
+        //
+         //console.log(obj_id);
 
 
 
@@ -1605,10 +1605,18 @@ $(document).on('click','.generate-side-output',function(event){
 
     }
 
+    $(document).on('change','#edit-assets-text',function(){
 
+        event.preventDefault();
+
+
+
+    })
 
 
     $(document).on('keyup','.product-designer #text-content',function(){
+
+
 
 
 
