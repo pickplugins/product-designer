@@ -863,7 +863,44 @@ $(document).on('click','.generate-side-output',function(event){
 
 		})
 
+    window.addEventListener("keydown", function(e){
+        /*
+         * keyCode: 8
+         * keyIdentifier: "U+0008"
+        */
+       // e.preventDefault();
 
+        console.log(e.keyCode);
+        console.log(e.shiftKey);
+
+        if(e.keyCode == 46){
+            var selected_object = canvas.getActiveObject();
+
+            if(selected_object != null){
+                selected_object.remove();
+                product_designer_editor_toast('<i class="fa fa-trash-o"></i>','Selected item deleted.');
+            }
+            else{
+                product_designer_editor_toast('<i class="fa fa-exclamation-circle"></i>','Please select item first.');
+            }
+        }
+
+
+        if(e.shiftKey && e.keyCode == 46){
+            canvas.clear();
+
+            canvas.renderAll();
+
+            json = JSON.stringify(canvas);
+
+            product_designer_editor_toast('','Editor cleared.');
+
+            product_designer_editor_save();
+        }
+
+
+
+    });
 
 
         $(document).on('touchstart click','.product-designer #editor-clear',function(e){
@@ -879,7 +916,7 @@ $(document).on('click','.generate-side-output',function(event){
 
             product_designer_editor_toast('','Editor cleared.');
 
-            product_designer_editor_save()
+            product_designer_editor_save();
 
         })
 
@@ -1535,6 +1572,8 @@ $(document).on('click','.generate-side-output',function(event){
 
         //console(obj_id);
     })
+
+
 
 
 

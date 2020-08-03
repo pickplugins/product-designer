@@ -1137,6 +1137,34 @@ function product_designer_tools_product_info(){
 
 
 
+add_action('product_designer_tools', 'product_designer_tools_keyboard', 20);
+
+function product_designer_tools_keyboard(){
+
+    ?>
+    <div class="toolbar-section">
+        <div class="toolbar-title"><?php echo __('Keyboard Shortcut', 'product-designer'); ?></div>
+        <div class="toolbar-section-inner">
+
+            <div class="">
+                <kbd>Delete: Delete selected item</kbd>
+            </div>
+            <div class="">
+                <kbd>Shift + Delete: Clear canvas</kbd>
+            </div>
+
+
+
+
+
+        </div>
+
+
+    </div>
+    <?php
+
+}
+
 
 
 
