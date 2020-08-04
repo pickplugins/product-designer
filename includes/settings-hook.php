@@ -19,16 +19,16 @@ function product_designer_settings_content_general(){
 
     ?>
     <div class="section">
-        <div class="section-title"><?php echo __('General', 'post-grid'); ?></div>
-        <p class="description section-description"><?php echo __('Choose some general options.', 'post-grid'); ?></p>
+        <div class="section-title"><?php echo __('General', 'product-designer'); ?></div>
+        <p class="description section-description"><?php echo __('Choose some general options.', 'product-designer'); ?></p>
 
         <?php
 
         $args = array(
             'id'		=> 'designer_page_id',
             'parent'		=> 'product_designer_settings',
-            'title'		=> __('Designer page','post-grid'),
-            'details'	=> __('Display product desginer, use shortcode <code>[product_designer]</code> on that page.','post-grid'),
+            'title'		=> __('Designer page','product-designer'),
+            'details'	=> __('Display product desginer, use shortcode <code>[product_designer]</code> on that page.','product-designer'),
             'type'		=> 'select',
             'value'		=> $designer_page_id,
             'default'		=> '',
@@ -40,12 +40,12 @@ function product_designer_settings_content_general(){
         $args = array(
             'id'		=> 'font_aw_version',
             'parent'		=> 'product_designer_settings',
-            'title'		=> __('Font-awesome version','post-grid'),
-            'details'	=> __('Choose font awesome version you want to load.','post-grid'),
+            'title'		=> __('Font-awesome version','product-designer'),
+            'details'	=> __('Choose font awesome version you want to load.','product-designer'),
             'type'		=> 'select',
             'value'		=> $font_aw_version,
             'default'		=> '',
-            'args'		=> array('v_5'=>__('Version 5+','post-grid'), 'v_4'=>__('Version 4+','post-grid'), 'none'=>__('None','post-grid')  ),
+            'args'		=> array('v_5'=>__('Version 5+','product-designer'), 'v_4'=>__('Version 4+','product-designer'), 'none'=>__('None','product-designer')  ),
         );
 
         $settings_tabs_field->generate_field($args);
@@ -54,8 +54,8 @@ function product_designer_settings_content_general(){
         $args = array(
             'id'		=> 'posts_per_page',
             'parent'		=> 'product_designer_settings',
-            'title'		=> __('Post per page','post-grid'),
-            'details'	=> __('Set custom number of posts per page, ex: 10','post-grid'),
+            'title'		=> __('Post per page','product-designer'),
+            'details'	=> __('Set custom number of posts per page, ex: 10','product-designer'),
             'type'		=> 'text',
             'value'		=> $posts_per_page,
             'default'		=> '',
@@ -73,8 +73,8 @@ function product_designer_settings_content_general(){
 
             array(
                 'id'		=> 'name',
-                'title'		=> __('Font Name','team'),
-                'details'	=> __('Write font name here.','team'),
+                'title'		=> __('Font Name','product-designer'),
+                'details'	=> __('Write font name here.','product-designer'),
                 'type'		=> 'text',
                 'value'		=> '',
                 'default'		=> '',
@@ -82,8 +82,8 @@ function product_designer_settings_content_general(){
             ),
             array(
                 'id'		=> 'url',
-                'title'		=> __('Font URL','team'),
-                'details'	=> __('Write font source url.','team'),
+                'title'		=> __('Font URL','product-designer'),
+                'details'	=> __('Write font source url.','product-designer'),
                 'type'		=> 'text',
                 'value'		=> '',
                 'default'		=> '',
@@ -102,12 +102,12 @@ function product_designer_settings_content_general(){
         $args = array(
             'id'		=> 'menu_position',
             'parent'		=> 'product_designer_settings',
-            'title'		=> __('Menu position?','post-grid'),
-            'details'	=> __('Choose menu position','post-grid'),
+            'title'		=> __('Menu position?','product-designer'),
+            'details'	=> __('Choose menu position','product-designer'),
             'type'		=> 'select',
             'value'		=> $menu_position,
             'default'		=> '',
-            'args'		=> array('left'=>__('Left','post-grid'), 'right'=>__('Right','post-grid')  ),
+            'args'		=> array('left'=>__('Left','product-designer'), 'right'=>__('Right','product-designer')  ),
         );
 
         $settings_tabs_field->generate_field($args);
@@ -135,22 +135,22 @@ if(!function_exists('product_designer_settings_content_help_support')) {
 
         ?>
         <div class="section">
-            <div class="section-title"><?php echo __('Get support', 'post-grid'); ?></div>
-            <p class="description section-description"><?php echo __('Use following to get help and support from our expert team.', 'post-grid'); ?></p>
+            <div class="section-title"><?php echo __('Get support', 'product-designer'); ?></div>
+            <p class="description section-description"><?php echo __('Use following to get help and support from our expert team.', 'product-designer'); ?></p>
 
             <?php
 
             ob_start();
             ?>
 
-            <p><?php echo __('Ask question for free on our forum and get quick reply from our expert team members.', 'post-grid'); ?></p>
-            <a class="button" href="https://www.pickplugins.com/create-support-ticket/"><?php echo __('Create support ticket', 'post-grid'); ?></a>
+            <p><?php echo __('Ask question for free on our forum and get quick reply from our expert team members.', 'product-designer'); ?></p>
+            <a class="button" href="https://www.pickplugins.com/create-support-ticket/"><?php echo __('Create support ticket', 'product-designer'); ?></a>
 
-            <p><?php echo __('Read our documentation before asking your question.', 'post-grid'); ?></p>
-            <a class="button" href="https://www.pickplugins.com/documentation/product-designer/"><?php echo __('Documentation', 'post-grid'); ?></a>
+            <p><?php echo __('Read our documentation before asking your question.', 'product-designer'); ?></p>
+            <a class="button" href="https://www.pickplugins.com/documentation/product-designer/"><?php echo __('Documentation', 'product-designer'); ?></a>
 
-<!--            <p>--><?php //echo __('Watch video tutorials.', 'post-grid'); ?><!--</p>-->
-<!--            <a class="button" href="https://www.youtube.com/playlist?list=PL0QP7T2SN94Yut5Y0MSVg1wqmqWz0UYpt"><i class="fab fa-youtube"></i> --><?php //echo __('All tutorials', 'post-grid'); ?><!--</a>-->
+<!--            <p>--><?php //echo __('Watch video tutorials.', 'product-designer'); ?><!--</p>-->
+<!--            <a class="button" href="https://www.youtube.com/playlist?list=PL0QP7T2SN94Yut5Y0MSVg1wqmqWz0UYpt"><i class="fab fa-youtube"></i> --><?php //echo __('All tutorials', 'product-designer'); ?><!--</a>-->
 
 <!--            <ul>-->
 <!--                <li><i class="far fa-dot-circle"></i> <a href="https://youtu.be/YVtsIbEb9zs">Latest Version 2.0.46 Overview</a></li>-->
@@ -166,7 +166,7 @@ if(!function_exists('product_designer_settings_content_help_support')) {
             $args = array(
                 'id'		=> 'get_support',
                 //'parent'		=> '',
-                'title'		=> __('Ask question','post-grid'),
+                'title'		=> __('Ask question','product-designer'),
                 'details'	=> '',
                 'type'		=> 'custom_html',
                 'html'		=> $html,
@@ -191,7 +191,7 @@ if(!function_exists('product_designer_settings_content_help_support')) {
             $args = array(
                 'id'		=> 'reviews',
                 //'parent'		=> '',
-                'title'		=> __('Submit reviews','post-grid'),
+                'title'		=> __('Submit reviews','product-designer'),
                 'details'	=> '',
                 'type'		=> 'custom_html',
                 'html'		=> $html,
@@ -224,8 +224,8 @@ if(!function_exists('product_designer_settings_content_templates')) {
 
         ?>
         <div class="section">
-            <div class="section-title"><?php echo __('Templates', 'post-grid'); ?></div>
-            <p class="description section-description"><?php echo __('Choose page templates for various page.', 'post-grid'); ?></p>
+            <div class="section-title"><?php echo __('Templates', 'product-designer'); ?></div>
+            <p class="description section-description"><?php echo __('Choose page templates for various page.', 'product-designer'); ?></p>
 
             <?php
 
@@ -255,8 +255,8 @@ if(!function_exists('product_designer_settings_content_buy_pro')) {
 
         ?>
         <div class="section">
-            <div class="section-title"><?php echo __('Get Premium', 'post-grid'); ?></div>
-            <p class="description section-description"><?php echo __('Thanks for using our plugin, if you looking for some advance feature please buy premium version.', 'post-grid'); ?></p>
+            <div class="section-title"><?php echo __('Get Premium', 'product-designer'); ?></div>
+            <p class="description section-description"><?php echo __('Thanks for using our plugin, if you looking for some advance feature please buy premium version.', 'product-designer'); ?></p>
 
             <?php
 
@@ -264,52 +264,52 @@ if(!function_exists('product_designer_settings_content_buy_pro')) {
             ob_start();
             ?>
 
-            <p><?php echo __('If you love our plugin and want more feature please consider to buy pro version.', 'post-grid'); ?></p>
-            <a class="button" href="https://www.pickplugins.com/item/product-designer/?ref=dashobard"><?php echo __('Buy premium', 'post-grid'); ?></a>
-            <a class="button" href="http://www.pickplugins.com/demo/product-designer/?ref=dashobard"><?php echo __('See all demo', 'post-grid'); ?></a>
+            <p><?php echo __('If you love our plugin and want more feature please consider to buy pro version.', 'product-designer'); ?></p>
+            <a class="button" href="https://www.pickplugins.com/item/product-designer/?ref=dashobard"><?php echo __('Buy premium', 'product-designer'); ?></a>
+            <a class="button" href="http://www.pickplugins.com/demo/product-designer/?ref=dashobard"><?php echo __('See all demo', 'product-designer'); ?></a>
 
-            <h2><?php echo __('See the differences','post-grid'); ?></h2>
+            <h2><?php echo __('See the differences','product-designer'); ?></h2>
 
             <table class="pro-features">
                 <thead>
                 <tr>
-                    <th class="col-features"><?php echo __('Features','post-grid'); ?></th>
-                    <th class="col-free"><?php echo __('Free','post-grid'); ?></th>
-                    <th class="col-pro"><?php echo __('Premium','post-grid'); ?></th>
+                    <th class="col-features"><?php echo __('Features','product-designer'); ?></th>
+                    <th class="col-free"><?php echo __('Free','product-designer'); ?></th>
+                    <th class="col-pro"><?php echo __('Premium','product-designer'); ?></th>
                 </tr>
                 </thead>
 
                 <tr>
                     <td colspan="3" class="col-features">
-                        <h3><?php echo __('Canvas Options','post-grid'); ?></h3>
+                        <h3><?php echo __('Canvas Options','product-designer'); ?></h3>
                     </td>
                 </tr>
                 <tr>
-                    <td class="col-features"><?php echo __('Canvas width','post-grid'); ?> </td>
+                    <td class="col-features"><?php echo __('Canvas width','product-designer'); ?> </td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Canvas height','post-grid'); ?> </td>
+                    <td class="col-features"><?php echo __('Canvas height','product-designer'); ?> </td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Output file format','post-grid'); ?> </td>
+                    <td class="col-features"><?php echo __('Output file format','product-designer'); ?> </td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Design preview','post-grid'); ?> </td>
+                    <td class="col-features"><?php echo __('Design preview','product-designer'); ?> </td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Preview file format','post-grid'); ?> </td>
+                    <td class="col-features"><?php echo __('Preview file format','product-designer'); ?> </td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
@@ -317,107 +317,107 @@ if(!function_exists('product_designer_settings_content_buy_pro')) {
 
 
                 <tr>
-                    <td class="col-features"><?php echo __('Download preview','post-grid'); ?> </td>
+                    <td class="col-features"><?php echo __('Download preview','product-designer'); ?> </td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Download file format','post-grid'); ?> </td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-
-                <tr>
-                    <td class="col-features"><?php echo __('Product sides','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-                <tr>
-                    <td class="col-features"><?php echo __('Pre-saved templates','post-grid'); ?> </td>
+                    <td class="col-features"><?php echo __('Download file format','product-designer'); ?> </td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
 
                 <tr>
-                    <td class="col-features"><?php echo __('Unlimited Clip-art','post-grid'); ?> </td>
+                    <td class="col-features"><?php echo __('Product sides','product-designer'); ?> </td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Clip-art categories.','post-grid'); ?> </td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-
-                <tr>
-                    <td class="col-features"><?php echo __('Custom Clip-art upload','post-grid'); ?> </td>
+                    <td class="col-features"><?php echo __('Pre-saved templates','product-designer'); ?> </td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
 
                 <tr>
-                    <td class="col-features"><?php echo __('Custom Clip-art price','post-grid'); ?> </td>
+                    <td class="col-features"><?php echo __('Unlimited Clip-art','product-designer'); ?> </td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features"><?php echo __('Clip-art categories.','product-designer'); ?> </td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-features"><?php echo __('Custom Clip-art upload','product-designer'); ?> </td>
+                    <td><i class="fas fa-times"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-features"><?php echo __('Custom Clip-art price','product-designer'); ?> </td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Text art.','post-grid'); ?> </td>
+                    <td class="col-features"><?php echo __('Text art.','product-designer'); ?> </td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Curve text.','post-grid'); ?> </td>
+                    <td class="col-features"><?php echo __('Curve text.','product-designer'); ?> </td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Quotes text.','post-grid'); ?> </td>
+                    <td class="col-features"><?php echo __('Quotes text.','product-designer'); ?> </td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Bar code','post-grid'); ?> </td>
+                    <td class="col-features"><?php echo __('Bar code','product-designer'); ?> </td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('QR Code','post-grid'); ?> </td>
+                    <td class="col-features"><?php echo __('QR Code','product-designer'); ?> </td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Custom shapes.','post-grid'); ?> </td>
+                    <td class="col-features"><?php echo __('Custom shapes.','product-designer'); ?> </td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
 
                 <tr>
-                    <td class="col-features"><?php echo __('Google Fonts.','post-grid'); ?> </td>
+                    <td class="col-features"><?php echo __('Google Fonts.','product-designer'); ?> </td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Custom Fonts.','post-grid'); ?> </td>
+                    <td class="col-features"><?php echo __('Custom Fonts.','product-designer'); ?> </td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
                 <tr>
-                    <td class="col-features"><?php echo __('Menu position.','post-grid'); ?> </td>
+                    <td class="col-features"><?php echo __('Menu position.','product-designer'); ?> </td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
@@ -427,14 +427,14 @@ if(!function_exists('product_designer_settings_content_buy_pro')) {
 
 
                 <tr>
-                    <th class="col-features"><?php echo __('Features','post-grid'); ?></th>
-                    <th class="col-free"><?php echo __('Free','post-grid'); ?></th>
-                    <th class="col-pro"><?php echo __('Premium','post-grid'); ?></th>
+                    <th class="col-features"><?php echo __('Features','product-designer'); ?></th>
+                    <th class="col-free"><?php echo __('Free','product-designer'); ?></th>
+                    <th class="col-pro"><?php echo __('Premium','product-designer'); ?></th>
                 </tr>
                 <tr>
-                    <td class="col-features"><?php echo __('Buy now','post-grid'); ?></td>
+                    <td class="col-features"><?php echo __('Buy now','product-designer'); ?></td>
                     <td> </td>
-                    <td><a class="button" href="https://www.pickplugins.com/item/product-designer/?ref=dashobard"><?php echo __('Buy premium', 'post-grid'); ?></a></td>
+                    <td><a class="button" href="https://www.pickplugins.com/item/product-designer/?ref=dashobard"><?php echo __('Buy premium', 'product-designer'); ?></a></td>
                 </tr>
 
             </table>
@@ -447,7 +447,7 @@ if(!function_exists('product_designer_settings_content_buy_pro')) {
 
             $args = array(
                 'id'		=> 'get_pro',
-                'title'		=> __('Get pro version','post-grid'),
+                'title'		=> __('Get pro version','product-designer'),
                 'details'	=> '',
                 'type'		=> 'custom_html',
                 'html'		=> $html,

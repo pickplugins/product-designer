@@ -31,16 +31,16 @@ function clipart_metabox_tabs_content_general($tab, $post_id){
 
     ?>
     <div class="section">
-        <div class="section-title"><?php echo __('Clipart settings', 'post-grid'); ?></div>
-        <p class="description section-description"><?php echo __('Choose options for clipart.', 'post-grid'); ?></p>
+        <div class="section-title"><?php echo __('Clipart settings', 'product-designer'); ?></div>
+        <p class="description section-description"><?php echo __('Choose options for clipart.', 'product-designer'); ?></p>
 
         <?php
 
         $args = array(
             'id'		=> 'clipart_price',
 //            'parent'		=> 'canvas',
-            'title'		=> __('Price','post-grid'),
-            'details'	=> __('Set clipart price, use number only, ex: 2','post-grid'),
+            'title'		=> __('Price','product-designer'),
+            'details'	=> __('Set clipart price, use number only, ex: 2','product-designer'),
             'type'		=> 'text',
             'value'		=> $clipart_price,
             'default'		=> '',
@@ -54,8 +54,8 @@ function clipart_metabox_tabs_content_general($tab, $post_id){
         $args = array(
             'id'		=> 'clipart_thumb_id',
 //            'parent'		=> 'canvas',
-            'title'		=> __('Clipart image','post-grid'),
-            'details'	=> __('Set clipart image.','post-grid'),
+            'title'		=> __('Clipart image','product-designer'),
+            'details'	=> __('Set clipart image.','product-designer'),
             'type'		=> 'media',
             'value'		=> $clipart_thumb_id,
             'default'		=> '',

@@ -1159,41 +1159,45 @@ function product_designer_tools_keyboard(){
         <div class="toolbar-title"><?php echo __('Keyboard Shortcut', 'product-designer'); ?></div>
         <div class="toolbar-section-inner">
 
-            <div class="">
-                <kbd>Delete: Delete selected item</kbd>
+            <div class="shortcut">
+                <kbd>Delete</kbd> Delete selected item
             </div>
-            <div class="">
-                <kbd>Shift + Delete: Clear canvas</kbd>
+            <div class="shortcut">
+                <kbd>Shift + Delete</kbd> Clear canvas
             </div>
-            <div class="">
-                <kbd>+: Zoom in</kbd>
+            <div class="shortcut">
+                <kbd>+</kbd> Zoom in
             </div>
-            <div class="">
-                <kbd>-: Zoom out</kbd>
-            </div>
-
-            <div class="">
-                <kbd>Space: Panning</kbd>
+            <div class="shortcut">
+                <kbd>-</kbd> Zoom out
             </div>
 
-            <div class="">
-                <kbd>Ctrl + Z: Undo</kbd>
+            <div class="shortcut">
+                <kbd>P</kbd> Preview
             </div>
 
-            <div class="">
-                <kbd>Ctrl + Y: Redo</kbd>
+            <div class="shortcut">
+                <kbd>D</kbd> Download
             </div>
 
-            <div class="">
-                <kbd>P: Preview</kbd>
+
+            <div class="shortcut">
+                <kbd>Ctrl + Z</kbd> Undo
             </div>
 
-            <div class="">
-                <kbd>D: Download</kbd>
+            <div class="shortcut">
+                <kbd>Ctrl + Y</kbd> Redo
+            </div>
+            <div class="shortcut">
+                <kbd>Space</kbd> Panning
             </div>
 
-            <div class="">
-                <kbd>Tab: Switch tabs</kbd>
+
+
+
+
+            <div class="shortcut">
+                <kbd>Tab</kbd> Switch tabs
             </div>
 
 

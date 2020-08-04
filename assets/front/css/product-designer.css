@@ -1099,8 +1099,17 @@ display:none;
   display: block;
 }
 
-
-
+.product-designer .shortcut{
+  margin: 3px 0;
+}
+.product-designer .shortcut kbd {
+  background: #506f90;
+  padding: 3px 10px;
+  display: inline-block;
+  border-radius: 3px;
+  font-size: 12px;
+  border: 1px solid #314861;
+}
 
 
 

@@ -25,16 +25,16 @@ function product_designer_template_metabox_content_canvas( $post_id){
 
     ?>
     <div class="section">
-        <div class="section-title"><?php echo __('Canvas settings', 'post-grid'); ?></div>
-        <p class="description section-description"><?php echo __('Choose options for canvas.', 'post-grid'); ?></p>
+        <div class="section-title"><?php echo __('Canvas settings', 'product-designer'); ?></div>
+        <p class="description section-description"><?php echo __('Choose options for canvas.', 'product-designer'); ?></p>
 
         <?php
 
         $args = array(
             'id'		=> 'width',
             'parent'		=> 'canvas',
-            'title'		=> __('Canvas width','post-grid'),
-            'details'	=> __('Set canvas width.','post-grid'),
+            'title'		=> __('Canvas width','product-designer'),
+            'details'	=> __('Set canvas width.','product-designer'),
             'type'		=> 'text',
             'value'		=> $canvas_width,
             'default'		=> '',
@@ -46,8 +46,8 @@ function product_designer_template_metabox_content_canvas( $post_id){
         $args = array(
             'id'		=> 'height',
             'parent'		=> 'canvas',
-            'title'		=> __('Canvas height','post-grid'),
-            'details'	=> __('Set canvas height.','post-grid'),
+            'title'		=> __('Canvas height','product-designer'),
+            'details'	=> __('Set canvas height.','product-designer'),
             'type'		=> 'text',
             'value'		=> $canvas_height,
             'default'		=> '',
@@ -60,15 +60,15 @@ function product_designer_template_metabox_content_canvas( $post_id){
         $args = array(
             'id'		=> 'file_format',
             'parent'		=> 'canvas[output]',
-            'title'		=> __('Output file format','post-grid'),
-            'details'	=> __('Choose output file format.','post-grid'),
+            'title'		=> __('Output file format','product-designer'),
+            'details'	=> __('Choose output file format.','product-designer'),
             'type'		=> 'radio',
             'value'		=> $output_file_format,
             'default'		=> 'jpeg',
             'args'		=> array(
-                'jpeg'=>__('JPEG','post-grid'),
-                'png'=>__('PNG','post-grid'),
-                'svg'=>__('SVG','post-grid'),
+                'jpeg'=>__('JPEG','product-designer'),
+                'png'=>__('PNG','product-designer'),
+                'svg'=>__('SVG','product-designer'),
 
             ),
         );
@@ -78,14 +78,14 @@ function product_designer_template_metabox_content_canvas( $post_id){
         $args = array(
             'id'		=> 'enable',
             'parent'		=> 'canvas[preview]',
-            'title'		=> __('Enable preview','post-grid'),
-            'details'	=> __('Choose enable preview.','post-grid'),
+            'title'		=> __('Enable preview','product-designer'),
+            'details'	=> __('Choose enable preview.','product-designer'),
             'type'		=> 'radio',
             'value'		=> $enable_preview,
             'default'		=> 'yes',
             'args'		=> array(
-                'yes'=>__('Yes','post-grid'),
-                'no'=>__('No','post-grid'),
+                'yes'=>__('Yes','product-designer'),
+                'no'=>__('No','product-designer'),
 
             ),
         );

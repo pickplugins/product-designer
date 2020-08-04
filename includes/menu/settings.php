@@ -8,7 +8,7 @@ $tabs = array();
 
 $tabs[] = array(
     'id' => 'general',
-    'title' => sprintf(__('%s General','post-grid'),'<i class="fas fa-list-ul"></i>'),
+    'title' => sprintf(__('%s General','product-designer'),'<i class="fas fa-list-ul"></i>'),
     'priority' => 1,
     'active' => ($current_tab == 'general') ? true : false,
 );
@@ -16,7 +16,7 @@ $tabs[] = array(
 
 $tabs[] = array(
     'id' => 'help_support',
-    'title' => sprintf(__('%s Help & support','post-grid'),'<i class="fas fa-hands-helping"></i>'),
+    'title' => sprintf(__('%s Help & support','product-designer'),'<i class="fas fa-hands-helping"></i>'),
     'priority' => 90,
     'active' => ($current_tab == 'help_support') ? true : false,
 );
@@ -25,7 +25,7 @@ $tabs[] = array(
 
 $tabs[] = array(
     'id' => 'buy_pro',
-    'title' => sprintf(__('%s Buy Pro','post-grid'),'<i class="fas fa-store"></i>'),
+    'title' => sprintf(__('%s Buy Pro','product-designer'),'<i class="fas fa-store"></i>'),
     'priority' => 95,
     'active' => ($current_tab == 'buy_pro') ? true : false,
 );
@@ -50,7 +50,7 @@ $product_designer_settings = get_option('product_designer_settings');
 
 ?>
 <div class="wrap">
-	<div id="icon-tools" class="icon32"><br></div><h2><?php echo sprintf(__('%s Settings', 'post-grid'), product_designer_plugin_name)?></h2>
+	<div id="icon-tools" class="icon32"><br></div><h2><?php echo sprintf(__('%s Settings', 'product-designer'), product_designer_plugin_name)?></h2>
 		<form  method="post" action="<?php echo str_replace( '%7E', '~', $_SERVER['REQUEST_URI']); ?>">
 	        <input type="hidden" name="product_designer_hidden" value="Y">
             <input type="hidden" name="tab" value="<?php echo $current_tab; ?>">
@@ -60,7 +60,7 @@ $product_designer_settings = get_option('product_designer_settings');
                 if(wp_verify_nonce( $nonce, 'product_designer_nonce' ) && $_POST['product_designer_hidden'] == 'Y') {
                     do_action('product_designer_settings_save');
                     ?>
-                    <div class="updated notice  is-dismissible"><p><strong><?php _e('Changes Saved.', 'post-grid' ); ?></strong></p></div>
+                    <div class="updated notice  is-dismissible"><p><strong><?php _e('Changes Saved.', 'product-designer' ); ?></strong></p></div>
                     <?php
                 }
             }
@@ -125,7 +125,7 @@ $product_designer_settings = get_option('product_designer_settings');
                 <div class="clear clearfix"></div>
                 <p class="submit">
                     <?php wp_nonce_field( 'product_designer_nonce' ); ?>
-                    <input class="button button-primary" type="submit" name="Submit" value="<?php _e('Save Changes','post-grid' ); ?>" />
+                    <input class="button button-primary" type="submit" name="Submit" value="<?php _e('Save Changes','product-designer' ); ?>" />
                 </p>
             </div>
 		</form>

@@ -19,12 +19,12 @@ class product_designer_meta_boxes{
 
 	public function pd_template($post_type){
 
-            add_meta_box('post-grid-layout',__('Template data', 'post-grid'), array($this, 'pd_template_display'), 'pd_template', 'normal', 'high');
+            add_meta_box('post-grid-layout',__('Template data', 'product-designer'), array($this, 'pd_template_display'), 'pd_template', 'normal', 'high');
 	}
 
     public function clipart($post_type){
 
-        add_meta_box('post-grid',__('Clipart Options', 'post-grid'), array($this, 'clipart_display'), 'clipart', 'normal', 'high');
+        add_meta_box('product-designer',__('Clipart Options', 'product-designer'), array($this, 'clipart_display'), 'clipart', 'normal', 'high');
 
     }
 
@@ -47,14 +47,14 @@ class product_designer_meta_boxes{
 
         $clipart_settings_tab[] = array(
             'id' => 'canvas',
-            'title' => sprintf(__('%s Canvas','post-grid'), '<i class="fas fa-palette"></i>'),
+            'title' => sprintf(__('%s Canvas','product-designer'), '<i class="fas fa-palette"></i>'),
             'priority' => 5,
             'active' => true,
         );
 
         $clipart_settings_tab[] = array(
             'id' => 'product_sides',
-            'title' => sprintf(__('%s Product sides','post-grid'), '<i class="fas fa-cube"></i>'),
+            'title' => sprintf(__('%s Product sides','product-designer'), '<i class="fas fa-cube"></i>'),
             'priority' => 10,
             'active' => false,
         );
@@ -201,7 +201,7 @@ class product_designer_meta_boxes{
 
         $settings_tabs[] = array(
             'id' => 'general',
-            'title' => sprintf(__('%s General','post-grid'), '<i class="fas fa-cogs"></i>'),
+            'title' => sprintf(__('%s General','product-designer'), '<i class="fas fa-cogs"></i>'),
             'priority' => 5,
             'active' => ($current_tab == 'general') ? true : false,
         );

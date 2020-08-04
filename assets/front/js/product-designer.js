@@ -160,7 +160,7 @@ jQuery(document).ready(function($){
 
 
         //$('.product-designer .menu .loading').fadeIn();
-        product_designer_get_object_list();
+        //product_designer_get_object_list();
 
 
     }
@@ -1682,9 +1682,8 @@ $(document).on('click','.generate-side-output',function(event){
 
 
             html += '<span class="remove"><i class="fa fa-times" ></i></span>';
-            //html += '<span class="hide"><i class="fa fa-eye" ></i></span>';
-            //html += '<span class="lock"><i class="fa fa-lock" ></i></span>';
-            //html += '<span class="selectLayer"><i class="fa fa-check" ></i></span>';
+            html += '<span class="hide"><i class="fa fa-eye" ></i></span>';
+            html += '<span class="lock"><i class="fa fa-unlock-alt" ></i></span>';
 
             html += '<span class="type ">'+objectType+'</span>';
             //html += '<span class="name">'+objectName+'</span>';
@@ -1738,6 +1737,7 @@ $(document).on('click','.generate-side-output',function(event){
         var selected_object = canvas.getActiveObject();
 
         selected_object.remove();
+        product_designer_get_object_list();
 
         product_designer_editor_save();
 
@@ -1750,13 +1750,9 @@ $(document).on('click','.generate-side-output',function(event){
         event.preventDefault();
         event.stopPropagation();
 
-
-
-
-
         obj_id = $(this).parent().attr('obj-id');
         //canvas.setActiveObject(canvas.item(obj_id));
-        var selected_object = canvas.getActiveObject();
+        //var selected_object = canvas.getActiveObject();
 
         console.log(obj_id);
 
@@ -1764,13 +1760,17 @@ $(document).on('click','.generate-side-output',function(event){
         if($(this).hasClass('active')){
 
             console.log('Has class');
+            $(this).removeClass('active');
 
-
+            canvas.item(obj_id).visible = true;
+            $(this).html('<i class="fa fa-eye"></i>');
         }else{
 
             $(this).addClass('active');
-
+            canvas.item(obj_id).visible = false;
             console.log('No class');
+
+            $(this).html('<i class="fa fa-eye-slash"></i>');
 
         }
 
@@ -1784,6 +1784,54 @@ $(document).on('click','.generate-side-output',function(event){
         //console(obj_id);
     })
 
+
+
+    $(document).on('click','.product-designer .layers-list .layer .lock',function(event){
+
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        obj_id = $(this).parent().attr('obj-id');
+        //canvas.setActiveObject(canvas.item(obj_id));
+        //var selected_object = canvas.getActiveObject();
+
+        console.log(obj_id);
+
+
+        if($(this).hasClass('active')){
+
+            console.log('Has class');
+            $(this).removeClass('active');
+
+            canvas.item(obj_id).selectable  = true;
+            canvas.item(obj_id).evented   = true;
+
+            $(this).html('<i class="fa fa-unlock-alt"></i>');
+        }else{
+
+            $(this).addClass('active');
+            //canvas.item(obj_id).visible = false;
+
+            canvas.item(obj_id).selectable  = false;
+            canvas.item(obj_id).evented   = false;
+
+
+            console.log('No class');
+            $(this).html('<i class="fa fa-lock"></i>');
+
+
+        }
+
+
+
+
+
+
+        product_designer_editor_save()
+
+        //console(obj_id);
+    })
 
 
 
@@ -3286,7 +3334,7 @@ $(document).on('click','.generate-side-output',function(event){
 
 
             canvas.renderAll();
-
+            product_designer_get_object_list();
             product_designer_editor_save();
             tools_tabs_switch(0);
 
@@ -3320,7 +3368,7 @@ $(document).on('click','.generate-side-output',function(event){
         canvas.setActiveObject(text);
         canvas.renderAll();
 		////console($.now());
-
+        product_designer_get_object_list();
         product_designer_editor_save();
 
         tools_tabs_switch(0);
@@ -3350,6 +3398,9 @@ $(document).on('click','.clipart-list img',function(){
         img.setCoords();
         canvas.setActiveObject(img);
         canvas.renderAll();
+
+
+        product_designer_get_object_list();
         product_designer_editor_save()
     });
 
@@ -3748,6 +3799,12 @@ $(document).on('click','.clipart-list img',function(){
 
             $('.product-designer .welcome-tour').fadeOut();
 
+            var d = new Date();
+            d.setTime(d.getTime() + (3000 * 24 * 60 * 60 * 1000));
+            var expires = "expires="+d.toUTCString();
+
+
+            document.cookie = "product_designer_tour=false;"+expires;
 
            // anno2.show();
             //$('.anno-overlay').css('display','none');
@@ -3911,7 +3968,13 @@ $(document).on('click','.clipart-list img',function(){
 
         product_designer_editor.tour_guide['enable'] = false;
 
-        document.cookie = "product_designer_tour=false";
+
+        var d = new Date();
+        d.setTime(d.getTime() + (3000 * 24 * 60 * 60 * 1000));
+        var expires = "expires="+d.toUTCString();
+
+
+        document.cookie = "product_designer_tour=false;"+expires;
 
         console.log('Tour end');
 
@@ -4091,60 +4154,60 @@ $(document).on('click','.clipart-list img',function(){
 
 
 
-
-        var boundingBox = new fabric.Rect({
-            fill: "rgba(255, 255, 255, 0.0)",
-            width: 98,
-            height: 200,
-            hasBorders: false,
-            hasControls: false,
-            lockMovementX: true,
-            lockMovementY: true,
-            evented: false,
-            stroke: "black"
-        });
-
-
-
-        canvas.on("object:moving", function () {
-
-            movingBox = canvas.getActiveObject();
-
-
-
-            var top = movingBox.top;
-            var bottom = top + movingBox.height;
-            var left = movingBox.left;
-            var right = left + movingBox.width;
-
-            var topBound = boundingBox.top;
-            var bottomBound = topBound + boundingBox.height;
-            var leftBound = boundingBox.left;
-            var rightBound = leftBound + boundingBox.width;
-
-            movingBox.setLeft(Math.min(Math.max(left, leftBound), rightBound - movingBox.width));
-            movingBox.setTop(Math.min(Math.max(top, topBound), bottomBound - movingBox.height));
-        });
-
-        canvas.on("object:scaling", function () {
-
-            movingBox = canvas.getActiveObject();
-           var top = movingBox.top;
-           var bottom = top + movingBox.height;
-           var left = movingBox.left;
-           var right =  movingBox.width;
-
-           var topBound = boundingBox.top;
-           var bottomBound = topBound + boundingBox.height;
-           var leftBound = boundingBox.left;
-           var rightBound = leftBound + boundingBox.width;
-
-          // movingBox.setWidth // need alg here
-           //movingBox.setHeight // need alg here
-        });
-
-
-        canvas.add(boundingBox);
+        //
+        // var boundingBox = new fabric.Rect({
+        //     fill: "rgba(255, 255, 255, 0.0)",
+        //     width: 98,
+        //     height: 200,
+        //     hasBorders: false,
+        //     hasControls: false,
+        //     lockMovementX: true,
+        //     lockMovementY: true,
+        //     evented: false,
+        //     stroke: "black"
+        // });
+        //
+        //
+        //
+        // canvas.on("object:moving", function () {
+        //
+        //     movingBox = canvas.getActiveObject();
+        //
+        //
+        //
+        //     var top = movingBox.top;
+        //     var bottom = top + movingBox.height;
+        //     var left = movingBox.left;
+        //     var right = left + movingBox.width;
+        //
+        //     var topBound = boundingBox.top;
+        //     var bottomBound = topBound + boundingBox.height;
+        //     var leftBound = boundingBox.left;
+        //     var rightBound = leftBound + boundingBox.width;
+        //
+        //     movingBox.setLeft(Math.min(Math.max(left, leftBound), rightBound - movingBox.width));
+        //     movingBox.setTop(Math.min(Math.max(top, topBound), bottomBound - movingBox.height));
+        // });
+        //
+        // canvas.on("object:scaling", function () {
+        //
+        //     movingBox = canvas.getActiveObject();
+        //    var top = movingBox.top;
+        //    var bottom = top + movingBox.height;
+        //    var left = movingBox.left;
+        //    var right =  movingBox.width;
+        //
+        //    var topBound = boundingBox.top;
+        //    var bottomBound = topBound + boundingBox.height;
+        //    var leftBound = boundingBox.left;
+        //    var rightBound = leftBound + boundingBox.width;
+        //
+        //   // movingBox.setWidth // need alg here
+        //    //movingBox.setHeight // need alg here
+        // });
+        //
+        //
+        // canvas.add(boundingBox);
 
 
 

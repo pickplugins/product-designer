@@ -4,7 +4,7 @@
 	Tags: product designer, product customizer, custom product, woocommerce product designer
 	Requires at least: 3.8
 	Tested up to: 5.4
-	Stable tag: 1.0.18
+	Stable tag: 1.0.19
 	License: GPLv2 or later
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -116,6 +116,10 @@ Before starting you need to add some clip art via custom post "Clip Art" with th
 
 
 == Changelog ==
+
+	= 1.0.19 =
+    * 2020-08-04 - add - layer action hide/unhide added
+    * 2020-08-04 - add - layer action lock/unclock added
 
 	= 1.0.18 =
     * 2020-08-04 - add - added more keyboard shortcut
