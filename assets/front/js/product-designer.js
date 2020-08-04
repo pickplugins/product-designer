@@ -4092,6 +4092,72 @@ $(document).on('click','.clipart-list img',function(){
 
 
 
+        var boundingBox = new fabric.Rect({
+            fill: "rgba(255, 255, 255, 0.0)",
+            width: 98,
+            height: 200,
+            hasBorders: false,
+            hasControls: false,
+            lockMovementX: true,
+            lockMovementY: true,
+            evented: false,
+            stroke: "black"
+        });
+
+
+
+        canvas.on("object:moving", function () {
+
+            movingBox = canvas.getActiveObject();
+
+
+
+            var top = movingBox.top;
+            var bottom = top + movingBox.height;
+            var left = movingBox.left;
+            var right = left + movingBox.width;
+
+            var topBound = boundingBox.top;
+            var bottomBound = topBound + boundingBox.height;
+            var leftBound = boundingBox.left;
+            var rightBound = leftBound + boundingBox.width;
+
+            movingBox.setLeft(Math.min(Math.max(left, leftBound), rightBound - movingBox.width));
+            movingBox.setTop(Math.min(Math.max(top, topBound), bottomBound - movingBox.height));
+        });
+
+        canvas.on("object:scaling", function () {
+
+            movingBox = canvas.getActiveObject();
+           var top = movingBox.top;
+           var bottom = top + movingBox.height;
+           var left = movingBox.left;
+           var right =  movingBox.width;
+
+           var topBound = boundingBox.top;
+           var bottomBound = topBound + boundingBox.height;
+           var leftBound = boundingBox.left;
+           var rightBound = leftBound + boundingBox.width;
+
+          // movingBox.setWidth // need alg here
+           //movingBox.setHeight // need alg here
+        });
+
+
+        canvas.add(boundingBox);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

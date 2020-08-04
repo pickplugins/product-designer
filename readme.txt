@@ -1,14 +1,14 @@
 === Product Designer ===
 	Contributors: PickPlugins
 	Donate link: https://www.pickplugins.com/item/product-designer/?ref=wordpress.org
-	Tags: Product Designer, T-Shirt Designer, T-Shirt, Designer, T-Shirt Designer woocommerce, woocommerce, product customizer
+	Tags: product designer, product customizer, custom product, woocommerce product designer
 	Requires at least: 3.8
 	Tested up to: 5.4
 	Stable tag: 1.0.18
 	License: GPLv2 or later
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-	Awesome Product Designer for WooCommerce.
+	Ready product designer plugin for WooCommerce
 
 == Description ==
 
