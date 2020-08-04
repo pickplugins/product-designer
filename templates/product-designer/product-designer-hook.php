@@ -211,22 +211,22 @@ function product_designer_menu_main_tabs(){
     ?>
     <div class="editor-tabs">
         <ul class="editor-tab-navs">
-            <li class="nav tab-nav" data-id="1">Editor</li>
-            <li class="nav tab-nav" data-id="2">Assets</li>
-            <li class="nav tab-nav" data-id="3">Templates</li>
+            <li class="nav tab-nav" data-id="0">Editor</li>
+            <li class="nav tab-nav" data-id="1">Assets</li>
+            <li class="nav tab-nav" data-id="2">Templates</li>
         </ul>
 
-        <div class="editor-tab-content data-id-1">
+        <div class="editor-tab-content data-id-0">
             <?php
             do_action('editor_tab_content_editor');
             ?>
         </div>
-        <div class="editor-tab-content data-id-2">
+        <div class="editor-tab-content data-id-1">
             <?php
             do_action('editor_tab_content_assets');
             ?>
         </div>
-        <div class="editor-tab-content data-id-3">
+        <div class="editor-tab-content data-id-2">
             <?php
             do_action('editor_tab_content_templates');
             ?>
@@ -1182,6 +1182,18 @@ function product_designer_tools_keyboard(){
 
             <div class="">
                 <kbd>Ctrl + Y: Redo</kbd>
+            </div>
+
+            <div class="">
+                <kbd>P: Preview</kbd>
+            </div>
+
+            <div class="">
+                <kbd>D: Download</kbd>
+            </div>
+
+            <div class="">
+                <kbd>Tab: Switch tabs</kbd>
             </div>
 
 

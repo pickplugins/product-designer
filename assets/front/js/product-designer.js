@@ -873,7 +873,7 @@ $(document).on('click','.generate-side-output',function(event){
         //console.log(e.ctrlKey);
         //console.log(e.shiftKey);
 
-        console.log(e.keyCode);
+        //console.log(e.keyCode);
 
 
         if(e.keyCode == 46){
@@ -899,7 +899,27 @@ $(document).on('click','.generate-side-output',function(event){
 
         }
 
+        if(e.keyCode == 9){
 
+            activetab = $('.editor-tab-navs .active');
+            activetabIndex = activetab.attr('data-id');
+
+
+            console.log(activetabIndex);
+
+            tab = parseInt(activetabIndex)+1;
+            console.log(tab);
+
+            if(tab == 3){
+                tools_tabs_switch(0);
+            }else{
+                tools_tabs_switch(tab);
+            }
+
+
+
+
+        }
 
         if(e.shiftKey && e.keyCode == 46){
             canvas.clear();
@@ -933,6 +953,96 @@ $(document).on('click','.generate-side-output',function(event){
 
 
 
+        if(e.keyCode == 68){
+
+            var preview_file_format = product_designer_editor.preview_file_format;
+
+            // base_64 = canvas.toDataURL({format: preview_file_format});
+            //
+            // //console(base_64);
+            //
+            // window.open(base_64, '_blank');
+
+            if(preview_file_format == 'png' || preview_file_format == 'jpeg'){
+                const dataURL = canvas.toDataURL({
+                    width: canvas.width,
+                    height: canvas.height,
+                    left: 0,
+                    top: 0,
+                    format: preview_file_format,
+                });
+                const link = document.createElement('a');
+                link.download = 'download.'+preview_file_format;
+                link.href = dataURL;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }else if(preview_file_format == 'svg'){
+
+
+                var trsvg = canvas.toSVG();
+
+                var dataUrl = 'data:image/svg+xml,'+encodeURIComponent(trsvg);
+
+                //console(dataUrl);
+                //window.open(trsvg, '_blank');
+
+                var dl = document.createElement("a");
+                document.body.appendChild(dl); // This line makes it work in Firefox.
+                dl.setAttribute("href", dataUrl);
+                dl.setAttribute("download", "download.svg");
+                dl.click();
+
+            }
+
+        }
+
+
+        if(e.keyCode == 80){
+
+            var inc_preview_background = side_data[current_side_id].inc_preview_background;
+            var inc_preview_overlay = side_data[current_side_id].inc_preview_overlay;
+            var preview_file_format = product_designer_editor.preview_file_format;
+
+            //console(preview_file_format);
+
+
+
+            // Remove overlayImage
+            if( inc_preview_overlay !=1 ){
+                canvas.overlayImage = null;
+            }
+
+            // Remove backgroundImage
+            if( inc_preview_background !=1 ){
+                canvas.backgroundImage = null;
+            }
+
+
+            //product_designer_editor_save();
+
+
+
+            canvas.renderAll();
+
+            if(preview_file_format == 'png' || preview_file_format == 'jpeg'){
+
+                base_64 = canvas.toDataURL({format: preview_file_format});
+
+                $('.product-designer .preview-img .img').html('<img src="'+base_64+'">');
+                $('.product-designer .preview').fadeIn();
+            }
+            else if(preview_file_format = 'svg'){
+
+                var svg = canvas.toSVG();
+
+                $('.product-designer .preview-img .img').html(svg);
+                $('.product-designer .preview').fadeIn();
+
+            }
+            // //console(base_64);
+
+        }
 
 
 
