@@ -1182,11 +1182,11 @@ function product_designer_tools_keyboard(){
             </div>
 
             <div class="shortcut">
-                <kbd>P</kbd> Preview
+                <kbd>Shift + P</kbd> Preview
             </div>
 
             <div class="shortcut">
-                <kbd>D</kbd> Download
+                <kbd>Shift + D</kbd> Download
             </div>
 
 

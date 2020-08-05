@@ -954,7 +954,7 @@ $(document).on('click','.generate-side-output',function(event){
 
 
 
-        if(e.keyCode == 68){
+        if(e.shiftKey && e.keyCode == 68){
 
             var preview_file_format = product_designer_editor.preview_file_format;
 
@@ -999,7 +999,7 @@ $(document).on('click','.generate-side-output',function(event){
         }
 
 
-        if(e.keyCode == 80){
+        if(e.shiftKey && e.keyCode == 80){
 
             var inc_preview_background = side_data[current_side_id].inc_preview_background;
             var inc_preview_overlay = side_data[current_side_id].inc_preview_overlay;
@@ -3357,7 +3357,7 @@ $(document).on('click','.generate-side-output',function(event){
             canvas.renderAll();
             product_designer_get_object_list();
             product_designer_editor_save();
-            tools_tabs_switch(0);
+            //tools_tabs_switch(0);
 
 
 
@@ -3392,7 +3392,7 @@ $(document).on('click','.generate-side-output',function(event){
         product_designer_get_object_list();
         product_designer_editor_save();
 
-        tools_tabs_switch(0);
+        //tools_tabs_switch(0);
 	})
 
 
@@ -3433,7 +3433,7 @@ $(document).on('click','.clipart-list img',function(){
     });
 
 
-    tools_tabs_switch(0);
+   // tools_tabs_switch(0);
 
 })
 
