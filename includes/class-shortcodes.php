@@ -56,6 +56,90 @@ class class_product_designer_shortcodes  {
         $atts['currency_symbol'] = $currency_symbol;
 
 
+        $product_data = wc_get_product($product_id);
+        $is_variable = $product_data->is_type('variable');
+        $product_type = $product_data->get_type();
+
+        if($product_type == 'variable'):
+
+            $variation_id = isset($_GET['variation_id']) ? sanitize_text_field($_GET['variation_id']): '';
+
+            $atts['variation_id'] = $variation_id;
+
+
+            if(empty($variation_id)){
+                echo __('Product variation is not selected.','product-designer') ;
+                return;
+            }
+
+            $pd_template_id = get_post_meta( $variation_id, 'pd_template_id', true );
+
+
+            $variation_data = new WC_Product_Variation( $variation_id );
+
+            $sale_price = $variation_data->get_sale_price();
+            $regular_price = $variation_data->get_regular_price();
+
+            if(!empty($sale_price)){
+                $product_base_price = $sale_price;
+                $product_display_price = '<strike>'.$currency_symbol.$regular_price.'</strike> - '.$currency_symbol.$sale_price;;
+            }
+            else{
+                $product_base_price = $regular_price;
+                $product_display_price = $currency_symbol.$regular_price;;
+            }
+
+
+            $atts['base_price'] = $product_base_price;
+            $atts['display_price'] = $product_display_price;
+
+
+
+        elseif($product_type == 'simple'):
+
+            $pd_template_id = get_post_meta( $product_id, 'pd_template_id', true );
+
+            $sale_price = get_post_meta($product_id, '_sale_price', true);
+            $regular_price = get_post_meta($product_id, '_regular_price', true);
+
+            if(!empty($sale_price)){
+                $product_base_price = $sale_price;
+                $product_display_price = $product_data->get_price_html();
+            }
+            else{
+                $product_base_price = $regular_price;
+                $product_display_price = $product_data->get_price_html();
+            }
+
+            $atts['base_price'] = $product_base_price;
+            $atts['display_price'] = $product_display_price;
+
+
+        endif;
+
+        $atts['pd_template_id'] = $pd_template_id;
+
+
+        $canvas_settings = get_post_meta( $pd_template_id, 'canvas', true );
+        $side_data = get_post_meta( $pd_template_id, 'side_data', true );
+
+
+        $atts['canvas_settings'] = $canvas_settings;
+        $atts['side_data'] = $side_data;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         if($font_aw_version == 'v_5'){
 
             $icon_separator = '<i class="fas fa-angle-double-right"></i>';
