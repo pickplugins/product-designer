@@ -1626,9 +1626,22 @@ $(document).on('click','.generate-side-output',function(event){
 
         objectName = '';
         objectId = '';
+        totalPrice = 0;
 
         for (var i = 0, len = length; i < len; i++) {
 
+
+            price = objectList[i].get('price');
+
+            if(typeof price == 'undefined'){
+                price = 0;
+
+            }
+
+            totalPrice= totalPrice + parseFloat(price);
+
+
+            console.log(price);
 
             type = objectList[i].type;
             id = objectList[i].id;
@@ -1681,11 +1694,11 @@ $(document).on('click','.generate-side-output',function(event){
             }
 
 
-            html += '<span class="remove"><i class="fa fa-times" ></i></span>';
-            html += '<span class="hide"><i class="fa fa-eye" ></i></span>';
-            html += '<span class="lock"><i class="fa fa-unlock-alt" ></i></span>';
-
-            html += '<span class="type ">'+objectType+'</span>';
+            html += '<span aria-label="Remove" class="remove hint--top"><i class="fa fa-times" ></i></span>';
+            html += '<span aria-label="Hide/Unhide" class="hide hint--top"><i class="fa fa-eye" ></i></span>';
+            html += '<span aria-label="Lock/Unlock" class="lock hint--top"><i class="fa fa-unlock-alt" ></i></span>';
+            html += '<span aria-label="Type" class="type hint--top">'+objectType+'</span>';
+            html += '<span aria-label="Price" class="price hint--top">'+price+'</span>';
             //html += '<span class="name">'+objectName+'</span>';
 
             ////console(objectList[i]);
@@ -1693,6 +1706,9 @@ $(document).on('click','.generate-side-output',function(event){
 
 
         }
+
+        console.log(totalPrice);
+
 
         $('.layers-list').html(html);
 
@@ -3381,17 +3397,24 @@ $(document).on('click','.generate-side-output',function(event){
 $(document).on('click','.clipart-list img',function(){
 
     product_designer_editor_toast('','Clipart added.');
-    src = jQuery(this).attr('src');
+    src = $(this).attr('src');
+    price = $(this).attr('data-price');
+
+    console.log(price);
+
     var newImg = new Image();
     newImg.src = src;
     var height = newImg.height;
     var width = newImg.width;
+
 
     fabric.Image.fromURL(src, function(img){
         scale = 200 / img.width;
         img.set({
             scaleX: scale,
             scaleY: scale,
+            price: price,
+
         });
         canvas.add(img);
         canvas.centerObject(img);

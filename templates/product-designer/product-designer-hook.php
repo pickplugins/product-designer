@@ -499,6 +499,7 @@ function product_designer_image_type_content_clipart(){
             while ( $wp_query->have_posts() ) : $wp_query->the_post();
 
                 $clipart_thumb_id = get_post_meta(get_the_ID(),'clipart_thumb_id', true);
+                $clipart_price = get_post_meta(get_the_ID(),'clipart_price', true);
 
                 //var_dump($clipart_thumb_id);
 
@@ -512,7 +513,7 @@ function product_designer_image_type_content_clipart(){
                 $clipart_url = !empty($clipart_url) ? $clipart_url : $thumb_url;
 
                 if(!empty($clipart_url))
-                    echo '<img class="" title="'.get_the_title().'" src="'.esc_url_raw($clipart_url).'" />';
+                    echo '<img data-price="'.$clipart_price.'" class="" title="'.get_the_title().'" src="'.esc_url_raw($clipart_url).'" />';
 
             endwhile;
             wp_reset_query();
