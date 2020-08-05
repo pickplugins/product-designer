@@ -20,6 +20,14 @@ class class_product_designer_shortcodes  {
                 ),
             $atts);
 
+        $product_id = isset($_GET['product_id']) ? sanitize_text_field($_GET['product_id']) : '';
+
+        if(empty($product_id)){
+            echo __('Product is not selected.','product-designer') ;
+            return;
+        }
+
+
         $product_designer_settings = get_option('product_designer_settings');
         $font_aw_version = isset($product_designer_settings['font_aw_version']) ? $product_designer_settings['font_aw_version'] : 'v_4';
         $text_price = isset($product_designer_settings['text_price']) ? $product_designer_settings['text_price'] : '';
@@ -29,7 +37,9 @@ class class_product_designer_shortcodes  {
         $barcode_price= isset($product_designer_settings['barcode_price']) ? $product_designer_settings['barcode_price'] : '';
         $posts_per_page= isset($product_designer_settings['posts_per_page']) ? $product_designer_settings['posts_per_page'] : 10;
         $menu_position= isset($product_designer_settings['menu_position']) ? $product_designer_settings['menu_position'] : 'left';
+        $enable_guide= isset($product_designer_settings['enable_guide']) ? $product_designer_settings['enable_guide'] : 'yes';
 
+        $currency_symbol = get_woocommerce_currency_symbol();
         //var_dump($font_aw_version);
 
         $atts['settings']['text_price'] = $text_price;
@@ -39,6 +49,11 @@ class class_product_designer_shortcodes  {
         $atts['settings']['barcode_price'] = $barcode_price;
         $atts['settings']['posts_per_page'] = $posts_per_page;
         $atts['settings']['menu_position'] = $menu_position;
+        $atts['settings']['enable_guide'] = $enable_guide;
+
+        $atts['product_id'] = $product_id;
+        $atts['product_title'] = get_the_title($product_id);
+        $atts['currency_symbol'] = $currency_symbol;
 
 
         if($font_aw_version == 'v_5'){

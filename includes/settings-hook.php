@@ -12,6 +12,7 @@ function product_designer_settings_content_general(){
     $designer_page_id = isset($product_designer_settings['designer_page_id']) ? $product_designer_settings['designer_page_id'] : '';
     $menu_position = isset($product_designer_settings['menu_position']) ? $product_designer_settings['menu_position'] : '';
     $posts_per_page = isset($product_designer_settings['posts_per_page']) ? $product_designer_settings['posts_per_page'] : '';
+    $enable_guide = isset($product_designer_settings['enable_guide']) ? $product_designer_settings['enable_guide'] : '';
 
 
 
@@ -111,6 +112,23 @@ function product_designer_settings_content_general(){
         );
 
         $settings_tabs_field->generate_field($args);
+
+        $args = array(
+            'id'		=> 'enable_guide',
+            'parent'		=> 'product_designer_settings',
+            'title'		=> __('Enable guide','product-designer'),
+            'details'	=> __('Enable tour guide on page load','product-designer'),
+            'type'		=> 'select',
+            'value'		=> $enable_guide,
+            'default'		=> '',
+            'args'		=> array('yes'=>__('Yes','product-designer'), 'no'=>__('No','product-designer')  ),
+        );
+
+        $settings_tabs_field->generate_field($args);
+
+
+
+
 
         ?>
 

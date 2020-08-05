@@ -1239,9 +1239,9 @@ function product_designer_canvas(){
 
 add_action('product_designer_editor', 'product_designer_scripts', 30);
 
-function product_designer_scripts(){
+function product_designer_scripts($atts){
 
-    $product_id = isset($_GET['product_id']) ? sanitize_text_field($_GET['product_id']) : '';
+    $product_id = isset($atts['product_id']) ? sanitize_text_field($atts['product_id']) : '';
     $session_id = session_id();
     $product_designer_fonts = product_designer_fonts();
 
