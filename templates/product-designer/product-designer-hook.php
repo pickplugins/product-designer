@@ -375,7 +375,7 @@ function product_designer_menu_clipart(){
 
     ?>
     <div class="clipart accordions item pd-guide-2" title="<?php echo __('Clip Art', "product-designer"); ?>">
-        <div class="icon"><i class="fa fa-file-image-o" ></i> Clipart & Assets</div>
+        <div class="icon">Clipart & Assets</div>
         <div class="child">
 
             <div class="tabs">
@@ -568,7 +568,7 @@ function product_designer_menu_text(){
 
     ?>
     <div class="text item accordions pd-guide-3" title="<?php echo __('Text Art', 'product-designer'); ?>">
-        <div class="icon"><i class="fa fa-file-word-o" ></i> Text & Quotes</div>
+        <div class="icon">Text & Quotes</div>
         <div class="child">
 
 
@@ -634,7 +634,7 @@ function product_designer_menu_shapes(){
 
     ?>
     <div class="shapes item accordions pd-guide-4" title="<?php echo __('Shapes', "product-designer"); ?>">
-        <div class="icon"><i class="cpd-icon-flip-horizontal"></i> Shapes</div>
+        <div class="icon">Shapes</div>
         <div class="child">
             <div class="shape-list scrollbar">
 
