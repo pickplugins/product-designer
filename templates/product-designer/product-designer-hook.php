@@ -1072,7 +1072,7 @@ function product_designer_tools_product_info(){
                 $product_data = wc_get_product($product_id);
                 $is_variable = $product_data->is_type('variable');
                 $product_price = '';
-
+                $currency_symbol = get_woocommerce_currency_symbol();
                 //var_dump(product_designer_is_customizable($product_id));
 
                 if($is_variable){
@@ -1083,7 +1083,7 @@ function product_designer_tools_product_info(){
                     $sale_price = $variation_data->get_sale_price();
                     $regular_price = $variation_data->get_regular_price();
 
-                    $currency_symbol = get_woocommerce_currency_symbol();
+
 
                     if(empty($sale_price)){
 
@@ -1117,6 +1117,14 @@ function product_designer_tools_product_info(){
                     <div class="field-label"><?php echo __('Base Price', 'product-designer'); ?></div>
                     <div class="field-input">
                         <?php echo $product_price; ?>
+                    </div>
+                </div>
+
+                <div class="setting-field half">
+                    <div class="field-label"><?php echo __('Cliparts Price', 'product-designer'); ?></div>
+                    <div class="field-input">
+                        <div class="" id="assets-price"><?php echo $currency_symbol; ?><span>0.00</span></div>
+                        <input class="" type="hidden" value="" id="assets-price-val">
                     </div>
                 </div>
 

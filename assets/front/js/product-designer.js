@@ -269,6 +269,7 @@ jQuery(document).ready(function($){
         //applyImageFilters();
 
         canvas.renderAll.bind(canvas);
+        product_designer_get_object_list();
 
         var multiplier = 1;
 
@@ -1613,9 +1614,7 @@ $(document).on('click','.generate-side-output',function(event){
 
 
         html = '';
-        now = $.now();
 
-        console.log(now);
 
         objectList_arr = [];
         var objectList = [];
@@ -1633,7 +1632,10 @@ $(document).on('click','.generate-side-output',function(event){
 
             price = objectList[i].get('price');
 
-            if(typeof price == 'undefined'){
+
+            console.log(price);
+
+            if(typeof price == 'undefined' || price == null || price == ''){
                 price = 0;
 
             }
@@ -1641,7 +1643,6 @@ $(document).on('click','.generate-side-output',function(event){
             totalPrice= totalPrice + parseFloat(price);
 
 
-            console.log(price);
 
             type = objectList[i].type;
             id = objectList[i].id;
@@ -1708,6 +1709,10 @@ $(document).on('click','.generate-side-output',function(event){
         }
 
         console.log(totalPrice);
+
+        $('#assets-price span').html(totalPrice);
+        $('#assets-price-val').val(totalPrice);
+
 
 
         $('.layers-list').html(html);
@@ -3375,7 +3380,7 @@ $(document).on('click','.generate-side-output',function(event){
 
 		////console(product_designer_editor.side_data);
 
-		var text = new fabric.Text(text, { left: 100, top: 100 });
+		var text = new fabric.Text(text, { left: 100, top: 100, price: 1.5 });
 
         text.id = $.now();
 		canvas.add(text);
