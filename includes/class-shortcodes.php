@@ -22,9 +22,23 @@ class class_product_designer_shortcodes  {
 
         $product_designer_settings = get_option('product_designer_settings');
         $font_aw_version = isset($product_designer_settings['font_aw_version']) ? $product_designer_settings['font_aw_version'] : 'v_4';
+        $text_price = isset($product_designer_settings['text_price']) ? $product_designer_settings['text_price'] : '';
+        $clipart_price = isset($product_designer_settings['clipart_price']) ? $product_designer_settings['clipart_price'] : '';
+        $shape_price = isset($product_designer_settings['shape_price']) ? $product_designer_settings['shape_price'] : '';
+        $qrcode_price = isset($product_designer_settings['qrcode_price']) ? $product_designer_settings['qrcode_price'] : '';
+        $barcode_price= isset($product_designer_settings['barcode_price']) ? $product_designer_settings['barcode_price'] : '';
+        $posts_per_page= isset($product_designer_settings['posts_per_page']) ? $product_designer_settings['posts_per_page'] : 10;
+        $menu_position= isset($product_designer_settings['menu_position']) ? $product_designer_settings['menu_position'] : 'left';
 
         //var_dump($font_aw_version);
 
+        $atts['settings']['text_price'] = $text_price;
+        $atts['settings']['clipart_price'] = $clipart_price;
+        $atts['settings']['shape_price'] = $shape_price;
+        $atts['settings']['qrcode_price'] = $qrcode_price;
+        $atts['settings']['barcode_price'] = $barcode_price;
+        $atts['settings']['posts_per_page'] = $posts_per_page;
+        $atts['settings']['menu_position'] = $menu_position;
 
 
         if($font_aw_version == 'v_5'){
@@ -43,7 +57,7 @@ class class_product_designer_shortcodes  {
             $icon_times = '<i class="fas fa-times"></i>';
             $icon_lock = '<i class="fas fa-lock"></i>';
             $icon_unlock = '<i class="fas fa-unlock-alt"></i>';
-            $icon_file = '<i class="fas fa-unlock-alt"></i>';
+            $icon_file_image = '<i class="fas fa-file-image"></i>';
             $icon_cube = '<i class="fas fa-cube"></i>';
             $icon_upload = '<i class="fas fa-upload"></i>';
 
@@ -57,19 +71,19 @@ class class_product_designer_shortcodes  {
             $icon_grid = '<i class="fa fa-th"></i>';
             $icon_eraser = '<i class="fa fa-eraser"></i>';
             $icon_trash = '<i class="fa fa-trash"></i>';
-            $icon_clone = '<i class="fa fa-files-o" aria-hidden="true"></i>';
-            $icon_pencil = '<i class="fa fa-pencil" aria-hidden="true"></i>';
-            $icon_zoomin = '<i class="fa fa-search-plus" aria-hidden="true"></i>';
-            $icon_zoomout = '<i class="fa fa-search-minus" aria-hidden="true"></i>';
-            $icon_hand = '<i class="fa fa-hand-paper-o" aria-hidden="true"></i>';
-            $icon_eye = '<i class="fa fa-eye" aria-hidden="true"></i>';
-            $icon_download = '<i class="fa fa-download" aria-hidden="true"></i>';
-            $icon_times = '<i class="fa fa-times" aria-hidden="true"></i>';
-            $icon_lock = '<i class="fa fa-lock" aria-hidden="true"></i>';
-            $icon_unlock = '<i class="fa fa-unlock-alt" aria-hidden="true"></i>';
-            $icon_file = '<i class="fa fa-unlock-alt" aria-hidden="true"></i>';
-            $icon_cube = '<i class="fa fa-cube" aria-hidden="true"></i>';
-            $icon_upload = '<i class="fa fa-upload" aria-hidden="true"></i>';
+            $icon_clone = '<i class="fa fa-files-o"></i>';
+            $icon_pencil = '<i class="fa fa-pencil"></i>';
+            $icon_zoomin = '<i class="fa fa-search-plus"></i>';
+            $icon_zoomout = '<i class="fa fa-search-minus"></i>';
+            $icon_hand = '<i class="fa fa-hand-paper-o"></i>';
+            $icon_eye = '<i class="fa fa-eye"></i>';
+            $icon_download = '<i class="fa fa-download"></i>';
+            $icon_times = '<i class="fa fa-times"></i>';
+            $icon_lock = '<i class="fa fa-lock"></i>';
+            $icon_unlock = '<i class="fa fa-unlock-alt"></i>';
+            $icon_file_image = '<i class="fa fa-file-image-o"></i>';
+            $icon_cube = '<i class="fa fa-cube"></i>';
+            $icon_upload = '<i class="fa fa-upload"></i>';
 
 
             wp_enqueue_style('font-awesome-4');
@@ -90,7 +104,7 @@ class class_product_designer_shortcodes  {
             'times' => $icon_times,
             'lock' => $icon_lock,
             'unlock' => $icon_unlock,
-            'file' => $icon_file,
+            'file' => $icon_file_image,
             'cube' => $icon_cube,
             'upload' => $icon_upload,
 
@@ -103,7 +117,7 @@ class class_product_designer_shortcodes  {
 
 
 
-        $atts = apply_filters('product_designer_atts', $atts);
+        $atts = apply_filters('product_designer_shortcode_atts', $atts);
 
 
 
