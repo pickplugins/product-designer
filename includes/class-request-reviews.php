@@ -25,9 +25,27 @@ class pickplugins_request_reviews{
         $admin_url = get_admin_url();
         $mark_as_done = wp_nonce_url($admin_url.'?review_status=done', $this->option_name.'_request_reviews', '_wpnonce');
         $remind_later = wp_nonce_url($admin_url.'?review_status=remind_later', $this->option_name.'_request_reviews', '_wpnonce');
+        $remind_date = isset($option['remind_date']) ? $option['remind_date'] : '';
+        $review_status = isset($option['review_status']) ? $option['review_status'] : '';
+
+        $gmt_offset = get_option('gmt_offset');
+        $today_date = date('Y-m-d H:i:s', strtotime('+'.$gmt_offset.' hour'));
+
+        //echo '<pre>'.var_export($option, true).'</pre>';
+
+        if(!empty($review_status)){
+            if($review_status == 'done'){ return;}
+            if($review_status == 'remind_later' && (strtotime($today_date) < strtotime($remind_date)) ){ return;}
+
+        }else{
+            $option['review_status'] = 'remind_later';
+            $option['remind_date'] = date('Y-m-d H:i:s', strtotime('+30 days'));
+            update_option($this->option_name, $option);
+
+            return;
+        }
 
 
-        $nonce = isset($_GET['_wpnonce']) ? sanitize_text_field($_GET['_wpnonce']) : '';
 
 
         ob_start();
@@ -59,16 +77,13 @@ class pickplugins_request_reviews{
             $review_status = isset($_GET['review_status']) ? sanitize_text_field($_GET['review_status']) : '';
             $option = get_option($this->option_name);
 
-            $gmt_offset = get_option('gmt_offset');
-            $current_date = date('Y-m-d H:i:s', strtotime('+'.$gmt_offset.' hour'));
-
             if($review_status =='remind_later'):
 
                 $option['review_status'] = 'remind_later';
                 $option['remind_date'] = date('Y-m-d H:i:s', strtotime('+30 days'));
 
                 ?>
-                <div class="update-nag is-dismissible">We will remind you later.</div>
+                <div class="update-nag is-dismissible"><?php echo __('We will remind you later.','product-designer'); ?></div>
                 <?php
                 update_option($this->option_name, $option);
 
@@ -76,7 +91,7 @@ class pickplugins_request_reviews{
 
                 $option['review_status'] = 'done';
                 ?>
-                <div class="update-nag notice is-dismissible">Thanks for your time and feedback.</div>
+                <div class="update-nag notice is-dismissible"><?php echo __('Thanks for your time and feedback.','product-designer'); ?></div>
                 <?php
 
                 update_option($this->option_name, $option);
