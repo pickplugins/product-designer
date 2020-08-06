@@ -27,6 +27,7 @@ class ProductDesigner{
 		define('product_designer_plugin_version', '1.0.19' );
 
         require_once( product_designer_plugin_dir . 'includes/class-settings-tabs.php');
+        require_once( product_designer_plugin_dir . 'includes/class-request-reviews.php');
 
 		require_once( product_designer_plugin_dir . 'includes/class-functions.php');
 		require_once( product_designer_plugin_dir . 'includes/class-shortcodes.php');
@@ -55,6 +56,20 @@ class ProductDesigner{
 		add_filter('widget_text', 'do_shortcode');
 		
 		register_activation_hook( __FILE__, array( $this, '_activation' ) );
+
+		$args = array(
+		    'option_name' => 'product_designer_settings',
+            'review_url' => 'https://wordpress.org/support/plugin/product-designer/reviews/#new-post',
+
+        );
+
+        $pickplugins_request_reviews = new pickplugins_request_reviews($args);
+
+
+
+
+
+
 
 		}
 

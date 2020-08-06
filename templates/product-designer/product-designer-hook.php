@@ -807,12 +807,14 @@ function product_designer_tools_product_info($atts){
     $base_price = isset($atts['base_price']) ? $atts['base_price'] : '';
     $display_price = isset($atts['display_price']) ? $atts['display_price'] : '';
 
+    $icons = isset($atts['icons']) ? $atts['icons'] : '';
+    $cart = isset($icons['cart']) ? $icons['cart'] : '';
 
 
     ?>
 
     <div class="product-info toolbar-section pd-guide-9">
-        <div class="toolbar-title"><?php echo __('Product info', 'product-designer'); ?></div>
+        <div class="toolbar-title"><?php echo sprintf(__('%s Product info','product-designer'), $cart); ?></div>
         <div class="toolbar-section-inner">
             <form class="cart" enctype="multipart/form-data" method="post" action="#">
                 <input type="hidden" value="<?php echo $product_id; ?>" name="add-to-cart">
@@ -884,44 +886,55 @@ function product_designer_tools_product_info($atts){
 
 add_action('product_designer_tools', 'product_designer_tools_keyboard', 20);
 
-function product_designer_tools_keyboard(){
+function product_designer_tools_keyboard($atts){
+
+    $icons = isset($atts['icons']) ? $atts['icons'] : '';
+    $keyboard = isset($icons['keyboard']) ? $icons['keyboard'] : '';
 
     ?>
     <div class="toolbar-section">
-        <div class="toolbar-title"><?php echo __('Keyboard Shortcut', 'product-designer'); ?></div>
+        <div class="toolbar-title"><?php echo sprintf(__('%s Keyboard Shortcut','product-designer'), $keyboard); ?></div>
         <div class="toolbar-section-inner">
 
             <div class="shortcut">
-                <kbd>Delete</kbd> Delete selected item
+                <?php echo sprintf(__('%s Delete selected item','product-designer'), '<kbd>Delete</kbd>'); ?>
             </div>
             <div class="shortcut">
-                <kbd>Shift + Delete</kbd> Clear canvas
+                <?php echo sprintf(__('%s Clear canvas','product-designer'), '<kbd>Shift + Delete</kbd>'); ?>
+
             </div>
             <div class="shortcut">
-                <kbd>+</kbd> Zoom in
+                <?php echo sprintf(__('%s Zoom in','product-designer'), '<kbd>+</kbd> '); ?>
+
             </div>
             <div class="shortcut">
-                <kbd>-</kbd> Zoom out
+                <?php echo sprintf(__('%s Zoom out','product-designer'), '<kbd>-</kbd> '); ?>
+
             </div>
 
             <div class="shortcut">
-                <kbd>Shift + P</kbd> Preview
+                <?php echo sprintf(__('%s Preview','product-designer'), '<kbd>Shift + P</kbd>'); ?>
+
             </div>
 
             <div class="shortcut">
-                <kbd>Shift + D</kbd> Download
+                <?php echo sprintf(__('%s Download','product-designer'), '<kbd>Shift + D</kbd>'); ?>
+
             </div>
 
 
             <div class="shortcut">
-                <kbd>Ctrl + Z</kbd> Undo
+                <?php echo sprintf(__('%s Undo','product-designer'), '<kbd>Ctrl + Z</kbd>'); ?>
+
             </div>
 
             <div class="shortcut">
-                <kbd>Ctrl + Y</kbd> Redo
+                <?php echo sprintf(__('%s Redo','product-designer'), '<kbd>Ctrl + Y</kbd>'); ?>
+
             </div>
             <div class="shortcut">
-                <kbd>Space</kbd> Panning
+                <?php echo sprintf(__('%s Panning','product-designer'), '<kbd>Space</kbd>'); ?>
+
             </div>
 
 

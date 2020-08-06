@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Product Designer\n"
-"POT-Creation-Date: 2020-08-03 10:07+0600\n"
+"POT-Creation-Date: 2020-08-06 13:42+0600\n"
 "PO-Revision-Date: 2018-07-23 19:13+0600\n"
 "Last-Translator: \n"
 "Language-Team: PickPlugins <support@pickplugins.com>\n"
@@ -77,12 +77,11 @@ msgid "Sides"
 msgstr ""
 
 #: includes/class-post-meta.php:267
-#: templates/product-designer/product-designer-hook.php:848
 msgid "Preview"
 msgstr ""
 
 #: includes/class-post-meta.php:268
-#: templates/product-designer/product-designer-hook.php:857
+#: templates/product-designer/product-designer-hook.php:599
 msgid "Download"
 msgstr ""
 
@@ -95,22 +94,22 @@ msgid "Canvas"
 msgstr ""
 
 #: includes/class-post-meta.php:412 includes/metabox-pd_template-hook.php:36
-#: includes/settings-hook.php:288
+#: includes/settings-hook.php:306
 msgid "Canvas width"
 msgstr ""
 
 #: includes/class-post-meta.php:416 includes/metabox-pd_template-hook.php:49
-#: includes/settings-hook.php:294
+#: includes/settings-hook.php:312
 msgid "Canvas height"
 msgstr ""
 
 #: includes/class-post-meta.php:424 includes/metabox-pd_template-hook.php:63
-#: includes/settings-hook.php:300
+#: includes/settings-hook.php:318
 msgid "Output file format"
 msgstr ""
 
 #: includes/class-post-meta.php:437 includes/metabox-pd_template-hook.php:99
-#: includes/settings-hook.php:312
+#: includes/settings-hook.php:330
 msgid "Preview file format"
 msgstr ""
 
@@ -306,7 +305,7 @@ msgid "Search Order"
 msgstr ""
 
 #: includes/class-settings-bk.php:28 includes/class-settings.php:18
-#: includes/functions-wc.php:133
+#: includes/functions-wc.php:135
 msgid "Product Designer"
 msgstr ""
 
@@ -322,15 +321,23 @@ msgstr ""
 msgid "Add"
 msgstr ""
 
+#: includes/class-shortcodes.php:26
+msgid "Product is not selected."
+msgstr ""
+
+#: includes/class-shortcodes.php:78
+msgid "Product variation is not selected."
+msgstr ""
+
 #: includes/designer-function.php:38
 msgid "Custom clipart"
 msgstr ""
 
-#: includes/functions-wc.php:166 includes/functions-wc.php:292
+#: includes/functions-wc.php:168 includes/functions-wc.php:303
 msgid "Choose Product designer template"
 msgstr ""
 
-#: includes/functions-wc.php:223 includes/functions-wc.php:261
+#: includes/functions-wc.php:229 includes/functions-wc.php:272
 msgid "Customize"
 msgstr ""
 
@@ -424,11 +431,11 @@ msgstr ""
 msgid "Choose enable preview."
 msgstr ""
 
-#: includes/metabox-pd_template-hook.php:87
+#: includes/metabox-pd_template-hook.php:87 includes/settings-hook.php:124
 msgid "Yes"
 msgstr ""
 
-#: includes/metabox-pd_template-hook.php:88
+#: includes/metabox-pd_template-hook.php:88 includes/settings-hook.php:124
 msgid "No"
 msgstr ""
 
@@ -437,7 +444,7 @@ msgid "Choose preview file format."
 msgstr ""
 
 #: includes/metabox-pd_template-hook.php:141
-#: includes/metabox-pd_template-hook.php:389 includes/settings-hook.php:333
+#: includes/metabox-pd_template-hook.php:389 includes/settings-hook.php:351
 msgid "Product sides"
 msgstr ""
 
@@ -449,540 +456,640 @@ msgstr ""
 msgid "Set product sides."
 msgstr ""
 
-#: includes/settings-hook.php:22
+#: includes/settings-hook.php:23
 msgid "General"
 msgstr ""
 
-#: includes/settings-hook.php:23
+#: includes/settings-hook.php:24
 msgid "Choose some general options."
 msgstr ""
 
-#: includes/settings-hook.php:30
+#: includes/settings-hook.php:31
 msgid "Designer page"
 msgstr ""
 
-#: includes/settings-hook.php:31
+#: includes/settings-hook.php:32
 msgid "Display product desginer, use shortcode <code>[product_designer]</code> on that page."
 msgstr ""
 
-#: includes/settings-hook.php:43
+#: includes/settings-hook.php:44
 msgid "Font-awesome version"
 msgstr ""
 
-#: includes/settings-hook.php:44
+#: includes/settings-hook.php:45
 msgid "Choose font awesome version you want to load."
 msgstr ""
 
-#: includes/settings-hook.php:48
+#: includes/settings-hook.php:49
 msgid "Version 5+"
 msgstr ""
 
-#: includes/settings-hook.php:48
+#: includes/settings-hook.php:49
 msgid "Version 4+"
 msgstr ""
 
-#: includes/settings-hook.php:48
+#: includes/settings-hook.php:49
 msgid "None"
 msgstr ""
 
-#: includes/settings-hook.php:57
+#: includes/settings-hook.php:58
 msgid "Post per page"
 msgstr ""
 
-#: includes/settings-hook.php:58
+#: includes/settings-hook.php:59
 msgid "Set custom number of posts per page, ex: 10"
 msgstr ""
 
-#: includes/settings-hook.php:76
+#: includes/settings-hook.php:77
 msgid "Font Name"
 msgstr ""
 
-#: includes/settings-hook.php:77
+#: includes/settings-hook.php:78
 msgid "Write font name here."
 msgstr ""
 
-#: includes/settings-hook.php:85
+#: includes/settings-hook.php:86
 msgid "Font URL"
 msgstr ""
 
-#: includes/settings-hook.php:86
+#: includes/settings-hook.php:87
 msgid "Write font source url."
 msgstr ""
 
-#: includes/settings-hook.php:105
+#: includes/settings-hook.php:106
 msgid "Menu position?"
 msgstr ""
 
-#: includes/settings-hook.php:106
+#: includes/settings-hook.php:107
 msgid "Choose menu position"
 msgstr ""
 
-#: includes/settings-hook.php:110
+#: includes/settings-hook.php:111
 msgid "Left"
 msgstr ""
 
-#: includes/settings-hook.php:110
+#: includes/settings-hook.php:111
 msgid "Right"
 msgstr ""
 
-#: includes/settings-hook.php:138
+#: includes/settings-hook.php:119
+msgid "Enable guide"
+msgstr ""
+
+#: includes/settings-hook.php:120
+msgid "Enable tour guide on page load"
+msgstr ""
+
+#: includes/settings-hook.php:156
 msgid "Get support"
 msgstr ""
 
-#: includes/settings-hook.php:139
+#: includes/settings-hook.php:157
 msgid "Use following to get help and support from our expert team."
 msgstr ""
 
-#: includes/settings-hook.php:146
+#: includes/settings-hook.php:164
 msgid "Ask question for free on our forum and get quick reply from our expert team members."
 msgstr ""
 
-#: includes/settings-hook.php:147
+#: includes/settings-hook.php:165
 msgid "Create support ticket"
 msgstr ""
 
-#: includes/settings-hook.php:149
+#: includes/settings-hook.php:167
 msgid "Read our documentation before asking your question."
 msgstr ""
 
-#: includes/settings-hook.php:150
+#: includes/settings-hook.php:168
 msgid "Documentation"
 msgstr ""
 
-#: includes/settings-hook.php:169
+#: includes/settings-hook.php:187
 msgid "Ask question"
 msgstr ""
 
-#: includes/settings-hook.php:194
+#: includes/settings-hook.php:212
 msgid "Submit reviews"
 msgstr ""
 
-#: includes/settings-hook.php:227
+#: includes/settings-hook.php:245
+#: templates/product-designer/product-designer-hook.php:187
 msgid "Templates"
 msgstr ""
 
-#: includes/settings-hook.php:228
+#: includes/settings-hook.php:246
 msgid "Choose page templates for various page."
 msgstr ""
 
-#: includes/settings-hook.php:258
+#: includes/settings-hook.php:276
 msgid "Get Premium"
 msgstr ""
 
-#: includes/settings-hook.php:259
+#: includes/settings-hook.php:277
 msgid "Thanks for using our plugin, if you looking for some advance feature please buy premium version."
 msgstr ""
 
-#: includes/settings-hook.php:267
+#: includes/settings-hook.php:285
 msgid "If you love our plugin and want more feature please consider to buy pro version."
 msgstr ""
 
-#: includes/settings-hook.php:268 includes/settings-hook.php:437
+#: includes/settings-hook.php:286 includes/settings-hook.php:455
 msgid "Buy premium"
 msgstr ""
 
-#: includes/settings-hook.php:269
+#: includes/settings-hook.php:287
 msgid "See all demo"
 msgstr ""
 
-#: includes/settings-hook.php:271
+#: includes/settings-hook.php:289
 msgid "See the differences"
 msgstr ""
 
-#: includes/settings-hook.php:276 includes/settings-hook.php:430
+#: includes/settings-hook.php:294 includes/settings-hook.php:448
 msgid "Features"
 msgstr ""
 
-#: includes/settings-hook.php:277 includes/settings-hook.php:431
+#: includes/settings-hook.php:295 includes/settings-hook.php:449
 msgid "Free"
 msgstr ""
 
-#: includes/settings-hook.php:278 includes/settings-hook.php:432
+#: includes/settings-hook.php:296 includes/settings-hook.php:450
 msgid "Premium"
 msgstr ""
 
-#: includes/settings-hook.php:284
+#: includes/settings-hook.php:302
 msgid "Canvas Options"
 msgstr ""
 
-#: includes/settings-hook.php:306
+#: includes/settings-hook.php:324
 msgid "Design preview"
 msgstr ""
 
-#: includes/settings-hook.php:320
+#: includes/settings-hook.php:338
 msgid "Download preview"
 msgstr ""
 
-#: includes/settings-hook.php:326
+#: includes/settings-hook.php:344
 msgid "Download file format"
 msgstr ""
 
-#: includes/settings-hook.php:339
+#: includes/settings-hook.php:357
 msgid "Pre-saved templates"
 msgstr ""
 
-#: includes/settings-hook.php:346
+#: includes/settings-hook.php:364
 msgid "Unlimited Clip-art"
 msgstr ""
 
-#: includes/settings-hook.php:352
+#: includes/settings-hook.php:370
 msgid "Clip-art categories."
 msgstr ""
 
-#: includes/settings-hook.php:359
+#: includes/settings-hook.php:377
 msgid "Custom Clip-art upload"
 msgstr ""
 
-#: includes/settings-hook.php:366
+#: includes/settings-hook.php:384
 msgid "Custom Clip-art price"
 msgstr ""
 
-#: includes/settings-hook.php:372
+#: includes/settings-hook.php:390
 msgid "Text art."
 msgstr ""
 
-#: includes/settings-hook.php:378
+#: includes/settings-hook.php:396
 msgid "Curve text."
 msgstr ""
 
-#: includes/settings-hook.php:384
+#: includes/settings-hook.php:402
 msgid "Quotes text."
 msgstr ""
 
-#: includes/settings-hook.php:390
+#: includes/settings-hook.php:408
 msgid "Bar code"
 msgstr ""
 
-#: includes/settings-hook.php:396
+#: includes/settings-hook.php:414
 msgid "QR Code"
 msgstr ""
 
-#: includes/settings-hook.php:402
+#: includes/settings-hook.php:420
 msgid "Custom shapes."
 msgstr ""
 
-#: includes/settings-hook.php:409
+#: includes/settings-hook.php:427
 msgid "Google Fonts."
 msgstr ""
 
-#: includes/settings-hook.php:415
+#: includes/settings-hook.php:433
 msgid "Custom Fonts."
 msgstr ""
 
-#: includes/settings-hook.php:420
+#: includes/settings-hook.php:438
 msgid "Menu position."
 msgstr ""
 
-#: includes/settings-hook.php:435
+#: includes/settings-hook.php:453
 msgid "Buy now"
 msgstr ""
 
-#: includes/settings-hook.php:450
+#: includes/settings-hook.php:468
 msgid "Get pro version"
 msgstr ""
 
-#: includes/settings-hook.php:528
+#: includes/settings-hook.php:546
 msgid "Select Page"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:427
+#: templates/product-designer/product-designer-hook.php:185
+msgid "Editor"
+msgstr ""
+
+#: templates/product-designer/product-designer-hook.php:186
+msgid "Assets"
+msgstr ""
+
+#: templates/product-designer/product-designer-hook.php:227
+#, php-format
+msgid "%s Sides"
+msgstr ""
+
+#: templates/product-designer/product-designer-hook.php:252
 msgid "Not available."
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:455
+#: templates/product-designer/product-designer-hook.php:277
 msgid "Clipart"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:469
+#: templates/product-designer/product-designer-hook.php:283
 msgid "Clip Art"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:542
+#: templates/product-designer/product-designer-hook.php:284
+#, php-format
+msgid "%s Clipart & Assets"
+msgstr ""
+
+#: templates/product-designer/product-designer-hook.php:327
 msgid "Categories"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:554
+#: templates/product-designer/product-designer-hook.php:335
 msgid "All"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:651
+#: templates/product-designer/product-designer-hook.php:412
 msgid "text"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:661
+#: templates/product-designer/product-designer-hook.php:418
 msgid "Text Art"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:715
+#: templates/product-designer/product-designer-hook.php:419
+#, php-format
+msgid "%s Text & Quotes"
+msgstr ""
+
+#: templates/product-designer/product-designer-hook.php:459
 msgid "Add Text"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:727
+#: templates/product-designer/product-designer-hook.php:474
 msgid "Shapes"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:732
+#: templates/product-designer/product-designer-hook.php:475
+#, php-format
+msgid "%s Shapes"
+msgstr ""
+
+#: templates/product-designer/product-designer-hook.php:479
 msgid "Rectangle"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:733
+#: templates/product-designer/product-designer-hook.php:480
 msgid "Circle"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:734
+#: templates/product-designer/product-designer-hook.php:481
 msgid "Triangle"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:735
+#: templates/product-designer/product-designer-hook.php:482
 msgid "Heart"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:736
-#: templates/product-designer/product-designer-hook.php:737
-#: templates/product-designer/product-designer-hook.php:738
-#: templates/product-designer/product-designer-hook.php:739
-#: templates/product-designer/product-designer-hook.php:740
-#: templates/product-designer/product-designer-hook.php:741
+#: templates/product-designer/product-designer-hook.php:483
+#: templates/product-designer/product-designer-hook.php:484
+#: templates/product-designer/product-designer-hook.php:485
+#: templates/product-designer/product-designer-hook.php:486
+#: templates/product-designer/product-designer-hook.php:487
+#: templates/product-designer/product-designer-hook.php:488
 msgid "Polygon"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:742
-#: templates/product-designer/product-designer-hook.php:743
-#: templates/product-designer/product-designer-hook.php:744
-#: templates/product-designer/product-designer-hook.php:745
+#: templates/product-designer/product-designer-hook.php:489
+#: templates/product-designer/product-designer-hook.php:490
+#: templates/product-designer/product-designer-hook.php:491
+#: templates/product-designer/product-designer-hook.php:492
 msgid "Star"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:822
+#: templates/product-designer/product-designer-hook.php:568
 msgid "Editor Actions"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:824
+#: templates/product-designer/product-designer-hook.php:570
 msgid "Show grid"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:825
+#: templates/product-designer/product-designer-hook.php:571
 msgid "Clear All"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:826
+#: templates/product-designer/product-designer-hook.php:572
 msgid "Delete"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:827
+#: templates/product-designer/product-designer-hook.php:573
 msgid "Clone"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:828
+#: templates/product-designer/product-designer-hook.php:574
 msgid "Drawing Mode"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:829
+#: templates/product-designer/product-designer-hook.php:575
 msgid "Zoom in"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:830
+#: templates/product-designer/product-designer-hook.php:576
 msgid "Zoom Out"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:831
+#: templates/product-designer/product-designer-hook.php:577
 msgid "Panning"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:832
+#: templates/product-designer/product-designer-hook.php:578
 msgid "Bring Forward"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:833
+#: templates/product-designer/product-designer-hook.php:579
 msgid "Send Backwards"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:834
+#: templates/product-designer/product-designer-hook.php:580
 msgid "Flip vertical"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:835
+#: templates/product-designer/product-designer-hook.php:581
 msgid "Flip horizontal"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:836
+#: templates/product-designer/product-designer-hook.php:582
 msgid "Center horizontally"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:837
+#: templates/product-designer/product-designer-hook.php:583
 msgid "Center vertically"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:838
+#: templates/product-designer/product-designer-hook.php:584
 msgid "Lock X movement"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:839
+#: templates/product-designer/product-designer-hook.php:585
 msgid "Lock Y movement"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:840
+#: templates/product-designer/product-designer-hook.php:586
 msgid "Lock rotation"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:841
+#: templates/product-designer/product-designer-hook.php:587
 msgid "Lock X Scaling"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:842
+#: templates/product-designer/product-designer-hook.php:588
 msgid "Lock Y Scaling"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:843
+#: templates/product-designer/product-designer-hook.php:589
 msgid "Undo"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:844
+#: templates/product-designer/product-designer-hook.php:590
 msgid "Redo"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:906
+#: templates/product-designer/product-designer-hook.php:594
+#: templates/product-designer/product-designer-hook.php:916
+#, php-format
+msgid "%s Preview"
+msgstr ""
+
+#: templates/product-designer/product-designer-hook.php:599
+#: templates/product-designer/product-designer-hook.php:921
+#, php-format
+msgid "%s Download"
+msgstr ""
+
+#: templates/product-designer/product-designer-hook.php:618
+#, php-format
+msgid "%s Layers"
+msgstr ""
+
+#: templates/product-designer/product-designer-hook.php:621
+msgid "No layers"
+msgstr ""
+
+#: templates/product-designer/product-designer-hook.php:645
 msgid "Edit Text"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:914
+#: templates/product-designer/product-designer-hook.php:649
+msgid "Write text content"
+msgstr ""
+
+#: templates/product-designer/product-designer-hook.php:649
 msgid "Text Content"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:916
+#: templates/product-designer/product-designer-hook.php:656
 msgid "Bold text"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:917
+#: templates/product-designer/product-designer-hook.php:657
 msgid "Italic text"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:918
+#: templates/product-designer/product-designer-hook.php:658
 msgid "Underline text"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:919
+#: templates/product-designer/product-designer-hook.php:659
 msgid "Strikethrough text"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:960
-msgid "Fonts Size:"
+#: templates/product-designer/product-designer-hook.php:670
+msgid "Text color:"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:966
-msgid "Text Color:"
+#: templates/product-designer/product-designer-hook.php:677
+msgid "Background color:"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:971
-msgid "Background Color:"
+#: templates/product-designer/product-designer-hook.php:685
+msgid "Outline color:"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:977
-msgid "Outline Color:"
+#: templates/product-designer/product-designer-hook.php:693
+msgid "Text outline:"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:983
-msgid "Text Outline:"
-msgstr ""
-
-#: templates/product-designer/product-designer-hook.php:987
-#: templates/product-designer/product-designer-hook.php:1044
-#: templates/product-designer/product-designer-hook.php:1097
-msgid "Opacity:"
-msgstr ""
-
-#: templates/product-designer/product-designer-hook.php:992
+#: templates/product-designer/product-designer-hook.php:700
 msgid "Font family:"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:996
+#: templates/product-designer/product-designer-hook.php:705
 msgid "Font family"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:1041
+#: templates/product-designer/product-designer-hook.php:720
+msgid "Opacity:"
+msgstr ""
+
+#: templates/product-designer/product-designer-hook.php:743
 msgid "Images Actions"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:1049
-msgid "Filters:"
+#: templates/product-designer/product-designer-hook.php:746
+#: templates/product-designer/product-designer-hook.php:779
+msgid "Opacity"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:1050
+#: templates/product-designer/product-designer-hook.php:753
+msgid "Filters"
+msgstr ""
+
+#: templates/product-designer/product-designer-hook.php:755
 msgid "Grayscale"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:1055
+#: templates/product-designer/product-designer-hook.php:756
 msgid "Invert"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:1060
+#: templates/product-designer/product-designer-hook.php:757
 msgid "Sepia"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:1064
+#: templates/product-designer/product-designer-hook.php:758
 msgid "Noise"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:1069
+#: templates/product-designer/product-designer-hook.php:759
 msgid "Pixelate"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:1094
+#: templates/product-designer/product-designer-hook.php:776
 msgid "Shapes Actions"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:1101
-msgid "Color:"
-msgstr ""
-
-#: templates/product-designer/product-designer-hook.php:1102
+#: templates/product-designer/product-designer-hook.php:785
+#: templates/product-designer/product-designer-hook.php:787
 msgid "Color"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:1147
-msgid "Product info"
+#: templates/product-designer/product-designer-hook.php:817
+#, php-format
+msgid "%s Product info"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:1190
-msgid "You are editing:"
+#: templates/product-designer/product-designer-hook.php:834
+msgid "You are editing"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:1193
-msgid "Base Price:"
+#: templates/product-designer/product-designer-hook.php:842
+msgid "Base Price"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:1196
-msgid "Quantity:"
+#: templates/product-designer/product-designer-hook.php:849
+msgid "Cliparts Price"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:1196
+#: templates/product-designer/product-designer-hook.php:858
+#: templates/product-designer/product-designer-hook.php:860
 msgid "Quantity"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:1204
+#: templates/product-designer/product-designer-hook.php:867
 msgid "Generate"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:1208
+#: templates/product-designer/product-designer-hook.php:871
 msgid "Add to cart"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:1609
+#: templates/product-designer/product-designer-hook.php:896
+#, php-format
+msgid "%s Keyboard Shortcut"
+msgstr ""
+
+#: templates/product-designer/product-designer-hook.php:900
+#, php-format
+msgid "%s Delete selected item"
+msgstr ""
+
+#: templates/product-designer/product-designer-hook.php:903
+#, php-format
+msgid "%s Clear canvas"
+msgstr ""
+
+#: templates/product-designer/product-designer-hook.php:907
+#, php-format
+msgid "%s Zoom in"
+msgstr ""
+
+#: templates/product-designer/product-designer-hook.php:911
+#, php-format
+msgid "%s Zoom out"
+msgstr ""
+
+#: templates/product-designer/product-designer-hook.php:927
+#, php-format
+msgid "%s Undo"
+msgstr ""
+
+#: templates/product-designer/product-designer-hook.php:932
+#, php-format
+msgid "%s Redo"
+msgstr ""
+
+#: templates/product-designer/product-designer-hook.php:936
+#, php-format
+msgid "%s Panning"
+msgstr ""
+
+#: templates/product-designer/product-designer-hook.php:1341
 msgid "Welcome to the Product Designer"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:1610
+#: templates/product-designer/product-designer-hook.php:1342
 msgid "Please see the welcome guide to see how the editor work and get stunning product design."
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:1611
+#: templates/product-designer/product-designer-hook.php:1343
 msgid "Start Tour"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:1612
+#: templates/product-designer/product-designer-hook.php:1344
 msgid "End Tour"
 msgstr ""
 
-#: templates/product-designer/product-designer-hook.php:1646
+#: templates/product-designer/product-designer-hook.php:1378
 msgid "Sorry no pre-saved template found."
 msgstr ""
