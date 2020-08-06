@@ -188,15 +188,23 @@ box-shadow: none;
   font-size: 12px;
   margin: 0 0px;
   overflow: hidden;
-  padding: 0;
+  padding: 5px 0;
   text-align: left;
   text-decoration: none;
   vertical-align: top;
   width: 99%;
   line-height: 0;
-  border: 1px solid transparent;
+  border-bottom: 1px solid #4f647b;
   transition: all ease 0.5s 0s;
 }
+
+
+.product-designer .side-list li:last-child {
+
+  border-bottom: 1px solid rgba(0,0,0,0);
+
+}
+
 
 .product-designer .side-list li:nth-child(2n+1) {
 /*background: rgba(176, 176, 176, 0.18);*/

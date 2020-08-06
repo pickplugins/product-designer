@@ -127,14 +127,14 @@ class class_product_designer_shortcodes  {
         $atts['pd_template_id'] = $pd_template_id;
 
 
-        $canvas_settings = get_post_meta( $pd_template_id, 'canvas', true );
+        $canvas = get_post_meta( $pd_template_id, 'canvas', true );
         $side_data = get_post_meta( $pd_template_id, 'side_data', true );
 
 
-        $atts['canvas_settings'] = $canvas_settings;
+        $atts['canvas'] = $canvas;
         $atts['side_data'] = $side_data;
 
-
+        //var_dump($canvas);
 
 
 
@@ -169,6 +169,14 @@ class class_product_designer_shortcodes  {
             $icon_cube = '<i class="fas fa-cube"></i>';
             $icon_upload = '<i class="fas fa-upload"></i>';
             $icon_shapes = '<i class="fas fa-shapes"></i>';
+            $icon_undo = '<i class="fas fa-undo-alt"></i>';
+            $icon_redo = '<i class="fas fa-redo-alt"></i>';
+            $icon_rotation = '<i class="fas fa-sync-alt"></i>';
+            $icon_expand = '<i class="fas fa-expand-alt"></i>';
+            $icon_arrows_h = '<i class="fas fa-arrows-alt-h"></i>';
+            $icon_arrows_v = '<i class="fas fa-arrows-alt-v"></i>';
+            $icon_layers = '<i class="fas fa-layer-group"></i>';
+            $icon_cart = '<i class="fas fa-cart-plus"></i>';
 
 
 
@@ -196,6 +204,14 @@ class class_product_designer_shortcodes  {
             $icon_cube = '<i class="fa fa-cube"></i>';
             $icon_upload = '<i class="fa fa-upload"></i>';
             $icon_shapes = '<i class="fa fa-codepen" ></i>';
+            $icon_undo = '<i class="fa fa-undo"></i>';
+            $icon_redo = '<i class="fa fa-repeat"></i>';
+            $icon_rotation = '<i class="fa fa-refresh"></i>';
+            $icon_expand = '<i class="fa fa-expand"></i>';
+            $icon_arrows_h = '<i class="fa fa-arrows-h"></i>';
+            $icon_arrows_v = '<i class="fa fa-arrows-v"></i>';
+            $icon_layers = '<i class="fa fa-list-ul"></i>';
+            $icon_cart = '<i class="fa fa-cart-plus"></i>';
 
 
             wp_enqueue_style('font-awesome-4');
@@ -222,6 +238,14 @@ class class_product_designer_shortcodes  {
             'cube' => $icon_cube,
             'upload' => $icon_upload,
             'shapes' => $icon_shapes,
+            'undo' => $icon_undo,
+            'redo' => $icon_redo,
+            'rotation' => $icon_rotation,
+            'expand' => $icon_expand,
+            'arrows_h' => $icon_arrows_h,
+            'arrows_v' => $icon_arrows_v,
+            'layers' => $icon_layers,
+            'cart' => $icon_cart,
 
 
         );

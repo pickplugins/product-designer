@@ -179,8 +179,8 @@ function product_designer_template_metabox_content_product_sides( $post_id){
 
                         <div class="side">
                             <div class="inline actions">
-                                <span class="remove"><i class="fa fa-times" aria-hidden="true"></i></span>
-                                <span class="move"><i class="fa fa-bars" aria-hidden="true"></i></span>
+                                <span class="remove"><i class="fa fa-times"></i></span>
+                                <span class="move"><i class="fa fa-bars"></i></span>
                             </div>
 
 
@@ -250,8 +250,8 @@ function product_designer_template_metabox_content_product_sides( $post_id){
                     <div class="side">
                         <div class="inline actions">
                             <div class=""><?php echo __('Actions', 'product-designer'); ?></div>
-                            <span class="remove"><i class="fa fa-times" aria-hidden="true"></i></span>
-                            <span class="move"><i class="fa fa-bars" aria-hidden="true"></i></span>
+                            <span class="remove"><i class="fa fa-times"></i></span>
+                            <span class="move"><i class="fa fa-bars"></i></span>
                         </div>
 
 
@@ -325,8 +325,8 @@ function product_designer_template_metabox_content_product_sides( $post_id){
 
                     html = '<div class="side">\n' +
                         '<div class="inline actions">\n' +
-                        '<span class="remove"><i class="fa fa-times" aria-hidden="true"></i></span>\n' +
-                        '<span class="move ui-sortable-handle"><i class="fa fa-bars" aria-hidden="true"></i></span>\n' +
+                        '<span class="remove"><i class="fa fa-times"></i></span>\n' +
+                        '<span class="move ui-sortable-handle"><i class="fa fa-bars"></i></span>\n' +
                         '</div>\n' +
                         '<div class="inline side-name">\n' +
                         '<div class=""></div>\n' +
@@ -366,7 +366,7 @@ function product_designer_template_metabox_content_product_sides( $post_id){
 
 
 
-                    //html = '<div class="side"><span class="remove"><i class="fa fa-times" aria-hidden="true"></i></span> <span class="move"><i class="fa fa-bars" aria-hidden="true"></i></span> <input placeholder="<?php echo __('Name', 'product-designer'); ?>" type="text" name="side_data['+now+'][name]" value="" /> <input type="text" placeholder="http://" name="side_data['+now+'][src]" value="" /> <span class="button upload_side" ><i class="fa fa-crosshairs" aria-hidden="true"></i> <?php echo __('Upload', 'product-designer'); ?></span></div>';
+                    //html = '<div class="side"><span class="remove"><i class="fa fa-times"></i></span> <span class="move"><i class="fa fa-bars"></i></span> <input placeholder="<?php echo __('Name', 'product-designer'); ?>" type="text" name="side_data['+now+'][name]" value="" /> <input type="text" placeholder="http://" name="side_data['+now+'][src]" value="" /> <span class="button upload_side" ><i class="fa fa-crosshairs"></i> <?php echo __('Upload', 'product-designer'); ?></span></div>';
                     $('.side-list').append(html);
 
                     //alert(html);

@@ -513,16 +513,16 @@ function product_designer_panel_shapes($atts){
 
 
 
-add_action('product_designer_panel_tab_content_editor', 'product_designer_tools', 20);
+add_action('product_designer_panel_tab_content_editor', 'product_designer_panel_tab_content_editor', 20);
 
-function product_designer_tools(){
+function product_designer_panel_tab_content_editor($atts){
 
     ?>
     <div class="editing">
 
         <?php
 
-        do_action('product_designer_tools');
+        do_action('product_designer_tools', $atts);
 
         ?>
     </div>
@@ -534,106 +534,91 @@ function product_designer_tools(){
 
 add_action('product_designer_tools', 'product_designer_tools_editor_actions', 20);
 
-function product_designer_tools_editor_actions(){
+function product_designer_tools_editor_actions($atts){
 
-    if(!empty($_GET['product_id'])):
+    $settings = isset($atts['settings']) ? $atts['settings'] : array();
+    $icons = isset($atts['icons']) ? $atts['icons'] : '';
 
-        $product_id = isset($_GET['product_id']) ? sanitize_text_field($_GET['product_id']) : '';
-
-        $product_data = wc_get_product($product_id);
-        $is_variable = $product_data->is_type('variable');
-
-
-        if($is_variable):
-
-            $variation_id = isset($_GET['variation_id']) ? sanitize_text_field($_GET['variation_id']): '';
-            $pd_template_id = get_post_meta( $variation_id, 'pd_template_id', true );
-
-        else:
-
-            $pd_template_id = get_post_meta( $product_id, 'pd_template_id', true );
-
-
-        endif;
-    endif;
-
-
-    $canvas = get_post_meta($pd_template_id, 'canvas', true);
-
+    $canvas = isset($atts['canvas']) ? $atts['canvas'] : array();
     $enable_download = !empty($canvas['download']['enable']) ? $canvas['download']['enable'] : 'no';
     $enable_preview = !empty($canvas['preview']['enable']) ? $canvas['preview']['enable'] : 'no';
 
+    $icon_grid = isset($icons['grid']) ? $icons['grid'] : '';
+    $icon_eraser = isset($icons['eraser']) ? $icons['eraser'] : '';
+    $icon_trash = isset($icons['trash']) ? $icons['trash'] : '';
+    $icon_clone = isset($icons['clone']) ? $icons['clone'] : '';
+    $icon_pencil = isset($icons['pencil']) ? $icons['pencil'] : '';
+    $icon_zoomin = isset($icons['zoomin']) ? $icons['zoomin'] : '';
+    $icon_zoomout = isset($icons['zoomout']) ? $icons['zoomout'] : '';
+    $icon_hand = isset($icons['hand']) ? $icons['hand'] : '';
+    $icon_undo = isset($icons['undo']) ? $icons['undo'] : '';
+    $icon_redo = isset($icons['redo']) ? $icons['redo'] : '';
+    $icon_rotation = isset($icons['rotation']) ? $icons['rotation'] : '';
+    $icon_arrows_h = isset($icons['arrows_h']) ? $icons['arrows_h'] : '';
+    $icon_arrows_v = isset($icons['arrows_v']) ? $icons['arrows_v'] : '';
+    $icon_expand = isset($icons['expand']) ? $icons['expand'] : '';
+    $icon_eye = isset($icons['eye']) ? $icons['eye'] : '';
+    $icon_download = isset($icons['download']) ? $icons['download'] : '';
+
+
+    //var_dump($enable_preview);
 
     ?>
     <div class="editor-actions toolbar-section pd-guide-5">
         <div class="toolbar-title"><?php echo __('Editor Actions', 'product-designer'); ?></div>
         <div class="toolbar-section-inner">
-            <span class="pack-button hint--top" id="editor-show-grid" aria-label="<?php echo __('Show grid', 'product-designer'); ?>"><i class="cpd-icon-grid" ></i></span>
-            <span class="pack-button hint--top" id="editor-clear" aria-label="<?php echo __('Clear All', 'product-designer'); ?>"><i class="cpd-icon-remove" ></i></span>
-            <span class="pack-button hint--top" id="editor-delete-item" aria-label="<?php echo __('Delete', 'product-designer'); ?>"><i class="fa fa-trash" aria-hidden="true"></i></span>
-            <span class="pack-button hint--top" id="editor-clone-item" aria-label="<?php echo __('Clone', 'product-designer'); ?>"><i class="fa fa-clone" aria-hidden="true"></i></span>
-            <span class="pack-button hint--top" id="editor-DrawingMode" aria-label="<?php echo __('Drawing Mode', 'product-designer'); ?>"><i class="fa fa-pencil" aria-hidden="true"></i></span>
-            <span class="pack-button hint--top" id="editor-zoomin" aria-label="<?php echo __('Zoom in', 'product-designer'); ?>"><i class="fa fa-search-plus"></i></span>
-            <span class="pack-button hint--top" id="editor-zoomout" aria-label="<?php echo __('Zoom Out', 'product-designer'); ?>"><i class="fa fa-search-minus"></i></span>
-            <span class="pack-button hint--top" id="editor-pan" aria-label="<?php echo __('Panning', 'product-designer'); ?>"><i class="fa fa-hand-paper-o" aria-hidden="true"></i></span>
+            <span class="pack-button hint--top" id="editor-show-grid" aria-label="<?php echo __('Show grid', 'product-designer'); ?>"><?php echo $icon_grid; ?></span>
+            <span class="pack-button hint--top" id="editor-clear" aria-label="<?php echo __('Clear All', 'product-designer'); ?>"><?php echo $icon_eraser; ?></span>
+            <span class="pack-button hint--top" id="editor-delete-item" aria-label="<?php echo __('Delete', 'product-designer'); ?>"><?php echo $icon_trash; ?></span>
+            <span class="pack-button hint--top" id="editor-clone-item" aria-label="<?php echo __('Clone', 'product-designer'); ?>"><?php echo $icon_clone; ?></span>
+            <span class="pack-button hint--top" id="editor-DrawingMode" aria-label="<?php echo __('Drawing Mode', 'product-designer'); ?>"><?php echo $icon_pencil; ?></span>
+            <span class="pack-button hint--top" id="editor-zoomin" aria-label="<?php echo __('Zoom in', 'product-designer'); ?>"><?php echo $icon_zoomin; ?></span>
+            <span class="pack-button hint--top" id="editor-zoomout" aria-label="<?php echo __('Zoom Out', 'product-designer'); ?>"><?php echo $icon_zoomout; ?></span>
+            <span class="pack-button hint--top" id="editor-pan" aria-label="<?php echo __('Panning', 'product-designer'); ?>"><?php echo $icon_hand; ?></span>
             <span class="pack-button hint--top" id="editor-item-bringForward" aria-label="<?php echo __('Bring Forward', 'product-designer'); ?>"><i class="cpd-icon-move-up" ></i></span>
             <span class="pack-button hint--top" id="editor-item-sendBackwards" aria-label="<?php echo __('Send Backwards', 'product-designer'); ?>"><i class="cpd-icon-move-down" ></i></span>
             <span class="pack-button hint--top" id="editor-flip-v" aria-label="<?php echo __('Flip vertical', 'product-designer'); ?>" ><i class="cpd-icon-flip-vertical" ></i></span>
             <span class="pack-button hint--top" id="editor-flip-h" aria-label="<?php echo __('Flip horizontal', 'product-designer'); ?>" ><i class="cpd-icon-flip-horizontal" ></i></span>
             <span class="pack-button hint--top" id="editor-center-h" aria-label="<?php echo __('Center horizontally', 'product-designer'); ?>" ><i class="cpd-icon-align-horizontal-middle"></i></span>
             <span class="pack-button hint--top" id="editor-center-v" aria-label="<?php echo __('Center vertically', 'product-designer'); ?>" ><i class="cpd-icon-align-vertical-middle"></i></span>
-            <span class="pack-button hint--top" id="editor-lockMovementX" aria-label="<?php echo __('Lock X movement', 'product-designer'); ?>" ><i class="fa fa-arrows-v" aria-hidden="true"></i></span>
-            <span class="pack-button hint--top" id="editor-lockMovementY" aria-label="<?php echo __('Lock Y movement', 'product-designer'); ?>" ><i class="fa fa-arrows-h" aria-hidden="true"></i></span>
-            <span class="pack-button hint--top" id="editor-lockRotation" aria-label="<?php echo __('Lock rotation', 'product-designer'); ?>" ><i class="fa fa-undo" aria-hidden="true"></i></span>
-            <span class="pack-button hint--top" id="editor-lockScalingX" aria-label="<?php echo __('Lock X Scaling', 'product-designer'); ?>" ><i style="transform: rotate(45deg);" class="fa fa-expand" aria-hidden="true"></i></span>
-            <span class="pack-button hint--top" id="editor-lockScalingY" aria-label="<?php echo __('Lock Y Scaling', 'product-designer'); ?>" ><i style="transform: rotate(-45deg);" class="fa fa-expand" aria-hidden="true"></i></span>
-            <span class="pack-button hint--top" aria-label="<?php echo __('Undo', 'product-designer'); ?>" id="editor-undo"><i class="cpd-icon-undo"></i></span>
-            <span class="pack-button hint--top" aria-label="<?php echo __('Redo', 'product-designer'); ?>" id="editor-redo"><i class="cpd-icon-redo"></i></span>
+            <span class="pack-button hint--top" id="editor-lockMovementX" aria-label="<?php echo __('Lock X movement', 'product-designer'); ?>" ><?php echo $icon_arrows_v; ?></span>
+            <span class="pack-button hint--top" id="editor-lockMovementY" aria-label="<?php echo __('Lock Y movement', 'product-designer'); ?>" ><?php echo $icon_arrows_h; ?></span>
+            <span class="pack-button hint--top" id="editor-lockRotation" aria-label="<?php echo __('Lock rotation', 'product-designer'); ?>" ><?php echo $icon_rotation; ?></span>
+            <span class="pack-button hint--top" id="editor-lockScalingX" aria-label="<?php echo __('Lock X Scaling', 'product-designer'); ?>" ><span style="transform: rotate(45deg);display: inline-block;" ><?php echo $icon_expand; ?></span></span>
+            <span class="pack-button hint--top" id="editor-lockScalingY" aria-label="<?php echo __('Lock Y Scaling', 'product-designer'); ?>" ><span style="transform: rotate(-45deg);display: inline-block;"><?php echo $icon_expand; ?></span></span>
+            <span class="pack-button hint--top" id="editor-undo" aria-label="<?php echo __('Undo', 'product-designer'); ?>" ><?php echo $icon_undo; ?></span>
+            <span class="pack-button hint--top" id="editor-redo" aria-label="<?php echo __('Redo', 'product-designer'); ?>" ><?php echo $icon_redo; ?></span>
 
             <?php
             if($enable_preview =='yes'): ?>
-                <div class="editor-preview pd-guide-6"><i class="fa fa-eye" aria-hidden="true"></i> <?php echo __('Preview', 'product-designer'); ?></div>
-
+                <div class="editor-preview pd-guide-6"><?php echo sprintf(__('%s Preview','product-designer'), $icon_eye); ?></div>
             <?php
             endif;
-            ?>
 
-
-            <?php
             if($enable_download =='yes'): ?>
-                <div class="editor-download pd-guide-7"><i class="fa fa-download" aria-hidden="true"></i> <?php echo __('Download', 'product-designer'); ?></div>
-
+                <div class="editor-download pd-guide-7"><?php echo __('Download', 'product-designer'); ?><?php echo sprintf(__('%s Download','product-designer'), $icon_download); ?></div>
             <?php
             endif;
             ?>
-
-
         </div>
-
-
-
-
-
-
-
-
-
     </div>
     <?php
-
-
 }
 
 add_action('product_designer_tools', 'product_designer_tools_object_list', 20);
 
-function product_designer_tools_object_list(){
+function product_designer_tools_object_list($atts){
+
+    $icons = isset($atts['icons']) ? $atts['icons'] : '';
+    $icon_layers = isset($icons['layers']) ? $icons['layers'] : '';
+
 
     ?>
     <div class="object-list toolbar-section pd-guide-8">
-        <div class="toolbar-title">Layers</div>
+        <div class="toolbar-title"><?php echo sprintf(__('%s Layers','product-designer'), $icon_layers); ?></div>
         <div class="toolbar-section-inner">
             <div class="layer-item layers-list ">
-                No layers
+                <?php echo __('No layers','product-designer'); ?>
             </div>
         </div>
 
@@ -1460,7 +1445,7 @@ function product_designer_preview(){
     <div class="preview ">
 
             <div class="preview-img ">
-                <span class="preview-close"><i class="fa fa-times" aria-hidden="true"></i></span>
+                <span class="preview-close"><i class="fa fa-times"></i></span>
                 <div class="img"></div>
             </div>
 
