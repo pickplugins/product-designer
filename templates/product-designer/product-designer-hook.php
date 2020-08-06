@@ -6,27 +6,25 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 
 
 
-add_action('product_designer_editor', 'product_designer_notice', 0);
+add_action('product_designer_editor', 'product_designer_editor_notice', 0);
 
-function product_designer_notice($atts){
+function product_designer_editor_notice($atts){
 
 
-    $product_designer_settings = get_option('product_designer_settings');
-    $menu_position = isset($product_designer_settings['menu_position']) ? $product_designer_settings['menu_position'] : 'left';
+    $settings = isset($atts['settings']) ? $atts['settings'] : array();
+    $menu_position = isset($settings['menu_position']) ? $settings['menu_position'] : 'left';
 
     ?>
     <div class="product-designer-notice" id="product-designer-notice">
         <div class="notices">
         </div>
     </div>
-
     <style type="text/css">
-
         <?php
 
         if($menu_position == 'left'){
             ?>
-            body {
+            body{
                 margin-left: 370px;
             }
             .product-designer .menu {
@@ -41,11 +39,9 @@ function product_designer_notice($atts){
             .product-designer .menu {
                 right: 0px !important;
             }
-            <?php
+        <?php
         }
-    ?>
-
-
+        ?>
         .admin-bar .product-designer .menu{
             top: 32px;
         }
@@ -58,34 +54,14 @@ function product_designer_notice($atts){
 
 
 
-add_action('product_designer_editor', 'product_designer_wrap_start', 5);
+add_action('product_designer_editor', 'product_designer_editor_wrap_start', 5);
 
-function product_designer_wrap_start($atts){
+function product_designer_editor_wrap_start($atts){
 
     ?>
-
     <div class="product-designer">
-
     <?php
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -94,20 +70,18 @@ add_action('product_designer_editor', 'product_designer_editor', 10);
 
 function product_designer_editor($atts){
 
+    $settings = isset($atts['settings']) ? $atts['settings'] : array();
+    $menu_position = isset($settings['menu_position']) ? $settings['menu_position'] : 'left';
 
-    $session_id = session_id();
+
 
 
     $product_designer_settings = get_option('product_designer_settings');
-    $designer_page_id = isset($product_designer_settings['designer_page_id']) ? $product_designer_settings['designer_page_id'] : '';
 
 
-    $product_designer_page_url = get_permalink($designer_page_id);
     $product_designer_error = array();
 
 
-    $post_id = get_the_ID();
-    $page_url = get_permalink($post_id);
 
 
     if(!empty($_GET['product_id'])):
@@ -183,19 +157,17 @@ function product_designer_editor($atts){
 
 
 
-add_action('product_designer_editor', 'product_designer_menu', 15);
+add_action('product_designer_editor', 'product_designer_editor_panel', 15);
 
-function product_designer_menu($atts){
+function product_designer_editor_panel($atts){
 
     ?>
-    <div class="menu ">
+    <div class="menu">
         <?php
 
-        do_action('product_designer_menu', $atts);
+        do_action('product_designer_panel', $atts);
 
         ?>
-
-
     </div>
     <?php
 
@@ -203,32 +175,31 @@ function product_designer_menu($atts){
 }
 
 
-add_action('product_designer_menu', 'product_designer_menu_main_tabs', 15);
+add_action('product_designer_panel', 'product_designer_panel_main_tabs', 15);
 
-function product_designer_menu_main_tabs(){
-
+function product_designer_panel_main_tabs($atts){
 
     ?>
     <div class="editor-tabs">
         <ul class="editor-tab-navs">
-            <li class="nav tab-nav" data-id="0">Editor</li>
-            <li class="nav tab-nav" data-id="1">Assets</li>
-            <li class="nav tab-nav" data-id="2">Templates</li>
+            <li class="nav tab-nav" data-id="0"><?php echo __('Editor','product-designer'); ?></li>
+            <li class="nav tab-nav" data-id="1"><?php echo __('Assets','product-designer'); ?></li>
+            <li class="nav tab-nav" data-id="2"><?php echo __('Templates','product-designer'); ?></li>
         </ul>
 
         <div class="editor-tab-content data-id-0">
             <?php
-            do_action('editor_tab_content_editor');
+            do_action('product_designer_panel_tab_content_editor', $atts);
             ?>
         </div>
         <div class="editor-tab-content data-id-1">
             <?php
-            do_action('editor_tab_content_assets');
+            do_action('product_designer_panel_tab_content_assets', $atts);
             ?>
         </div>
         <div class="editor-tab-content data-id-2">
             <?php
-            do_action('editor_tab_content_templates');
+            do_action('product_designer_panel_tab_content_templates', $atts);
             ?>
         </div>
 
@@ -243,265 +214,150 @@ function product_designer_menu_main_tabs(){
 
 
 
-add_action('editor_tab_content_assets', 'product_designer_side_list', 15);
+add_action('product_designer_panel_tab_content_assets', 'product_designer_side_list', 15);
 
-function product_designer_side_list(){
+function product_designer_side_list($atts){
 
-    $product_id = isset($_GET['product_id']) ? sanitize_text_field($_GET['product_id']) : '';
-
-
-    $product_data = wc_get_product($product_id);
-    $is_variable = $product_data->is_type('variable');
-
-
-    if($is_variable):
-
-        $variation_id = isset($_GET['variation_id']) ? sanitize_text_field($_GET['variation_id']): '';
-        $pd_template_id = get_post_meta( $variation_id, 'pd_template_id', true );
-        $canvas_settings = get_post_meta( $pd_template_id, 'canvas', true );
-
-        $side_data = get_post_meta( $pd_template_id, 'side_data', true );
-
-
-        if(empty($variation_id)):
-            $product_designer_error['variation_id_missing'] = 'Variation id is missing';
-        endif;
-
-
-
-    else:
-
-        $pd_template_id = get_post_meta( $product_id, 'pd_template_id', true );
-        $canvas_settings = get_post_meta( $pd_template_id, 'canvas', true );
-
-        $side_data = get_post_meta( $pd_template_id, 'side_data', true );
-
-
-    endif;
-
+    $side_data = isset($atts['side_data']) ? $atts['side_data'] : '';
+    $icons = isset($atts['icons']) ? $atts['icons'] : '';
+    $cube = isset($icons['cube']) ? $icons['cube'] : '';
 
    ?>
+    <div class="side item accordions  pd-guide-1" title="Sides">
+        <div class="icon"><?php echo sprintf(__('%s Sides','product-designer'), $cube); ?></div>
+        <div class="child">
+            <ul class="side-list">
+                <?php
 
+                if(!empty($side_data)){
+                    foreach($side_data as $id=>$side){
 
+                        $name = isset($side['name']) ? $side['name'] : '';
+                        $icon = isset($side['icon']) ? $side['icon'] : '';
 
-        <div class="side item accordions  pd-guide-1" title="Sides">
-            <div class="icon"><i class="fa fa-cube" ></i> Sides</div>
-            <div class="child">
-                <ul class="side-list">
-
+                        if(!empty($icon)){
+                            ?>
+                            <li side_id="<?php echo $id; ?>" >
+                                <img src="<?php echo $icon; ?>" />
+                                <span class="name"><?php echo $name; ?></span>
+                            </li>
+                            <?php
+                        }
+                    }
+                }
+                else{
+                    ?>
+                    <span>
+                        <?php
+                        __('Not available.', "product-designer")
+                        ?>
+                    </span>
                     <?php
 
-                    $cook_data = isset($_COOKIE['side_customized']) ? sanitize_text_field($_COOKIE['side_customized']) : '';
+                }
 
-                    $cook_data = unserialize(stripslashes($cook_data));
-                    //var_dump($cook_data);
-                    if(!empty($cook_data[$product_id])){
-                        $prduct_cook_data = $cook_data[$product_id];
-                    }
-                    else{
-                        $prduct_cook_data = array();
-                    }
-
-                    if(!empty($side_data)){
-
-                        foreach($side_data as $id=>$side){
-
-                            $name = isset($side['name']) ? $side['name'] : '';
-                            $icon = isset($side['icon']) ? $side['icon'] : '';
-                            $background = isset($side['background']) ? $side['background'] : '';
-                            $inc_background = isset($side['inc_background']) ? $side['inc_background'] : '';
-                            $overlay = isset($side['overlay']) ? $side['overlay'] : '';
-                            $inc_overlay = isset($side['inc_overlay']) ? $side['inc_overlay'] : '';
-
-
-                            if(!empty($icon)){
-
-                                ?>
-                                <li side_id="<?php echo $id; ?>" >
-                                    <img src="<?php echo $icon; ?>" />
-                                    <span class="name"><?php echo $name; ?></span>
-
-                                </li>
-                                <?php
-
-                            }
-
-
-                        }
-
-                    }
-                    else{
-
-                        echo '<span>'.__('Not available.', "product-designer").'</span>';
-                    }
-
-                    ?>
-
-                </ul>
-
-
-
-            </div>
-
+                ?>
+            </ul>
         </div>
-
-
-
-
-
+    </div>
     <?php
 
 }
 
 
-add_action('editor_tab_content_assets', 'product_designer_menu_clipart', 15);
+add_action('product_designer_panel_tab_content_assets', 'product_designer_panel_clipart', 15);
 
-function product_designer_menu_clipart(){
+function product_designer_panel_clipart($atts){
+
+    $icons = isset($atts['icons']) ? $atts['icons'] : '';
+    $file_image = isset($icons['file_image']) ? $icons['file_image'] : '';
 
 
     $img_types = array(
         'clipart' => __('Clipart','product-designer'),
     );
 
-
     $img_types = apply_filters('product_designer_image_types', $img_types);
-
-
-
-
-
-
-
 
     ?>
     <div class="clipart accordions item pd-guide-2" title="<?php echo __('Clip Art', "product-designer"); ?>">
-        <div class="icon">Clipart & Assets</div>
+        <div class="icon"><?php echo sprintf(__('%s Clipart & Assets','product-designer'), $file_image); ?></div>
         <div class="child">
-
             <div class="tabs">
                 <ul class="navs">
                     <?php
 
+                    if(!empty($img_types))
                     foreach ($img_types as $typeIndex => $type):
-
                         ?>
                         <li class="nav"><a href="#tabs-<?php echo $typeIndex; ?>"><?php echo $type; ?></a></li>
-                    <?php
+                        <?php
                     endforeach;
-
                     ?>
-
                 </ul>
-
                 <?php
-
+                if(!empty($img_types))
                 foreach ($img_types as $typeIndex => $type):
-
                     ?>
                     <div class="nav-content" id="tabs-<?php echo $typeIndex; ?>">
                         <?php
-
-                        do_action('product_designer_image_type_content_'.$typeIndex);
-
+                        do_action('product_designer_image_type_content_'.$typeIndex, $atts);
                         ?>
                     </div>
-                <?php
+                    <?php
                 endforeach;
-
                 ?>
-
             </div>
-
-
-
-
         </div>
     </div>
-
     <?php
 }
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 add_action('product_designer_image_type_content_clipart', 'product_designer_image_type_content_clipart', 15);
 
-function product_designer_image_type_content_clipart(){
+function product_designer_image_type_content_clipart($atts){
 
+    $settings = isset($atts['settings']) ? $atts['settings'] : array();
+    $posts_per_page = isset($settings['posts_per_page']) ? $settings['posts_per_page'] : 10;
 
     ?>
-
     <select title="<?php echo __('Categories', "product-designer"); ?>" id="clipart-cat">
-
         <?php
-
-        $args=array(
+        $args = array(
             'orderby' => 'name',
             'order' => 'ASC',
             'taxonomy' => 'clipart_cat',
         );
-
-
-
-        echo '<option value="all">'.__('All', "product-designer").'</option>';
-
+        ?>
+        <option value="all"><?php echo __('All', "product-designer"); ?></option>
+        <?php
         $categories = get_categories($args);
 
+        if(!empty($categories))
         foreach($categories as $category){
-
-            echo '<option value='.$category->cat_ID.'>'.$category->cat_name.'</option>';
-
+            ?>
+            <option value='<?php echo $category->cat_ID; ?>'><?php echo $category->cat_name; ?></option>
+            <?php
         }
-
-
-        //echo '<span class="sticker-cat-loading">Loading...</span>';
-
         ?>
-
     </select>
-
-
-
-
     <div class="clipart-list">
-
         <?php
-
-        $product_designer_settings = get_option('product_designer_settings');
-        $posts_per_page = isset($product_designer_settings['posts_per_page']) ? $product_designer_settings['posts_per_page'] : '';
-
-
         $args = array(
             'post_type'=>'clipart',
             'posts_per_page'=> $posts_per_page,
         );
 
+        $clipart_query = new WP_Query($args);
 
-        $wp_query = new WP_Query($args);
-
-        if ( $wp_query->have_posts() ) :
-            while ( $wp_query->have_posts() ) : $wp_query->the_post();
+        if ( $clipart_query->have_posts() ) :
+            while ( $clipart_query->have_posts() ) : $clipart_query->the_post();
 
                 $clipart_thumb_id = get_post_meta(get_the_ID(),'clipart_thumb_id', true);
                 $clipart_price = get_post_meta(get_the_ID(),'clipart_price', true);
-
-                //var_dump($clipart_thumb_id);
 
                 $clipart_url = wp_get_attachment_image_src($clipart_thumb_id, 'full' );
                 $clipart_url = isset($clipart_url['0']) ? $clipart_url['0']  : '';
@@ -512,105 +368,84 @@ function product_designer_image_type_content_clipart(){
 
                 $clipart_url = !empty($clipart_url) ? $clipart_url : $thumb_url;
 
-                if(!empty($clipart_url))
-                    echo '<img data-price="'.$clipart_price.'" class="" title="'.get_the_title().'" src="'.esc_url_raw($clipart_url).'" />';
-
+                if(!empty($clipart_url)){
+                    ?>
+                    <img data-price="<?php echo $clipart_price; ?>" class="" title="<?php echo get_the_title(); ?>" src="<?php echo esc_url_raw($clipart_url); ?>" />
+                    <?php
+                }
             endwhile;
+
             wp_reset_query();
         endif;
         ?>
 
 
     </div>
-
     <div class="clipart-pagination">
-
         <?php
         $paged = 1;
         $big = 999999999; // need an unlikely integer
+
         echo paginate_links( array(
             'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
             'format' => '?paged=%#%',
             'current' => max( 1, $paged ),
-
             'prev_text'          => '',
             'next_text'          => '',
-            'total' => $wp_query->max_num_pages
+            'total' => $clipart_query->max_num_pages
         ) );
-
         ?>
-
-
-
     </div>
-
     <?php
-
 }
 
 
 
+add_action('product_designer_panel_tab_content_assets', 'product_designer_panel_text', 15);
 
+function product_designer_panel_text($atts){
 
+    $icons = isset($atts['icons']) ? $atts['icons'] : '';
+    $file_word = isset($icons['file_word']) ? $icons['file_word'] : '';
 
-add_action('editor_tab_content_assets', 'product_designer_menu_text', 15);
-
-function product_designer_menu_text(){
     $text_types = array(
         'text' => __('text','product-designer'),
-
     );
-
 
     $text_types = apply_filters('product_designer_text_types', $text_types);
 
-
-
     ?>
     <div class="text item accordions pd-guide-3" title="<?php echo __('Text Art', 'product-designer'); ?>">
-        <div class="icon">Text & Quotes</div>
+        <div class="icon"><?php echo sprintf(__('%s Text & Quotes','product-designer'), $file_word); ?></div>
         <div class="child">
-
-
-
             <div class="tabs">
                 <ul class="navs">
                     <?php
 
+                    if(!empty($text_types))
                     foreach ($text_types as $typeIndex => $type):
-
                         ?>
                         <li class="nav"><a href="#tabs-<?php echo $typeIndex; ?>"><?php echo $type; ?></a></li>
                         <?php
                     endforeach;
-
                     ?>
-
                 </ul>
-
                 <?php
 
+                if(!empty($text_types))
                 foreach ($text_types as $typeIndex => $type):
-
                     ?>
                     <div class="nav-content" id="tabs-<?php echo $typeIndex; ?>">
                         <?php
-
                         do_action('product_designer_text_type_content_'.$typeIndex);
-
                         ?>
                     </div>
                     <?php
                 endforeach;
-
                 ?>
-
             </div>
-
         </div>
-
     </div>
-
     <?php
 
 }
@@ -628,13 +463,16 @@ function product_designer_text_type_content_text(){
 
 
 
-add_action('editor_tab_content_assets', 'product_designer_menu_shapes', 15);
+add_action('product_designer_panel_tab_content_assets', 'product_designer_panel_shapes', 15);
 
-function product_designer_menu_shapes(){
+function product_designer_panel_shapes($atts){
+
+    $icons = isset($atts['icons']) ? $atts['icons'] : '';
+    $shapes = isset($icons['shapes']) ? $icons['shapes'] : '';
 
     ?>
     <div class="shapes item accordions pd-guide-4" title="<?php echo __('Shapes', "product-designer"); ?>">
-        <div class="icon">Shapes</div>
+        <div class="icon"><?php echo sprintf(__('%s Shapes','product-designer'), $shapes); ?></div>
         <div class="child">
             <div class="shape-list scrollbar">
 
@@ -675,7 +513,7 @@ function product_designer_menu_shapes(){
 
 
 
-add_action('editor_tab_content_editor', 'product_designer_tools', 20);
+add_action('product_designer_panel_tab_content_editor', 'product_designer_tools', 20);
 
 function product_designer_tools(){
 
@@ -1631,7 +1469,7 @@ function product_designer_preview(){
 
 }
 
-    add_action('editor_tab_content_templates', 'product_designer_pre_templates_promo', 15);
+    add_action('product_designer_panel_tab_content_templates', 'product_designer_pre_templates_promo', 15);
 
     function product_designer_pre_templates_promo(){
 

@@ -38,9 +38,12 @@ class class_product_designer_shortcodes  {
         $posts_per_page= isset($product_designer_settings['posts_per_page']) ? $product_designer_settings['posts_per_page'] : 10;
         $menu_position= isset($product_designer_settings['menu_position']) ? $product_designer_settings['menu_position'] : 'left';
         $enable_guide= isset($product_designer_settings['enable_guide']) ? $product_designer_settings['enable_guide'] : 'yes';
+        $designer_page_id = isset($product_designer_settings['designer_page_id']) ? $product_designer_settings['designer_page_id'] : '';
 
         $currency_symbol = get_woocommerce_currency_symbol();
         //var_dump($font_aw_version);
+        $session_id = session_id();
+
 
         $atts['settings']['text_price'] = $text_price;
         $atts['settings']['clipart_price'] = $clipart_price;
@@ -50,10 +53,14 @@ class class_product_designer_shortcodes  {
         $atts['settings']['posts_per_page'] = $posts_per_page;
         $atts['settings']['menu_position'] = $menu_position;
         $atts['settings']['enable_guide'] = $enable_guide;
+        $atts['settings']['designer_page_id'] = $designer_page_id;
+        $atts['settings']['designer_page_url'] = get_permalink($designer_page_id);
+
 
         $atts['product_id'] = $product_id;
         $atts['product_title'] = get_the_title($product_id);
         $atts['currency_symbol'] = $currency_symbol;
+        $atts['session_id'] = $session_id;
 
 
         $product_data = wc_get_product($product_id);
@@ -157,8 +164,11 @@ class class_product_designer_shortcodes  {
             $icon_lock = '<i class="fas fa-lock"></i>';
             $icon_unlock = '<i class="fas fa-unlock-alt"></i>';
             $icon_file_image = '<i class="fas fa-file-image"></i>';
+            $icon_file_word = '<i class="far fa-file-word"></i>';
+
             $icon_cube = '<i class="fas fa-cube"></i>';
             $icon_upload = '<i class="fas fa-upload"></i>';
+            $icon_shapes = '<i class="fas fa-shapes"></i>';
 
 
 
@@ -181,8 +191,11 @@ class class_product_designer_shortcodes  {
             $icon_lock = '<i class="fa fa-lock"></i>';
             $icon_unlock = '<i class="fa fa-unlock-alt"></i>';
             $icon_file_image = '<i class="fa fa-file-image-o"></i>';
+            $icon_file_word = '<i class="fa fa-file-word-o" ></i>';
+
             $icon_cube = '<i class="fa fa-cube"></i>';
             $icon_upload = '<i class="fa fa-upload"></i>';
+            $icon_shapes = '<i class="fa fa-codepen" ></i>';
 
 
             wp_enqueue_style('font-awesome-4');
@@ -203,9 +216,12 @@ class class_product_designer_shortcodes  {
             'times' => $icon_times,
             'lock' => $icon_lock,
             'unlock' => $icon_unlock,
-            'file' => $icon_file_image,
+            'file_image' => $icon_file_image,
+            'file_word' => $icon_file_word,
+
             'cube' => $icon_cube,
             'upload' => $icon_upload,
+            'shapes' => $icon_shapes,
 
 
         );
