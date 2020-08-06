@@ -177,6 +177,10 @@ class class_product_designer_shortcodes  {
             $icon_arrows_v = '<i class="fas fa-arrows-alt-v"></i>';
             $icon_layers = '<i class="fas fa-layer-group"></i>';
             $icon_cart = '<i class="fas fa-cart-plus"></i>';
+            $icon_text_bold = '<i class="fas fa-bold"></i>';
+            $icon_text_italic = '<i class="fas fa-italic"></i>';
+            $icon_text_underline = '<i class="fas fa-underline"></i>';
+            $icon_text_strikethrough = '<i class="fas fa-strikethrough"></i>';
 
 
 
@@ -212,6 +216,10 @@ class class_product_designer_shortcodes  {
             $icon_arrows_v = '<i class="fa fa-arrows-v"></i>';
             $icon_layers = '<i class="fa fa-list-ul"></i>';
             $icon_cart = '<i class="fa fa-cart-plus"></i>';
+            $icon_text_bold = '<i class="fa fa-bold"></i>';
+            $icon_text_italic = '<i class="fa fa-italic"></i>';
+            $icon_text_underline = '<i class="fa fa-underline"></i>';
+            $icon_text_strikethrough = '<i class="fa fa-strikethrough"></i>';
 
 
             wp_enqueue_style('font-awesome-4');
@@ -246,6 +254,10 @@ class class_product_designer_shortcodes  {
             'arrows_v' => $icon_arrows_v,
             'layers' => $icon_layers,
             'cart' => $icon_cart,
+            'text_bold' => $icon_text_bold,
+            'text_italic' => $icon_text_italic,
+            'text_underline' => $icon_text_underline,
+            'text_strikethrough' => $icon_text_strikethrough,
 
 
         );

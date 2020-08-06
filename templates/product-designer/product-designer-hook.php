@@ -630,17 +630,21 @@ function product_designer_tools_object_list($atts){
 
 add_action('product_designer_tools', 'product_designer_tools_edit_text', 20);
 
-function product_designer_tools_edit_text(){
+function product_designer_tools_edit_text($atts){
+
+    $icons = isset($atts['icons']) ? $atts['icons'] : '';
+    $icon_text_bold = isset($icons['text_bold']) ? $icons['text_bold'] : '';
+    $icon_text_italic = isset($icons['text_italic']) ? $icons['text_italic'] : '';
+    $icon_text_underline = isset($icons['text_underline']) ? $icons['text_underline'] : '';
+    $icon_text_strikethrough = isset($icons['text_strikethrough']) ? $icons['text_strikethrough'] : '';
+
 
     ?>
 
     <div class="edit-text toolbar-section">
         <div class="toolbar-title"><?php echo __('Edit Text', 'product-designer'); ?></div>
         <div class="toolbar-section-inner">
-
             <form id="edit-assets-text" action="#" method="get">
-
-
                 <div class="setting-field full">
                     <div class="field-label" aria-label="<?php echo __('Write text content', 'product-designer'); ?>"><?php echo __('Text Content', 'product-designer'); ?></div>
                     <div class="field-input">
@@ -649,16 +653,11 @@ function product_designer_tools_edit_text(){
                 </div>
 
                 <div class="setting-field full">
-
-                        <span class="pack-button hint--top" aria-label="<?php echo __('Bold text', 'product-designer'); ?>" id="text-bold"><i class="cpd-icon-format-bold" ></i></span>
-                        <span class="pack-button hint--top" aria-label="<?php echo __('Italic text', 'product-designer'); ?>" id="text-italic"><i class="cpd-icon-format-italic" ></i></span>
-                        <span class="pack-button hint--top" aria-label="<?php echo __('Underline text', 'product-designer'); ?>" id="text-underline"><i class="cpd-icon-format-underline" ></i></span>
-                        <span class="pack-button hint--top" aria-label="<?php echo __('Strikethrough text', 'product-designer'); ?>" id="text-strikethrough"><i class="fa fa-strikethrough" ></i></span>
-
-
+                        <span class="pack-button hint--top" aria-label="<?php echo __('Bold text', 'product-designer'); ?>" id="text-bold"><?php echo $icon_text_bold; ?></span>
+                        <span class="pack-button hint--top" aria-label="<?php echo __('Italic text', 'product-designer'); ?>" id="text-italic"><?php echo $icon_text_italic; ?></span>
+                        <span class="pack-button hint--top" aria-label="<?php echo __('Underline text', 'product-designer'); ?>" id="text-underline"><?php echo $icon_text_underline; ?></span>
+                        <span class="pack-button hint--top" aria-label="<?php echo __('Strikethrough text', 'product-designer'); ?>" id="text-strikethrough"><?php echo $icon_text_strikethrough; ?></span>
                 </div>
-
-
 
                 <div class="setting-field half">
                     <div class="field-label hint--top" aria-label="Set text size">Text size</div>
@@ -667,13 +666,11 @@ function product_designer_tools_edit_text(){
                     </div>
                 </div>
 
-
                 <div class="setting-field half">
                     <div class="field-label"><?php echo __('Text color:', 'product-designer'); ?></div>
                     <div class="field-input">
                         <input data-jscolor="" class="tool-button" id="font-color" aria-label="Text Color" placeholder="rgba(255,255,255,1)" type="text" value="rgba(255,255,255,1)">
                     </div>
-
                 </div>
 
                 <div class="setting-field half">
@@ -681,7 +678,6 @@ function product_designer_tools_edit_text(){
                     <div class="field-input">
                         <input data-jscolor="" class="tool-button" id="font-bg-color" aria-label="Background Color" placeholder="rgba(255,255,255,1)" type="text" value="rgba(255,255,255,1)">
                     </div>
-
                 </div>
 
 
@@ -690,7 +686,6 @@ function product_designer_tools_edit_text(){
                     <div class="field-input">
                         <input data-jscolor="" class="tool-button" id="stroke-color" aria-label="Outline Color" placeholder="rgba(255,255,255,1)" type="text" value="rgba(255,255,255,1)">
                     </div>
-
                 </div>
 
 
@@ -699,9 +694,7 @@ function product_designer_tools_edit_text(){
                     <div class="field-input">
                         <input class="" id="stroke-size" aria-label="Text Outline" type="number" placeholder="2" value="2">
                     </div>
-
                 </div>
-
 
                 <div class="setting-field half">
                     <div class="field-label"><?php echo __('Font family:', 'product-designer'); ?></div>
@@ -721,42 +714,16 @@ function product_designer_tools_edit_text(){
                             ?>
                         </select>
                     </div>
-
                 </div>
-
-
 
                 <div class="setting-field half">
                     <div class="field-label"><?php echo __('Opacity:', 'product-designer'); ?></div>
                     <div class="field-input">
                         <input  class=" tool-button" aria-label="Opacity" id="font-opacity" type="range" min="0" max="1" step="0.1" value="1" />
                     </div>
-
                 </div>
-
-
-
-
             </form>
-
-
-
-
-
-
         </div>
-
-
-
-        <!--
-
-                            <span class="" aria-label="Align left" id="text-align-left"><i class="fa fa-align-left" ></i></span>
-                            <span class="" aria-label="Align center" id="text-align-center"><i class="fa fa-align-center" ></i></span>
-                            <span class="" aria-label="Akign right" id="text-align-right"><i class="fa fa-align-right" ></i></span>
-
-        -->
-
-
     </div>
 
     <?php
@@ -772,12 +739,9 @@ add_action('product_designer_tools', 'product_designer_tools_edit_img', 20);
 function product_designer_tools_edit_img(){
 
     ?>
-
-
     <div class="edit-img toolbar-section">
         <div class="toolbar-title"><?php echo __('Images Actions', 'product-designer'); ?></div>
         <div class="toolbar-section-inner">
-
             <div class="setting-field half">
                 <div class="field-label"><?php echo __('Opacity', 'product-designer'); ?></div>
                 <div class="field-input">
@@ -793,22 +757,10 @@ function product_designer_tools_edit_img(){
                     <label><input class="" aria-label="<?php echo __('Sepia', 'product-designer'); ?>"  id="img-filter-sepia" type="checkbox" value="1" /><?php echo __('Sepia', 'product-designer'); ?></label>
                     <label><input class="" aria-label="<?php echo __('Noise', 'product-designer'); ?>"  id="img-filter-noise" type="checkbox" value="1" /><?php echo __('Noise', 'product-designer'); ?></label>
                     <label><input class="" aria-label="<?php echo __('Pixelate', 'product-designer'); ?>"  id="img-filter-pixelate" type="checkbox" value="1" /><?php echo __('Pixelate', 'product-designer'); ?></label>
-
-
                 </div>
             </div>
-
         </div>
-
-
-
-
-
-
-
-
     </div>
-
     <?php
 
 }
@@ -823,27 +775,19 @@ function product_designer_tools_edit_shape(){
     <div class="edit-shape toolbar-section">
         <div class="toolbar-title"><?php echo __('Shapes Actions', 'product-designer'); ?></div>
         <div class="toolbar-section-inner">
-
             <div class="setting-field half">
                 <div class="field-label"><?php echo __('Opacity', 'product-designer'); ?></div>
                 <div class="field-input">
                     <input  class="" aria-label="Opacity" id="shape-opacity" type="range" min="0" max="1" step="0.1" value="1" />
                 </div>
             </div>
-
             <div class="setting-field half">
                 <div class="field-label"><?php echo __('Color', 'product-designer'); ?></div>
                 <div class="field-input">
                     <input  data-jscolor="" aria-label="<?php echo __('Color', 'product-designer'); ?>" id="shape-color" class=" " placeholder="<?php echo __('Color', 'product-designer'); ?>"  type="text" value="rgba(255,255,255,1)" />
                 </div>
             </div>
-
-
-
-
         </div>
-
-
     </div>
     <?php
 
@@ -852,33 +796,17 @@ function product_designer_tools_edit_shape(){
 
 add_action('product_designer_tools', 'product_designer_tools_product_info', 20);
 
-function product_designer_tools_product_info(){
+function product_designer_tools_product_info($atts){
 
-    $product_id = isset($_GET['product_id']) ? sanitize_text_field($_GET['product_id']) : '';
+    $product_id = isset($atts['product_id']) ? $atts['product_id'] : '';
+    $variation_id = isset($atts['variation_id']) ? $atts['variation_id'] : '';
 
+    $product_title = isset($atts['product_title']) ? $atts['product_title'] : '';
+    $currency_symbol = isset($atts['currency_symbol']) ? $atts['currency_symbol'] : '';
+    $pd_template_id = isset($atts['pd_template_id']) ? $atts['pd_template_id'] : '';
+    $base_price = isset($atts['base_price']) ? $atts['base_price'] : '';
+    $display_price = isset($atts['display_price']) ? $atts['display_price'] : '';
 
-
-    $product_data = wc_get_product($product_id);
-    $is_variable = $product_data->is_type('variable');
-
-
-    if($is_variable):
-
-        $variation_id = isset($_GET['variation_id']) ? sanitize_text_field($_GET['variation_id']): '';
-        $pd_template_id = get_post_meta( $variation_id, 'pd_template_id', true );
-
-
-        if(empty($variation_id)):
-            $product_designer_error['variation_id_missing'] = 'Variation id is missing';
-        endif;
-
-
-
-    else:
-
-        $pd_template_id = get_post_meta( $product_id, 'pd_template_id', true );
-
-    endif;
 
 
     ?>
@@ -890,40 +818,12 @@ function product_designer_tools_product_info(){
                 <input type="hidden" value="<?php echo $product_id; ?>" name="add-to-cart">
                 <input type="hidden" value="<?php echo $pd_template_id; ?>" name="pd_template_id">
 
-
                 <?php
-                $product_data = wc_get_product($product_id);
-                $is_variable = $product_data->is_type('variable');
-                $product_price = '';
-                $currency_symbol = get_woocommerce_currency_symbol();
-                //var_dump(product_designer_is_customizable($product_id));
-
-                if($is_variable){
-
-                    $variation_id = isset($_GET['variation_id']) ? sanitize_text_field($_GET['variation_id']) : '';
-                    $variation_data= new WC_Product_Variation( $variation_id );
-
-                    $sale_price = $variation_data->get_sale_price();
-                    $regular_price = $variation_data->get_regular_price();
-
-
-
-                    if(empty($sale_price)){
-
-                    }
-                    else{
-                        $product_price = '<strike>'.$currency_symbol.$regular_price.'</strike> - '.$currency_symbol.$sale_price;
-                    }
-
+                if(!empty($variation_id)){
                     ?>
                     <input type="hidden"  name="variation_id" value="<?php echo $variation_id; ?>">
                     <?php
-
                 }
-                else{
-                    $product_price = $product_data->get_price_html();
-                }
-
 
                 ?>
 
@@ -931,7 +831,7 @@ function product_designer_tools_product_info(){
                 <div class="setting-field full">
                     <div class="field-label"><?php echo __('You are editing', 'product-designer'); ?></div>
                     <div class="field-input">
-                        <?php echo get_the_title($product_id); ?>
+                        <?php echo $product_title; ?>
                     </div>
                 </div>
 
@@ -939,7 +839,7 @@ function product_designer_tools_product_info(){
                 <div class="setting-field half">
                     <div class="field-label"><?php echo __('Base Price', 'product-designer'); ?></div>
                     <div class="field-input">
-                        <?php echo $product_price; ?>
+                        <?php echo $display_price; ?>
                     </div>
                 </div>
 
