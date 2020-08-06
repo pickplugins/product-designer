@@ -125,6 +125,7 @@ class class_product_designer_shortcodes  {
         endif;
 
         $atts['pd_template_id'] = $pd_template_id;
+        $atts['product_type'] = $product_type;
 
 
         $canvas = get_post_meta( $pd_template_id, 'canvas', true );
@@ -135,16 +136,6 @@ class class_product_designer_shortcodes  {
         $atts['side_data'] = $side_data;
 
         //var_dump($canvas);
-
-
-
-
-
-
-
-
-
-
 
 
         if($font_aw_version == 'v_5'){

@@ -64,99 +64,6 @@ function product_designer_editor_wrap_start($atts){
 }
 
 
-
-
-add_action('product_designer_editor', 'product_designer_editor', 10);
-
-function product_designer_editor($atts){
-
-    $settings = isset($atts['settings']) ? $atts['settings'] : array();
-    $menu_position = isset($settings['menu_position']) ? $settings['menu_position'] : 'left';
-
-
-
-
-    $product_designer_settings = get_option('product_designer_settings');
-
-
-    $product_designer_error = array();
-
-
-
-
-    if(!empty($_GET['product_id'])):
-
-        $product_id = isset($_GET['product_id']) ? sanitize_text_field($_GET['product_id']) : '';
-
-        $product_data = wc_get_product($product_id);
-        $is_variable = $product_data->is_type('variable');
-
-
-        if($is_variable):
-
-            $variation_id = isset($_GET['variation_id']) ? sanitize_text_field($_GET['variation_id']): '';
-            $pd_template_id = get_post_meta( $variation_id, 'pd_template_id', true );
-            $canvas_settings = get_post_meta( $pd_template_id, 'canvas', true );
-
-            $side_data = get_post_meta( $pd_template_id, 'side_data', true );
-
-
-            if(empty($variation_id)):
-                $product_designer_error['variation_id_missing'] = 'Variation id is missing';
-            endif;
-
-
-
-        else:
-
-            $pd_template_id = get_post_meta( $product_id, 'pd_template_id', true );
-            $canvas_settings = get_post_meta( $pd_template_id, 'canvas', true );
-
-            $side_data = get_post_meta( $pd_template_id, 'side_data', true );
-
-
-        endif;
-
-
-
-        if(empty($side_data)) $side_data = array();
-
-        $pre_templates = get_post_meta( $pd_template_id, 'pre_templates', true );
-
-
-
-
-
-
-        if(!empty($_GET['side'])){
-            $current_side = isset($_GET['side']) ? sanitize_text_field($_GET['side']) : '';
-
-        }
-        else{
-            $current_side = '';
-            $current_side_empty = array();
-            if(!empty($side_data))
-                foreach($side_data as $id=>$side){
-                    $current_side_empty[] = $id;
-                }
-            if(!empty($current_side_empty[0])){
-                $current_side = $current_side_empty[0];
-            }
-            else{
-                $current_side = '';
-            }
-        }
-
-
-
-
-
-    endif;
-
-}
-
-
-
 add_action('product_designer_editor', 'product_designer_editor_panel', 15);
 
 function product_designer_editor_panel($atts){
@@ -978,124 +885,29 @@ add_action('product_designer_editor', 'product_designer_scripts', 30);
 function product_designer_scripts($atts){
 
     $product_id = isset($atts['product_id']) ? sanitize_text_field($atts['product_id']) : '';
+    $canvas = isset($atts['canvas']) ? $atts['canvas'] : array();
+    $currency_symbol = isset($atts['currency_symbol']) ? $atts['currency_symbol'] : '';
+    $side_data = isset($atts['side_data']) ? $atts['side_data'] : '';
+    $pd_template_id = isset($atts['pd_template_id']) ? $atts['pd_template_id'] : '';
+    $base_price = isset($atts['base_price']) ? $atts['base_price'] : '';
+    $display_price = isset($atts['display_price']) ? $atts['display_price'] : '';
+    $variation_id = isset($atts['variation_id']) ? $atts['variation_id'] : '';
+    $product_type = isset($atts['product_type']) ? $atts['product_type'] : '';
+
+
+
     $session_id = session_id();
     $product_designer_fonts = product_designer_fonts();
 
 
-    $product_data = wc_get_product($product_id);
-    $is_variable = $product_data->is_type('variable');
-
-
-    if($is_variable):
-
-        $variation_id = isset($_GET['variation_id']) ? sanitize_text_field($_GET['variation_id']): '';
-        $pd_template_id = get_post_meta( $variation_id, 'pd_template_id', true );
-        $canvas_settings = get_post_meta( $pd_template_id, 'canvas', true );
-
-        $side_data = get_post_meta( $pd_template_id, 'side_data', true );
-
-
-        if(empty($variation_id)):
-            $product_designer_error['variation_id_missing'] = 'Variation id is missing';
-        endif;
-
-
-
-    else:
-
-        $pd_template_id = get_post_meta( $product_id, 'pd_template_id', true );
-        $canvas_settings = get_post_meta( $pd_template_id, 'canvas', true );
-
-        $side_data = get_post_meta( $pd_template_id, 'side_data', true );
-
-
-    endif;
-
-
-
-    if(!empty($_GET['side'])){
-        $current_side = isset($_GET['side']) ? sanitize_text_field($_GET['side']) : '';
-
-    }
-    else{
-        $current_side = '';
-        $current_side_empty = array();
-        if(!empty($side_data))
-            foreach($side_data as $id=>$side){
-                $current_side_empty[] = $id;
-            }
-        if(!empty($current_side_empty[0])){
-            $current_side = $current_side_empty[0];
-        }
-        else{
-            $current_side = '';
-        }
-    }
-
-
-
-
-    $wc_currency_symbol = get_woocommerce_currency_symbol();
-
-    $canvas_settings['width'] = isset($canvas_settings['width']) ? $canvas_settings['width'] : '500';
-    $canvas_settings['height'] = isset($canvas_settings['height']) ? $canvas_settings['height'] : '500';
-
-    $product_data = wc_get_product($product_id);
-    $product_type = $product_data->get_type();
-
-
-
     $product_designer_editor['product_type']  = $product_type;
 
-    if($product_type == 'variable'){
-
-        $variation_id = isset($_GET['variation_id']) ? sanitize_text_field($_GET['variation_id']) : '';
-
-        $product_designer_editor['variation_id']  = $variation_id;
-
-
-        $variation_data = new WC_Product_Variation( $variation_id );
-
-        $sale_price = $variation_data->get_sale_price();
-        $regular_price = $variation_data->get_regular_price();
-
-        if(!empty($sale_price)){
-            $product_base_price = $sale_price;
-            $product_display_price = '<strike>'.$wc_currency_symbol.$regular_price.'</strike> - '.$wc_currency_symbol.$sale_price;;
-        }
-        else{
-            $product_base_price = $regular_price;
-            $product_display_price = $wc_currency_symbol.$regular_price;;
-        }
-
-        $product_designer_editor['product_base_price']  = $product_base_price;
-        $product_designer_editor['product_display_price']  = $product_display_price;
-
-
-    }
-    elseif ($product_type == 'simple'){
 
 
 
-        $sale_price = get_post_meta($product_id, '_sale_price', true);
-        $regular_price = get_post_meta($product_id, '_regular_price', true);
-
-        if(!empty($sale_price)){
-            $product_base_price = $sale_price;
-            $product_display_price = $product_data->get_price_html();
-        }
-        else{
-            $product_base_price = $regular_price;
-            $product_display_price = $product_data->get_price_html();
-        }
-
-        $product_designer_editor['product_base_price']  = $product_base_price;
-        $product_designer_editor['product_display_price']  = $product_display_price;
-
-    }
-
-
-
+    $product_designer_editor['variation_id']  = $variation_id;
+    $product_designer_editor['product_base_price']  = $base_price;
+    $product_designer_editor['product_display_price']  = $display_price;
 
 
 
@@ -1103,16 +915,16 @@ function product_designer_scripts($atts){
 
 
     $product_designer_editor['product_title']  = get_the_title($product_id);
-    $product_designer_editor['wc_currency_symbol']  = $wc_currency_symbol;
+    $product_designer_editor['wc_currency_symbol']  = $currency_symbol;
 
     $product_designer_editor['session_id']  = $session_id;
 
-    $product_designer_editor['width']  = isset($canvas_settings['width']) ? $canvas_settings['width'] : '';
-    $product_designer_editor['height']  = isset($canvas_settings['height']) ? $canvas_settings['height'] : '';
+    $product_designer_editor['width']  = isset($canvas['width']) ? $canvas['width'] : '500';
+    $product_designer_editor['height']  = isset($canvas['height']) ? $canvas['height'] : '500';
 
 
-    $product_designer_editor['output_file_format']  = isset($canvas_settings['output']['file_format']) ? $canvas_settings['output']['file_format'] : 'png';
-    $product_designer_editor['preview_file_format']  = isset($canvas_settings['preview']['file_format']) ? $canvas_settings['preview']['file_format'] : 'png';
+    $product_designer_editor['output_file_format']  = isset($canvas['output']['file_format']) ? $canvas['output']['file_format'] : 'png';
+    $product_designer_editor['preview_file_format']  = isset($canvas['preview']['file_format']) ? $canvas['preview']['file_format'] : 'png';
 
 
     $side_data_ids = array_keys($side_data);
@@ -1152,9 +964,6 @@ function product_designer_scripts($atts){
                 heightStyle: "full",
             })
 
-            //$( ".draggable" ).draggable({ handle: ".handle" });
-
-
         })
 
         //jQuery(document).ready(function($){
@@ -1189,8 +998,8 @@ function product_designer_scripts($atts){
 
             //canvas.backgroundImageStretch = true;
             // Canvas dimension
-            canvas.setHeight(<?php echo $canvas_settings['height']; ?>);
-            canvas.setWidth(<?php echo $canvas_settings['width']; ?>);
+            canvas.setHeight(<?php echo $canvas['height']; ?>);
+            canvas.setWidth(<?php echo $canvas['width']; ?>);
 
             if(background_fit_canvas_size == 1){
 
@@ -1278,24 +1087,7 @@ function product_designer_scripts($atts){
 
 
 
-        if(!empty($side_data))
-        foreach($side_data as $id=>$side){
-            $src = isset($side['src']) ? $side['src'] : '';
 
-            if($current_side==$id){
-
-                ?>
-
-        .canvas-container{
-
-        }
-
-
-        <?php
-
-    }
-
-}
 
 ?>
     </style>
@@ -1356,12 +1148,10 @@ function product_designer_preview(){
 
     ?>
     <div class="preview ">
-
-            <div class="preview-img ">
-                <span class="preview-close"><i class="fa fa-times"></i></span>
-                <div class="img"></div>
-            </div>
-
+        <div class="preview-img ">
+            <span class="preview-close"><i class="fa fa-times"></i></span>
+            <div class="img"></div>
+        </div>
     </div>
     <?php
 
@@ -1390,7 +1180,7 @@ function product_designer_toast(){
 
     ?>
     <div class="toast">
-        <span class="icon"></span> <span class="message"></span>
+        <span class="icon"></span><span class="message"></span>
     </div>
     <?php
 

@@ -124,11 +124,6 @@ jQuery(document).ready(function($){
 
 
 
-
-
-
-
-
     $(document).on('click','.side-list li',function(event){
 
     })
