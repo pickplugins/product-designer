@@ -24,7 +24,9 @@ class class_product_designer_functions{
     public function tour_guide_steps(){
 
         $product_designer_settings = get_option('product_designer_settings');
-        $menu_position = isset($product_designer_settings['menu_position']) ? $product_designer_settings['menu_position'] : '';
+        $menu_position = isset($product_designer_settings['menu_position']) ? $product_designer_settings['menu_position'] : 'left';
+
+        var_dump($menu_position);
 
         $data = array(
             array(
@@ -34,10 +36,10 @@ class class_product_designer_functions{
 
                 'position' => array(
                     'container' => '.pd-guide-1',
-                    'x' => -350,
+                    'x' => ($menu_position == 'left') ? 350 : -350,
                     'y' => 0,
                     'width' => 300,
-                    'arrow' => 'rt',
+                    'arrow' => ($menu_position == 'left') ? 'lt' : 'rt',
                 ),
                 'buttons' => array(
                     'Next' => 1,
@@ -49,10 +51,10 @@ class class_product_designer_functions{
                 'focus' => 1,
                 'position' => array(
                     'container' => '.pd-guide-2',
-                    'x' => -350,
+                    'x' => ($menu_position == 'left') ? 350 : -350,
                     'y' => 0,
                     'width' => 300,
-                    'arrow' => 'rt',
+                    'arrow' => ($menu_position == 'left') ? 'lt' : 'rt',
                 ),
                 'buttons' => array(
                     'Prev' => -1,
@@ -65,10 +67,10 @@ class class_product_designer_functions{
                 'focus' => 1,
                 'position' => array(
                     'container' => '.pd-guide-3',
-                    'x' => -350,
+                    'x' => ($menu_position == 'left') ? 350 : -350,
                     'y' => 0,
                     'width' => 300,
-                    'arrow' => 'rt',
+                    'arrow' => ($menu_position == 'left') ? 'lt' : 'rt',
                 ),
                 'buttons' => array(
                     'Prev' => -1,
@@ -81,10 +83,10 @@ class class_product_designer_functions{
                 'focus' => 1,
                 'position' => array(
                     'container' => '.pd-guide-4',
-                    'x' => -350,
+                    'x' => ($menu_position == 'left') ? 350 : -350,
                     'y' => 0,
                     'width' => 300,
-                    'arrow' => 'rt',
+                    'arrow' => ($menu_position == 'left') ? 'lt' : 'rt',
                 ),
                 'buttons' => array(
                     'Prev' => -1,
@@ -97,10 +99,10 @@ class class_product_designer_functions{
                 'focus' => 1,
                 'position' => array(
                     'container' => '.pd-guide-5',
-                    'x' => -350,
+                    'x' => ($menu_position == 'left') ? 350 : -350,
                     'y' => 0,
                     'width' => 300,
-                    'arrow' => 'rt',
+                    'arrow' => ($menu_position == 'left') ? 'lt' : 'rt',
                 ),
                 'buttons' => array(
                     'Prev' => -1,
@@ -113,10 +115,10 @@ class class_product_designer_functions{
                 'focus' => 1,
                 'position' => array(
                     'container' => '.pd-guide-6',
-                    'x' => -350,
+                    'x' => ($menu_position == 'left') ? 180 : -350,
                     'y' => 0,
                     'width' => 300,
-                    'arrow' => 'rt',
+                    'arrow' => ($menu_position == 'left') ? 'lt' : 'rt',
                 ),
                 'buttons' => array(
                     'Prev' => -1,
@@ -129,10 +131,10 @@ class class_product_designer_functions{
                 'focus' => 1,
                 'position' => array(
                     'container' => '.pd-guide-7',
-                    'x' => -350,
+                    'x' => ($menu_position == 'left') ? 350 : -350,
                     'y' => 0,
                     'width' => 300,
-                    'arrow' => 'rt',
+                    'arrow' => ($menu_position == 'left') ? 'lt' : 'rt',
                 ),
                 'buttons' => array(
                     'Prev' => -1,
@@ -145,10 +147,10 @@ class class_product_designer_functions{
                 'focus' => 1,
                 'position' => array(
                     'container' => '.pd-guide-8',
-                    'x' => -350,
+                    'x' => ($menu_position == 'left') ? 350 : -350,
                     'y' => 0,
                     'width' => 300,
-                    'arrow' => 'rt',
+                    'arrow' => ($menu_position == 'left') ? 'lt' : 'rt',
                 ),
                 'buttons' => array(
                     'Prev' => -1,
@@ -162,10 +164,26 @@ class class_product_designer_functions{
                 'focus' => 1,
                 'position' => array(
                     'container' => '.pd-guide-9',
-                    'x' => -350,
+                    'x' => ($menu_position == 'left') ? 350 : -350,
                     'y' => 0,
                     'width' => 300,
-                    'arrow' => 'rt',
+                    'arrow' => ($menu_position == 'left') ? 'lt' : 'rt',
+                ),
+                'buttons' => array(
+                    'Prev' => -1,
+                    'Next' => 1,
+                ),
+            ),
+            array(
+                'title' => __('#10 Keyboard Shortcuts',''),
+                'html' => __('Use keyboard shortcuts to speed up your work.'),
+                'focus' => 1,
+                'position' => array(
+                    'container' => '.pd-guide-10',
+                    'x' => ($menu_position == 'left') ? 350 : -350,
+                    'y' => 0,
+                    'width' => 300,
+                    'arrow' => ($menu_position == 'left') ? 'lt' : 'rt',
                 ),
                 'buttons' => array(
                     'Prev' => -1,
@@ -173,6 +191,9 @@ class class_product_designer_functions{
                     'Done' => 2,
                 ),
             ),
+
+
+
         );
 
 

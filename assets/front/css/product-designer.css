@@ -945,10 +945,11 @@ display:none;
 .product-designer .welcome-tour .start-tour {
   padding: 10px 25px;
   font-size: 14px;
-  background: #3996ff;
+  background: #009688;
   color: #fff;
   border: none;
   float: none;
+  margin: 0 5px;
 }
 
 .product-designer .welcome-tour .end-tour {

@@ -3878,7 +3878,7 @@ $(document).on('click','.clipart-list img',function(){
     for (i in tour_steps){
 
         tour_steps[i].submit = tourSubmitFunc;
-        
+
     }
 
 

@@ -799,7 +799,7 @@ function product_designer_tools_keyboard($atts){
     $keyboard = isset($icons['keyboard']) ? $icons['keyboard'] : '';
 
     ?>
-    <div class="toolbar-section">
+    <div class="toolbar-section pd-guide-10">
         <div class="toolbar-title"><?php echo sprintf(__('%s Keyboard Shortcut','product-designer'), $keyboard); ?></div>
         <div class="toolbar-section-inner">
 
