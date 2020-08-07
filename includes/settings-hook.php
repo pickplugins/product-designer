@@ -108,7 +108,6 @@ if(!function_exists('product_designer_settings_content_tour_guide')) {
         $product_designer_settings = get_option('product_designer_settings');
 
         $enable_guide = isset($product_designer_settings['enable_guide']) ? $product_designer_settings['enable_guide'] : '';
-        $tour_guide_data = isset($product_designer_settings['tour_guide_data']) ? $product_designer_settings['tour_guide_data'] : array();
 
 
         ?>
@@ -134,90 +133,6 @@ if(!function_exists('product_designer_settings_content_tour_guide')) {
 
 
 
-
-
-            $font_fields = array(
-
-                array(
-                    'id'		=> 'title',
-                    'title'		=> __('Guide title','product-designer'),
-                    'details'	=> __('Write tour guide title.','product-designer'),
-                    'type'		=> 'text',
-                    'value'		=> '',
-                    'default'		=> '',
-                    'placeholder'		=> '',
-                ),
-                array(
-                    'id'		=> 'html',
-                    'title'		=> __('Guide html','product-designer'),
-                    'details'	=> __('Write tour guide html.','product-designer'),
-                    'type'		=> 'textarea',
-                    'value'		=> '',
-                    'default'		=> '',
-                    'placeholder'		=> '',
-                ),
-
-                array(
-                    'id'		=> 'element_id',
-                    'title'		=> __('Element id','product-designer'),
-                    'details'	=> __('Write tour guide element id.','product-designer'),
-                    'type'		=> 'text',
-                    'value'		=> '',
-                    'default'		=> '',
-                    'placeholder'		=> '',
-                ),
-
-                array(
-                    'id'		=> 'position_x',
-                    'title'		=> __('X position','product-designer'),
-                    'details'	=> __('Set position x value.','product-designer'),
-                    'type'		=> 'text',
-                    'value'		=> '',
-                    'default'		=> '',
-                    'placeholder'		=> '',
-                ),
-
-                array(
-                    'id'		=> 'position_y',
-                    'title'		=> __('Y position','product-designer'),
-                    'details'	=> __('Set position y value.','product-designer'),
-                    'type'		=> 'text',
-                    'value'		=> '',
-                    'default'		=> '',
-                    'placeholder'		=> '',
-                ),
-
-                array(
-                    'id'		=> 'position_arrow',
-                    'title'		=> __('Arrow position','product-designer'),
-                    'details'	=> __('Set arrow position.','product-designer'),
-                    'type'		=> 'select',
-                    'value'		=> '',
-                    'default'		=> '',
-                    'args'		=> array('tl'=>'Top-left', 'tc'=>'Top-center','tr'=>'Top-right','bl'=>'Bottom-left','bc'=>'Bottom-center','br'=>'Bottom-right', 'lt'=>'Left-top',  'lm'=>'Left-Middle', 'lb'=>'Left-Bottom', 'rt'=>'Right-top',  'rm'=>'Right-Middle', 'rb'=>'Right-Bottom',),
-                ),
-
-
-
-
-            );
-
-
-
-            $args = array(
-                'id'		=> 'tour_guide_data',
-                'parent'		=> 'product_designer_settings',
-                'title'		=> __('Tour guide data','text-domain'),
-                'details'	=> __('Customize tour guide','text-domain'),
-                'collapsible'=> true,
-                'type'		=> 'repeatable',
-                'limit'		=> 10,
-                'title_field'		=> 'title',
-                'value'		=> $tour_guide_data,
-                'fields'    => $font_fields,
-            );
-
-            $settings_tabs_field->generate_field($args);
 
 
 

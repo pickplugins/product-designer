@@ -40,7 +40,6 @@ class class_product_designer_shortcodes  {
         $enable_guide= isset($product_designer_settings['enable_guide']) ? $product_designer_settings['enable_guide'] : 'yes';
         $designer_page_id = isset($product_designer_settings['designer_page_id']) ? $product_designer_settings['designer_page_id'] : '';
 
-        $tour_guide_data = isset($product_designer_settings['tour_guide_data']) ? $product_designer_settings['tour_guide_data'] : '';
 
 
 
@@ -59,7 +58,6 @@ class class_product_designer_shortcodes  {
         $atts['settings']['enable_guide'] = $enable_guide;
         $atts['settings']['designer_page_id'] = $designer_page_id;
         $atts['settings']['designer_page_url'] = get_permalink($designer_page_id);
-        $atts['settings']['tour_guide_data'] = $tour_guide_data;
 
 
         $atts['product_id'] = $product_id;

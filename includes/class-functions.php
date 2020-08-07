@@ -18,7 +18,36 @@ class class_product_designer_functions  {
 	
 		
     }
-	
+
+
+
+    public function tour_guide(){
+
+        $product_designer_settings = get_option('product_designer_settings');
+        $menu_position = isset($product_designer_settings['menu_position']) ? $product_designer_settings['menu_position'] : '';
+
+        $data = array(
+            array(
+                'title' => __('#1 Product Sides',''),
+                'html' => __('Click here to load side and ready for edit.'),
+                'focus' => '1',
+                'position' => array(
+                    'container' => '',
+                    'x' => '-350',
+                    'y' => '0',
+                    'width' => '300',
+                    'arrow' => 'rt',
+                ),
+                'buttons' => array(
+                    'Next' => 1,
+                ),
+            ),
+        );
+
+
+    }
+
+
 	public function tutorials(){
 
 		$tutorials[] = array(

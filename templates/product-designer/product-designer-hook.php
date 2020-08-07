@@ -897,9 +897,6 @@ function product_designer_scripts($atts){
     $settings = isset($atts['settings']) ? $atts['settings'] : '';
     $enable_guide = isset($settings['enable_guide']) ? $settings['enable_guide'] : '';
 
-    $tour_guide_data = isset($settings['tour_guide_data']) ? $settings['tour_guide_data'] : '';
-
-
 
     $session_id = session_id();
     $product_designer_fonts = product_designer_fonts();
@@ -950,7 +947,6 @@ function product_designer_scripts($atts){
         'tour_hide'=>false,
         'tour_complete'=>false,
         'enable'=> ($enable_guide == 'yes') ? true : false,
-        'data'=> $tour_guide_data,
 
     );
 
