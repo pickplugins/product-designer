@@ -180,6 +180,8 @@ jQuery(document).ready(function($){
     $(document).on('click','.side-list li',function(event){
 
         side_id = $(this).attr('side_id');
+        side_name = $(this).attr('data-side_name');
+
         $(".side-list li").removeClass("active");
         $(this).addClass("active");
         side_data = product_designer_editor.side_data;
@@ -198,7 +200,7 @@ jQuery(document).ready(function($){
         }
 
 
-        product_designer_editor_toast('','Side loaded.');
+        product_designer_editor_toast('', side_name+' side loaded.');
 
         json = JSON.stringify(canvas);
         product_designer_editor.side_serialized_data[current_side_id] = json;
@@ -954,7 +956,7 @@ $(document).on('click','.generate-side-output',function(event){
 
 
 
-        if(e.shiftKey && e.keyCode == 68){
+        if(e.ctrlKey && e.keyCode == 68){
 
             var preview_file_format = product_designer_editor.preview_file_format;
 
@@ -999,7 +1001,7 @@ $(document).on('click','.generate-side-output',function(event){
         }
 
 
-        if(e.shiftKey && e.keyCode == 80){
+        if(e.ctrlKey && e.keyCode == 80){
 
             var inc_preview_background = side_data[current_side_id].inc_preview_background;
             var inc_preview_overlay = side_data[current_side_id].inc_preview_overlay;
@@ -1047,7 +1049,7 @@ $(document).on('click','.generate-side-output',function(event){
 
 
 
-        if(e.keyCode == 32){
+        if(e.ctrlKey && e.keyCode == 32){
             e.preventDefault();
 
             var panButton = $('#editor-pan');
@@ -3904,7 +3906,7 @@ $(document).on('click','.clipart-list img',function(){
     }
 
 
-    document.cookie = "product_designer_tour=;";
+    //document.cookie = "product_designer_tour=;";
 
 
     $(document).on('click','.product-designer .welcome-tour .start-tour',function(){

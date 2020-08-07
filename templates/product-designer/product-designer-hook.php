@@ -144,7 +144,7 @@ function product_designer_side_list($atts){
 
                         if(!empty($icon)){
                             ?>
-                            <li side_id="<?php echo $id; ?>" >
+                            <li side_id="<?php echo $id; ?>" data-side_name="<?php echo $name; ?>" >
                                 <img src="<?php echo $icon; ?>" />
                                 <span class="name"><?php echo $name; ?></span>
                             </li>
@@ -820,12 +820,12 @@ function product_designer_tools_keyboard($atts){
             </div>
 
             <div class="shortcut">
-                <?php echo sprintf(__('%s Preview','product-designer'), '<kbd>Shift + P</kbd>'); ?>
+                <?php echo sprintf(__('%s Preview','product-designer'), '<kbd>Ctrl + P</kbd>'); ?>
 
             </div>
 
             <div class="shortcut">
-                <?php echo sprintf(__('%s Download','product-designer'), '<kbd>Shift + D</kbd>'); ?>
+                <?php echo sprintf(__('%s Download','product-designer'), '<kbd>Ctrl + D</kbd>'); ?>
 
             </div>
 
@@ -840,7 +840,7 @@ function product_designer_tools_keyboard($atts){
 
             </div>
             <div class="shortcut">
-                <?php echo sprintf(__('%s Panning','product-designer'), '<kbd>Space</kbd>'); ?>
+                <?php echo sprintf(__('%s Panning','product-designer'), '<kbd>Ctrl + Space</kbd>'); ?>
 
             </div>
 
@@ -1208,7 +1208,7 @@ function product_designer_toast(){
 
     ?>
     <div class="toast">
-        <span class="icon"></span><span class="message"></span>
+        <span class="icon"></span> <span class="message"></span>
     </div>
     <?php
 
