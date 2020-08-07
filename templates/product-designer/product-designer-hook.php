@@ -503,7 +503,7 @@ function product_designer_tools_editor_actions($atts){
             endif;
 
             if($enable_download =='yes'): ?>
-                <div class="editor-download pd-guide-7"><?php echo __('Download', 'product-designer'); ?><?php echo sprintf(__('%s Download','product-designer'), $icon_download); ?></div>
+                <div class="editor-download pd-guide-7"><?php echo sprintf(__('%s Download','product-designer'), $icon_download); ?></div>
             <?php
             endif;
             ?>

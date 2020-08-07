@@ -36,7 +36,7 @@ class class_product_designer_functions{
 
                 'position' => array(
                     'container' => '.pd-guide-1',
-                    'x' => ($menu_position == 'left') ? 350 : -350,
+                    'x' => ($menu_position == 'left') ? 340 : -350,
                     'y' => 0,
                     'width' => 300,
                     'arrow' => ($menu_position == 'left') ? 'lt' : 'rt',
@@ -51,7 +51,7 @@ class class_product_designer_functions{
                 'focus' => 1,
                 'position' => array(
                     'container' => '.pd-guide-2',
-                    'x' => ($menu_position == 'left') ? 350 : -350,
+                    'x' => ($menu_position == 'left') ? 340 : -350,
                     'y' => 0,
                     'width' => 300,
                     'arrow' => ($menu_position == 'left') ? 'lt' : 'rt',
@@ -67,7 +67,7 @@ class class_product_designer_functions{
                 'focus' => 1,
                 'position' => array(
                     'container' => '.pd-guide-3',
-                    'x' => ($menu_position == 'left') ? 350 : -350,
+                    'x' => ($menu_position == 'left') ? 340 : -350,
                     'y' => 0,
                     'width' => 300,
                     'arrow' => ($menu_position == 'left') ? 'lt' : 'rt',
@@ -83,7 +83,7 @@ class class_product_designer_functions{
                 'focus' => 1,
                 'position' => array(
                     'container' => '.pd-guide-4',
-                    'x' => ($menu_position == 'left') ? 350 : -350,
+                    'x' => ($menu_position == 'left') ? 340 : -350,
                     'y' => 0,
                     'width' => 300,
                     'arrow' => ($menu_position == 'left') ? 'lt' : 'rt',
@@ -99,7 +99,7 @@ class class_product_designer_functions{
                 'focus' => 1,
                 'position' => array(
                     'container' => '.pd-guide-5',
-                    'x' => ($menu_position == 'left') ? 350 : -350,
+                    'x' => ($menu_position == 'left') ? 340 : -350,
                     'y' => 0,
                     'width' => 300,
                     'arrow' => ($menu_position == 'left') ? 'lt' : 'rt',
@@ -115,7 +115,7 @@ class class_product_designer_functions{
                 'focus' => 1,
                 'position' => array(
                     'container' => '.pd-guide-6',
-                    'x' => ($menu_position == 'left') ? 180 : -350,
+                    'x' => ($menu_position == 'left') ? 160 : -350,
                     'y' => 0,
                     'width' => 300,
                     'arrow' => ($menu_position == 'left') ? 'lt' : 'rt',
@@ -131,7 +131,7 @@ class class_product_designer_functions{
                 'focus' => 1,
                 'position' => array(
                     'container' => '.pd-guide-7',
-                    'x' => ($menu_position == 'left') ? 350 : -350,
+                    'x' => ($menu_position == 'left') ? 160 : -350,
                     'y' => 0,
                     'width' => 300,
                     'arrow' => ($menu_position == 'left') ? 'lt' : 'rt',
@@ -147,7 +147,7 @@ class class_product_designer_functions{
                 'focus' => 1,
                 'position' => array(
                     'container' => '.pd-guide-8',
-                    'x' => ($menu_position == 'left') ? 350 : -350,
+                    'x' => ($menu_position == 'left') ? 340 : -350,
                     'y' => 0,
                     'width' => 300,
                     'arrow' => ($menu_position == 'left') ? 'lt' : 'rt',
@@ -163,7 +163,7 @@ class class_product_designer_functions{
                 'focus' => 1,
                 'position' => array(
                     'container' => '.pd-guide-9',
-                    'x' => ($menu_position == 'left') ? 350 : -350,
+                    'x' => ($menu_position == 'left') ? 340 : -350,
                     'y' => 0,
                     'width' => 300,
                     'arrow' => ($menu_position == 'left') ? 'lt' : 'rt',
@@ -179,7 +179,7 @@ class class_product_designer_functions{
                 'focus' => 1,
                 'position' => array(
                     'container' => '.pd-guide-10',
-                    'x' => ($menu_position == 'left') ? 350 : -350,
+                    'x' => ($menu_position == 'left') ? 340 : -350,
                     'y' => 0,
                     'width' => 300,
                     'arrow' => ($menu_position == 'left') ? 'lt' : 'rt',
