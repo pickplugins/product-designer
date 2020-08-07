@@ -894,6 +894,11 @@ function product_designer_scripts($atts){
     $variation_id = isset($atts['variation_id']) ? $atts['variation_id'] : '';
     $product_type = isset($atts['product_type']) ? $atts['product_type'] : '';
 
+    $settings = isset($atts['settings']) ? $atts['settings'] : '';
+    $enable_guide = isset($settings['enable_guide']) ? $settings['enable_guide'] : '';
+
+    $tour_guide_data = isset($settings['tour_guide_data']) ? $settings['tour_guide_data'] : '';
+
 
 
     $session_id = session_id();
@@ -944,7 +949,8 @@ function product_designer_scripts($atts){
 
         'tour_hide'=>false,
         'tour_complete'=>false,
-        'enable'=> true,
+        'enable'=> ($enable_guide == 'yes') ? true : false,
+        'data'=> $tour_guide_data,
 
     );
 
@@ -1125,13 +1131,21 @@ function product_designer_loading(){
 
 add_action('product_designer_editor', 'product_designer_welcome_tour', 40);
 
-function product_designer_welcome_tour(){
+function product_designer_welcome_tour($atts){
+
+    $settings = isset($atts['settings']) ? $atts['settings'] : '';
+    $enable_guide = isset($settings['enable_guide']) ? $settings['enable_guide'] : '';
+
+
+    if($enable_guide != 'yes') return;
 
     ?>
     <div class="welcome-tour">
         <div class="inner-content">
-            <h2 class="headeline"><?php echo __('Welcome to the Product Designer', "product-designer"); ?></h2>
-            <p class="details"><?php echo __('Please see the welcome guide to see how the editor work and get stunning product design.', "product-designer"); ?></p>
+            <?php
+            do_action('product_designer_welcome_tour_content', $atts);
+            ?>
+
             <button class="start-tour"><?php echo __('Start Tour', "product-designer"); ?></button>
             <button class="end-tour"><?php echo __('End Tour', "product-designer"); ?></button>
         </div>
@@ -1140,6 +1154,15 @@ function product_designer_welcome_tour(){
 
 }
 
+
+add_action('product_designer_welcome_tour_content', 'product_designer_welcome_tour_content', 10);
+
+function product_designer_welcome_tour_content(){
+    ?>
+    <h2 class="headeline"><?php echo __('Welcome to the Product Designer', "product-designer"); ?></h2>
+    <p class="details"><?php echo __('Please see the welcome guide to see how the editor work and get stunning product design.', "product-designer"); ?></p>
+    <?php
+}
 
 
 add_action('product_designer_editor', 'product_designer_preview', 45);

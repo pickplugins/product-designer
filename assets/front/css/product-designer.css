@@ -918,7 +918,7 @@ display:none;
   text-align: center;
   width: 100%;
   height: 100%;
-  background: rgba(1, 82, 186, 0.56);
+  background: #32486294;
   z-index: 900;
   color: #fff;
   transition: 1s all ease;
@@ -937,9 +937,11 @@ display:none;
 
 
 .product-designer .welcome-tour .headeline {
-  font-size: 22px;
+  font-size: 40px;
 }
-.product-designer .welcome-tour .details{}
+.product-designer .welcome-tour .details {
+  font-size: 16px;
+}
 .product-designer .welcome-tour .start-tour {
   padding: 10px 25px;
   font-size: 14px;

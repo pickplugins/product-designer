@@ -3832,7 +3832,7 @@ $(document).on('click','.clipart-list img',function(){
             var expires = "expires="+d.toUTCString();
 
 
-            document.cookie = "product_designer_tour=false;"+expires;
+            //document.cookie = "product_designer_tour=false;"+expires;
 
            // anno2.show();
             //$('.anno-overlay').css('display','none');
@@ -3960,7 +3960,6 @@ $(document).on('click','.clipart-list img',function(){
 
         if(product_designer_tour != 'false'){
 
-            //console(product_designer_editor.tour_guide);
             $('.product-designer .welcome-tour').addClass('active');
         }
         else{
@@ -3974,6 +3973,8 @@ $(document).on('click','.clipart-list img',function(){
     }
 
 
+    document.cookie = "product_designer_tour=;";
+
 
     $(document).on('click','.product-designer .welcome-tour .start-tour',function(){
 
@@ -3983,6 +3984,8 @@ $(document).on('click','.clipart-list img',function(){
         console.log('Tour start');
 
         $.prompt(tourStates);
+
+
 
     });
 
@@ -4002,9 +4005,6 @@ $(document).on('click','.clipart-list img',function(){
 
         console.log('Tour end');
 
-        //$.prompt(tourStates);
-        // anno2.show();
-        //$('.anno-overlay').css('display','none');
     });
 
 
