@@ -3866,91 +3866,22 @@ $(document).on('click','.clipart-list img',function(){
             }
         };
 
-    tourStates = [
-        {
-            title: '#1 Product Sides',
-            html: 'Click here to load side and ready for edit.',
-            buttons: { Next: 1 },
-            focus: 1,
-            position: { container: '.pd-guide-1', x: -350, y: 0, width: 300, arrow: 'rt' },
-            submit: tourSubmitFunc
-        },
-        {
-            title: '#2 Clipart & Assets',
-            html: 'You can add some clipart here also you can upload your own.',
-            buttons: { Prev: -1, Next: 1 },
-            focus: 1,
-            position: { container: '.pd-guide-2', x: -350, y: 0, width: 300, arrow: 'rt' },
-            submit: tourSubmitFunc
-        },
-        {
-            title: "#3 Text",
-            html: 'You can add text from here, there also curved text available.',
-            buttons: { Prev: -1, Next: 1 },
-            focus: 1,
-            position: { container: '.pd-guide-3', x: -350, y: 0, width: 300, arrow: 'rt' },
-            submit: tourSubmitFunc
-        },
-        {
-            title: '#4 Shapes',
-            html: 'Some exclusive shapes here, you can add them to your design.',
-            buttons: { Prev: -1, Next: 1 },
-            focus: 1,
-            position: { container: '.pd-guide-4', x: -350, y: 0, width: 300, arrow: 'rt' },
-            submit: tourSubmitFunc
-        },
-
-        {
-            title: '#5 Editor actions',
-            html: 'Some exclusive shapes here, you can add them to your design.',
-            buttons: { Prev: -1, Next: 1 },
-            focus: 1,
-            position: { container: '.pd-guide-5', x: -350, y: 0, width: 300, arrow: 'rt' },
-            submit: tourSubmitFunc
-        },
-
-        {
-            title: '#6 Preview',
-            html: 'Click preview button to see current canvas preview.',
-            buttons: { Prev: -1, Next: 1 },
-            focus: 1,
-            position: { container: '.pd-guide-6', x: -330, y: -10, width: 300, arrow: 'rt' },
-            submit: tourSubmitFunc
-        },
-
-        {
-            title: '#7 Download',
-            html: 'Click download your customized design.',
-            buttons: { Prev: -1, Next: 1 },
-            focus: 1,
-            position: { container: '.pd-guide-7', x: -330, y: -10, width: 300, arrow: 'rt' },
-            submit: tourSubmitFunc
-        },
-        {
-            title: '#8 Item list',
-            html: 'Click to see object added on canvas for current view.',
-            buttons: { Prev: -1, Next: 1 },
-            focus: 1,
-            position: { container: '.pd-guide-8', x: -330, y: -10, width: 300, arrow: 'rt' },
-            submit: tourSubmitFunc
-        },
-        {
-            title: '#9 Product info & Cart',
-            html: 'After finishing the design you will see the preview and add them to cart and proceed to submit order.',
-            buttons: { Prev: -1, Next: 1,  Done: 2 },
-            focus: 1,
-            position: { container: '.pd-guide-9', x: -330, y: -10, width: 300, arrow: 'rt' },
-            submit: tourSubmitFunc
-        },
-
-    ];
-
 
 
     var tour_guide = product_designer_editor.tour_guide;
     var tour_enable = tour_guide.enable;
     var tour_complete = tour_guide.tour_complete;
     var tour_hide = tour_guide.tour_hide;
+    var tour_steps = tour_guide.steps;
+
+
+    for (i in tour_steps){
+
+        tour_steps[i].submit = tourSubmitFunc;
+        
+    }
+
+
 
     var product_designer_tour = product_designer_getCookie('product_designer_tour');
 
@@ -3983,7 +3914,7 @@ $(document).on('click','.clipart-list img',function(){
 
         console.log('Tour start');
 
-        $.prompt(tourStates);
+        $.prompt(tour_steps);
 
 
 

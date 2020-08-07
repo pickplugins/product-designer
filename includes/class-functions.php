@@ -8,7 +8,7 @@
 if ( ! defined('ABSPATH')) exit;  // if direct access 	
 
 
-class class_product_designer_functions  {
+class class_product_designer_functions{
 	
 	
     public function __construct(){
@@ -21,7 +21,7 @@ class class_product_designer_functions  {
 
 
 
-    public function tour_guide(){
+    public function tour_guide_steps(){
 
         $product_designer_settings = get_option('product_designer_settings');
         $menu_position = isset($product_designer_settings['menu_position']) ? $product_designer_settings['menu_position'] : '';
@@ -30,20 +30,155 @@ class class_product_designer_functions  {
             array(
                 'title' => __('#1 Product Sides',''),
                 'html' => __('Click here to load side and ready for edit.'),
-                'focus' => '1',
+                'focus' => 1,
+
                 'position' => array(
-                    'container' => '',
-                    'x' => '-350',
-                    'y' => '0',
-                    'width' => '300',
+                    'container' => '.pd-guide-1',
+                    'x' => -350,
+                    'y' => 0,
+                    'width' => 300,
                     'arrow' => 'rt',
                 ),
                 'buttons' => array(
                     'Next' => 1,
                 ),
             ),
+            array(
+                'title' => __('#2 Clipart & Assets',''),
+                'html' => __('You can add some clipart here also you can upload your own.'),
+                'focus' => 1,
+                'position' => array(
+                    'container' => '.pd-guide-2',
+                    'x' => -350,
+                    'y' => 0,
+                    'width' => 300,
+                    'arrow' => 'rt',
+                ),
+                'buttons' => array(
+                    'Prev' => -1,
+                    'Next' => 1,
+                ),
+            ),
+            array(
+                'title' => __('#3 Text',''),
+                'html' => __('You can add text from here, there also curved text available.'),
+                'focus' => 1,
+                'position' => array(
+                    'container' => '.pd-guide-3',
+                    'x' => -350,
+                    'y' => 0,
+                    'width' => 300,
+                    'arrow' => 'rt',
+                ),
+                'buttons' => array(
+                    'Prev' => -1,
+                    'Next' => 1,
+                ),
+            ),
+            array(
+                'title' => __('#4 Shapes',''),
+                'html' => __('Some exclusive shapes here, you can add them to your design.'),
+                'focus' => 1,
+                'position' => array(
+                    'container' => '.pd-guide-4',
+                    'x' => -350,
+                    'y' => 0,
+                    'width' => 300,
+                    'arrow' => 'rt',
+                ),
+                'buttons' => array(
+                    'Prev' => -1,
+                    'Next' => 1,
+                ),
+            ),
+            array(
+                'title' => __('5 Editor actions',''),
+                'html' => __('Click here to load side and ready for edit.'),
+                'focus' => 1,
+                'position' => array(
+                    'container' => '.pd-guide-5',
+                    'x' => -350,
+                    'y' => 0,
+                    'width' => 300,
+                    'arrow' => 'rt',
+                ),
+                'buttons' => array(
+                    'Prev' => -1,
+                    'Next' => 1,
+                ),
+            ),
+            array(
+                'title' => __('#6 Preview',''),
+                'html' => __('Click preview button to see current canvas preview.'),
+                'focus' => 1,
+                'position' => array(
+                    'container' => '.pd-guide-6',
+                    'x' => -350,
+                    'y' => 0,
+                    'width' => 300,
+                    'arrow' => 'rt',
+                ),
+                'buttons' => array(
+                    'Prev' => -1,
+                    'Next' => 1,
+                ),
+            ),
+            array(
+                'title' => __('#7 Download',''),
+                'html' => __('Click download your customized design.'),
+                'focus' => 1,
+                'position' => array(
+                    'container' => '.pd-guide-7',
+                    'x' => -350,
+                    'y' => 0,
+                    'width' => 300,
+                    'arrow' => 'rt',
+                ),
+                'buttons' => array(
+                    'Prev' => -1,
+                    'Next' => 1,
+                ),
+            ),
+            array(
+                'title' => __('#8 Item list',''),
+                'html' => __('Click to see object added on canvas for current view.'),
+                'focus' => 1,
+                'position' => array(
+                    'container' => '.pd-guide-8',
+                    'x' => -350,
+                    'y' => 0,
+                    'width' => 300,
+                    'arrow' => 'rt',
+                ),
+                'buttons' => array(
+                    'Prev' => -1,
+                    'Next' => 1,
+                ),
+            ),
+
+            array(
+                'title' => __('#9 Product info & Cart',''),
+                'html' => __('After finishing the design you will see the preview and add them to cart and proceed to submit order.'),
+                'focus' => 1,
+                'position' => array(
+                    'container' => '.pd-guide-9',
+                    'x' => -350,
+                    'y' => 0,
+                    'width' => 300,
+                    'arrow' => 'rt',
+                ),
+                'buttons' => array(
+                    'Prev' => -1,
+                    'Next' => 1,
+                    'Done' => 2,
+                ),
+            ),
         );
 
+
+        $data = apply_filters('product_designer_tour_guide_steps', $data);
+
+        return $data;
 
     }
 

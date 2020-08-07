@@ -898,6 +898,9 @@ function product_designer_scripts($atts){
     $enable_guide = isset($settings['enable_guide']) ? $settings['enable_guide'] : '';
 
 
+
+
+
     $session_id = session_id();
     $product_designer_fonts = product_designer_fonts();
 
@@ -942,11 +945,17 @@ function product_designer_scripts($atts){
     $product_designer_editor['side_json_data']  = array();
     $product_designer_editor['side_ids_preview_data']  = array();
 
+
+    $class_product_designer_functions = new class_product_designer_functions();
+    $tour_guide_steps = $class_product_designer_functions->tour_guide_steps();
+
+
     $product_designer_editor['tour_guide']  = array(
 
         'tour_hide'=>false,
         'tour_complete'=>false,
         'enable'=> ($enable_guide == 'yes') ? true : false,
+        'steps'=> $tour_guide_steps,
 
     );
 
