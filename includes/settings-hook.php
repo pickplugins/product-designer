@@ -12,7 +12,6 @@ function product_designer_settings_content_general(){
     $designer_page_id = isset($product_designer_settings['designer_page_id']) ? $product_designer_settings['designer_page_id'] : '';
     $menu_position = isset($product_designer_settings['menu_position']) ? $product_designer_settings['menu_position'] : '';
     $posts_per_page = isset($product_designer_settings['posts_per_page']) ? $product_designer_settings['posts_per_page'] : '';
-    $enable_guide = isset($product_designer_settings['enable_guide']) ? $product_designer_settings['enable_guide'] : '';
 
 
 
@@ -69,37 +68,6 @@ function product_designer_settings_content_general(){
 
 
 
-
-        $font_fields = array(
-
-            array(
-                'id'		=> 'name',
-                'title'		=> __('Font Name','product-designer'),
-                'details'	=> __('Write font name here.','product-designer'),
-                'type'		=> 'text',
-                'value'		=> '',
-                'default'		=> '',
-                'placeholder'		=> 'Open Sans',
-            ),
-            array(
-                'id'		=> 'url',
-                'title'		=> __('Font URL','product-designer'),
-                'details'	=> __('Write font source url.','product-designer'),
-                'type'		=> 'text',
-                'value'		=> '',
-                'default'		=> '',
-                'placeholder'		=> 'url',
-            ),
-
-
-        );
-
-
-
-
-
-
-
         $args = array(
             'id'		=> 'menu_position',
             'parent'		=> 'product_designer_settings',
@@ -113,18 +81,7 @@ function product_designer_settings_content_general(){
 
         $settings_tabs_field->generate_field($args);
 
-        $args = array(
-            'id'		=> 'enable_guide',
-            'parent'		=> 'product_designer_settings',
-            'title'		=> __('Enable guide','product-designer'),
-            'details'	=> __('Enable tour guide on page load','product-designer'),
-            'type'		=> 'select',
-            'value'		=> $enable_guide,
-            'default'		=> '',
-            'args'		=> array('yes'=>__('Yes','product-designer'), 'no'=>__('No','product-designer')  ),
-        );
 
-        $settings_tabs_field->generate_field($args);
 
 
 
@@ -142,7 +99,148 @@ function product_designer_settings_content_general(){
 
 }
 
+add_action('product_designer_settings_content_tour_guide', 'product_designer_settings_content_tour_guide');
 
+if(!function_exists('product_designer_settings_content_tour_guide')) {
+    function product_designer_settings_content_tour_guide($tab){
+
+        $settings_tabs_field = new settings_tabs_field();
+        $product_designer_settings = get_option('product_designer_settings');
+
+        $enable_guide = isset($product_designer_settings['enable_guide']) ? $product_designer_settings['enable_guide'] : '';
+        $tour_guide_data = isset($product_designer_settings['tour_guide_data']) ? $product_designer_settings['tour_guide_data'] : array();
+
+
+        ?>
+        <div class="section">
+            <div class="section-title"><?php echo __('Tour guide setup', 'product-designer'); ?></div>
+            <p class="description section-description"><?php echo __('Setup tour guide options', 'product-designer'); ?></p>
+
+            <?php
+
+            $args = array(
+                'id'		=> 'enable_guide',
+                'parent'		=> 'product_designer_settings',
+                'title'		=> __('Enable guide','product-designer'),
+                'details'	=> __('Enable tour guide on page load','product-designer'),
+                'type'		=> 'select',
+                'value'		=> $enable_guide,
+                'default'		=> '',
+                'args'		=> array('yes'=>__('Yes','product-designer'), 'no'=>__('No','product-designer')  ),
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+
+
+
+
+
+            $font_fields = array(
+
+                array(
+                    'id'		=> 'title',
+                    'title'		=> __('Guide title','product-designer'),
+                    'details'	=> __('Write tour guide title.','product-designer'),
+                    'type'		=> 'text',
+                    'value'		=> '',
+                    'default'		=> '',
+                    'placeholder'		=> '',
+                ),
+                array(
+                    'id'		=> 'html',
+                    'title'		=> __('Guide html','product-designer'),
+                    'details'	=> __('Write tour guide html.','product-designer'),
+                    'type'		=> 'textarea',
+                    'value'		=> '',
+                    'default'		=> '',
+                    'placeholder'		=> '',
+                ),
+
+                array(
+                    'id'		=> 'element_id',
+                    'title'		=> __('Element id','product-designer'),
+                    'details'	=> __('Write tour guide element id.','product-designer'),
+                    'type'		=> 'text',
+                    'value'		=> '',
+                    'default'		=> '',
+                    'placeholder'		=> '',
+                ),
+
+                array(
+                    'id'		=> 'position_x',
+                    'title'		=> __('X position','product-designer'),
+                    'details'	=> __('Set position x value.','product-designer'),
+                    'type'		=> 'text',
+                    'value'		=> '',
+                    'default'		=> '',
+                    'placeholder'		=> '',
+                ),
+
+                array(
+                    'id'		=> 'position_y',
+                    'title'		=> __('Y position','product-designer'),
+                    'details'	=> __('Set position y value.','product-designer'),
+                    'type'		=> 'text',
+                    'value'		=> '',
+                    'default'		=> '',
+                    'placeholder'		=> '',
+                ),
+
+                array(
+                    'id'		=> 'position_arrow',
+                    'title'		=> __('Arrow position','product-designer'),
+                    'details'	=> __('Set arrow position.','product-designer'),
+                    'type'		=> 'select',
+                    'value'		=> '',
+                    'default'		=> '',
+                    'args'		=> array('tl'=>'Top-left', 'tc'=>'Top-center','tr'=>'Top-right','bl'=>'Bottom-left','bc'=>'Bottom-center','br'=>'Bottom-right', 'lt'=>'Left-top',  'lm'=>'Left-Middle', 'lb'=>'Left-Bottom', 'rt'=>'Right-top',  'rm'=>'Right-Middle', 'rb'=>'Right-Bottom',),
+                ),
+
+
+
+
+            );
+
+
+
+            $args = array(
+                'id'		=> 'tour_guide_data',
+                'parent'		=> 'product_designer_settings',
+                'title'		=> __('Tour guide data','text-domain'),
+                'details'	=> __('Customize tour guide','text-domain'),
+                'collapsible'=> true,
+                'type'		=> 'repeatable',
+                'limit'		=> 10,
+                'title_field'		=> 'title',
+                'value'		=> $tour_guide_data,
+                'fields'    => $font_fields,
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+
+
+
+
+
+
+            ?>
+
+
+        </div>
+        <?php
+
+
+
+
+
+
+
+
+
+    }
+}
 add_action('product_designer_settings_content_help_support', 'product_designer_settings_content_help_support');
 
 if(!function_exists('product_designer_settings_content_help_support')) {

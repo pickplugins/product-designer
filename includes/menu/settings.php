@@ -13,6 +13,14 @@ $tabs[] = array(
     'active' => ($current_tab == 'general') ? true : false,
 );
 
+$tabs[] = array(
+    'id' => 'tour_guide',
+    'title' => sprintf(__('%s Tour Guide','product-designer'),'<i class="far fa-life-ring"></i>'),
+    'priority' => 1,
+    'active' => ($current_tab == 'tour_guide') ? true : false,
+);
+
+
 
 $tabs[] = array(
     'id' => 'help_support',

@@ -3926,8 +3926,6 @@ $(document).on('click','.clipart-list img',function(){
             position: { container: '.pd-guide-7', x: -330, y: -10, width: 300, arrow: 'rt' },
             submit: tourSubmitFunc
         },
-
-
         {
             title: '#8 Item list',
             html: 'Click to see object added on canvas for current view.',
@@ -3936,8 +3934,6 @@ $(document).on('click','.clipart-list img',function(){
             position: { container: '.pd-guide-8', x: -330, y: -10, width: 300, arrow: 'rt' },
             submit: tourSubmitFunc
         },
-
-
         {
             title: '#9 Product info & Cart',
             html: 'After finishing the design you will see the preview and add them to cart and proceed to submit order.',
