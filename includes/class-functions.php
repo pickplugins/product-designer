@@ -26,7 +26,7 @@ class class_product_designer_functions{
         $product_designer_settings = get_option('product_designer_settings');
         $menu_position = isset($product_designer_settings['menu_position']) ? $product_designer_settings['menu_position'] : 'left';
 
-        var_dump($menu_position);
+        //var_dump($menu_position);
 
         $data = array(
             array(
@@ -157,7 +157,6 @@ class class_product_designer_functions{
                     'Next' => 1,
                 ),
             ),
-
             array(
                 'title' => __('#9 Product info & Cart',''),
                 'html' => __('After finishing the design you will see the preview and add them to cart and proceed to submit order.'),
