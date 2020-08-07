@@ -937,7 +937,7 @@ $(document).on('click','.generate-side-output',function(event){
         }
 
 
-        if(e.keyCode == 187){
+        if(e.ctrlKey && e.keyCode == 187){
             canvas.setZoom(canvas.getZoom() + 0.10 ) ;
             zoom_val = (canvas.getZoom() -1);
 
@@ -946,7 +946,7 @@ $(document).on('click','.generate-side-output',function(event){
         }
 
 
-        if(e.keyCode == 189){
+        if(e.ctrlKey && e.keyCode == 189){
             canvas.setZoom(canvas.getZoom() - 0.10 ) ;
             zoom_val = (canvas.getZoom() -1);
 

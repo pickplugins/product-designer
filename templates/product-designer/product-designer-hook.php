@@ -811,11 +811,11 @@ function product_designer_tools_keyboard($atts){
 
             </div>
             <div class="shortcut">
-                <?php echo sprintf(__('%s Zoom in','product-designer'), '<kbd>+</kbd> '); ?>
+                <?php echo sprintf(__('%s Zoom in','product-designer'), '<kbd>Ctrl + +</kbd> '); ?>
 
             </div>
             <div class="shortcut">
-                <?php echo sprintf(__('%s Zoom out','product-designer'), '<kbd>-</kbd> '); ?>
+                <?php echo sprintf(__('%s Zoom out','product-designer'), '<kbd>Ctrl + -</kbd> '); ?>
 
             </div>
 
