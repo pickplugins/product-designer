@@ -462,25 +462,22 @@ function product_designer_ajax_add_to_cart(){
 	$cart_item_data['product_designer_side_attach_ids'] = $product_designer_side_attach_ids;
 	$cart_item_data['product_designer_side_ids_json'] = $product_designer_side_ids_json;
 	$cart_item_data['pd_template_id'] = $pd_template_id;
+    $cart_item_data['assets_price'] = $assets_price;
 
-	$cart_item_data['clip_art_price'] = 12;
+	$cart_item_data['clip_art_price'] = $assets_price;
 
 
 	//WC()->cart->add_to_cart( $product_id );
 
-    global $woocommerce;
-    $discount = 2.5;
-
 	WC()->cart->add_to_cart($product_id, $quantity, $variation_id, '', $cart_item_data );
-    WC()->cart->add_fee( __( 'Pagamento Eolie') , $discount );
 
-    $cart_subtotal = $woocommerce->cart->get_cart_subtotal();
+
+
 
 	$cart_url = wc_get_cart_url();
 	$response['form_data'] = $form_data;
 	$response['msg'] = 'Custom design successfully added to <a href="'.esc_url_raw($cart_url).'">Cart</a>';
     $response['assets_price'] = $assets_price;
-    $response['cart_subtotal'] = $cart_subtotal;
 
 
 
@@ -492,17 +489,30 @@ add_action('wp_ajax_product_designer_ajax_add_to_cart', 'product_designer_ajax_a
 add_action('wp_ajax_nopriv_product_designer_ajax_add_to_cart', 'product_designer_ajax_add_to_cart');
 
 
-add_action( 'woocommerce_before_calculate_totals', 'add_custom_total_price');
+add_action( 'woocommerce_before_calculate_totals', 'product_designer_cart_add_clipart_price' );
 
-function add_custom_total_price($cart_object) {
+function product_designer_cart_add_clipart_price( $cart_object ) {
+    foreach ( $cart_object->get_cart() as $hash => $value ) {
 
-    global $woocommerce,$add,$custom_price;
-    $add=200;//Dynamic Price variable
-    $custom_price =$add;//Dynamic Price variable pass to custom price
-    foreach ( $cart_object->cart_contents as $key => $value ) {
-        $value['data']->price = $custom_price;
+        $original_price = $value['data']->get_price(); // Product original price
+
+        $clipart_price = $value['clip_art_price'];
+
+
+        $value['data']->set_price( $original_price + $clipart_price);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
