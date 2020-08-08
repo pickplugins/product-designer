@@ -94,7 +94,7 @@ jQuery(document).ready(function($){
     $('.product-designer .tabs').tabs();
     //alert('Hello');
 
-    //console(typeof canvas);
+    //console.log(typeof canvas);
 
 
     function product_designer_editor_busy(status, message, icon){
@@ -140,7 +140,7 @@ jQuery(document).ready(function($){
 
         canvas.renderAll();
 
-       ////console("Active side id:"+ current_side_id);
+       ////console.log("Active side id:"+ current_side_id);
 
         if (typeof product_designer_editor.side_serialized_data[current_side_id] == "undefined")
             product_designer_editor.side_serialized_data[current_side_id] = ["{}"];
@@ -156,15 +156,8 @@ jQuery(document).ready(function($){
         product_designer_editor.side_serialized_data[current_side_id] = json_stringify;
         product_designer_editor.side_json_data[current_side_id] = json;
 
-        ////console(json);
 
-        base_64 = canvas.toDataURL('png');
-
-
-
-        //$('.product-designer .menu .loading').fadeIn();
-        //product_designer_get_object_list();
-
+        console.log(product_designer_editor.side_serialized_data);
 
     }
 
@@ -287,7 +280,7 @@ jQuery(document).ready(function($){
 
         product_designer_editor['side_ids_preview_data'][current_side_id] = base_64;
 
-        ////console(product_designer_editor['side_ids_preview_data']);
+        ////console.log(product_designer_editor['side_ids_preview_data']);
 
 
         //product_designer_editor_update_previews();
@@ -297,7 +290,7 @@ jQuery(document).ready(function($){
 
 
 
-    ////console(product_designer_editor.side_serialized_data[current_side_id]);
+    ////console.log(product_designer_editor.side_serialized_data[current_side_id]);
 
 
 
@@ -308,7 +301,7 @@ function product_designer_editor_update_previews(){
      var side_data_ids = product_designer_editor.side_data_ids;
 
 
-    ////console(product_designer_editor.side_ids_preview_data);
+    ////console.log(product_designer_editor.side_ids_preview_data);
     html = '';
     html_input = '';
     for(i=0; i<side_data_ids.length; i++){
@@ -345,7 +338,7 @@ function product_designer_inc_attach_ids_to_cart(side_id, attach_id, attach_url,
     var side_json_data =product_designer_editor.side_json_data;
 
 
-    ////console(side_json_data);
+    ////console.log(side_json_data);
 
     if(action=='add'){
         product_designer_editor.cart_attach_ids[side_id] = {'attach_id':attach_id, 'attach_url': attach_url };
@@ -381,7 +374,7 @@ function product_designer_inc_attach_ids_to_cart(side_id, attach_id, attach_url,
     $('.output-side-items-json').html(html_json);
 
 
-    //console(cart_attach_ids);
+    //console.log(cart_attach_ids);
 
     var total_side = 0;
     for(var i in cart_attach_ids) {
@@ -434,7 +427,7 @@ $(document).on('click', ".pd-save-template", function(event) {
                 var data = JSON.parse( response );
                 var form_data	= data['form_data'];
                 var msg	= data['msg'];
-                //console(form_data);
+                //console.log(form_data);
 
                 $('.product-designer-notice .notices').html(msg).fadeIn();
                 $('.product-designer-notice').fadeIn();
@@ -480,7 +473,7 @@ $(document).on('submit', ".product-designer .cart", function(event) {
                 var data = JSON.parse( response );
                 var form_data	= data['form_data'];
                 var msg	= data['msg'];
-                //console(form_data);
+                //console.log(form_data);
 
                 $('.product-designer-notice .notices').html(msg).fadeIn();
                 $('.product-designer-notice').fadeIn();
@@ -525,7 +518,7 @@ $(document).on('submit', ".product-designer .cart", function(event) {
                         //_this.setAttribute("attach_id", attach_id);
                         product_designer_inc_attach_ids_to_cart(side_id, attach_id, attach_url, 'add');
 
-                        ////console('Temp Save done');
+                        ////console.log('Temp Save done');
 
                         product_designer_editor_toast('<i class="fa fa-check" ></i>','Added to cart.');
                         product_designer_editor_busy('ready', 'Ready...', '<i class="fa fa-check"></i>');
@@ -598,11 +591,11 @@ $(document).on('click','.generate-side-output',function(event){
         canvas.backgroundImage = null;
     }
 
-    ////console(side_data_ids);
-    ////console(side_serialized_data);
-    ////console(side_data);
+    ////console.log(side_data_ids);
+    ////console.log(side_serialized_data);
+    ////console.log(side_data);
 
-    ////console(side_serialized_data);
+    ////console.log(side_serialized_data);
 
     $('.output-side-items').html('');
 
@@ -620,7 +613,7 @@ $(document).on('click','.generate-side-output',function(event){
 
                 side_id = side_data_ids[i];
 
-                ////console(i +':'+ side_id);
+                ////console.log(i +':'+ side_id);
                 console.log(side_serialized_data[side_id]);
 
                 if (typeof side_serialized_data[side_id] != "undefined"){
@@ -639,6 +632,7 @@ $(document).on('click','.generate-side-output',function(event){
                             html += '<div class="preview-object"> <img src="'+base_64+'"></div>';
                             html += '<div class="preview-name">'+side_data[side_id]['name']+'</div>';
                             html += '<div class="inc-preview"><label><input class="inc_side_to_cart" type="checkbox" side_id="'+side_id+'" value="'+base_64+'" name="product_designer">Include to cart</label></div>';
+                            html += '<div class="clear"></div>';
                             html += '</div>';
 
 
@@ -702,13 +696,13 @@ $(document).on('click','.generate-side-output',function(event){
         $(document).on('click','.product-designer .editor-preview',function(){
 
 
-            ////console(side_data[current_side_id]);
+            ////console.log(side_data[current_side_id]);
 
             var inc_preview_background = side_data[current_side_id].inc_preview_background;
             var inc_preview_overlay = side_data[current_side_id].inc_preview_overlay;
             var preview_file_format = product_designer_editor.preview_file_format;
 
-            //console(preview_file_format);
+            //console.log(preview_file_format);
 
 
 
@@ -744,7 +738,7 @@ $(document).on('click','.generate-side-output',function(event){
                 $('.product-designer .preview').fadeIn();
 
             }
-            // //console(base_64);
+            // //console.log(base_64);
 
         })
 
@@ -753,7 +747,7 @@ $(document).on('click','.generate-side-output',function(event){
 
             $('.product-designer .preview').fadeOut();
 
-            ////console(canvas.getObjects());
+            ////console.log(canvas.getObjects());
 
 
         })
@@ -769,7 +763,7 @@ $(document).on('click','.generate-side-output',function(event){
 
             // base_64 = canvas.toDataURL({format: preview_file_format});
             //
-            // //console(base_64);
+            // //console.log(base_64);
             //
             // window.open(base_64, '_blank');
 
@@ -794,7 +788,7 @@ $(document).on('click','.generate-side-output',function(event){
 
                 var dataUrl = 'data:image/svg+xml,'+encodeURIComponent(trsvg);
 
-                //console(dataUrl);
+                //console.log(dataUrl);
                 //window.open(trsvg, '_blank');
 
                 var dl = document.createElement("a");
@@ -968,7 +962,7 @@ $(document).on('click','.generate-side-output',function(event){
 
             // base_64 = canvas.toDataURL({format: preview_file_format});
             //
-            // //console(base_64);
+            // //console.log(base_64);
             //
             // window.open(base_64, '_blank');
 
@@ -993,7 +987,7 @@ $(document).on('click','.generate-side-output',function(event){
 
                 var dataUrl = 'data:image/svg+xml,'+encodeURIComponent(trsvg);
 
-                //console(dataUrl);
+                //console.log(dataUrl);
                 //window.open(trsvg, '_blank');
 
                 var dl = document.createElement("a");
@@ -1013,7 +1007,7 @@ $(document).on('click','.generate-side-output',function(event){
             var inc_preview_overlay = side_data[current_side_id].inc_preview_overlay;
             var preview_file_format = product_designer_editor.preview_file_format;
 
-            //console(preview_file_format);
+            //console.log(preview_file_format);
 
 
 
@@ -1049,7 +1043,7 @@ $(document).on('click','.generate-side-output',function(event){
                 $('.product-designer .preview').fadeIn();
 
             }
-            // //console(base_64);
+            // //console.log(base_64);
 
         }
 
@@ -1111,7 +1105,7 @@ $(document).on('click','.generate-side-output',function(event){
             //canvas.getActiveObject().setAngle(val);
             //canvas.getActiveObject().set("textDecoration", 'line-through');
             canvas.renderAll();
-            ////console(val);
+            ////console.log(val);
             product_designer_editor_save()
 
 
@@ -1147,7 +1141,7 @@ $(document).on('click','.generate-side-output',function(event){
             e.preventDefault();
             $(".product-designer .upper-canvas").toggleClass("canvas-grid");
 
-            //console('Clear');
+            //console.log('Clear');
 
 
 
@@ -1161,7 +1155,7 @@ $(document).on('click','.generate-side-output',function(event){
             e.preventDefault();
             var selected_object = canvas.getActiveObject();
 
-            //console(selected_object);
+            //console.log(selected_object);
 
             if(selected_object != null){
                 selected_object.remove();
@@ -1202,7 +1196,7 @@ $(document).on('click','.generate-side-output',function(event){
 
             product_designer_editor_save()
 
-            //console('delete');
+            //console.log('delete');
         })
 
 
@@ -1225,7 +1219,7 @@ $(document).on('click','.generate-side-output',function(event){
                 product_designer_editor_toast('<i class="fa fa-pencil"></i>','Drawing mode enabled.');
             }
             product_designer_editor_save()
-            //console('DrawingMode');
+            //console.log('DrawingMode');
 
         })
 
@@ -1306,7 +1300,7 @@ $(document).on('click','.generate-side-output',function(event){
             //canvas.getActiveObject().setAngle(val);
             //canvas.getActiveObject().set("textDecoration", 'line-through');
             canvas.renderAll();
-            ////console(val);
+            ////console.log(val);
             product_designer_editor_save()
         })
 
@@ -1383,7 +1377,7 @@ $(document).on('click','.generate-side-output',function(event){
 
 
             canvas.renderAll();
-            //console('flipY');
+            //console.log('flipY');
             product_designer_editor_save()
 
         })
@@ -1595,7 +1589,7 @@ $(document).on('click','.generate-side-output',function(event){
 
         $(document).on('click','.product-designer #editor-undo',function(){
 
-           //console('Undo');
+           //console.log('Undo');
 
            undo();
 
@@ -1605,7 +1599,7 @@ $(document).on('click','.generate-side-output',function(event){
 
         $(document).on('click','.product-designer #editor-redo',function(){
 
-            //console('Redo');
+            //console.log('Redo');
             redo();
 
 
@@ -1642,7 +1636,7 @@ $(document).on('click','.generate-side-output',function(event){
             price = objectList[i].get('price');
 
 
-            console.log(price);
+            //console.log(price);
 
             if(typeof price == 'undefined' || price == null || price == ''){
                 price = 0;
@@ -1711,13 +1705,13 @@ $(document).on('click','.generate-side-output',function(event){
             html += '<span aria-label="Price" class="price hint--top">'+price+'</span>';
             //html += '<span class="name">'+objectName+'</span>';
 
-            ////console(objectList[i]);
+            ////console.log(objectList[i]);
             html += '</div>';
 
 
         }
 
-        console.log(totalPrice);
+        //console.log(totalPrice);
 
         $('#assets-price span').html(totalPrice);
         $('#assets-price-val').val(totalPrice);
@@ -1749,7 +1743,7 @@ $(document).on('click','.generate-side-output',function(event){
 
         product_designer_editor_save();
 
-        ////console(obj_id);
+        ////console.log(obj_id);
     })
 
 
@@ -1771,7 +1765,7 @@ $(document).on('click','.generate-side-output',function(event){
 
         product_designer_editor_save();
 
-        //console(obj_id);
+        //console.log(obj_id);
     })
 
     $(document).on('click','.product-designer .layers-list .layer .hide',function(event){
@@ -1811,7 +1805,7 @@ $(document).on('click','.generate-side-output',function(event){
 
         product_designer_editor_save()
 
-        //console(obj_id);
+        //console.log(obj_id);
     })
 
 
@@ -1860,7 +1854,7 @@ $(document).on('click','.generate-side-output',function(event){
 
         product_designer_editor_save()
 
-        //console(obj_id);
+        //console.log(obj_id);
     })
 
 
@@ -1882,7 +1876,7 @@ $(document).on('click','.generate-side-output',function(event){
 
 
         console.log(type);
-        ////console(ActiveObject);
+        ////console.log(ActiveObject);
 
 
         if(type=='text'){
@@ -1954,7 +1948,7 @@ $(document).on('click','.generate-side-output',function(event){
 		//alert(val);
 		canvas.getActiveObject().setText(val);
 		canvas.renderAll();
-		//console(val);
+		//console.log(val);
 
         product_designer_editor_save();
 
@@ -1971,7 +1965,7 @@ $(document).on('click','.generate-side-output',function(event){
 		//alert(val);
 		canvas.getActiveObject().set("fontSize", val);
 		canvas.renderAll();
-		//console(val);
+		//console.log(val);
         product_designer_editor_save();
 		})
 
@@ -1983,7 +1977,7 @@ $(document).on('click','.generate-side-output',function(event){
 		//alert('Hello');
 		canvas.getActiveObject().setColor(val);
 		canvas.renderAll();
-		//console(val);
+		//console.log(val);
 
         product_designer_editor_save();
 
@@ -1998,7 +1992,7 @@ $(document).on('click','.generate-side-output',function(event){
             //alert('Hello');
             canvas.getActiveObject().set('strokeWidth',val);
             canvas.renderAll();
-            //console(val);
+            //console.log(val);
             product_designer_editor_save();
         })
 
@@ -2009,7 +2003,7 @@ $(document).on('click','.generate-side-output',function(event){
             //alert('Hello');
             canvas.getActiveObject().set('stroke',val);
             canvas.renderAll();
-            //console(val);
+            //console.log(val);
             product_designer_editor_save();
         })
 
@@ -2023,7 +2017,7 @@ $(document).on('click','.generate-side-output',function(event){
             //alert('Hello');
             canvas.getActiveObject().set('backgroundColor',val);
             canvas.renderAll();
-            //console(val);
+            //console.log(val);
             product_designer_editor_save();
         })
 
@@ -2053,7 +2047,7 @@ $(document).on('click','.generate-side-output',function(event){
         canvas.getActiveObject().set({fill: fill_color});
 
 		canvas.renderAll();
-		//console(fill_color);
+		//console.log(fill_color);
         product_designer_editor_save();
 		})
 
@@ -2066,7 +2060,7 @@ $(document).on('click','.generate-side-output',function(event){
 		canvas.getActiveObject().set("opacity", val);
 		//canvas.getActiveObject().opacity(val);
 		canvas.renderAll();
-		//console(val);
+		//console.log(val);
         product_designer_editor_save();
 		})
 
@@ -2107,7 +2101,7 @@ $(document).on('click','.generate-side-output',function(event){
 
 		//canvas.getActiveObject().set("fontStyle", 'italic');
 		canvas.renderAll();
-		////console(val);
+		////console.log(val);
         product_designer_editor_save();
 		})
 
@@ -2128,7 +2122,7 @@ $(document).on('click','.generate-side-output',function(event){
 		//canvas.getActiveObject().fontWeight('bold');
 		//canvas.getActiveObject().set("textDecoration", 'underline');
 		canvas.renderAll();
-		////console(val);
+		////console.log(val);
         product_designer_editor_save();
 		})
 
@@ -2148,7 +2142,7 @@ $(document).on('click','.generate-side-output',function(event){
 		//canvas.getActiveObject().fontWeight('bold');
 		//canvas.getActiveObject().set("textDecoration", 'line-through');
 		canvas.renderAll();
-		////console(val);
+		////console.log(val);
         product_designer_editor_save();
 		})
 
@@ -2163,7 +2157,7 @@ $(document).on('click','.generate-side-output',function(event){
 		canvas.getActiveObject().setAngle(-val);
 		//canvas.getActiveObject().set("textDecoration", 'line-through');
 		canvas.renderAll();
-		////console(val);
+		////console.log(val);
 
 		})
 
@@ -2177,7 +2171,7 @@ $(document).on('click','.generate-side-output',function(event){
 		canvas.getActiveObject().setAngle(val);
 		//canvas.getActiveObject().set("textDecoration", 'line-through');
 		canvas.renderAll();
-		////console(val);
+		////console.log(val);
 
 		})
 
@@ -2209,7 +2203,7 @@ $(document).on('click','.generate-side-output',function(event){
             product_designer_editor_save();
 
 
-            //console(text);
+            //console.log(text);
             $('.edit-curvedText').addClass('active');
             $('.edit-text').removeClass('active');
 
@@ -2222,7 +2216,7 @@ $(document).on('click','.generate-side-output',function(event){
 
             //alert(val);
             old_text = canvas.getActiveObject().getText();
-            //console(canvas.getActiveObject());
+            //console.log(canvas.getActiveObject());
             canvas.getActiveObject().remove();
 
             var text = new fabric.Text(old_text, { left: 100, top: 100 });
@@ -2233,7 +2227,7 @@ $(document).on('click','.generate-side-output',function(event){
             product_designer_editor_save();
 
 
-            //console(old_text);
+            //console.log(old_text);
             $('.edit-curvedText').removeClass('active');
             $('.edit-text').addClass('active');
 
@@ -2269,7 +2263,7 @@ $(document).on('click','.generate-side-output',function(event){
             //var text = new fabric.Text(text, { left: 100, top: 100 });
             //canvas.add(text);
 
-            ////console(JSON.stringify(canvas));
+            ////console.log(JSON.stringify(canvas));
 
         })
 
@@ -2283,7 +2277,7 @@ $(document).on('click','.generate-side-output',function(event){
 
             product_designer_editor_save();
 
-            //console(val);
+            //console.log(val);
 
         })
 
@@ -2296,7 +2290,7 @@ $(document).on('click','.generate-side-output',function(event){
 
             product_designer_editor_save();
 
-            //console(val);
+            //console.log(val);
 
         })
 
@@ -2308,7 +2302,7 @@ $(document).on('click','.generate-side-output',function(event){
             canvas.renderAll();
             product_designer_editor_save();
 
-            //console(val);
+            //console.log(val);
 
         })
 
@@ -2320,7 +2314,7 @@ $(document).on('click','.generate-side-output',function(event){
             product_designer_editor_save();
 
 
-            //console(val);
+            //console.log(val);
 
         })
 
@@ -2331,7 +2325,7 @@ $(document).on('click','.generate-side-output',function(event){
             canvas.renderAll();
             product_designer_editor_save();
 
-            //console(val);
+            //console.log(val);
 
         })
 
@@ -2345,7 +2339,7 @@ $(document).on('click','.generate-side-output',function(event){
             product_designer_editor_save();
 
 
-            //console(val);
+            //console.log(val);
 
         })
 
@@ -2356,7 +2350,7 @@ $(document).on('click','.generate-side-output',function(event){
             canvas.getActiveObject().set("opacity", val);
 
             canvas.renderAll();
-            ////console(val);
+            ////console.log(val);
             product_designer_editor_save();
         })
 
@@ -2399,7 +2393,7 @@ $(document).on('click','.generate-side-output',function(event){
 
             //canvas.getActiveObject().set("fontStyle", 'italic');
             canvas.renderAll();
-            ////console(val);
+            ////console.log(val);
             product_designer_editor_save();
         })
 
@@ -2420,7 +2414,7 @@ $(document).on('click','.generate-side-output',function(event){
             //canvas.getActiveObject().fontWeight('bold');
             //canvas.getActiveObject().set("textDecoration", 'underline');
             canvas.renderAll();
-            ////console(val);
+            ////console.log(val);
             product_designer_editor_save();
         })
 
@@ -2440,7 +2434,7 @@ $(document).on('click','.generate-side-output',function(event){
             //canvas.getActiveObject().fontWeight('bold');
             //canvas.getActiveObject().set("textDecoration", 'line-through');
             canvas.renderAll();
-            ////console(val);
+            ////console.log(val);
             product_designer_editor_save();
         })
 
@@ -2460,7 +2454,7 @@ $(document).on('click','.generate-side-output',function(event){
             canvas.getActiveObject().set("opacity", val);
             //canvas.getActiveObject().opacity(val);
             canvas.renderAll();
-            //console(val);
+            //console.log(val);
             product_designer_editor_save();
         })
 
@@ -2635,7 +2629,7 @@ $(document).on('click','.generate-side-output',function(event){
 
         product_designer_editor_save();
 
-		//console(val);
+		//console.log(val);
 
 		})
 
@@ -2651,7 +2645,7 @@ $(document).on('click','.generate-side-output',function(event){
             product_designer_editor_save();
 
 
-            //console(val);
+            //console.log(val);
 
         })
 
@@ -3387,7 +3381,7 @@ $(document).on('click','.generate-side-output',function(event){
 		text = $('.asset-text').val();
 
 
-		////console(product_designer_editor.side_data);
+		////console.log(product_designer_editor.side_data);
 
 		var text = new fabric.Text(text, { left: 100, top: 100, price: 1.5 });
 
@@ -3397,7 +3391,7 @@ $(document).on('click','.generate-side-output',function(event){
         text.setCoords();
         canvas.setActiveObject(text);
         canvas.renderAll();
-		////console($.now());
+		////console.log($.now());
         product_designer_get_object_list();
         product_designer_editor_save();
 
@@ -3440,7 +3434,7 @@ $(document).on('click','.clipart-list img',function(){
 
         //console.log(canvas.toJSON(["price"]));
 
-        console.log(json);
+        //console.log(json);
         //console.log(img);
 
         product_designer_get_object_list();
@@ -3476,7 +3470,7 @@ $(document).on('click','.clipart-list img',function(){
 			success: function(data)
 					{
 
-					    ////console(data);
+					    ////console.log(data);
 						$('.product-designer .menu .loading').fadeOut();
 
                         //location.reload();
@@ -3574,7 +3568,7 @@ $(document).on('click','.clipart-list img',function(){
                     $(__this).children('.loading').fadeOut();
                     $(__this).trigger("reset");
 
-                    //console(data);
+                    //console.log(data);
 
                 }
             });
@@ -3586,7 +3580,7 @@ $(document).on('click','.clipart-list img',function(){
         //
         //     var values = $(this).serialize();
         //
-        //     //console(values);
+        //     //console.log(values);
         //
         //
         //     $('.product-designer .menu .loading').fadeIn();
@@ -3610,7 +3604,7 @@ $(document).on('click','.clipart-list img',function(){
 
 	$(document).on('click','.product-designer .menu .export #export-update',function(){
 
-		////console(t_id);
+		////console.log(t_id);
 
 		$('.product-designer .menu .loading').fadeIn();
 		//json = JSON.stringify(canvas);
@@ -3663,7 +3657,7 @@ $(document).on('click','.clipart-list img',function(){
                     var data = JSON.parse( response );
                     side_json_data = data['side_json_data'];
 
-					//console(current_side_id);
+					//console.log(current_side_id);
                     product_designer_editor.side_serialized_data = side_json_data;
                     product_designer_editor.pre_template_id = pre_template_id;
 
@@ -3720,7 +3714,7 @@ $(document).on('click','.clipart-list img',function(){
                 }
                 _config.currentStateIndex = _config.canvasState.length-1;
 
-                ////console(_config.currentStateIndex);
+                ////console.log(_config.currentStateIndex);
 
 
                 if((_config.currentStateIndex == _config.canvasState.length-1) && _config.currentStateIndex != -1){
@@ -3790,55 +3784,6 @@ $(document).on('click','.clipart-list img',function(){
                 }
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-        //
-        // var anno2 = new Anno([{
-        //     target  : '.pd-guide-1', // second block of code
-        //     position: 'right',
-        //     content : '<h4>#1 Product Sides</h4> Click here to load side and ready for edit.',
-        //     showOverlay: function(){$('.anno-overlay').css('display','none');},
-        // }, {
-        //     target  : '.pd-guide-2',
-        //     position: 'right',
-        //     content : "<h4>#2 Clipart & Assets</h4> You can add some clipart here also you can upload your own.",
-        //     showOverlay: function(){$('.anno-overlay').css('display','none');},
-        // }, {
-        //     target  : '.pd-guide-3',
-        //     position: 'right',
-        //     content : "<h4>#3 Text</h4> You can add text from here, there also curved text available.",
-        //     showOverlay: function(){$('.anno-overlay').css('display','none');},
-        // }, {
-        //     target  : '.pd-guide-4',
-        //     position: 'right',
-        //     className: 'anno-width-200', // 150,175,200,250 (default 300)
-        //     content : '<h4>#4 Shapes</h4> Some exclusive shapes here, you can add them to your design.',
-        //     showOverlay: function(){$('.anno-overlay').css('display','none');},
-        // }, {
-        //     target  : '.pd-guide-5',
-        //     position: 'left',
-        //     arrowPosition: 'right',
-        //     content : '<h4>#5 Editor actions</h4>',
-        //     showOverlay: function(){$('.anno-overlay').css('display','none');},
-        // }, {
-        //     target  : '.pd-guide-6',
-        //     position: 'left',
-        //     arrowPosition: 'right',
-        //     content : '<h4>#5 Preview</h4> Click preview button to see current canvas preview.',
-        //     showOverlay: function(){$('.anno-overlay').css('display','none');},
-        // }
-        //
-        //
-        // ])
 
 
         $(document).on('click','.product-designer .welcome-tour .start-tour',function(){
@@ -4012,10 +3957,10 @@ $(document).on('click','.clipart-list img',function(){
 
         //$('#qrcode').html('');
 
-        //console(size);
-        //console(bg_color);
-        //console(fill_color);
-        //console(radius);
+        //console.log(size);
+        //console.log(bg_color);
+        //console.log(fill_color);
+        //console.log(radius);
 
 
 
@@ -4054,7 +3999,7 @@ $(document).on('click','.clipart-list img',function(){
             });
             img.id = $.now();
             //img.clipart_data = clipart_data;
-            ////console(img);
+            ////console.log(img);
 
             canvas.add(img);
             product_designer_editor_save();
@@ -4075,7 +4020,7 @@ $(document).on('click','.clipart-list img',function(){
         height = $('.barcode-height').val();
         color = $('.barcode-color').val();
 
-        //console(text);
+        //console.log(text);
 
         JsBarcode("#barcode", text, {
             format: "CODE128A",
@@ -4110,7 +4055,7 @@ $(document).on('click','.clipart-list img',function(){
             });
             img.id = $.now();
             //img.clipart_data = clipart_data;
-            ////console(img);
+            ////console.log(img);
 
             canvas.add(img);
             product_designer_editor_save();
