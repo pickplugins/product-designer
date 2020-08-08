@@ -149,7 +149,10 @@ jQuery(document).ready(function($){
 
 
         json_stringify = JSON.stringify(canvas);
-        json = canvas.toJSON();
+        //json = canvas.toJSON(["price"]);
+        json = canvas.toJSON(["price"]);
+
+
         product_designer_editor.side_serialized_data[current_side_id] = json_stringify;
         product_designer_editor.side_json_data[current_side_id] = json;
 
@@ -202,11 +205,13 @@ jQuery(document).ready(function($){
 
         product_designer_editor_toast('', side_name+' side loaded.');
 
-        json = JSON.stringify(canvas);
+        //json = JSON.stringify(canvas);
+        json = JSON.stringify(canvas.toJSON(["price"]));
+
         product_designer_editor.side_serialized_data[current_side_id] = json;
 
 
-
+        //console.log(json);
 
         if(current_side_id != side_id){
 
@@ -929,7 +934,8 @@ $(document).on('click','.generate-side-output',function(event){
 
             canvas.renderAll();
 
-            json = JSON.stringify(canvas);
+            //json = JSON.stringify(canvas);
+            json = JSON.stringify(canvas.toJSON(["price"]));
 
             product_designer_editor_toast('','Editor cleared.');
 
@@ -1126,7 +1132,8 @@ $(document).on('click','.generate-side-output',function(event){
 
             canvas.renderAll();
 
-            json = JSON.stringify(canvas);
+            //json = JSON.stringify(canvas);
+            json = JSON.stringify(canvas.toJSON(["price"]));
 
             product_designer_editor_toast('','Editor cleared.');
 
@@ -3407,7 +3414,7 @@ $(document).on('click','.clipart-list img',function(){
     src = $(this).attr('src');
     price = $(this).attr('data-price');
 
-    console.log(price);
+
 
     var newImg = new Image();
     newImg.src = src;
@@ -3429,6 +3436,12 @@ $(document).on('click','.clipart-list img',function(){
         canvas.setActiveObject(img);
         canvas.renderAll();
 
+        json = JSON.stringify(canvas.toJSON(["price"]));
+
+        //console.log(canvas.toJSON(["price"]));
+
+        console.log(json);
+        //console.log(img);
 
         product_designer_get_object_list();
         product_designer_editor_save()
@@ -3502,7 +3515,8 @@ $(document).on('click','.clipart-list img',function(){
 	$(document).on('click','.product-designer .menu .export #export-new',function(){
 
 		$('.product-designer .menu .loading').fadeIn();
-		json = JSON.stringify(canvas);
+		//json = JSON.stringify(canvas);
+        json = JSON.stringify(canvas.toJSON(["price"]));
 
 
 
@@ -3537,7 +3551,8 @@ $(document).on('click','.clipart-list img',function(){
 
 
             $('.product-designer .menu .loading').fadeIn();
-            json = JSON.stringify(canvas);
+            //json = JSON.stringify(canvas);
+            json = JSON.stringify(canvas.toJSON(["price"]));
 
             __this = this;
 
@@ -3598,7 +3613,8 @@ $(document).on('click','.clipart-list img',function(){
 		////console(t_id);
 
 		$('.product-designer .menu .loading').fadeIn();
-		json = JSON.stringify(canvas);
+		//json = JSON.stringify(canvas);
+        json = JSON.stringify(canvas.toJSON(["price"]));
 
 		$.ajax(
 			{
