@@ -756,7 +756,7 @@ function product_designer_tools_product_info($atts){
                     <div class="field-label"><?php echo __('Cliparts Price', 'product-designer'); ?></div>
                     <div class="field-input">
                         <div class="" id="assets-price"><?php echo $currency_symbol; ?><span>0.00</span></div>
-                        <input class="" type="hidden" value="" id="assets-price-val">
+                        <input class="" type="hidden" value="" id="assets-price-val" name="assets_price">
                     </div>
                 </div>
 

@@ -508,7 +508,10 @@ $(document).on('submit', ".product-designer .cart", function(event) {
                 var data = JSON.parse( response );
                 var form_data	= data['form_data'];
                 var msg	= data['msg'];
-                //console.log(form_data);
+                var assets_price	= data['assets_price'];
+                var cart_subtotal	= data['cart_subtotal'];
+
+                console.log(cart_subtotal);
 
                 $('.product-designer-notice .notices').html(msg).fadeIn();
                 $('.product-designer-notice').fadeIn();

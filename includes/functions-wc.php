@@ -452,6 +452,9 @@ function product_designer_ajax_add_to_cart(){
 	parse_str($_POST['values'], $form_data);
 	$pd_template_id = isset( $form_data['pd_template_id'] ) ? sanitize_text_field($form_data['pd_template_id']) : 0;
 	$quantity = isset( $form_data['quantity'] ) ? sanitize_text_field($form_data['quantity']) : 0;
+    $assets_price = isset( $form_data['assets_price'] ) ? sanitize_text_field($form_data['assets_price']) : 0;
+
+
 
 	$product_designer_side_attach_ids = isset( $form_data['product_designer_side_attach_ids'] ) ? stripslashes_deep($form_data['product_designer_side_attach_ids']) : array();
 	$product_designer_side_ids_json = isset( $form_data['product_designer_side_ids_json'] ) ? stripslashes_deep($form_data['product_designer_side_ids_json']) : array();
@@ -465,14 +468,19 @@ function product_designer_ajax_add_to_cart(){
 
 	//WC()->cart->add_to_cart( $product_id );
 
+    global $woocommerce;
+    $discount = 2.5;
 
 	WC()->cart->add_to_cart($product_id, $quantity, $variation_id, '', $cart_item_data );
+    WC()->cart->add_fee( __( 'Pagamento Eolie') , $discount );
 
-
+    $cart_subtotal = $woocommerce->cart->get_cart_subtotal();
 
 	$cart_url = wc_get_cart_url();
 	$response['form_data'] = $form_data;
 	$response['msg'] = 'Custom design successfully added to <a href="'.esc_url_raw($cart_url).'">Cart</a>';
+    $response['assets_price'] = $assets_price;
+    $response['cart_subtotal'] = $cart_subtotal;
 
 
 
@@ -484,7 +492,17 @@ add_action('wp_ajax_product_designer_ajax_add_to_cart', 'product_designer_ajax_a
 add_action('wp_ajax_nopriv_product_designer_ajax_add_to_cart', 'product_designer_ajax_add_to_cart');
 
 
+add_action( 'woocommerce_before_calculate_totals', 'add_custom_total_price');
 
+function add_custom_total_price($cart_object) {
+
+    global $woocommerce,$add,$custom_price;
+    $add=200;//Dynamic Price variable
+    $custom_price =$add;//Dynamic Price variable pass to custom price
+    foreach ( $cart_object->cart_contents as $key => $value ) {
+        $value['data']->price = $custom_price;
+    }
+}
 
 
 
