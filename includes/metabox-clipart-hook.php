@@ -14,7 +14,6 @@ function clipart_metabox_tabs_content_general($tab, $post_id){
 
     $settings_tabs_field = new settings_tabs_field();
 
-    $clipart_price = get_post_meta($post_id, 'clipart_price', true);
     $clipart_thumb_id = get_post_meta($post_id, 'clipart_thumb_id', true);
 
     //var_dump($post_id);
@@ -35,20 +34,6 @@ function clipart_metabox_tabs_content_general($tab, $post_id){
         <p class="description section-description"><?php echo __('Choose options for clipart.', 'product-designer'); ?></p>
 
         <?php
-
-        $args = array(
-            'id'		=> 'clipart_price',
-//            'parent'		=> 'canvas',
-            'title'		=> __('Price','product-designer'),
-            'details'	=> __('Set clipart price, use number only, ex: 2','product-designer'),
-            'type'		=> 'text',
-            'value'		=> $clipart_price,
-            'default'		=> '',
-            'placeholder'		=> '2',
-        );
-
-        $settings_tabs_field->generate_field($args, $post_id);
-
 
 
         $args = array(
@@ -84,9 +69,6 @@ function clipart_metabox_tabs_content_general($tab, $post_id){
 add_action('product_designer_clipart_metabox_save','product_designer_clipart_metabox_save');
 
 function product_designer_clipart_metabox_save($job_id){
-
-    $clipart_price = isset($_POST['clipart_price']) ? sanitize_text_field($_POST['clipart_price']) : '';
-    update_post_meta($job_id, 'clipart_price', $clipart_price);
 
 
     $clipart_thumb_id = isset($_POST['clipart_thumb_id']) ? sanitize_text_field($_POST['clipart_thumb_id']) : '';

@@ -4,7 +4,7 @@
 	Tags: product designer, product customizer, custom product, woocommerce product designer
 	Requires at least: 3.8
 	Tested up to: 5.4
-	Stable tag: 1.0.19
+	Stable tag: 1.0.20
 	License: GPLv2 or later
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -122,6 +122,7 @@ Before starting you need to add some clip art via custom post "Clip Art" with th
     * 2020-08-08 - add - customize button custom background color.
     * 2020-08-08 - add - font-awesome old/new version icons added.
     * 2020-08-08 - add - Enable guide option added
+    * 2020-08-08 - remove - cliptart price field
 
 
 
