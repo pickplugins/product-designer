@@ -746,14 +746,14 @@ function product_designer_tools_product_info($atts){
 
 
                 <div class="setting-field half">
-                    <div class="field-label"><?php echo __('Base Price', 'product-designer'); ?></div>
+                    <div class="field-label"><?php echo __('Base price', 'product-designer'); ?></div>
                     <div class="field-input">
                         <?php echo $display_price; ?>
                     </div>
                 </div>
 
-                <div class="setting-field half">
-                    <div class="field-label"><?php echo __('Cliparts Price', 'product-designer'); ?></div>
+                <div class="setting-field half assets-price-wrap">
+                    <div class="field-label"><?php echo __('Cliparts price', 'product-designer'); ?></div>
                     <div class="field-input">
                         <div class="" id="assets-price"><?php echo $currency_symbol; ?><span>0.00</span></div>
                         <input class="" type="hidden" value="" id="assets-price-val" name="assets_price">

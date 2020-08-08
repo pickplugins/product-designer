@@ -13,6 +13,8 @@ function product_designer_settings_content_general(){
     $menu_position = isset($product_designer_settings['menu_position']) ? $product_designer_settings['menu_position'] : '';
     $posts_per_page = isset($product_designer_settings['posts_per_page']) ? $product_designer_settings['posts_per_page'] : '';
 
+    $customize_button_text = isset($product_designer_settings['customize_button']['text']) ? $product_designer_settings['customize_button']['text'] : '';
+    $customize_button_bg_color = isset($product_designer_settings['customize_button']['bg_color']) ? $product_designer_settings['customize_button']['bg_color'] : '';
 
 
     //echo '<pre>'.var_export($product_designer_settings, true).'</pre>';
@@ -82,10 +84,40 @@ function product_designer_settings_content_general(){
         $settings_tabs_field->generate_field($args);
 
 
+        ?>
+        <div class="section-title"><?php echo __('Customize button', 'product-designer'); ?></div>
+        <p class="description section-description"><?php echo __('Choose options for customize button.', 'product-designer'); ?></p>
+
+        <?php
+
+        $args = array(
+            'id'		=> 'text',
+            'parent'		=> 'product_designer_settings[customize_button]',
+            'title'		=> __('Customize button text','product-designer'),
+            'details'	=> __('Custom text for customize button','product-designer'),
+            'type'		=> 'text',
+            'value'		=> $customize_button_text,
+            'default'		=> '',
+            'placeholder'		=> 'Customize',
+
+        );
+
+        $settings_tabs_field->generate_field($args);
 
 
+        $args = array(
+            'id'		=> 'bg_color',
+            'parent'		=> 'product_designer_settings[customize_button]',
+            'title'		=> __('Background color','product-designer'),
+            'details'	=> __('Custom background color for customize button','product-designer'),
+            'type'		=> 'colorpicker',
+            'value'		=> $customize_button_bg_color,
+            'default'		=> '',
+            'placeholder'		=> 'Customize',
 
+        );
 
+        $settings_tabs_field->generate_field($args);
 
         ?>
 

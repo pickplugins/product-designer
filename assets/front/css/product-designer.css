@@ -855,7 +855,7 @@ display:none;
   margin-right: 5px;
   cursor: pointer;
   vertical-align: middle;
-  display: inline-block;
+  display: none;
   border-radius: 3px;
   font-size: 12px;
   float: right;
@@ -1010,6 +1010,9 @@ display:none;
 
 }
 
+.assets-price-wrap{
+  display: none;
+}
 
 
 .product-designer .pd-addtocart {

@@ -204,6 +204,8 @@ function product_designer_after_add_to_cart_button() {
 
     $product_designer_settings = get_option('product_designer_settings');
     $designer_page_id = isset($product_designer_settings['designer_page_id']) ? $product_designer_settings['designer_page_id'] : '';
+    $customize_button_text = isset($product_designer_settings['customize_button']['text']) ? $product_designer_settings['customize_button']['text'] : __('Customize', 'product-designer');
+    $customize_button_bg_color = isset($product_designer_settings['customize_button']['bg_color']) ? $product_designer_settings['customize_button']['bg_color'] : '';
 
 
     $product_designer_page_url = get_permalink($designer_page_id);
@@ -225,14 +227,18 @@ function product_designer_after_add_to_cart_button() {
 
         else:
 	        ?>
-            <div class="product-designer-editor-link">
-                <a target="_blank" class="" href="<?php echo esc_url_raw($product_designer_page_url); ?>?product_id=<?php echo get_the_ID(); ?>"><i class="fa fa-crop" ></i> <?php echo __('Customize', 'product-designer'); ?></a>
+            <div class="product-designer-editor-link" style="background-color: <?php echo $customize_button_bg_color; ?>">
+                <a target="_blank"  class="" href="<?php echo esc_url_raw($product_designer_page_url); ?>?product_id=<?php echo get_the_ID(); ?>"><i class="fa fa-crop" ></i> <?php echo $customize_button_text; ?></a>
 
             </div>
 	        <?php
 
         endif;
 
+
+        ?>
+
+        <?php
 
 
 	}
@@ -248,6 +254,8 @@ function product_designer_woocommerce_after_shop_loop_item() {
 
     $product_designer_settings = get_option('product_designer_settings');
     $designer_page_id = isset($product_designer_settings['designer_page_id']) ? $product_designer_settings['designer_page_id'] : '';
+    $customize_button_text = isset($product_designer_settings['customize_button']['text']) ? $product_designer_settings['customize_button']['text'] : __('Customize', 'product-designer');
+    $customize_button_bg_color = isset($product_designer_settings['customize_button']['bg_color']) ? $product_designer_settings['customize_button']['bg_color'] : '';
 
 
 
@@ -268,8 +276,8 @@ function product_designer_woocommerce_after_shop_loop_item() {
 
 		else:
 			?>
-            <div class="product-designer-editor-link">
-                <a target="_blank" class="" href="<?php echo esc_url_raw($product_designer_page_url); ?>?product_id=<?php echo get_the_ID(); ?>"><i class="fa fa-crop" ></i> <?php echo __('Customize', 'product-designer'); ?></a>
+            <div class="product-designer-editor-link" style="background-color: <?php echo $customize_button_bg_color; ?>">
+                <a target="_blank"  class="" href="<?php echo esc_url_raw($product_designer_page_url); ?>?product_id=<?php echo get_the_ID(); ?>"><i class="fa fa-crop" ></i> <?php echo $customize_button_text; ?></a>
 
             </div>
 			<?php
@@ -474,7 +482,7 @@ function product_designer_ajax_add_to_cart(){
 
 	$cart_url = wc_get_cart_url();
 	$response['form_data'] = $form_data;
-	$response['msg'] = 'Custom design successfully added to <a href="'.esc_url_raw($cart_url).'">Cart</a>';
+	$response['msg'] = 'Custom design successfully added to <a href="'.esc_url_raw($cart_url).'"><strong>Cart</strong></a>';
     $response['assets_price'] = $assets_price;
 
 

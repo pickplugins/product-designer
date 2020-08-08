@@ -117,6 +117,14 @@ Before starting you need to add some clip art via custom post "Clip Art" with th
 
 == Changelog ==
 
+	= 1.0.20 =
+    * 2020-08-08 - add - customize button custom text.
+    * 2020-08-08 - add - customize button custom background color.
+    * 2020-08-08 - add - font-awesome old/new version icons added.
+    * 2020-08-08 - add - Enable guide option added
+
+
+
 	= 1.0.19 =
     * 2020-08-04 - add - layer action hide/unhide added
     * 2020-08-04 - add - layer action lock/unclock added
