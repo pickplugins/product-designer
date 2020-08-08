@@ -1656,6 +1656,7 @@ $(document).on('click','.generate-side-output',function(event){
 
         html = '';
 
+        wc_currency_symbol = product_designer_editor.wc_currency_symbol;
 
         objectList_arr = [];
         var objectList = [];
@@ -1740,8 +1741,7 @@ $(document).on('click','.generate-side-output',function(event){
             html += '<span aria-label="Hide/Unhide" class="hide hint--top"><i class="fa fa-eye" ></i></span>';
             html += '<span aria-label="Lock/Unlock" class="lock hint--top"><i class="fa fa-unlock-alt" ></i></span>';
             html += '<span aria-label="Type" class="type hint--top">'+objectType+'</span>';
-            html += '<span aria-label="Price" class="price hint--top">'+price+'</span>';
-            //html += '<span class="name">'+objectName+'</span>';
+            html += '<span aria-label="Price" class="price hint--top">'+wc_currency_symbol+price+'</span>';
 
             ////console.log(objectList[i]);
             html += '</div>';

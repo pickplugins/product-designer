@@ -462,9 +462,7 @@ function product_designer_ajax_add_to_cart(){
 	$cart_item_data['product_designer_side_attach_ids'] = $product_designer_side_attach_ids;
 	$cart_item_data['product_designer_side_ids_json'] = $product_designer_side_ids_json;
 	$cart_item_data['pd_template_id'] = $pd_template_id;
-    $cart_item_data['assets_price'] = $assets_price;
-
-	$cart_item_data['clip_art_price'] = $assets_price;
+	$cart_item_data['clipart_price'] = $assets_price;
 
 
 	//WC()->cart->add_to_cart( $product_id );
@@ -488,20 +486,6 @@ function product_designer_ajax_add_to_cart(){
 add_action('wp_ajax_product_designer_ajax_add_to_cart', 'product_designer_ajax_add_to_cart');
 add_action('wp_ajax_nopriv_product_designer_ajax_add_to_cart', 'product_designer_ajax_add_to_cart');
 
-
-add_action( 'woocommerce_before_calculate_totals', 'product_designer_cart_add_clipart_price' );
-
-function product_designer_cart_add_clipart_price( $cart_object ) {
-    foreach ( $cart_object->get_cart() as $hash => $value ) {
-
-        $original_price = $value['data']->get_price(); // Product original price
-
-        $clipart_price = $value['clip_art_price'];
-
-
-        $value['data']->set_price( $original_price + $clipart_price);
-    }
-}
 
 
 
