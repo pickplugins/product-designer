@@ -157,7 +157,42 @@ jQuery(document).ready(function($){
         product_designer_editor.side_json_data[current_side_id] = json;
 
 
-        console.log(product_designer_editor.side_serialized_data);
+        totalPrice = 0;
+        //console.log(product_designer_editor.side_serialized_data);
+
+        for (i in product_designer_editor.side_json_data){
+
+            sideData = product_designer_editor.side_json_data[i];
+            sideObjects = sideData.objects;
+            //console.log( '############');
+            console.log( i);
+
+
+            for (j in sideObjects){
+                object = sideObjects[j];
+
+
+                objectPrice = object.price;
+
+                if(typeof objectPrice == 'undefined' || objectPrice == null || objectPrice == ''){
+                    objectPrice = 0;
+
+                }
+
+                totalPrice += parseFloat(objectPrice);
+
+            }
+
+        }
+
+
+        totalPrice = totalPrice.toFixed(2);
+
+        //console.log( totalPrice);
+
+        $('#assets-price span').html(totalPrice);
+        $('#assets-price-val').val(totalPrice);
+
 
     }
 
@@ -1710,11 +1745,6 @@ $(document).on('click','.generate-side-output',function(event){
 
 
         }
-
-        //console.log(totalPrice);
-
-        $('#assets-price span').html(totalPrice);
-        $('#assets-price-val').val(totalPrice);
 
 
 
