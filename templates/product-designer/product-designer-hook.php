@@ -401,7 +401,7 @@ function product_designer_panel_tab_content_editor($atts){
 
 
 
-add_action('product_designer_tools', 'product_designer_tools_editor_actions', 20);
+add_action('product_designer_tools', 'product_designer_tools_editor_actions', 5);
 
 function product_designer_tools_editor_actions($atts){
 
@@ -663,7 +663,7 @@ function product_designer_tools_edit_shape(){
 }
 
 
-add_action('product_designer_tools', 'product_designer_tools_product_info', 20);
+add_action('product_designer_tools', 'product_designer_tools_product_info', 50);
 
 function product_designer_tools_product_info($atts){
 
@@ -753,7 +753,7 @@ function product_designer_tools_product_info($atts){
 
 
 
-add_action('product_designer_tools', 'product_designer_tools_keyboard', 20);
+add_action('product_designer_tools', 'product_designer_tools_keyboard', 90);
 
 function product_designer_tools_keyboard($atts){
 

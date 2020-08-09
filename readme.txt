@@ -18,7 +18,7 @@ Product Designer plugin is a ready and simple way to add WooCommerce product cus
 
 * [See Premium &raquo;](https://www.pickplugins.com/item/product-designer/?ref=wordpress.org)
 * [Live Demo &raquo;](https://www.pickplugins.com/demo/product-designer/?ref=wordpress.org)
-* [Documentation &raquo;](https://www.pickplugins.com/documentation/product-designer/faq/how-to-display-product-designer-editor/?ref=wordpress.org)
+* [Documentation &raquo;](https://www.pickplugins.com/documentation/product-designer/faq/display-product-designer/?ref=wordpress.org)
 * [Support &raquo;](https://www.pickplugins.com/support/?ref=wordpress.org)
 
 
