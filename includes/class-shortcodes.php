@@ -16,9 +16,10 @@ class class_product_designer_shortcodes  {
 
         $atts = shortcode_atts(
             array(
-                'id' => "",
+                'product_id' => "",
                 ),
-            $atts);
+            $atts
+        );
 
         $product_id = isset($_GET['product_id']) ? sanitize_text_field($_GET['product_id']) : '';
 
@@ -44,7 +45,6 @@ class class_product_designer_shortcodes  {
 
 
         $currency_symbol = get_woocommerce_currency_symbol();
-        //var_dump($font_aw_version);
         $session_id = session_id();
 
 
@@ -67,7 +67,7 @@ class class_product_designer_shortcodes  {
 
 
         $product_data = wc_get_product($product_id);
-        $is_variable = $product_data->is_type('variable');
+//        $is_variable = $product_data->is_type('variable');
         $product_type = $product_data->get_type();
 
         if($product_type == 'variable'):
@@ -268,11 +268,20 @@ class class_product_designer_shortcodes  {
         $atts = apply_filters('product_designer_shortcode_atts', $atts);
 
 
+        $editor_class = apply_filters('product_designer_editor_class', 'product-designer');
 
 
         ob_start();
 
-        do_action('product_designer_editor', $atts);
+        ?>
+        <div class="<?php echo $editor_class; ?>">
+            <?php
+            do_action('product_designer_editor', $atts);
+            ?>
+        </div>
+        <?php
+
+
 
 
         wp_enqueue_style('hint.min');

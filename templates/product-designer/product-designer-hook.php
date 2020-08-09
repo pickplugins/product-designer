@@ -10,42 +10,11 @@ add_action('product_designer_editor', 'product_designer_editor_notice', 0);
 
 function product_designer_editor_notice($atts){
 
-
-    $settings = isset($atts['settings']) ? $atts['settings'] : array();
-    $menu_position = isset($settings['menu_position']) ? $settings['menu_position'] : 'left';
-
     ?>
     <div class="product-designer-notice" id="product-designer-notice">
         <div class="notices">
         </div>
     </div>
-    <style type="text/css">
-        <?php
-
-        if($menu_position == 'left'){
-            ?>
-            body{
-                margin-left: 370px;
-            }
-            .product-designer .menu {
-                left: 0px !important;
-            }
-            <?php
-        }else{
-            ?>
-            body {
-                margin-right: 370px;
-            }
-            .product-designer .menu {
-                right: 0px !important;
-            }
-        <?php
-        }
-        ?>
-        .admin-bar .product-designer .menu{
-            top: 32px;
-        }
-    </style>
     <?php
 
 }
@@ -54,14 +23,7 @@ function product_designer_editor_notice($atts){
 
 
 
-add_action('product_designer_editor', 'product_designer_editor_wrap_start', 5);
 
-function product_designer_editor_wrap_start($atts){
-
-    ?>
-    <div class="product-designer">
-    <?php
-}
 
 
 add_action('product_designer_editor', 'product_designer_editor_panel', 15);
@@ -82,7 +44,7 @@ function product_designer_editor_panel($atts){
 }
 
 
-add_action('product_designer_panel', 'product_designer_panel_main_tabs', 15);
+add_action('product_designer_panel', 'product_designer_panel_main_tabs', 10);
 
 function product_designer_panel_main_tabs($atts){
 
@@ -1185,21 +1147,21 @@ function product_designer_preview(){
 
 }
 
-    add_action('product_designer_panel_tab_content_templates', 'product_designer_pre_templates_promo', 15);
+add_action('product_designer_panel_tab_content_templates', 'product_designer_pre_templates_promo', 15);
 
-    function product_designer_pre_templates_promo(){
+function product_designer_pre_templates_promo(){
 
-        ?>
-        <div class="pre_templates" title="Templates" style="color: #fff">
-            <?php
-
-            echo __('Sorry no pre-saved template found.');
-
-            ?>
-        </div>
+    ?>
+    <div class="pre_templates" title="Templates" style="color: #fff">
         <?php
 
-    }
+        echo __('Sorry no pre-saved template found.');
+
+        ?>
+    </div>
+    <?php
+
+}
 
 
 add_action('product_designer_editor', 'product_designer_toast', 50);
@@ -1215,13 +1177,40 @@ function product_designer_toast(){
 }
 
 
-add_action('product_designer_editor', 'product_designer_wrap_end', 99);
+add_action('product_designer_editor', 'product_designer_editor_style', 90);
 
-function product_designer_wrap_end(){
+function product_designer_editor_style($atts){
+    $settings = isset($atts['settings']) ? $atts['settings'] : array();
+    $menu_position = isset($settings['menu_position']) ? $settings['menu_position'] : 'left';
 
     ?>
+    <style type="text/css">
+        <?php
 
-    </div>
+        if($menu_position == 'left'){
+            ?>
+            body{
+                margin-left: 370px;
+            }
+            .product-designer .menu{
+                left: 0px !important;
+            }
+            <?php
+        }else{
+            ?>
+            body {
+                margin-right: 370px;
+            }
+            .product-designer .menu{
+                right: 0px !important;
+            }
+            <?php
+        }
+        ?>
+        .admin-bar .product-designer .menu{
+            top: 32px;
+        }
+    </style>
     <?php
 
 }

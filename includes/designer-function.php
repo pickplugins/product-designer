@@ -6,6 +6,54 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 
 
 
+
+
+
+add_action('product_designer_welcome_tour_content', 'product_designer_welcome_tour_content_20200808', 0);
+
+function product_designer_welcome_tour_content_20200808($atts){
+
+
+    $settings = isset($atts['settings']) ? $atts['settings'] : array();
+    $menu_position = isset($settings['menu_position']) ? $settings['menu_position'] : 'left';
+
+    $icons = isset($atts['icons']) ? $atts['icons'] : '';
+    $cube = isset($icons['cube']) ? $icons['cube'] : '';
+
+    ?>
+    <p>Custom html</p>
+    <?php
+
+}
+
+
+add_action('product_designer_text_types', 'product_designer_text_types_20200808', 0);
+
+function product_designer_text_types_20200808($img_types){
+
+    $img_types['custom'] = __('Custom text', 'product-designer');
+
+    return $img_types;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function product_designer_clipart_upload(){
 
     check_ajax_referer('pd_clipart_upload');

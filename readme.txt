@@ -12,7 +12,7 @@
 
 == Description ==
 
-Product Designer plugin is ready and simple way to add WooCommerce product customize or product designer on your eCommerce shop. Allow your customer to design or customize themselves before submit order. you customer can add custom clipart, text, shapes and etc. You can add unlimited  product sides for different kind of products. our product designer is based on templates so you can use same template for many products. User can download or preview their design before submit order. there is ton of options for customize text art, clipart and shapes.
+Product Designer plugin is a ready and simple way to add WooCommerce product customize or product designer on your eCommerce shop. Allow your customer to design or customize themselves before submitting order. you customer can add custom clipart, text, shapes and etc. You can add unlimited product sides for different kinds of products. our product designer is based on templates so you can use same template for many products. Users can download or preview their designs before submitting orders. there is a ton of options for customizing text art, clipart and shapes.
 
 ### Product Designer by http://pickplugins.com
 
@@ -50,6 +50,9 @@ You can save unlimited pre saved templates for each templates, so use can choose
 
 **Upload custom cliparts**
 Allow users to upload their own clipart so that users can design their products as they want.
+
+**Cliparts price**
+You can set custom price for each cliparts and different types of assets like text, qr code, barcode and text also.
 
 **Curve text**
 Displaying curve text on the product is fancy and our product designer allow users to editing curve text.
