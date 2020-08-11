@@ -10,21 +10,6 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function product_designer_clipart_upload(){
 
     check_ajax_referer('pd_clipart_upload');
