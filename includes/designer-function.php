@@ -1,11 +1,22 @@
 <?php
-
-
-
 if ( ! defined('ABSPATH')) exit;  // if direct access
 
 
+function product_designer_fonts_custom_20200808($fonts){
 
+    // to remove existing fonts just replace the variable($fonts) name with new variable($my_fonts)
+
+    // adding Google fonts
+    $my_fonts[] = array('name'=>'Rye');
+    $my_fonts[] = array('name'=>'Nosifer');
+
+    // Adding custom fonts
+    $my_fonts[] = array('name'=>'AlexBrush', 'src'=>'http://localhost/fonts/AlexBrush-Regular.ttf');
+
+
+    return $my_fonts;
+}
+add_filter('product_designer_fonts', 'product_designer_fonts_custom_20200808');
 
 
 
