@@ -329,7 +329,7 @@ if(!function_exists('product_designer_settings_content_buy_pro')) {
 
             <p><?php echo __('If you love our plugin and want more feature please consider to buy pro version.', 'product-designer'); ?></p>
             <a class="button" href="https://www.pickplugins.com/item/product-designer/?ref=dashobard"><?php echo __('Buy premium', 'product-designer'); ?></a>
-            <a class="button" href="http://www.pickplugins.com/demo/product-designer/?ref=dashobard"><?php echo __('See all demo', 'product-designer'); ?></a>
+            <a class="button" href="https://www.pickplugins.com/demo/product-designer/?ref=dashobard"><?php echo __('See all demo', 'product-designer'); ?></a>
 
             <h2><?php echo __('See the differences','product-designer'); ?></h2>
 
