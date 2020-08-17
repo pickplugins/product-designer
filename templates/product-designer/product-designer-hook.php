@@ -192,6 +192,10 @@ function product_designer_image_type_content_clipart($atts){
     $settings = isset($atts['settings']) ? $atts['settings'] : array();
     $posts_per_page = isset($settings['posts_per_page']) ? $settings['posts_per_page'] : 10;
 
+    $icons = isset($atts['icons']) ? $atts['icons'] : '';
+    $spinner = isset($icons['spinner']) ? $icons['spinner'] : '';
+
+
     ?>
     <select title="<?php echo __('Categories', "product-designer"); ?>" id="clipart-cat">
         <?php
@@ -213,6 +217,8 @@ function product_designer_image_type_content_clipart($atts){
         }
         ?>
     </select>
+
+    <span class="clipart-loading" style="display: none; color:#fff;"><?php echo $spinner; ?></span>
     <div class="clipart-list">
         <?php
         $args = array(

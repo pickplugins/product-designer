@@ -849,7 +849,7 @@ $(document).on('click','.generate-side-output',function(event){
 
         $(document).on('change','#clipart-cat',function(){
 
-            $('.product-designer .menu .loading').fadeIn();
+            $('.product-designer .clipart-loading').fadeIn();
 
             var cat = $(this).val();
 
@@ -867,8 +867,7 @@ $(document).on('click','.generate-side-output',function(event){
 
                     $('.clipart-list').html(clip_list);
                     $('.clipart-pagination').html(paginatioon);
-                    $('.product-designer .menu .loading').fadeOut();
-
+                    $('.product-designer .clipart-loading').fadeOut();
                 }
             });
 
@@ -881,7 +880,7 @@ $(document).on('click','.generate-side-output',function(event){
 		cat = $('#clipart-cat').val();
 		paged = $(this).text();
 
-		$('.product-designer .menu .loading').fadeIn();
+        $('.product-designer .clipart-loading').fadeIn();
 
 		$.ajax(
 			{
@@ -897,7 +896,7 @@ $(document).on('click','.generate-side-output',function(event){
 
 					$('.clipart-list').html(clip_list);
 					$('.clipart-pagination').html(paginatioon);
-					$('.product-designer .menu .loading').fadeOut();
+                    $('.product-designer .clipart-loading').fadeOut();
 				}
 			});
 

@@ -142,8 +142,8 @@ function product_designer_fonts(){
 
 
 	
-	function product_designer_page_list_ids()
-		{	
+	function product_designer_page_list_ids(){
+
 			$wp_query = new WP_Query(
 				array (
 					'post_type' => 'page',
@@ -623,72 +623,87 @@ function product_designer_ajax_paged_clipart_list(){
     $posts_per_page = isset($product_designer_settings['posts_per_page']) ? $product_designer_settings['posts_per_page'] : '';
 
 
+    $response = array();
+    $clip_list_html = '';
+    $paginatioon_html = '';
 
-		
-		
-		$response = array();
-		$cat_id = isset($_POST['cat']) ? sanitize_text_field($_POST['cat']) : '';
-		$paged = isset($_POST['paged']) ? sanitize_text_field($_POST['paged']) : '';
-		
-		if($cat_id=='all'){
-			$tax_query = array();
-			}
-		else{
-			$tax_query = array(
-							array(
-							   'taxonomy' => 'clipart_cat',
-							   'field' => 'id',
-							   'terms' => $cat_id,
-							)
-						);
-			}
+    $cat_id = isset($_POST['cat']) ? sanitize_text_field($_POST['cat']) : '';
+    $paged = isset($_POST['paged']) ? sanitize_text_field($_POST['paged']) : '';
 
-		
-		
-		$args = array(
-					'post_type'=>'clipart',
-					'posts_per_page'=> $posts_per_page,
-					'tax_query' => $tax_query,
-					'paged' => $paged,
+    if($cat_id=='all'){
+        $tax_query = array();
+    }else{
+        $tax_query = array(
+            array(
+               'taxonomy' => 'clipart_cat',
+               'field' => 'id',
+               'terms' => $cat_id,
+            )
+        );
+    }
 
-			);
-		
-		
-		$wp_query = new WP_Query($args);
-		
-		if ( $wp_query->have_posts() ) :
-		while ( $wp_query->have_posts() ) : $wp_query->the_post();	
-		$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()), 'full' );
-		$thumb_url = $thumb['0'];
-		
-		if(!empty($thumb_url))
-		$response['clip_list'].= '<img src="'.$thumb_url.'" />';
-		
-		endwhile;
-			
-		
-		$paged = $paged;
-		$big = 999999999; // need an unlikely integer
-		$response['paginatioon'].= paginate_links( array(
-			'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
-			'format' => '?paged=%#%',
-			'current' => max( 1, $paged ),
-			'total'              => 3,
-			'prev_text'          => '',
-			'next_text'          => '',
-			'total' => $wp_query->max_num_pages
-			) );
-		
-		//$response['paginatioon'].= '1 > 2 > 3';
-		
-		wp_reset_query();		
-		endif;	
-		
-		echo json_encode($response);
-		
-		die();
-	
-	}	
+
+
+    $args = array(
+        'post_type'=>'clipart',
+        'posts_per_page'=> $posts_per_page,
+        'tax_query' => $tax_query,
+        'paged' => $paged,
+    );
+
+
+    $clipart_wp_query = new WP_Query($args);
+
+    if ( $clipart_wp_query->have_posts() ) :
+    while ( $clipart_wp_query->have_posts() ) : $clipart_wp_query->the_post();
+
+
+        $clipart_thumb_id = get_post_meta(get_the_ID(),'clipart_thumb_id', true);
+        $clipart_price = get_post_meta(get_the_ID(),'clipart_price', true);
+
+        $clipart_url = wp_get_attachment_image_src($clipart_thumb_id, 'full' );
+        $clipart_url = isset($clipart_url['0']) ? $clipart_url['0']  : '';
+
+        $thumb = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()), 'full' );
+        $thumb_url = isset($thumb['0']) ? $thumb['0']  : '';
+
+
+        $clipart_url = !empty($clipart_url) ? $clipart_url : $thumb_url;
+
+
+        if(!empty($clipart_url))
+            $clip_list_html .= '<img data-price="'.$clipart_price.'"  title="'.get_the_title().'" src="'.esc_url_raw($clipart_url).'" />';
+
+
+
+
+    endwhile;
+
+
+    $big = 999999999; // need an unlikely integer
+        $paginatioon_html .= paginate_links( array(
+        'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+        'format' => '?paged=%#%',
+        'current' => max( 1, $paged ),
+        'prev_text'          => '',
+        'next_text'          => '',
+        'total' => $clipart_wp_query->max_num_pages,
+        ) );
+
+    //$response['paginatioon'].= '1 > 2 > 3';
+
+    wp_reset_query();
+    endif;
+
+
+    $response['clip_list'] = $clip_list_html;
+    $response['paginatioon'] = $paginatioon_html;
+
+    echo json_encode($response);
+
+    die();
+
+}
 add_action('wp_ajax_product_designer_ajax_paged_clipart_list', 'product_designer_ajax_paged_clipart_list');
 add_action('wp_ajax_nopriv_product_designer_ajax_paged_clipart_list', 'product_designer_ajax_paged_clipart_list');	
 	
@@ -705,61 +720,79 @@ function product_designer_ajax_get_clipart_list(){
 
 
 
-		$response = array();
-		$cat_id = isset($_POST['cat']) ? sanitize_text_field($_POST['cat']) : '';
-		
-		if($cat_id=='all'){
-			$tax_query = array();
-			}
-		else{
-			$tax_query = array(
-							array(
-							   'taxonomy' => 'clipart_cat',
-							   'field' => 'id',
-							   'terms' => $cat_id,
-							)
-						);
-			}
+    $response = array();
+    $clip_list_html = '';
+    $paginatioon_html = '';
+
+    $cat_id = isset($_POST['cat']) ? sanitize_text_field($_POST['cat']) : '';
+
+    if($cat_id=='all'){
+        $tax_query = array();
+
+    }else{
+        $tax_query = array(
+            array(
+               'taxonomy' => 'clipart_cat',
+               'field' => 'id',
+               'terms' => $cat_id,
+            )
+        );
+    }
 
 		
-		
-		$args = array(
-					'post_type'=>'clipart',
-					'posts_per_page'=>$posts_per_page,
-					'tax_query' => $tax_query,
 
-			);
-		
-		
-		$wp_query = new WP_Query($args);
-		
-		if ( $wp_query->have_posts() ) :
-		while ( $wp_query->have_posts() ) : $wp_query->the_post();	
-		$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()), 'full' );
-		$thumb_url = $thumb['0'];
-		
-		if(!empty($thumb_url))
-		$response['clip_list'].= '<img src="'.$thumb_url.'" />';
-		
-		endwhile;
-			
-		
-		$paged = 1;
-		$big = 999999999; // need an unlikely integer
-		$response['paginatioon'].= paginate_links( array(
-			'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
-			'format' => '?paged=%#%',
-			'current' => max( 1, $paged ),
-			'prev_text'          => '',
-			'next_text'          => '',
-			'total' => $wp_query->max_num_pages
-			) );
-		
-		//$response['paginatioon'].= '1 > 2 > 3';
-		
-		wp_reset_query();		
-		endif;	
-		
+    $args = array(
+        'post_type'=>'clipart',
+        'posts_per_page'=>$posts_per_page,
+        'tax_query' => $tax_query,
+
+        );
+
+
+    $clipart_wp_query = new WP_Query($args);
+
+    if ( $clipart_wp_query->have_posts() ) :
+    while ( $clipart_wp_query->have_posts() ) : $clipart_wp_query->the_post();
+
+        $clipart_thumb_id = get_post_meta(get_the_ID(),'clipart_thumb_id', true);
+        $clipart_price = get_post_meta(get_the_ID(),'clipart_price', true);
+
+        $clipart_url = wp_get_attachment_image_src($clipart_thumb_id, 'full' );
+        $clipart_url = isset($clipart_url['0']) ? $clipart_url['0']  : '';
+
+        $thumb = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()), 'full' );
+        $thumb_url = isset($thumb['0']) ? $thumb['0']  : '';
+
+
+        $clipart_url = !empty($clipart_url) ? $clipart_url : $thumb_url;
+
+
+    if(!empty($clipart_url))
+        $clip_list_html.= '<img data-price="'.$clipart_price.'"  title="'.get_the_title().'" src="'.esc_url_raw($clipart_url).'" />';
+
+    endwhile;
+
+
+    $paged = 1;
+    $big = 999999999; // need an unlikely integer
+        $paginatioon_html.= paginate_links( array(
+        'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+        'format' => '?paged=%#%',
+        'current' => max( 1, $paged ),
+        'prev_text'          => '',
+        'next_text'          => '',
+        'total' => $clipart_wp_query->max_num_pages,
+        ) );
+
+    //$response['paginatioon'].= '1 > 2 > 3';
+
+    wp_reset_query();
+    endif;
+
+
+    $response['clip_list'] = $clip_list_html;
+    $response['paginatioon'] = $paginatioon_html;
+
 		echo json_encode($response);
 		
 		die();
