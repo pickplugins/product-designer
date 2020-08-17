@@ -40,6 +40,8 @@ class class_product_designer_shortcodes  {
         $menu_position= isset($product_designer_settings['menu_position']) ? $product_designer_settings['menu_position'] : 'left';
         $enable_guide= isset($product_designer_settings['enable_guide']) ? $product_designer_settings['enable_guide'] : 'yes';
         $designer_page_id = isset($product_designer_settings['designer_page_id']) ? $product_designer_settings['designer_page_id'] : '';
+        $clipart_width = isset($product_designer_settings['clipart_width']) ? $product_designer_settings['clipart_width'] : '';
+        $clipart_bg_color = isset($product_designer_settings['clipart_bg_color']) ? $product_designer_settings['clipart_bg_color'] : '';
 
 
 
@@ -58,6 +60,8 @@ class class_product_designer_shortcodes  {
         $atts['settings']['enable_guide'] = $enable_guide;
         $atts['settings']['designer_page_id'] = $designer_page_id;
         $atts['settings']['designer_page_url'] = get_permalink($designer_page_id);
+        $atts['settings']['clipart_width'] = $clipart_width;
+        $atts['settings']['clipart_bg_color'] = $clipart_bg_color;
 
 
         $atts['product_id'] = $product_id;

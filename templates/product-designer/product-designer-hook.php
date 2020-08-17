@@ -1182,9 +1182,26 @@ add_action('product_designer_editor', 'product_designer_editor_style', 90);
 function product_designer_editor_style($atts){
     $settings = isset($atts['settings']) ? $atts['settings'] : array();
     $menu_position = isset($settings['menu_position']) ? $settings['menu_position'] : 'left';
+    $clipart_width = isset($settings['clipart_width']) ? $settings['clipart_width'] : '';
+    $clipart_bg_color = isset($settings['clipart_bg_color']) ? $settings['clipart_bg_color'] : '';
+
+    //var_dump($settings);
 
     ?>
     <style type="text/css">
+
+
+        .product-designer .clipart-list img{
+            <?php if(!empty($clipart_width)): ?>
+                max-width: <?php echo $clipart_width; ?> !important;
+            <?php endif; ?>
+            <?php if(!empty($clipart_bg_color)): ?>
+                background: <?php echo $clipart_bg_color; ?> !important;
+            <?php endif; ?>
+
+        }
+
+
         <?php
 
         if($menu_position == 'left'){

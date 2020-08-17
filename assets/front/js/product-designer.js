@@ -10,7 +10,7 @@ jQuery(document).ready(function($){
 
 
 
-    tools_tabs_switch();
+    tools_tabs_switch(0);
 
     function tools_tabs_switch(activeTab = 0){
 
@@ -1937,7 +1937,7 @@ $(document).on('click','.generate-side-output',function(event){
             $('.edit-shape').addClass('active');
             }
 
-        //tools_tabs_switch(0);
+        tools_tabs_switch(0);
         product_designer_editor_save();
 
     }
@@ -3393,7 +3393,7 @@ $(document).on('click','.generate-side-output',function(event){
             canvas.renderAll();
             product_designer_get_object_list();
             product_designer_editor_save();
-            //tools_tabs_switch(0);
+            tools_tabs_switch(0);
 
 
 
@@ -3428,7 +3428,7 @@ $(document).on('click','.generate-side-output',function(event){
         product_designer_get_object_list();
         product_designer_editor_save();
 
-        //tools_tabs_switch(0);
+        tools_tabs_switch(0);
 	})
 
 
@@ -3475,7 +3475,7 @@ $(document).on('click','.clipart-list img',function(){
     });
 
 
-   // tools_tabs_switch(0);
+    tools_tabs_switch(0);
 
 })
 

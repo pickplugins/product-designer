@@ -16,6 +16,8 @@ function product_designer_settings_content_general(){
     $customize_button_text = isset($product_designer_settings['customize_button']['text']) ? $product_designer_settings['customize_button']['text'] : '';
     $customize_button_bg_color = isset($product_designer_settings['customize_button']['bg_color']) ? $product_designer_settings['customize_button']['bg_color'] : '';
 
+    $clipart_width = isset($product_designer_settings['clipart_width']) ? $product_designer_settings['clipart_width'] : '';
+    $clipart_bg_color = isset($product_designer_settings['clipart_bg_color']) ? $product_designer_settings['clipart_bg_color'] : '';
 
     //echo '<pre>'.var_export($product_designer_settings, true).'</pre>';
 
@@ -68,6 +70,33 @@ function product_designer_settings_content_general(){
         $settings_tabs_field->generate_field($args);
 
 
+        $args = array(
+            'id'		=> 'clipart_width',
+            'parent'		=> 'product_designer_settings',
+            'title'		=> __('Clipart width','product-designer'),
+            'details'	=> __('Set custom width for clipart list item. ex: 80px','product-designer'),
+            'type'		=> 'text',
+            'value'		=> $clipart_width,
+            'default'		=> '',
+            'placeholder'		=> '56px',
+
+        );
+
+        $settings_tabs_field->generate_field($args);
+
+        $args = array(
+            'id'		=> 'clipart_bg_color',
+            'parent'		=> 'product_designer_settings',
+            'title'		=> __('Clipart background color','product-designer'),
+            'details'	=> __('Set custom background color for clipart list item. ex: 80px','product-designer'),
+            'type'		=> 'colorpicker',
+            'value'		=> $clipart_bg_color,
+            'default'		=> '',
+            'placeholder'		=> '',
+
+        );
+
+        $settings_tabs_field->generate_field($args);
 
 
         $args = array(

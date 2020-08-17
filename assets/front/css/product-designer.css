@@ -92,12 +92,19 @@
   outline: none;
   padding: 10px;
   background: #3a5673;
+  color:#fff;
+  border: none !important;
+  margin: 0 !important;
 }
 
 .product-designer .menu .item .icon.ui-state-active{
 outline: none;
 }
 
+
+.product-designer .menu .item .icon .ui-accordion-header-icon{
+  display: none;
+}
 
 .product-designer .menu .item.templates {
 
@@ -130,6 +137,8 @@ background: #314861 none repeat scroll 0 0;
 
 text-align: left;
   padding: 10px;
+  background: none !important;
+  border: none !important;
 }
 
 
@@ -170,7 +179,7 @@ width: 95%;
 
 
 .product-designer .side-list {
-
+  padding: 0;
 }
 .product-designer .side-list li {
 display: block;
@@ -219,6 +228,7 @@ width: 60px;
 vertical-align: middle;
 font-size: 14px;
 margin-left: 10px;
+  color: #fff;
 }
 
 
@@ -275,20 +285,21 @@ margin-top: 55px;
 }
 
 .product-designer .clipart-list {
-  padding: 10px 0;
+  padding: 10px 5px;
   background-image: url(../images/tile.png);
 }
 
 .product-designer .clipart-list img {
   box-shadow: none;
   display: inline-block;
-  margin: 5px;
+  margin: 2px;
   max-width: 45px;
   vertical-align: top;
-  padding: 0px;
+  padding: 4px;
   border-radius: 5px;
   border: 1px solid rgba(0,0,0,0);
   transition: all ease 1s 0s;
+  background: #6b6b6be8;
 }
 .product-designer .clipart-list img:hover {
   background: #56565673;
@@ -306,7 +317,7 @@ margin-top: 55px;
   text-decoration: none;
 }
 
-.product-designer .clipart-pagination .current {
+.product-designer .clipart-pagination .current, .product-designer .clipart-pagination .page-numbers:hover {
   background: rgb(255 255 255) none repeat scroll 0 0;
 }
 
@@ -347,22 +358,27 @@ display:none;
 .product-designer .tabs {
   margin: 0;
   padding: 0;
+  background: none !important;
+  border: none !important;
 }
 
 .product-designer .tabs .navs {
   margin: 0;
   padding: 0;
+  background: none !important;
+  border: none !important;
 }
 .product-designer .tabs .nav {
   display: inline-block;
   float: left;
   list-style: none;
   margin: 0 0 10px 0;
-  padding: 5px 10px;
+  padding: 7px 10px !important;
   background: #3a5673;
   border-right: 1px solid #314861;
   text-transform: uppercase;
   font-size: 12px;
+  border: none !important;
 }
 
 .product-designer .tabs .nav.ui-tabs-active {
@@ -379,6 +395,7 @@ display:none;
 
 .product-designer .tabs .nav-content{
   clear: both;
+  padding: 10px 0 0 0;
 }
 
 
@@ -1076,6 +1093,7 @@ display:none;
   display: inline-block;
   width: 49%;
   vertical-align: top;
+  color: #fff;
 }
 
 .product-designer .setting-field.half .field-input{
@@ -1109,6 +1127,7 @@ display:none;
   display: block;
   width: 99%;
   vertical-align: top;
+  color: #fff;
 }
 
 .product-designer .setting-field.full .field-input{
