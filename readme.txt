@@ -4,7 +4,7 @@
 	Tags: product designer, product customizer, custom product, woocommerce product designer
 	Requires at least: 3.8
 	Tested up to: 5.4
-	Stable tag: 1.0.20
+	Stable tag: 1.0.21
 	License: GPLv2 or later
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -119,6 +119,14 @@ Before starting you need to add some clip art via custom post "Clip Art" with th
 
 
 == Changelog ==
+
+	= 1.0.21 =
+    * 2020-08-17 - fix - clipart category loading issue fixed.
+    * 2020-08-17 - fix - conflict wih jQuery UI css issue fixed.
+    * 2020-08-17 - add - Clipart width option added.
+    * 2020-08-17 - add - Clipart background color option added.
+
+
 
 	= 1.0.20 =
     * 2020-08-08 - add - customize button custom text.
