@@ -217,6 +217,10 @@ if(!function_exists('product_designer_settings_content_tour_guide')) {
 
     }
 }
+
+
+
+
 add_action('product_designer_settings_content_help_support', 'product_designer_settings_content_help_support');
 
 if(!function_exists('product_designer_settings_content_help_support')) {

@@ -91,6 +91,12 @@ function product_designer_side_list($atts){
     $icons = isset($atts['icons']) ? $atts['icons'] : '';
     $cube = isset($icons['cube']) ? $icons['cube'] : '';
 
+    $settings = isset($atts['settings']) ? $atts['settings'] : array();
+    $hide_sections = isset($settings['hide_sections']) ? $settings['hide_sections'] : array();
+
+    if(in_array('product_sides', $hide_sections )) return;
+
+
    ?>
     <div class="side item accordions  pd-guide-1" title="Sides">
         <div class="icon"><?php echo sprintf(__('%s Sides','product-designer'), $cube); ?></div>
@@ -141,12 +147,20 @@ function product_designer_panel_clipart($atts){
     $icons = isset($atts['icons']) ? $atts['icons'] : '';
     $file_image = isset($icons['file_image']) ? $icons['file_image'] : '';
 
+    $settings = isset($atts['settings']) ? $atts['settings'] : array();
+    $hide_sections = isset($settings['hide_sections']) ? $settings['hide_sections'] : array();
 
-    $img_types = array(
-        'clipart' => __('Clipart','product-designer'),
-    );
+    if(in_array('clipart_assets', $hide_sections )) return;
 
-    $img_types = apply_filters('product_designer_image_types', $img_types);
+    $img_types = array();
+
+
+    if(!in_array('clipart', $hide_sections )){
+        $img_types['clipart'] = __('Clipart','product-designer');
+    }
+
+
+    $img_types = apply_filters('product_designer_image_types', $img_types, $atts);
 
     ?>
     <div class="clipart accordions item pd-guide-2" title="<?php echo __('Clip Art', "product-designer"); ?>">
@@ -194,6 +208,7 @@ function product_designer_image_type_content_clipart($atts){
 
     $icons = isset($atts['icons']) ? $atts['icons'] : '';
     $spinner = isset($icons['spinner']) ? $icons['spinner'] : '';
+
 
 
     ?>
@@ -283,11 +298,23 @@ function product_designer_panel_text($atts){
     $icons = isset($atts['icons']) ? $atts['icons'] : '';
     $file_word = isset($icons['file_word']) ? $icons['file_word'] : '';
 
-    $text_types = array(
-        'text' => __('text','product-designer'),
-    );
+    $settings = isset($atts['settings']) ? $atts['settings'] : array();
+    $hide_sections = isset($settings['hide_sections']) ? $settings['hide_sections'] : array();
 
-    $text_types = apply_filters('product_designer_text_types', $text_types);
+    if(in_array('text_quotes', $hide_sections )) return;
+
+
+    $settings = isset($atts['settings']) ? $atts['settings'] : array();
+    $hide_sections = isset($settings['hide_sections']) ? $settings['hide_sections'] : array();
+
+
+    $text_types = array();
+
+    if(!in_array('text', $hide_sections )) {
+        $text_types['text'] = __('Text','product-designer');
+    }
+
+    $text_types = apply_filters('product_designer_text_types', $text_types, $atts);
 
     ?>
     <div class="text item accordions pd-guide-3" title="<?php echo __('Text Art', 'product-designer'); ?>">
@@ -312,7 +339,7 @@ function product_designer_panel_text($atts){
                     ?>
                     <div class="nav-content" id="tabs-<?php echo $typeIndex; ?>">
                         <?php
-                        do_action('product_designer_text_type_content_'.$typeIndex);
+                        do_action('product_designer_text_type_content_'.$typeIndex, $atts);
                         ?>
                     </div>
                     <?php
@@ -344,6 +371,12 @@ function product_designer_panel_shapes($atts){
 
     $icons = isset($atts['icons']) ? $atts['icons'] : '';
     $shapes = isset($icons['shapes']) ? $icons['shapes'] : '';
+
+    $settings = isset($atts['settings']) ? $atts['settings'] : array();
+    $hide_sections = isset($settings['hide_sections']) ? $settings['hide_sections'] : array();
+
+    if(in_array('shapes', $hide_sections )) return;
+
 
     ?>
     <div class="shapes item accordions pd-guide-4" title="<?php echo __('Shapes', "product-designer"); ?>">
@@ -413,6 +446,10 @@ function product_designer_tools_editor_actions($atts){
 
     $settings = isset($atts['settings']) ? $atts['settings'] : array();
     $icons = isset($atts['icons']) ? $atts['icons'] : '';
+    $hide_sections = isset($settings['hide_sections']) ? $settings['hide_sections'] : array();
+
+
+    if(in_array('editor_action', $hide_sections )) return;
 
     $canvas = isset($atts['canvas']) ? $atts['canvas'] : array();
     $enable_download = !empty($canvas['download']['enable']) ? $canvas['download']['enable'] : 'no';
@@ -439,7 +476,7 @@ function product_designer_tools_editor_actions($atts){
     //var_dump($enable_preview);
 
     ?>
-    <div class="editor-actions toolbar-section pd-guide-5">
+    <div class="editor-actions section-editor-action toolbar-section pd-guide-5">
         <div class="toolbar-title"><?php echo __('Editor Actions', 'product-designer'); ?></div>
         <div class="toolbar-section-inner">
             <span class="pack-button hint--top" id="editor-show-grid" aria-label="<?php echo __('Show grid', 'product-designer'); ?>"><?php echo $icon_grid; ?></span>
@@ -486,6 +523,12 @@ function product_designer_tools_object_list($atts){
 
     $icons = isset($atts['icons']) ? $atts['icons'] : '';
     $icon_layers = isset($icons['layers']) ? $icons['layers'] : '';
+    $settings = isset($atts['settings']) ? $atts['settings'] : array();
+
+    $hide_sections = isset($settings['hide_sections']) ? $settings['hide_sections'] : array();
+
+
+    if(in_array('layers', $hide_sections )) return;
 
 
     ?>
@@ -507,6 +550,14 @@ add_action('product_designer_tools', 'product_designer_tools_edit_text', 20);
 
 function product_designer_tools_edit_text($atts){
 
+    $settings = isset($atts['settings']) ? $atts['settings'] : array();
+
+    $hide_sections = isset($settings['hide_sections']) ? $settings['hide_sections'] : array();
+
+
+    if(in_array('edit_text', $hide_sections )) return;
+
+
     $icons = isset($atts['icons']) ? $atts['icons'] : '';
     $icon_text_bold = isset($icons['text_bold']) ? $icons['text_bold'] : '';
     $icon_text_italic = isset($icons['text_italic']) ? $icons['text_italic'] : '';
@@ -516,7 +567,7 @@ function product_designer_tools_edit_text($atts){
 
     ?>
 
-    <div class="edit-text toolbar-section">
+    <div class="edit-text toolbar-section section-edit-text">
         <div class="toolbar-title"><?php echo __('Edit Text', 'product-designer'); ?></div>
         <div class="toolbar-section-inner">
             <form id="edit-assets-text" action="#" method="get">
@@ -611,11 +662,19 @@ function product_designer_tools_edit_text($atts){
 
 add_action('product_designer_tools', 'product_designer_tools_edit_img', 20);
 
-function product_designer_tools_edit_img(){
+function product_designer_tools_edit_img($atts){
+
+
+    $settings = isset($atts['settings']) ? $atts['settings'] : array();
+
+    $hide_sections = isset($settings['hide_sections']) ? $settings['hide_sections'] : array();
+
+
+    if(in_array('edit_image', $hide_sections )) return;
 
     ?>
-    <div class="edit-img toolbar-section">
-        <div class="toolbar-title"><?php echo __('Images Actions', 'product-designer'); ?></div>
+    <div class="edit-img toolbar-section section-image-action">
+        <div class="toolbar-title"><?php echo __('Edit Images', 'product-designer'); ?></div>
         <div class="toolbar-section-inner">
             <div class="setting-field half">
                 <div class="field-label"><?php echo __('Opacity', 'product-designer'); ?></div>
@@ -644,7 +703,16 @@ function product_designer_tools_edit_img(){
 
 add_action('product_designer_tools', 'product_designer_tools_edit_shape', 20);
 
-function product_designer_tools_edit_shape(){
+function product_designer_tools_edit_shape($atts){
+
+
+    $settings = isset($atts['settings']) ? $atts['settings'] : array();
+
+    $hide_sections = isset($settings['hide_sections']) ? $settings['hide_sections'] : array();
+
+
+    if(in_array('edit_shapes', $hide_sections )) return;
+
 
     ?>
     <div class="edit-shape toolbar-section">
@@ -765,6 +833,14 @@ function product_designer_tools_keyboard($atts){
 
     $icons = isset($atts['icons']) ? $atts['icons'] : '';
     $keyboard = isset($icons['keyboard']) ? $icons['keyboard'] : '';
+
+    $settings = isset($atts['settings']) ? $atts['settings'] : array();
+
+    $hide_sections = isset($settings['hide_sections']) ? $settings['hide_sections'] : array();
+
+
+    if(in_array('keyboard_shortcuts', $hide_sections )) return;
+
 
     ?>
     <div class="toolbar-section pd-guide-10">
