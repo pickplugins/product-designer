@@ -19,7 +19,11 @@ class class_product_designer_posttypes  {
 
 		add_action('init', array( $this, 'posttype_clipart' ));
 		add_action( 'init', array( $this, 'clipart_taxonomies' ), 0 );
-		
+
+        add_action('init', array( $this, 'posttype_shape' ));
+        add_action( 'init', array( $this, 'shape_taxonomies' ), 0 );
+
+
 		//add_action('init', array( $this, 'posttype_pd_order' ), 100);
 		
     }
@@ -185,10 +189,107 @@ class class_product_designer_posttypes  {
 			
 			
 			}
-	
-	
 
-	    public function posttype_pd_order(){
+
+
+
+
+
+
+
+
+    public function posttype_shape(){
+
+        $labels = array(
+            'name' => _x('Shape', 'product-designer'),
+            'singular_name' => _x('Shape', 'product-designer'),
+            'add_new' => _x('Add Shape', 'product-designer'),
+            'add_new_item' => __('Add Shape', 'product-designer'),
+            'edit_item' => __('Edit Shape', 'product-designer'),
+            'new_item' => __('New Shape', 'product-designer'),
+            'view_item' => __('View Shape', 'product-designer'),
+            'search_items' => __('Search Shape', 'product-designer'),
+            'not_found' =>  __('Nothing found', 'product-designer'),
+            'not_found_in_trash' => __('Nothing found in Trash', 'product-designer'),
+            'parent_item_colon' => ''
+        );
+
+        $args = array(
+            'labels' => $labels,
+            'public' => true,
+            'publicly_queryable' => true,
+            'show_ui' => true,
+            'query_var' => true,
+            'menu_icon' => 'dashicons-nametag',
+            'rewrite' => true,
+            'capability_type' => 'post',
+            'hierarchical' => false,
+            'menu_position' => null,
+            'supports' => array('title'),
+            //'show_in_menu' 	=> 'product_designer',
+
+
+        );
+
+        register_post_type( 'shape' , $args );
+
+
+    }
+
+
+
+
+
+    public function shape_taxonomies(){
+
+
+        register_taxonomy('shape_cat', 'shape', array(
+            // Hierarchical taxonomy (like categories)
+            'hierarchical' => true,
+            'show_admin_column' => true,
+            // This array of options controls the labels displayed in the WordPress Admin UI
+            'labels' => array(
+                'name' => _x( 'Shape Categories', 'product-designer' ),
+                'singular_name' => _x( 'Shape Categories', 'product-designer' ),
+                'search_items' =>  __( 'Search Shape Categories', 'product-designer' ),
+                'all_items' => __( 'All Shape Categories', 'product-designer' ),
+                'parent_item' => __( 'Parent Shape Categories', 'product-designer' ),
+                'parent_item_colon' => __( 'Parent Shape Categories:', 'product-designer' ),
+                'edit_item' => __( 'Edit Shape Categories', 'product-designer' ),
+                'update_item' => __( 'Update Shape Categories', 'product-designer' ),
+                'add_new_item' => __( 'Add Shape Categories', 'product-designer' ),
+                'new_item_name' => __( 'New Shape Categories Name', 'product-designer' ),
+                'menu_name' => __( 'Shape Categories' ),
+
+            ),
+            // Control the slugs used for this taxonomy
+            'rewrite' => array(
+                'slug' => 'shape_cat', // This controls the base slug that will display before each term
+                'with_front' => false, // Don't display the category base before "/locations/"
+                'hierarchical' => true // This will allow URL's like "/locations/boston/cambridge/"
+            ),
+        ));
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function posttype_pd_order(){
 			
 	        $labels = array(
                 'name' => _x('Order', 'product-designer'),

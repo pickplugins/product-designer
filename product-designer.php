@@ -41,6 +41,7 @@ class ProductDesigner{
         require_once( product_designer_plugin_dir . 'includes/metabox-pd_template-hook.php');
         require_once( product_designer_plugin_dir . 'includes/class-meta-boxes.php');
         require_once( product_designer_plugin_dir . 'includes/metabox-clipart-hook.php');
+        require_once( product_designer_plugin_dir . 'includes/metabox-shape-hook.php');
 
 
 		//require_once( product_designer_plugin_dir . 'includes/tshirt-designer-meta.php');

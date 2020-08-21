@@ -10,6 +10,9 @@ class product_designer_meta_boxes{
         add_action('add_meta_boxes', array($this, 'clipart'));
         add_action('save_post', array($this, 'clipart_save'));
 
+        add_action('add_meta_boxes', array($this, 'shape'));
+        add_action('save_post', array($this, 'shape_save'));
+
         //meta box for "pd_template"
         add_action('add_meta_boxes', array($this, 'pd_template'));
         add_action('save_post', array($this, 'pd_template_save'));
@@ -29,7 +32,11 @@ class product_designer_meta_boxes{
     }
 
 
+    public function shape($post_type){
 
+        add_meta_box('product-designer',__('shape Options', 'product-designer'), array($this, 'shape_display'), 'shape', 'normal', 'high');
+
+    }
 
 
 
@@ -335,6 +342,159 @@ class product_designer_meta_boxes{
 
     }
 
+
+    function shape_display( $post ) {
+
+        global $post;
+        wp_nonce_field( 'meta_boxes_shape_input', 'meta_boxes_shape_input_nonce' );
+
+        $post_id = $post->ID;
+        $shape_meta_options = get_post_meta($post_id, 'shape_meta_options', true);
+
+
+        $current_tab = isset($shape_meta_options['current_tab']) ? $shape_meta_options['current_tab'] : 'general';
+
+
+        $settings_tabs = array();
+
+
+
+
+        $settings_tabs[] = array(
+            'id' => 'general',
+            'title' => sprintf(__('%s General','product-designer'), '<i class="fas fa-cogs"></i>'),
+            'priority' => 5,
+            'active' => ($current_tab == 'general') ? true : false,
+        );
+
+
+        $settings_tabs = apply_filters('shape_metabox_tabs', $settings_tabs);
+
+        //var_dump($settings_tabs);
+
+
+        $tabs_sorted = array();
+        foreach ($settings_tabs as $page_key => $tab) $tabs_sorted[$page_key] = isset( $tab['priority'] ) ? $tab['priority'] : 0;
+        array_multisort($tabs_sorted, SORT_ASC, $settings_tabs);
+
+
+
+        wp_enqueue_script('jquery');
+        wp_enqueue_script('jquery-ui-sortable');
+        wp_enqueue_script( 'jquery-ui-core' );
+        wp_enqueue_script('jquery-ui-accordion');
+        wp_enqueue_script('wp-color-picker');
+        wp_enqueue_style('wp-color-picker');
+
+
+        wp_enqueue_style( 'jquery-ui');
+        wp_enqueue_style( 'font-awesome-5' );
+        wp_enqueue_style( 'settings-tabs' );
+        wp_enqueue_script( 'settings-tabs' );
+
+
+
+
+
+
+
+
+
+        ?>
+
+        <div class="post-grid-meta-box">
+
+
+            <div class="settings-tabs vertical">
+                <input class="current_tab" type="hidden" name="shape_meta_options[current_tab]" value="<?php echo $current_tab; ?>">
+
+                <ul class="tab-navs">
+                    <?php
+                    foreach ($settings_tabs as $tab){
+                        $id = $tab['id'];
+                        $title = $tab['title'];
+                        $active = $tab['active'];
+                        $data_visible = isset($tab['data_visible']) ? $tab['data_visible'] : '';
+                        $hidden = isset($tab['hidden']) ? $tab['hidden'] : false;
+                        ?>
+                        <li <?php if(!empty($data_visible)):  ?> data_visible="<?php echo $data_visible; ?>" <?php endif; ?> class="tab-nav <?php if($hidden) echo 'hidden';?> <?php if($active) echo 'active';?>" data-id="<?php echo $id; ?>"><?php echo $title; ?></li>
+                        <?php
+                    }
+                    ?>
+                </ul>
+                <?php
+                foreach ($settings_tabs as $tab){
+                    $id = $tab['id'];
+                    $title = $tab['title'];
+                    $active = $tab['active'];
+
+
+                    ?>
+
+                    <div class="tab-content <?php if($active) echo 'active';?>" id="<?php echo $id; ?>">
+                        <?php
+                        do_action('shape_metabox_tabs_content_'.$id, $tab, $post_id);
+                        ?>
+                    </div>
+                    <?php
+                }
+                ?>
+            </div>
+            <div class="clear clearfix"></div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+        <?php
+
+
+
+    }
+
+
+    function shape_save( $post_id ) {
+
+        /*
+         * We need to verify this came from the our screen and with proper authorization,
+         * because save_post can be triggered at other times.
+         */
+
+        // Check if our nonce is set.
+        if ( ! isset( $_POST['meta_boxes_shape_input_nonce'] ) )
+            return $post_id;
+
+        $nonce = $_POST['meta_boxes_shape_input_nonce'];
+
+        // Verify that the nonce is valid.
+        if ( ! wp_verify_nonce( $nonce, 'meta_boxes_shape_input' ) )
+            return $post_id;
+
+        // If this is an autosave, our form has not been submitted, so we don't want to do anything.
+        if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
+            return $post_id;
+
+
+
+        /* OK, its safe for us to save the data now. */
+
+        // Sanitize user input.
+        //$shape_collapsible = sanitize_text_field( $_POST['shape_collapsible'] );
+
+
+
+        do_action('product_designer_shape_metabox_save', $post_id);
+
+
+
+    }
 
 
 
