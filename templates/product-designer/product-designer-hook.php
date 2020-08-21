@@ -369,10 +369,14 @@ add_action('product_designer_panel_tab_content_assets', 'product_designer_panel_
 
 function product_designer_panel_shapes($atts){
 
-    $icons = isset($atts['icons']) ? $atts['icons'] : '';
-    $shapes = isset($icons['shapes']) ? $icons['shapes'] : '';
 
     $settings = isset($atts['settings']) ? $atts['settings'] : array();
+    $posts_per_page = isset($settings['posts_per_page']) ? $settings['posts_per_page'] : 10;
+
+    $icons = isset($atts['icons']) ? $atts['icons'] : '';
+    $spinner = isset($icons['spinner']) ? $icons['spinner'] : '';
+    $shapes = isset($icons['shapes']) ? $icons['shapes'] : '';
+
     $hide_sections = isset($settings['hide_sections']) ? $settings['hide_sections'] : array();
 
     if(in_array('shapes', $hide_sections )) return;
@@ -382,24 +386,88 @@ function product_designer_panel_shapes($atts){
     <div class="shapes item accordions pd-guide-4" title="<?php echo __('Shapes', "product-designer"); ?>">
         <div class="icon"><?php echo sprintf(__('%s Shapes','product-designer'), $shapes); ?></div>
         <div class="child">
-            <div class="shape-list scrollbar">
 
-                <span class=" add-shape" shape-type="rectangle" title="<?php echo __('Rectangle', "product-designer"); ?>" ><i class="pickicon-square" ></i></span>
-                <span class=" add-shape" shape-type="circle" title="<?php echo __('Circle', "product-designer"); ?>"><i class="pickicon-circle" ></i></span>
-                <span class=" add-shape" shape-type="triangle" title="<?php echo __('Triangle', "product-designer"); ?>" ><i class="pickicon-triangle" ></i></span>
-                <span class=" add-shape" shape-type="heart" title="<?php echo __('Heart', "product-designer"); ?>" ><i class="pickicon-heart" ></i></span>
-                <span class=" add-shape" shape-type="polygon-5" title="<?php echo __('Polygon', "product-designer"); ?>" ><i class="pickicon-polygon-5" ></i></span>
-                <span class=" add-shape" shape-type="polygon-6" title="<?php echo __('Polygon', "product-designer"); ?>" ><i class="pickicon-polygon-6" ></i></span>
-                <span class=" add-shape" shape-type="polygon-7" title="<?php echo __('Polygon', "product-designer"); ?>" ><i class="pickicon-polygon-7" ></i></span>
-                <span class=" add-shape" shape-type="polygon-8" title="<?php echo __('Polygon', "product-designer"); ?>" ><i class="pickicon-polygon-8" ></i></span>
-                <span class=" add-shape" shape-type="polygon-9" title="<?php echo __('Polygon', "product-designer"); ?>" ><i class="pickicon-polygon-9" ></i></span>
-                <span class=" add-shape" shape-type="polygon-10" title="<?php echo __('Polygon', "product-designer"); ?>" ><i class="pickicon-polygon-10" ></i></span>
-                <span class=" add-shape" shape-type="star-5" title="<?php echo __('Star', "product-designer"); ?>" ><i class="pickicon-star-5" ></i></span>
-                <span class=" add-shape" shape-type="star-6" title="<?php echo __('Star', "product-designer"); ?>"><i class="pickicon-star-6" ></i></span>
-                <span class=" add-shape" shape-type="star-7" title="<?php echo __('Star', "product-designer"); ?>" ><i class="pickicon-star-7" ></i></span>
-                <span class=" add-shape" shape-type="star-8" title="<?php echo __('Star', "product-designer"); ?>" ><i class="pickicon-star-8" ></i></span>
+
+
+            <select title="<?php echo __('Categories', "product-designer"); ?>" id="shape-cat">
+                <?php
+                $args = array(
+                    'orderby' => 'name',
+                    'order' => 'ASC',
+                    'taxonomy' => 'shape_cat',
+                );
+                ?>
+                <option value="all"><?php echo __('All', "product-designer"); ?></option>
+                <?php
+                $categories = get_categories($args);
+
+                if(!empty($categories))
+                    foreach($categories as $category){
+                        ?>
+                        <option value='<?php echo $category->cat_ID; ?>'><?php echo $category->cat_name; ?></option>
+                        <?php
+                    }
+                ?>
+            </select>
+
+            <span class="shape-loading" style="display: none; color:#fff;"><?php echo $spinner; ?></span>
+            <div class="shape-list">
+                <?php
+                $args = array(
+                    'post_type'=>'shape',
+                    'posts_per_page'=> $posts_per_page,
+                );
+
+                $clipart_query = new WP_Query($args);
+
+                if ( $clipart_query->have_posts() ) :
+                    while ( $clipart_query->have_posts() ) : $clipart_query->the_post();
+
+                        $clipart_thumb_id = get_post_meta(get_the_ID(),'shape_thumb_id', true);
+                        $clipart_price = get_post_meta(get_the_ID(),'shape_price', true);
+
+                        $clipart_url = wp_get_attachment_image_src($clipart_thumb_id, 'full' );
+                        $clipart_url = isset($clipart_url['0']) ? $clipart_url['0']  : '';
+
+                        $thumb = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()), 'full' );
+                        $thumb_url = isset($thumb['0']) ? $thumb['0']  : '';
+
+
+                        $clipart_url = !empty($clipart_url) ? $clipart_url : $thumb_url;
+
+                        if(!empty($clipart_url)){
+                            ?>
+
+                                <img data-price="<?php echo $clipart_price; ?>" class="add-shape" title="<?php echo get_the_title(); ?>" src="<?php echo esc_url_raw($clipart_url); ?>" />
+
+
+
+                            <?php
+                        }
+                    endwhile;
+
+                    wp_reset_query();
+                endif;
+                ?>
+
 
             </div>
+            <div class="shape-pagination">
+                <?php
+                $paged = 1;
+                $big = 999999999; // need an unlikely integer
+
+                echo paginate_links( array(
+                    'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+                    'format' => '?paged=%#%',
+                    'current' => max( 1, $paged ),
+                    'prev_text'          => '',
+                    'next_text'          => '',
+                    'total' => $clipart_query->max_num_pages
+                ) );
+                ?>
+            </div>
+
 
         </div>
 

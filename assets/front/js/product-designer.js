@@ -902,6 +902,75 @@ $(document).on('click','.generate-side-output',function(event){
 
 		})
 
+
+
+
+    $(document).on('change','#shape-cat',function(){
+
+        $('.product-designer .shape-loading').fadeIn();
+
+        var cat = $(this).val();
+
+        $.ajax(
+            {
+                type: 'POST',
+                url: product_designer_ajax.product_designer_ajaxurl,
+                data: {"action": "product_designer_ajax_get_shape_list","cat":cat},
+                success: function(data)
+                {
+
+                    var response 		= JSON.parse(data)
+                    var shape_list 	= response['shape_list'];
+                    var paginatioon 	= response['paginatioon'];
+
+                    $('.shape-list').html(shape_list);
+                    $('.shape-pagination').html(paginatioon);
+                    $('.product-designer .shape-loading').fadeOut();
+                }
+            });
+
+    })
+
+
+    $(document).on('click','.shape-pagination .page-numbers',function(event){
+
+        event.preventDefault();
+        cat = $('#shape-cat').val();
+        paged = $(this).text();
+
+        $('.product-designer .shape-loading').fadeIn();
+
+        $.ajax(
+            {
+                type: 'POST',
+                url: product_designer_ajax.product_designer_ajaxurl,
+                data: {"action": "product_designer_ajax_paged_shape_list","paged":paged,"cat":cat},
+                success: function(data)
+                {
+
+                    var response 		= JSON.parse(data)
+                    var shape_list 	= response['shape_list'];
+                    var paginatioon 	= response['paginatioon'];
+
+                    $('.shape-list').html(shape_list);
+                    $('.shape-pagination').html(paginatioon);
+                    $('.product-designer .shape-loading').fadeOut();
+                }
+            });
+
+    })
+
+
+
+
+
+
+
+
+
+
+
+
     window.addEventListener("keydown", function(e){
         /*
          * keyCode: 8
@@ -2684,719 +2753,103 @@ $(document).on('click','.generate-side-output',function(event){
 
 
 
-        $(document).on('click','.product-designer .add-shape',function(){
+    $(document).on('click','.shape-list img',function(){
 
-            shape_type = $(this).attr('shape-type');
+        product_designer_editor_toast('','Shape added.');
+        src = $(this).attr('src');
+        price = $(this).attr('data-price');
 
-            if(shape_type =='rectangle'){
-                var rectangle = new fabric.Rect({
-                    width: 50, height: 50, fill: 'blue', left: 50, top: 50
-                });
-                canvas.add(rectangle);
-                canvas.centerObject(rectangle);
-                rectangle.setCoords();
-                canvas.setActiveObject(rectangle);
-                product_designer_editor_toast('','Rectangle added.');
 
-            }
 
-            else if(shape_type =='circle'){
+        console.log(src);
 
-                circle = new fabric.Circle({ radius: 30, fill: '#f55', top: 100, left: 100 })
-                canvas.add(circle);
-                canvas.centerObject(circle);
-                circle.setCoords();
-                canvas.setActiveObject(circle);
-                product_designer_editor_toast('','Circle added.');
-            }
+        // fabric.loadSVGFromURL(src, function(objects, options) {
+        //
+        //     var drink = fabric.util.groupSVGElements(objects, options);
+        //
+        //     drink.set({
+        //         left: 80,
+        //         top: 175,
+        //         width: 32,
+        //         height: 32
+        //     });
+        //     canvas.add(drink);
+        //
+        //     canvas.renderAll();
+        // });
 
-            else if(shape_type =='triangle'){
-                var triangle = new fabric.Triangle({
-                    width: 50, height: 60, fill: 'blue', left: 50, top: 50
-                });
-                canvas.add(triangle);
-                canvas.centerObject(triangle);
-                triangle.setCoords();
-                canvas.setActiveObject(triangle);
-                product_designer_editor_toast('','Triangle added.');
-            }
-            else if(shape_type =='star-5'){
 
-                startPoints = [];
-                bg_color="blue";
-                opacity=1;
+        fabric.loadSVGFromURL(src, function(objects, options) {
 
-                startPoints = [
-                    {x: 46, y: 90},
-                    {x: 58, y: 56},
-                    {x: 93, y: 55},
-                    {x: 65, y: 35},
-                    {x: 77, y: 0},
-                    {x: 48, y: 22},
-                    {x: 19, y: 0},
-                    {x: 30, y: 35},
-                    {x: 0, y: 56},
-                    {x: 37, y: 56}
-                ];
 
-                var clonedStartPoints = startPoints.map(function (o) {
-                    return fabric.util.object.clone(o);
-                });
 
-                var star = new fabric.Polygon(clonedStartPoints, {
-                    left: 100,
-                    top: 50,
-                    fill: bg_color,
-                    opacity: opacity,
-                    selectable: true
-                });
 
-                star.set("originX", "center");
-                star.set("originY", "center");
+            var obj = fabric.util.groupSVGElements(objects, options);
 
-                canvas.add(star);
-                canvas.centerObject(star);
-                star.setCoords();
-                canvas.setActiveObject(star);
-                product_designer_editor_toast('','Star added.');
+            var height = obj.height;
+            var width = obj.width;
 
-            }
+            scale = 200 / obj.width;
 
-            else if(shape_type =='star-6'){
+            obj.set({
+                scaleX: scale,
+                scaleY: scale,
+                price: price,
 
+            });
 
-                startPoints = [];
-                bg_color="blue";
-                opacity=1;
-
-                startPoints = [
-                    {x: 40, y: 90},
-                    {x: 54, y: 68},
-                    {x: 79, y: 68},
-                    {x: 66, y: 45},
-                    {x: 79, y: 23},
-                    {x: 53, y: 23},
-                    {x: 40, y: 0},
-                    {x: 26, y: 23},
-                    {x: 0, y: 23},
-                    {x: 14, y: 45},
-                    {x: 0, y: 68},
-                    {x: 26, y: 68}
-                ];
-
-                var clonedStartPoints = startPoints.map(function (o) {
-                    return fabric.util.object.clone(o);
-                });
-
-                var star = new fabric.Polygon(clonedStartPoints, {
-                    left: 100,
-                    top: 50,
-                    fill: bg_color,
-                    opacity: opacity,
-                    selectable: true
-                });
-
-                star.set("originX", "center");
-                star.set("originY", "center");
-
-                canvas.add(star);
-                canvas.centerObject(star);
-                star.setCoords();
-                canvas.setActiveObject(star);
-                product_designer_editor_toast('','Star added.');
-
-            }
-
-            else if(shape_type =='star-7'){
-
-                startPoints = [];
-                bg_color="blue";
-                opacity=1;
-
-                startPoints = [
-                    {x: 49, y: 90},
-                    {x: 57, y: 60},
-                    {x: 87, y: 74},
-                    {x: 64, y: 47},
-                    {x: 91, y: 34},
-                    {x: 64, y: 34},
-                    {x: 71, y: 0},
-                    {x: 47, y: 26},
-                    {x: 25, y: 0},
-                    {x: 31, y: 32},
-                    {x: 0, y: 32},
-                    {x: 31, y: 47},
-                    {x: 7, y: 74},
-                    {x: 39, y: 60}
-                ];
-
-
-
-
-                var clonedStartPoints = startPoints.map(function (o) {
-                    return fabric.util.object.clone(o);
-                });
-
-                var star = new fabric.Polygon(clonedStartPoints, {
-                    left: 100,
-                    top: 50,
-                    fill: bg_color,
-                    opacity: opacity,
-                    selectable: true
-                });
-
-                star.set("originX", "center");
-                star.set("originY", "center");
-
-                canvas.add(star);
-                canvas.centerObject(star);
-                star.setCoords();
-                canvas.setActiveObject(star);
-                product_designer_editor_toast('','Star added.');
-
-            }
-
-
-            else if(shape_type =='star-8'){
-
-
-                startPoints = [];
-                bg_color="blue";
-                opacity=1;
-
-                startPoints = [
-                    {x: 46, y: 90},
-                    {x: 52, y: 63},
-                    {x: 77, y: 78},
-                    {x: 61, y: 53},
-                    {x: 89, y: 46},
-                    {x: 61, y: 40},
-                    {x: 77, y: 14},
-                    {x: 52, y: 30},
-                    {x: 46, y: 0},
-                    {x: 37, y: 30},
-                    {x: 14, y: 14},
-                    {x: 27, y: 39},
-                    {x: 0, y: 46},
-                    {x: 27, y: 53},
-                    {x: 13, y: 77},
-                    {x: 37, y: 62}
-                ];
-
-                var clonedStartPoints = startPoints.map(function (o) {
-                    return fabric.util.object.clone(o);
-                });
-
-                var star = new fabric.Polygon(clonedStartPoints, {
-                    left: 100,
-                    top: 50,
-                    fill: bg_color,
-                    opacity: opacity,
-                    selectable: true
-                });
-
-                star.set("originX", "center");
-                star.set("originY", "center");
-
-                canvas.add(star);
-                canvas.centerObject(star);
-                star.setCoords();
-                canvas.setActiveObject(star);
-                product_designer_editor_toast('','Star added.');
-
-            }
-
-            else if(shape_type =='star-9'){
-
-
-                startPoints = [];
-                bg_color="blue";
-                opacity=1;
-
-                startPoints = [
-                    {x: 45, y: 90},
-                    {x: 56, y: 73},
-                    {x: 74, y: 79},
-                    {x: 71, y: 59},
-                    {x: 88, y: 52},
-                    {x: 74, y: 39},
-                    {x: 84, y: 21},
-                    {x: 65, y: 21},
-                    {x: 61, y: 0},
-                    {x: 45, y: 14},
-                    {x: 30, y: 0},
-                    {x: 26, y: 21},
-                    {x: 7, y: 12},
-                    {x: 16, y: 39},
-                    {x: 0, y: 51},
-                    {x: 18, y: 59},
-                    {x: 16, y: 79},
-                    {x: 34, y: 73}
-                ];
-
-
-
-
-                var clonedStartPoints = startPoints.map(function (o) {
-                    return fabric.util.object.clone(o);
-                });
-
-                var star = new fabric.Polygon(clonedStartPoints, {
-                    left: 100,
-                    top: 50,
-                    fill: bg_color,
-                    opacity: opacity,
-                    selectable: true
-                });
-
-                star.set("originX", "center");
-                star.set("originY", "center");
-
-                canvas.add(star);
-                canvas.centerObject(star);
-                star.setCoords();
-                canvas.setActiveObject(star);
-                product_designer_editor_toast('','Star added.');
-
-            }
-
-            else if(shape_type =='star-10'){
-
-
-                startPoints = [];
-                bg_color="blue";
-                opacity=1;
-
-                startPoints = [
-                    {x: 35, y: 90},
-                    {x: 50, y: 81},
-                    {x: 63, y: 90},
-                    {x: 69, y: 73},
-                    {x: 88, y: 73},
-                    {x: 82, y: 56},
-                    {x: 96, y: 46},
-                    {x: 82, y: 36},
-                    {x: 87, y: 18},
-                    {x: 70, y: 18},
-                    {x: 63, y: 0},
-                    {x: 49, y: 12},
-                    {x: 35, y: 0},
-                    {x: 28, y: 18},
-                    {x: 11, y: 18},
-                    {x: 17, y: 35},
-                    {x: 0, y: 46},
-                    {x: 17, y: 56},
-                    {x: 11, y: 73},
-                    {x: 28, y: 73}
-                ];
-
-
-
-                var clonedStartPoints = startPoints.map(function (o) {
-                    return fabric.util.object.clone(o);
-                });
-
-                var star = new fabric.Polygon(clonedStartPoints, {
-                    left: 100,
-                    top: 50,
-                    fill: bg_color,
-                    opacity: opacity,
-                    selectable: true
-                });
-
-                star.set("originX", "center");
-                star.set("originY", "center");
-
-                canvas.add(star);
-                canvas.centerObject(polygon);
-                polygon.setCoords();
-                canvas.setActiveObject(polygon);
-                product_designer_editor_toast('','Star added.');
-
-            }
-            else if(shape_type =='polygon-5'){
-
-
-                bg_color="blue";
-                opacity=1;
-
-
-                startPoints = [
-                    {x: 0, y: 50},
-                    {x: 45, y: 80},
-                    {x: 85, y: 50},
-                    {x: 70, y: 0},
-                    {x: 17, y: 0}
-                ];
-
-
-
-
-                var clonedStartPoints = startPoints.map(function (o) {
-                    return fabric.util.object.clone(o);
-                });
-
-                var polygon = new fabric.Polygon(clonedStartPoints, {
-                    left: 100,
-                    top: 50,
-                    fill: bg_color,
-                    opacity: opacity,
-                    selectable: true
-                });
-
-                polygon.set("originX", "center");
-                polygon.set("originY", "center");
-
-                canvas.add(polygon);
-                canvas.centerObject(polygon);
-                polygon.setCoords();
-                canvas.setActiveObject(polygon);
-                product_designer_editor_toast('','Polygon added.');
-
-            }
-
-            else if(shape_type =='polygon-5'){
-
-
-                bg_color="blue";
-                opacity=1;
-
-
-                startPoints = [
-                    {x: 0, y: 50},
-                    {x: 45, y: 80},
-                    {x: 85, y: 50},
-                    {x: 70, y: 0},
-                    {x: 17, y: 0}
-                ];
-
-
-
-
-                var clonedStartPoints = startPoints.map(function (o) {
-                    return fabric.util.object.clone(o);
-                });
-
-                var polygon = new fabric.Polygon(clonedStartPoints, {
-                    left: 100,
-                    top: 50,
-                    fill: bg_color,
-                    opacity: opacity,
-                    selectable: true
-                });
-
-                polygon.set("originX", "center");
-                polygon.set("originY", "center");
-
-                canvas.add(polygon);
-                canvas.centerObject(polygon);
-                polygon.setCoords();
-                canvas.setActiveObject(polygon);
-                product_designer_editor_toast('','Polygon added.');
-
-            }
-
-
-            else if(shape_type =='polygon-5'){
-
-
-                bg_color="blue";
-                opacity=1;
-                startPoints = [
-                    {x: 0, y: 50},
-                    {x: 45, y: 80},
-                    {x: 85, y: 50},
-                    {x: 70, y: 0},
-                    {x: 17, y: 0}
-                ];
-
-                var clonedStartPoints = startPoints.map(function (o) {
-                    return fabric.util.object.clone(o);
-                });
-
-                var polygon = new fabric.Polygon(clonedStartPoints, {
-                    left: 100,
-                    top: 50,
-                    fill: bg_color,
-                    opacity: opacity,
-                    selectable: true
-                });
-
-                polygon.set("originX", "center");
-                polygon.set("originY", "center");
-
-                canvas.add(polygon);
-                canvas.centerObject(polygon);
-                polygon.setCoords();
-                canvas.setActiveObject(polygon);
-                product_designer_editor_toast('','Polygon added.');
-
-            }
-
-
-            else if(shape_type =='polygon-6'){
-
-
-                bg_color="blue";
-                opacity=1;
-                startPoints = [
-                    {x: 45, y: 90},
-                    {x: 90, y: 70},
-                    {x: 90, y: 20},
-                    {x: 45, y: 0},
-                    {x: 0, y: 20},
-                    {x: 0, y: 70}
-                ];
-
-                var clonedStartPoints = startPoints.map(function (o) {
-                    return fabric.util.object.clone(o);
-                });
-
-                var polygon = new fabric.Polygon(clonedStartPoints, {
-                    left: 100,
-                    top: 50,
-                    fill: bg_color,
-                    opacity: opacity,
-                    selectable: true
-                });
-
-                polygon.set("originX", "center");
-                polygon.set("originY", "center");
-
-                canvas.add(polygon);
-                canvas.centerObject(polygon);
-                polygon.setCoords();
-                canvas.setActiveObject(polygon);
-                product_designer_editor_toast('','Polygon added.');
-
-            }
-
-
-            else if(shape_type =='polygon-7'){
-
-
-                bg_color="blue";
-                opacity=1;
-
-
-                startPoints = [
-                    {x: 26, y: 90},
-                    {x: 65, y: 90},
-                    {x: 88, y: 57},
-                    {x: 81, y: 18},
-                    {x: 45, y: 0},
-                    {x: 12, y: 18},
-                    {x: 0, y: 58}
-                ];
-
-                var clonedStartPoints = startPoints.map(function (o) {
-                    return fabric.util.object.clone(o);
-                });
-
-                var polygon = new fabric.Polygon(clonedStartPoints, {
-                    left: 100,
-                    top: 50,
-                    fill: bg_color,
-                    opacity: opacity,
-                    selectable: true
-                });
-
-                polygon.set("originX", "center");
-                polygon.set("originY", "center");
-
-                canvas.add(polygon);
-                canvas.centerObject(polygon);
-                polygon.setCoords();
-                canvas.setActiveObject(polygon);
-                product_designer_editor_toast('','Polygon added.');
-
-            }
-
-
-            else if(shape_type =='polygon-8'){
-
-
-                bg_color="blue";
-                opacity=1;
-
-
-                startPoints = [
-                    {x: 28, y: 90},
-                    {x: 63, y: 90},
-                    {x: 90, y: 63},
-                    {x: 90, y: 27},
-                    {x: 63, y: 0},
-                    {x: 28, y: 0},
-                    {x: 0, y: 27},
-                    {x: 0, y: 63}
-                ];
-
-
-
-
-                var clonedStartPoints = startPoints.map(function (o) {
-                    return fabric.util.object.clone(o);
-                });
-
-                var polygon = new fabric.Polygon(clonedStartPoints, {
-                    left: 100,
-                    top: 50,
-                    fill: bg_color,
-                    opacity: opacity,
-                    selectable: true
-                });
-
-                polygon.set("originX", "center");
-                polygon.set("originY", "center");
-
-                canvas.add(polygon);
-                canvas.centerObject(polygon);
-                polygon.setCoords();
-                canvas.setActiveObject(polygon);
-                product_designer_editor_toast('','Polygon added.');
-
-            }
-
-            else if(shape_type =='polygon-9'){
-
-
-                bg_color="blue";
-                opacity=1;
-                startPoints = [
-                    {x: 45, y: 90},
-                    {x: 75, y: 80},
-                    {x: 90, y: 52},
-                    {x: 85, y: 20},
-                    {x: 60, y: 0},
-                    {x: 30, y: 0},
-                    {x: 8, y: 20},
-                    {x: 0, y: 53},
-                    {x: 17, y: 78}
-                ];
-
-
-
-                var clonedStartPoints = startPoints.map(function (o) {
-                    return fabric.util.object.clone(o);
-                });
-
-                var polygon = new fabric.Polygon(clonedStartPoints, {
-                    left: 100,
-                    top: 50,
-                    fill: bg_color,
-                    opacity: opacity,
-                    selectable: true
-                });
-
-                polygon.set("originX", "center");
-                polygon.set("originY", "center");
-
-                canvas.add(polygon);
-                canvas.centerObject(polygon);
-                polygon.setCoords();
-                canvas.setActiveObject(polygon);
-                product_designer_editor_toast('','Polygon added.');
-
-            }
-
-            else if(shape_type =='polygon-10'){
-
-
-                bg_color="blue";
-                opacity=1;
-                startPoints = [
-                    {x: 35, y: 90},
-                    {x: 63, y: 90},
-                    {x: 86, y: 74},
-                    {x: 95, y: 47},
-                    {x: 86, y: 19},
-                    {x: 63, y: 0},
-                    {x: 35, y: 0},
-                    {x: 11, y: 19},
-                    {x: 0, y: 45},
-                    {x: 11, y: 72}
-                ];
-
-
-
-                var clonedStartPoints = startPoints.map(function (o) {
-                    return fabric.util.object.clone(o);
-                });
-
-                var polygon = new fabric.Polygon(clonedStartPoints, {
-                    left: 100,
-                    top: 50,
-                    fill: bg_color,
-                    opacity: opacity,
-                    selectable: true
-                });
-
-                polygon.set("originX", "center");
-                polygon.set("originY", "center");
-
-                canvas.add(polygon);
-                canvas.centerObject(polygon);
-                polygon.setCoords();
-                canvas.setActiveObject(polygon);
-                product_designer_editor_toast('','Polygon added.');
-
-            }
-
-
-            else if(shape_type =='heart'){
-
-
-                outline_width = 1;
-                outline_color = 'blue';
-
-                var heart = new fabric.Path('M 272.70141,238.71731 \
-            C 206.46141,238.71731 152.70146,292.4773 152.70146,358.71731  \
-            C 152.70146,493.47282 288.63461,528.80461 381.26391,662.02535 \
-            C 468.83815,529.62199 609.82641,489.17075 609.82641,358.71731 \
-            C 609.82641,292.47731 556.06651,238.7173 489.82641,238.71731  \
-            C 441.77851,238.71731 400.42481,267.08774 381.26391,307.90481 \
-            C 362.10311,267.08773 320.74941,238.7173 272.70141,238.71731  \
-            z ');
-                var scale = 100 / heart.width;
-
-                heart.set({
-                    left: 100,
-                    top: 50,
-                    scaleX: scale,
-                    scaleY: scale,
-                    fill: 'blue',
-                    opacity: 1,
-                    selectable: true
-                });
-
-                heart.set("originX", "center");
-                heart.set("originY", "center");
-
-                if (outline_width > 0)
-                {
-                    heart.set("strokeWidth", parseInt(outline_width));
-                    heart.set("stroke", outline_color);
-                }
-
-                canvas.add(heart);
-                canvas.centerObject(heart);
-                heart.setCoords();
-                canvas.setActiveObject(heart);
-                product_designer_editor_toast('','Heart added.');
-
-
-
-            }
-
-
+            canvas.add(obj);
+            canvas.centerObject(obj);
+            obj.setCoords();
+            canvas.setActiveObject(obj);
             canvas.renderAll();
+
             product_designer_get_object_list();
             product_designer_editor_save();
-            tools_tabs_switch(0);
-
 
 
         })
+
+
+
+
+        // var newImg = new Image();
+        // newImg.src = src;
+        // var height = newImg.height;
+        // var width = newImg.width;
+        //
+        //
+        // fabric.Image.fromURL(src, function(img){
+        //     scale = 200 / img.width;
+        //     img.set({
+        //         scaleX: scale,
+        //         scaleY: scale,
+        //         price: price,
+        //
+        //     });
+        //     canvas.add(img);
+        //     canvas.centerObject(img);
+        //     img.setCoords();
+        //     canvas.setActiveObject(img);
+        //     canvas.renderAll();
+        //
+        //     json = JSON.stringify(canvas.toJSON(["price"]));
+        //
+        //     //console.log(canvas.toJSON(["price"]));
+        //
+        //     //console.log(json);
+        //     //console.log(img);
+        //
+        //     product_designer_get_object_list();
+        //     product_designer_editor_save();
+        // });
+
+
+        //tools_tabs_switch(0);
+
+    })
+
+
 
 
 

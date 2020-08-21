@@ -611,11 +611,104 @@ add_action('wp_ajax_nopriv_product_designer_ajax_delete_attach_id', 'product_des
 
 
 
+function product_designer_ajax_paged_shape_list(){
+
+
+    $product_designer_settings = get_option('product_designer_settings');
+    $posts_per_page = isset($product_designer_settings['posts_per_page']) ? $product_designer_settings['posts_per_page'] : '';
+
+
+    $response = array();
+    $clip_list_html = '';
+    $paginatioon_html = '';
+
+    $cat_id = isset($_POST['cat']) ? sanitize_text_field($_POST['cat']) : '';
+    $paged = isset($_POST['paged']) ? sanitize_text_field($_POST['paged']) : '';
+
+    if($cat_id=='all'){
+        $tax_query = array();
+    }else{
+        $tax_query = array(
+            array(
+                'taxonomy' => 'shape_cat',
+                'field' => 'id',
+                'terms' => $cat_id,
+            )
+        );
+    }
+
+
+
+    $args = array(
+        'post_type'=>'shape',
+        'posts_per_page'=> $posts_per_page,
+        'tax_query' => $tax_query,
+        'paged' => $paged,
+    );
+
+
+    $shape_wp_query = new WP_Query($args);
+
+    if ( $shape_wp_query->have_posts() ) :
+        while ( $shape_wp_query->have_posts() ) : $shape_wp_query->the_post();
+
+
+            $shape_thumb_id = get_post_meta(get_the_ID(),'shape_thumb_id', true);
+            $shape_price = get_post_meta(get_the_ID(),'shape_price', true);
+
+            $shape_url = wp_get_attachment_image_src($shape_thumb_id, 'full' );
+            $shape_url = isset($shape_url['0']) ? $shape_url['0']  : '';
+
+            $thumb = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()), 'full' );
+            $thumb_url = isset($thumb['0']) ? $thumb['0']  : '';
+
+
+            $shape_url = !empty($shape_url) ? $shape_url : $thumb_url;
+
+
+            if(!empty($shape_url))
+                $clip_list_html .= '<img data-price="'.$shape_price.'"  title="'.get_the_title().'" src="'.esc_url_raw($shape_url).'" />';
 
 
 
 
-	
+        endwhile;
+
+
+        $big = 999999999; // need an unlikely integer
+        $paginatioon_html .= paginate_links( array(
+            'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+            'format' => '?paged=%#%',
+            'current' => max( 1, $paged ),
+            'prev_text'          => '',
+            'next_text'          => '',
+            'total' => $shape_wp_query->max_num_pages,
+        ) );
+
+        //$response['paginatioon'].= '1 > 2 > 3';
+
+        wp_reset_query();
+    endif;
+
+
+    $response['shape_list'] = $clip_list_html;
+    $response['paginatioon'] = $paginatioon_html;
+
+    echo json_encode($response);
+
+    die();
+
+}
+add_action('wp_ajax_product_designer_ajax_paged_shape_list', 'product_designer_ajax_paged_shape_list');
+add_action('wp_ajax_nopriv_product_designer_ajax_paged_shape_list', 'product_designer_ajax_paged_shape_list');
+
+
+
+
+
+
+
+
 function product_designer_ajax_paged_clipart_list(){
 
 
@@ -800,3 +893,96 @@ function product_designer_ajax_get_clipart_list(){
 	}	
 add_action('wp_ajax_product_designer_ajax_get_clipart_list', 'product_designer_ajax_get_clipart_list');
 add_action('wp_ajax_nopriv_product_designer_ajax_get_clipart_list', 'product_designer_ajax_get_clipart_list');
+
+
+
+
+function product_designer_ajax_get_shape_list(){
+
+
+
+    $product_designer_settings = get_option('product_designer_settings');
+    $posts_per_page = isset($product_designer_settings['posts_per_page']) ? $product_designer_settings['posts_per_page'] : '';
+
+
+
+    $response = array();
+    $clip_list_html = '';
+    $paginatioon_html = '';
+
+    $cat_id = isset($_POST['cat']) ? sanitize_text_field($_POST['cat']) : '';
+
+    if($cat_id=='all'){
+        $tax_query = array();
+
+    }else{
+        $tax_query = array(
+            array(
+                'taxonomy' => 'shape_cat',
+                'field' => 'id',
+                'terms' => $cat_id,
+            )
+        );
+    }
+
+
+
+    $args = array(
+        'post_type'=>'shape',
+        'posts_per_page'=>$posts_per_page,
+        'tax_query' => $tax_query,
+
+    );
+
+
+    $shape_wp_query = new WP_Query($args);
+
+    if ( $shape_wp_query->have_posts() ) :
+        while ( $shape_wp_query->have_posts() ) : $shape_wp_query->the_post();
+
+            $shape_thumb_id = get_post_meta(get_the_ID(),'shape_thumb_id', true);
+            $shape_price = get_post_meta(get_the_ID(),'shape_price', true);
+
+            $shape_url = wp_get_attachment_image_src($shape_thumb_id, 'full' );
+            $shape_url = isset($shape_url['0']) ? $shape_url['0']  : '';
+
+            $thumb = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()), 'full' );
+            $thumb_url = isset($thumb['0']) ? $thumb['0']  : '';
+
+
+            $shape_url = !empty($shape_url) ? $shape_url : $thumb_url;
+
+
+            if(!empty($shape_url))
+                $clip_list_html.= '<img data-price="'.$shape_price.'"  title="'.get_the_title().'" src="'.esc_url_raw($shape_url).'" />';
+
+        endwhile;
+
+
+        $paged = 1;
+        $big = 999999999; // need an unlikely integer
+        $paginatioon_html.= paginate_links( array(
+            'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+            'format' => '?paged=%#%',
+            'current' => max( 1, $paged ),
+            'prev_text'          => '',
+            'next_text'          => '',
+            'total' => $shape_wp_query->max_num_pages,
+        ) );
+
+        //$response['paginatioon'].= '1 > 2 > 3';
+
+        wp_reset_query();
+    endif;
+
+
+    $response['shape_list'] = $clip_list_html;
+    $response['paginatioon'] = $paginatioon_html;
+
+    echo json_encode($response);
+
+    die();
+
+}
+add_action('wp_ajax_product_designer_ajax_get_shape_list', 'product_designer_ajax_get_shape_list');
+add_action('wp_ajax_nopriv_product_designer_ajax_get_shape_list', 'product_designer_ajax_get_shape_list');

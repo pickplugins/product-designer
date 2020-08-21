@@ -489,11 +489,15 @@ display:none;
 
 
 
-.product-designer .shape-list{}
-.product-designer .shape-list span:hover {
+.product-designer .shape-list{
+  margin-top: 20px;
+  padding: 10px 5px;
+  background-image: url(../images/tile.png);
+}
+.product-designer .shape-list img:hover {
   background: #4f7094;
 }
-.product-designer .shape-list span {
+.product-designer .shape-list img {
   width: 45px;
   height: 45px;
   display: inline-block;
@@ -502,8 +506,29 @@ display:none;
   text-align: center;
   transition: all ease 0.5s 0s;
   border-radius: 5px;
+  padding: 5px;
 }
 
+
+.product-designer .shape-pagination{
+  margin: 10px 0px;
+}
+.product-designer .shape-pagination .page-numbers {
+  background: #daebfd87  none repeat scroll 0 0;
+  color: rgba(0, 0, 0, 0.57);
+  display: inline-block;
+  margin: 5px 0 0 2px;
+  padding: 2px 10px;
+  text-decoration: none;
+}
+
+.product-designer .shape-pagination .current, .product-designer .shape-pagination .page-numbers:hover {
+  background: rgb(255 255 255) none repeat scroll 0 0;
+}
+
+.product-designer .shape-pagination .next, .product-designer .shape-pagination .prev {
+  display:none;
+}
 
 
 
