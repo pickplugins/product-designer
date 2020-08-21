@@ -3,8 +3,8 @@
 	Donate link: https://www.pickplugins.com/item/product-designer/?ref=wordpress.org
 	Tags: product designer, product customizer, custom product, woocommerce product designer
 	Requires at least: 3.8
-	Tested up to: 5.4
-	Stable tag: 1.0.22
+	Tested up to: 5.5
+	Stable tag: 1.0.23
 	License: GPLv2 or later
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,7 +31,10 @@ Product Designer is WooCommerce ready and your customer will able to submit orde
 You can add unlimited clipart, image, picture for design assest, so your user can add them to designer. there is category based filter and ajax pagination for accessing cliparts.
 
 **Text Arts**
-Your customer can add text on the product desginer, there is many option to customize text, font size, color, font families, we added 50+ hand picked Google fonts, you can add your own.
+Your customer can add text on the product designer, there is many option to customize text, font size, color, font families, we added 50+ hand picked Google fonts, you can add your own.
+
+**SVG or Shapes**
+You can upload or add unlimited shapes or svg file and your customer can use these to design their products.
 
 **Unlimited product sides**
 Based on different product you can add any number of product sides, so user can customize each side on the designer.
@@ -119,6 +122,9 @@ Before starting you need to add some clip art via custom post "Clip Art" with th
 
 
 == Changelog ==
+
+	= 1.0.23 =
+    * 2020-08-21 - add - shape post type added.
 
 	= 1.0.22 =
     * 2020-08-17 - add - added some action hooks and arguments

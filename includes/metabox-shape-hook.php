@@ -40,7 +40,7 @@ function shape_metabox_tabs_content_general($tab, $post_id){
             'id'		=> 'shape_thumb_id',
 //            'parent'		=> 'canvas',
             'title'		=> __('shape/svg image','product-designer'),
-            'details'	=> __('Upload svg image.','product-designer'),
+            'details'	=> __('Upload svg image. Get svg shape from bellow source<br><ul><li><a href="https://www.flaticon.com/search?word=shapes">https://www.flaticon.com</a></li><li><a href="https://www.iconfinder.com/search/?price=free&q=shape">https://www.iconfinder.com</a></li><li><a href="https://freeicons.io/filter/popular/all/shape">https://freeicons.io</a></li></ul>','product-designer'),
             'type'		=> 'media',
             'placeholder_text'		=> 'placeholder.svg',
 
