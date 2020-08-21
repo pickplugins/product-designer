@@ -427,12 +427,14 @@ class settings_tabs_field{
         $pro_text 	= isset( $option['pro_text'] ) ? $option['pro_text'] : '';
 
         $default			= isset( $option['default'] ) ? $option['default'] : '';
+        $placeholder_text			= isset( $option['placeholder_text'] ) ? $option['placeholder_text'] : __('Placeholder.jpg', $this->textdomain);
+
         $value			= isset( $option['value'] ) ? $option['value'] : '';
         $value          = !empty($value) ?  $value : $default;
 
         $media_url	= wp_get_attachment_url( $value );
         $media_type	= get_post_mime_type( $value );
-        $media_title = !empty($value) ? get_the_title( $value ) : __('Placeholder.jpg', $this->textdomain);
+        $media_title = !empty($value) ? get_the_title( $value ) : $placeholder_text;
 
 
         $media_url = !empty($media_url) ? $media_url : $default;

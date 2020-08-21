@@ -39,9 +39,11 @@ function shape_metabox_tabs_content_general($tab, $post_id){
         $args = array(
             'id'		=> 'shape_thumb_id',
 //            'parent'		=> 'canvas',
-            'title'		=> __('shape image','product-designer'),
-            'details'	=> __('Set shape image.','product-designer'),
+            'title'		=> __('shape/svg image','product-designer'),
+            'details'	=> __('Upload svg image.','product-designer'),
             'type'		=> 'media',
+            'placeholder_text'		=> 'placeholder.svg',
+
             'value'		=> $shape_thumb_id,
             'default'		=> '',
         );
@@ -77,7 +79,7 @@ function product_designer_shape_metabox_save($job_id){
 }
 
 
-function my_custom_mime_types( $mimes ) {
+function product_designer_custom_mime_types( $mimes ) {
 
     // New allowed mime types.
     $mimes['svg'] = 'image/svg+xml';
@@ -89,4 +91,4 @@ function my_custom_mime_types( $mimes ) {
 
     return $mimes;
 }
-add_filter( 'upload_mimes', 'my_custom_mime_types' );
+add_filter( 'upload_mimes', 'product_designer_custom_mime_types' );
