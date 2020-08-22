@@ -2796,6 +2796,8 @@ $(document).on('click','.generate-side-output',function(event){
 
 
 
+            console.log(objects);
+
 
             var obj = fabric.util.groupSVGElements(objects, options);
 
