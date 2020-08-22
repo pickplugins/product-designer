@@ -39,8 +39,14 @@ function product_designer_shape_upload(){
         'post_type'     =>'shape'
     );
 
+    $product_designer_settings = get_option('product_designer_settings');
+    $shape_price = isset($product_designer_settings['shape_price']) ? $product_designer_settings['shape_price'] :'';
+
+
     $clipart_ID = wp_insert_post( $clipart_post );
-    update_post_meta( $clipart_ID, '_thumbnail_id', $attach_id );
+    update_post_meta( $clipart_ID, 'shape_thumb_id', $attach_id );
+
+    update_post_meta( $clipart_ID, 'shape_price', $shape_price );
 
 
 
@@ -105,8 +111,14 @@ function product_designer_clipart_upload(){
         'post_type'     =>'clipart'
     );
 
+    $product_designer_settings = get_option('product_designer_settings');
+    $clipart_price = isset($product_designer_settings['clipart_price']) ? $product_designer_settings['clipart_price'] :'';
+
+
     $clipart_ID = wp_insert_post( $clipart_post );
-    update_post_meta( $clipart_ID, '_thumbnail_id', $attach_id );
+    update_post_meta( $clipart_ID, 'clipart_thumb_id', $attach_id );
+
+    update_post_meta( $clipart_ID, 'clipart_price', $clipart_price );
 
 
 

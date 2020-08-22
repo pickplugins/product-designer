@@ -45,6 +45,8 @@ class class_product_designer_shortcodes  {
         $clipart_bg_color = isset($product_designer_settings['clipart_bg_color']) ? $product_designer_settings['clipart_bg_color'] : '';
         $hide_sections = isset($product_designer_settings['hide_sections']) ? $product_designer_settings['hide_sections'] : array();
 
+        $allow_upload_clipart = isset($product_designer_settings['allow_upload_clipart']) ? $product_designer_settings['allow_upload_clipart'] : array();
+        $allow_upload_shape = isset($product_designer_settings['allow_upload_shape']) ? $product_designer_settings['allow_upload_shape'] : array();
 
 
 
@@ -66,6 +68,8 @@ class class_product_designer_shortcodes  {
         $atts['settings']['clipart_bg_color'] = $clipart_bg_color;
         $atts['settings']['hide_sections'] = $hide_sections;
 
+        $atts['settings']['allow_upload_clipart'] = $allow_upload_clipart;
+        $atts['settings']['allow_upload_shape'] = $allow_upload_shape;
 
         $atts['product_id'] = $product_id;
         $atts['product_title'] = get_the_title($product_id);
