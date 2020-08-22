@@ -387,6 +387,11 @@ function product_designer_panel_shapes($atts){
         <div class="icon"><?php echo sprintf(__('%s Shapes','product-designer'), $shapes); ?></div>
         <div class="child">
 
+            <?php
+
+            do_action('product_designer_panel_shapes_content', $atts );
+
+            ?>
 
 
             <select title="<?php echo __('Categories', "product-designer"); ?>" id="shape-cat">

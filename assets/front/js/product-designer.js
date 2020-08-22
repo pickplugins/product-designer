@@ -76,9 +76,111 @@ jQuery(document).ready(function($){
 
 
 
+    function product_designer_get_object_list(){
+
+
+        html = '';
+
+        wc_currency_symbol = product_designer_editor.wc_currency_symbol;
+
+        objectList_arr = [];
+        var objectList = [];
+        objectList = canvas.getObjects();
+
+
+        length = objectList.length;
+
+        objectName = '';
+        objectId = '';
+        totalPrice = 0;
+
+        for (var i = 0, len = length; i < len; i++) {
+
+
+            price = objectList[i].get('price');
+
+
+            //console.log(price);
+
+            if(typeof price == 'undefined' || price == null || price == ''){
+                price = 0;
+
+            }
+
+            totalPrice= totalPrice + parseFloat(price);
 
 
 
+            type = objectList[i].type;
+            id = objectList[i].id;
+
+
+            objectList_arr[i] = {'id': objectList[i].id, 'type': objectList[i].type};
+
+
+            //objectList_arr[i]['id'] = id;
+
+
+            html += '<div class="layer" obj-id="'+i+'">';
+
+
+            if(type=='text'){
+                objectName = objectList[i].text;
+                objectType = 'Text';
+                objectName = objectName;
+
+
+
+            }
+            else if(type=='image'){
+                objectType = 'Image';
+            }
+            else if(type=='curvedText'){
+                objectName = objectList[i].text;
+                objectType = 'Curved Text';
+                objectName = objectName;
+            }
+            else if(type=='path'){
+                objectType = 'Path';
+            }
+
+            else if(type=='rect'){
+                objectType = 'Rect';
+            }
+
+            else if(type=='circle'){
+                objectType = 'Circle';
+            }
+            else if(type=='triangle'){
+                objectType = 'Triangle';
+            }
+            else if(type=='polygon'){
+                objectType = 'Polygon';
+            }
+            else{
+                objectType = 'Others';
+            }
+
+
+            html += '<span aria-label="Remove" class="remove hint--top"><i class="fa fa-times" ></i></span>';
+            html += '<span aria-label="Hide/Unhide" class="hide hint--top"><i class="fa fa-eye" ></i></span>';
+            html += '<span aria-label="Lock/Unlock" class="lock hint--top"><i class="fa fa-unlock-alt" ></i></span>';
+            html += '<span aria-label="Type" class="type hint--top">'+objectType+'</span>';
+            html += '<span aria-label="Price" class="price hint--top">'+wc_currency_symbol+price+'</span>';
+
+            //console.log(objectList[i]);
+            html += '</div>';
+
+
+        }
+
+
+
+        $('.layers-list').html(html);
+
+        // return objectList_arr;
+
+    }
 
 
 
@@ -1720,112 +1822,6 @@ $(document).on('click','.generate-side-output',function(event){
 
 
 
-
-    function product_designer_get_object_list(){
-
-
-        html = '';
-
-        wc_currency_symbol = product_designer_editor.wc_currency_symbol;
-
-        objectList_arr = [];
-        var objectList = [];
-        objectList = canvas.getObjects();
-
-
-        length = objectList.length;
-
-        objectName = '';
-        objectId = '';
-        totalPrice = 0;
-
-        for (var i = 0, len = length; i < len; i++) {
-
-
-            price = objectList[i].get('price');
-
-
-            //console.log(price);
-
-            if(typeof price == 'undefined' || price == null || price == ''){
-                price = 0;
-
-            }
-
-            totalPrice= totalPrice + parseFloat(price);
-
-
-
-            type = objectList[i].type;
-            id = objectList[i].id;
-
-
-            objectList_arr[i] = {'id': objectList[i].id, 'type': objectList[i].type};
-
-
-            //objectList_arr[i]['id'] = id;
-
-
-            html += '<div class="layer" obj-id="'+i+'">';
-
-
-            if(type=='text'){
-                objectName = objectList[i].text;
-                objectType = 'Text';
-                objectName = objectName;
-
-
-
-            }
-            else if(type=='image'){
-                objectType = 'Image';
-            }
-            else if(type=='curvedText'){
-                objectName = objectList[i].text;
-                objectType = 'Curved Text';
-                objectName = objectName;
-            }
-            else if(type=='path'){
-                objectType = 'Path';
-            }
-
-            else if(type=='rect'){
-                objectType = 'Rect';
-            }
-
-            else if(type=='circle'){
-                objectType = 'Circle';
-            }
-            else if(type=='triangle'){
-                objectType = 'Triangle';
-            }
-            else if(type=='polygon'){
-                objectType = 'Polygon';
-            }
-            else{
-                objectType = 'Others';
-            }
-
-
-            html += '<span aria-label="Remove" class="remove hint--top"><i class="fa fa-times" ></i></span>';
-            html += '<span aria-label="Hide/Unhide" class="hide hint--top"><i class="fa fa-eye" ></i></span>';
-            html += '<span aria-label="Lock/Unlock" class="lock hint--top"><i class="fa fa-unlock-alt" ></i></span>';
-            html += '<span aria-label="Type" class="type hint--top">'+objectType+'</span>';
-            html += '<span aria-label="Price" class="price hint--top">'+wc_currency_symbol+price+'</span>';
-
-            //console.log(objectList[i]);
-            html += '</div>';
-
-
-        }
-
-
-
-        $('.layers-list').html(html);
-
-        // return objectList_arr;
-
-    }
 
 
 

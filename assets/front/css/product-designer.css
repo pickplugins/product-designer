@@ -326,11 +326,12 @@ display:none;
 }
 
 
-.product-designer #plupload-clipart {
+.product-designer #plupload-clipart, .product-designer #plupload-shape {
   display: inline-block;
 }
 
-.product-designer .clipart-upload {
+
+.product-designer .clipart-upload, .product-designer .shape-upload {
   background: #009688;
   display: inline-block;
   padding: 5px 15px;
