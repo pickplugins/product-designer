@@ -990,6 +990,8 @@ $(document).on('click','.generate-side-output',function(event){
             if(selected_object != null){
                 selected_object.remove();
                 product_designer_editor_toast('<i class="fa fa-trash-o"></i>','Selected item deleted.');
+                product_designer_get_object_list();
+                product_designer_editor_save();
             }
             else{
                 product_designer_editor_toast('<i class="fa fa-exclamation-circle"></i>','Please select item first.');
@@ -1861,9 +1863,12 @@ $(document).on('click','.generate-side-output',function(event){
 
         var selected_object = canvas.getActiveObject();
 
-        selected_object.remove();
-        product_designer_get_object_list();
+        console.log(obj_id);
+        console.log(selected_object);
 
+        selected_object.remove();
+
+        product_designer_get_object_list();
         product_designer_editor_save();
 
         //console.log(obj_id);
@@ -2342,6 +2347,9 @@ $(document).on('click','.generate-side-output',function(event){
 
         $(document).on('click','.product-designer .menu .add-curvedText',function(){
 
+
+            text_price = product_designer_editor.text_price;
+
             product_designer_editor_toast('','Curved text added.');
             text = $('.asset-text').val();
 
@@ -2353,18 +2361,21 @@ $(document).on('click','.generate-side-output',function(event){
                 fill: "red",
                 top: 0,
                 left:300,
+                price: text_price
 
 
             });
             canvas.add(text);
+            canvas.centerObject(text);
+            text.setCoords();
+            canvas.setActiveObject(text);
+
             canvas.renderAll();
 
 
-            product_designer_editor_save()
-            //var text = new fabric.Text(text, { left: 100, top: 100 });
-            //canvas.add(text);
-
-            ////console.log(JSON.stringify(canvas));
+            product_designer_get_object_list();
+            product_designer_editor_save();
+            tools_tabs_switch(0);
 
         })
 
@@ -2865,10 +2876,11 @@ $(document).on('click','.generate-side-output',function(event){
         product_designer_editor_toast('','Text added.');
 		text = $('.asset-text').val();
 
+        text_price = product_designer_editor.text_price;
 
-		////console.log(product_designer_editor.side_data);
+		console.log(product_designer_editor);
 
-		var text = new fabric.Text(text, { left: 100, top: 100, price: 1.5 });
+		var text = new fabric.Text(text, { left: 100, top: 100, price: text_price });
 
         text.id = $.now();
 		canvas.add(text);
@@ -3409,9 +3421,11 @@ $(document).on('click','.clipart-list img',function(){
     $(document).on('click','.product-designer .quote',function(){
 
         var quote = $(this).text();
+        text_price = product_designer_editor.text_price;
 
 
-        var text = new fabric.Text(quote, { left: 100, top: 100 });
+
+        var text = new fabric.Text(quote, { left: 100, top: 100, price: text_price });
         text.id = $.now();
         canvas.add(text);
 
@@ -3419,6 +3433,8 @@ $(document).on('click','.clipart-list img',function(){
         product_designer_editor_toast('','Quote added.', 2000);
 
         product_designer_get_object_list();
+        product_designer_editor_save();
+        tools_tabs_switch(0);
 
 
 
@@ -3469,6 +3485,8 @@ $(document).on('click','.clipart-list img',function(){
     $(document).on('click','.product-designer .menu .add-qr-code',function(){
 
         src = $('#qrcode img').attr('src');
+        qrcode_price = product_designer_editor.qrcode_price;
+
 
         //src = jQuery(this).attr('src');
         var newImg = new Image();
@@ -3480,15 +3498,19 @@ $(document).on('click','.clipart-list img',function(){
             scale = 200 / img.width;
             img.set({
                 scaleX: scale,
-                scaleY: scale
+                scaleY: scale,
+                price: qrcode_price,
             });
             img.id = $.now();
             //img.clipart_data = clipart_data;
             ////console.log(img);
 
             canvas.add(img);
+
+
             product_designer_editor_save();
             product_designer_get_object_list();
+            tools_tabs_switch(0);
         });
 
         canvas.renderAll();
@@ -3512,17 +3534,20 @@ $(document).on('click','.clipart-list img',function(){
             lineColor: color,
             width:width,
             height:height,
-            displayValue: false
+            displayValue: false,
         });
 
         product_designer_editor_save();
-        product_designer_editor_toast('','Text added.', 2000);
+        product_designer_editor_toast('','Barcode added.', 2000);
 
         product_designer_get_object_list();
 
     })
 
     $(document).on('click','.product-designer .menu .add-barcode',function(){
+
+        barcode_price = product_designer_editor.barcode_price;
+
 
         src = $('img#barcode').attr('src');
 
@@ -3536,7 +3561,9 @@ $(document).on('click','.clipart-list img',function(){
             scale = 200 / img.width;
             img.set({
                 scaleX: scale,
-                scaleY: scale
+                scaleY: scale,
+                price: barcode_price,
+
             });
             img.id = $.now();
             //img.clipart_data = clipart_data;
@@ -3545,6 +3572,7 @@ $(document).on('click','.clipart-list img',function(){
             canvas.add(img);
             product_designer_editor_save();
             product_designer_get_object_list();
+            tools_tabs_switch(0);
         });
 
         canvas.renderAll();

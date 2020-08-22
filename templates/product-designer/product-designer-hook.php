@@ -857,7 +857,7 @@ function product_designer_tools_product_info($atts){
                 </div>
 
                 <div class="setting-field half assets-price-wrap">
-                    <div class="field-label"><?php echo __('Cliparts price', 'product-designer'); ?></div>
+                    <div class="field-label"><?php echo __('Assets price', 'product-designer'); ?></div>
                     <div class="field-input">
                         <div class="" id="assets-price"><?php echo $currency_symbol; ?><span>0.00</span></div>
                         <input class="" type="hidden" value="" id="assets-price-val" name="assets_price">
@@ -1003,6 +1003,11 @@ function product_designer_scripts($atts){
     $pd_template_id = isset($atts['pd_template_id']) ? $atts['pd_template_id'] : '';
     $base_price = isset($atts['base_price']) ? $atts['base_price'] : '';
     $display_price = isset($atts['display_price']) ? $atts['display_price'] : '';
+
+
+
+
+
     $variation_id = isset($atts['variation_id']) ? $atts['variation_id'] : '';
     $product_type = isset($atts['product_type']) ? $atts['product_type'] : '';
 
@@ -1010,6 +1015,11 @@ function product_designer_scripts($atts){
     $enable_guide = isset($settings['enable_guide']) ? $settings['enable_guide'] : '';
 
 
+    $text_price = isset($settings['text_price']) ? $settings['text_price'] : '';
+    $clipart_price = isset($settings['clipart_price']) ? $settings['clipart_price'] : '';
+    $shape_price = isset($settings['shape_price']) ? $settings['shape_price'] : '';
+    $qrcode_price = isset($settings['qrcode_price']) ? $settings['qrcode_price'] : '';
+    $barcode_price = isset($settings['barcode_price']) ? $settings['barcode_price'] : '';
 
 
 
@@ -1019,6 +1029,11 @@ function product_designer_scripts($atts){
 
     $product_designer_editor['product_type']  = $product_type;
 
+    $product_designer_editor['text_price']  = $text_price;
+    $product_designer_editor['clipart_price']  = $clipart_price;
+    $product_designer_editor['shape_price']  = $shape_price;
+    $product_designer_editor['qrcode_price']  = $qrcode_price;
+    $product_designer_editor['barcode_price']  = $barcode_price;
 
 
 

@@ -30,6 +30,7 @@ class class_product_designer_shortcodes  {
 
 
         $product_designer_settings = get_option('product_designer_settings');
+
         $font_aw_version = isset($product_designer_settings['font_aw_version']) ? $product_designer_settings['font_aw_version'] : 'v_4';
         $text_price = isset($product_designer_settings['text_price']) ? $product_designer_settings['text_price'] : '';
         $clipart_price = isset($product_designer_settings['clipart_price']) ? $product_designer_settings['clipart_price'] : '';
