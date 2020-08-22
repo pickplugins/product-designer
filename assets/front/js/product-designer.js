@@ -140,7 +140,7 @@ jQuery(document).ready(function($){
 
         canvas.renderAll();
 
-       ////console.log("Active side id:"+ current_side_id);
+       //console.log("Active side id:"+ current_side_id);
 
         if (typeof product_designer_editor.side_serialized_data[current_side_id] == "undefined")
             product_designer_editor.side_serialized_data[current_side_id] = ["{}"];
@@ -165,7 +165,7 @@ jQuery(document).ready(function($){
             sideData = product_designer_editor.side_json_data[i];
             sideObjects = sideData.objects;
             //console.log( '############');
-            console.log( i);
+            //console.log( i);
 
 
             for (j in sideObjects){
@@ -315,7 +315,7 @@ jQuery(document).ready(function($){
 
         product_designer_editor['side_ids_preview_data'][current_side_id] = base_64;
 
-        ////console.log(product_designer_editor['side_ids_preview_data']);
+        //console.log(product_designer_editor['side_ids_preview_data']);
 
 
         //product_designer_editor_update_previews();
@@ -325,7 +325,7 @@ jQuery(document).ready(function($){
 
 
 
-    ////console.log(product_designer_editor.side_serialized_data[current_side_id]);
+    //console.log(product_designer_editor.side_serialized_data[current_side_id]);
 
 
 
@@ -336,7 +336,7 @@ function product_designer_editor_update_previews(){
      var side_data_ids = product_designer_editor.side_data_ids;
 
 
-    ////console.log(product_designer_editor.side_ids_preview_data);
+    //console.log(product_designer_editor.side_ids_preview_data);
     html = '';
     html_input = '';
     for(i=0; i<side_data_ids.length; i++){
@@ -373,7 +373,7 @@ function product_designer_inc_attach_ids_to_cart(side_id, attach_id, attach_url,
     var side_json_data =product_designer_editor.side_json_data;
 
 
-    ////console.log(side_json_data);
+    //console.log(side_json_data);
 
     if(action=='add'){
         product_designer_editor.cart_attach_ids[side_id] = {'attach_id':attach_id, 'attach_url': attach_url };
@@ -511,7 +511,7 @@ $(document).on('submit', ".product-designer .cart", function(event) {
                 var assets_price	= data['assets_price'];
                 var cart_subtotal	= data['cart_subtotal'];
 
-                console.log(cart_subtotal);
+                //console.log(cart_subtotal);
 
                 $('.product-designer-notice .notices').html(msg).fadeIn();
                 $('.product-designer-notice').fadeIn();
@@ -556,7 +556,7 @@ $(document).on('submit', ".product-designer .cart", function(event) {
                         //_this.setAttribute("attach_id", attach_id);
                         product_designer_inc_attach_ids_to_cart(side_id, attach_id, attach_url, 'add');
 
-                        ////console.log('Temp Save done');
+                        //console.log('Temp Save done');
 
                         product_designer_editor_toast('<i class="fa fa-check" ></i>','Added to cart.');
                         product_designer_editor_busy('ready', 'Ready...', '<i class="fa fa-check"></i>');
@@ -614,7 +614,7 @@ $(document).on('click','.generate-side-output',function(event){
     var inc_preview_background = side_data[current_side_id].inc_preview_background;
     var inc_preview_overlay = side_data[current_side_id].inc_preview_overlay;
 
-    console.log(output_file_format);
+    //console.log(output_file_format);
 
 
     product_designer_editor_busy('busy', 'Working...', '<i class="fa fa-spinner fa-spin"></i>');
@@ -629,11 +629,11 @@ $(document).on('click','.generate-side-output',function(event){
         canvas.backgroundImage = null;
     }
 
-    ////console.log(side_data_ids);
-    ////console.log(side_serialized_data);
-    ////console.log(side_data);
+    //console.log(side_data_ids);
+    //console.log(side_serialized_data);
+    //console.log(side_data);
 
-    ////console.log(side_serialized_data);
+    //console.log(side_serialized_data);
 
     $('.output-side-items').html('');
 
@@ -651,8 +651,8 @@ $(document).on('click','.generate-side-output',function(event){
 
                 side_id = side_data_ids[i];
 
-                ////console.log(i +':'+ side_id);
-                console.log(side_serialized_data[side_id]);
+                //console.log(i +':'+ side_id);
+                //console.log(side_serialized_data[side_id]);
 
                 if (typeof side_serialized_data[side_id] != "undefined"){
 
@@ -734,7 +734,7 @@ $(document).on('click','.generate-side-output',function(event){
         $(document).on('click','.product-designer .editor-preview',function(){
 
 
-            ////console.log(side_data[current_side_id]);
+            //console.log(side_data[current_side_id]);
 
             var inc_preview_background = side_data[current_side_id].inc_preview_background;
             var inc_preview_overlay = side_data[current_side_id].inc_preview_overlay;
@@ -785,7 +785,7 @@ $(document).on('click','.generate-side-output',function(event){
 
             $('.product-designer .preview').fadeOut();
 
-            ////console.log(canvas.getObjects());
+            //console.log(canvas.getObjects());
 
 
         })
@@ -1015,10 +1015,10 @@ $(document).on('click','.generate-side-output',function(event){
             activetabIndex = activetab.attr('data-id');
 
 
-            console.log(activetabIndex);
+            //console.log(activetabIndex);
 
             tab = parseInt(activetabIndex)+1;
-            console.log(tab);
+            //console.log(tab);
 
             if(tab == 3){
                 tools_tabs_switch(0);
@@ -1213,7 +1213,7 @@ $(document).on('click','.generate-side-output',function(event){
             //canvas.getActiveObject().setAngle(val);
             //canvas.getActiveObject().set("textDecoration", 'line-through');
             canvas.renderAll();
-            ////console.log(val);
+            //console.log(val);
             product_designer_editor_save()
 
 
@@ -1408,7 +1408,7 @@ $(document).on('click','.generate-side-output',function(event){
             //canvas.getActiveObject().setAngle(val);
             //canvas.getActiveObject().set("textDecoration", 'line-through');
             canvas.renderAll();
-            ////console.log(val);
+            //console.log(val);
             product_designer_editor_save()
         })
 
@@ -1813,7 +1813,7 @@ $(document).on('click','.generate-side-output',function(event){
             html += '<span aria-label="Type" class="type hint--top">'+objectType+'</span>';
             html += '<span aria-label="Price" class="price hint--top">'+wc_currency_symbol+price+'</span>';
 
-            ////console.log(objectList[i]);
+            //console.log(objectList[i]);
             html += '</div>';
 
 
@@ -1846,7 +1846,7 @@ $(document).on('click','.generate-side-output',function(event){
 
         product_designer_editor_save();
 
-        ////console.log(obj_id);
+        //console.log(obj_id);
     })
 
 
@@ -1884,12 +1884,12 @@ $(document).on('click','.generate-side-output',function(event){
         //canvas.setActiveObject(canvas.item(obj_id));
         //var selected_object = canvas.getActiveObject();
 
-        console.log(obj_id);
+        //console.log(obj_id);
 
 
         if($(this).hasClass('active')){
 
-            console.log('Has class');
+            //console.log('Has class');
             $(this).removeClass('active');
 
             canvas.item(obj_id).visible = true;
@@ -1898,7 +1898,7 @@ $(document).on('click','.generate-side-output',function(event){
 
             $(this).addClass('active');
             canvas.item(obj_id).visible = false;
-            console.log('No class');
+            //console.log('No class');
 
             $(this).html('<i class="fa fa-eye-slash"></i>');
 
@@ -1926,12 +1926,12 @@ $(document).on('click','.generate-side-output',function(event){
         //canvas.setActiveObject(canvas.item(obj_id));
         //var selected_object = canvas.getActiveObject();
 
-        console.log(obj_id);
+        //console.log(obj_id);
 
 
         if($(this).hasClass('active')){
 
-            console.log('Has class');
+            //console.log('Has class');
             $(this).removeClass('active');
 
             canvas.item(obj_id).selectable  = true;
@@ -1947,7 +1947,7 @@ $(document).on('click','.generate-side-output',function(event){
             canvas.item(obj_id).evented   = false;
 
 
-            console.log('No class');
+            //console.log('No class');
             $(this).html('<i class="fa fa-lock"></i>');
 
 
@@ -1981,8 +1981,8 @@ $(document).on('click','.generate-side-output',function(event){
 
 
 
-        console.log(type);
-        ////console.log(ActiveObject);
+        //console.log(type);
+        //console.log(ActiveObject);
 
 
         if(type=='text'){
@@ -2007,8 +2007,10 @@ $(document).on('click','.generate-side-output',function(event){
             }
 
         else if(type=='circle' || type=='triangle' || type=='rect' || type=='polygon' || type=='path' ){
-            $('.edit-shape').addClass('active');
+
             }
+
+        $('.edit-shape').addClass('active');
 
         tools_tabs_switch(0);
         product_designer_editor_save();
@@ -2207,7 +2209,7 @@ $(document).on('click','.generate-side-output',function(event){
 
 		//canvas.getActiveObject().set("fontStyle", 'italic');
 		canvas.renderAll();
-		////console.log(val);
+		//console.log(val);
         product_designer_editor_save();
 		})
 
@@ -2228,7 +2230,7 @@ $(document).on('click','.generate-side-output',function(event){
 		//canvas.getActiveObject().fontWeight('bold');
 		//canvas.getActiveObject().set("textDecoration", 'underline');
 		canvas.renderAll();
-		////console.log(val);
+		//console.log(val);
         product_designer_editor_save();
 		})
 
@@ -2248,7 +2250,7 @@ $(document).on('click','.generate-side-output',function(event){
 		//canvas.getActiveObject().fontWeight('bold');
 		//canvas.getActiveObject().set("textDecoration", 'line-through');
 		canvas.renderAll();
-		////console.log(val);
+		//console.log(val);
         product_designer_editor_save();
 		})
 
@@ -2263,7 +2265,7 @@ $(document).on('click','.generate-side-output',function(event){
 		canvas.getActiveObject().setAngle(-val);
 		//canvas.getActiveObject().set("textDecoration", 'line-through');
 		canvas.renderAll();
-		////console.log(val);
+		//console.log(val);
 
 		})
 
@@ -2277,7 +2279,7 @@ $(document).on('click','.generate-side-output',function(event){
 		canvas.getActiveObject().setAngle(val);
 		//canvas.getActiveObject().set("textDecoration", 'line-through');
 		canvas.renderAll();
-		////console.log(val);
+		//console.log(val);
 
 		})
 
@@ -2462,7 +2464,7 @@ $(document).on('click','.generate-side-output',function(event){
             canvas.getActiveObject().set("opacity", val);
 
             canvas.renderAll();
-            ////console.log(val);
+            //console.log(val);
             product_designer_editor_save();
         })
 
@@ -2505,7 +2507,7 @@ $(document).on('click','.generate-side-output',function(event){
 
             //canvas.getActiveObject().set("fontStyle", 'italic');
             canvas.renderAll();
-            ////console.log(val);
+            //console.log(val);
             product_designer_editor_save();
         })
 
@@ -2526,7 +2528,7 @@ $(document).on('click','.generate-side-output',function(event){
             //canvas.getActiveObject().fontWeight('bold');
             //canvas.getActiveObject().set("textDecoration", 'underline');
             canvas.renderAll();
-            ////console.log(val);
+            //console.log(val);
             product_designer_editor_save();
         })
 
@@ -2546,7 +2548,7 @@ $(document).on('click','.generate-side-output',function(event){
             //canvas.getActiveObject().fontWeight('bold');
             //canvas.getActiveObject().set("textDecoration", 'line-through');
             canvas.renderAll();
-            ////console.log(val);
+            //console.log(val);
             product_designer_editor_save();
         })
 
@@ -2772,7 +2774,7 @@ $(document).on('click','.generate-side-output',function(event){
 
 
 
-        console.log(src);
+        //console.log(src);
 
         // fabric.loadSVGFromURL(src, function(objects, options) {
         //
@@ -2878,7 +2880,7 @@ $(document).on('click','.generate-side-output',function(event){
 
         text_price = product_designer_editor.text_price;
 
-		console.log(product_designer_editor);
+		//console.log(product_designer_editor);
 
 		var text = new fabric.Text(text, { left: 100, top: 100, price: text_price });
 
@@ -2888,7 +2890,7 @@ $(document).on('click','.generate-side-output',function(event){
         text.setCoords();
         canvas.setActiveObject(text);
         canvas.renderAll();
-		////console.log($.now());
+		//console.log($.now());
         product_designer_get_object_list();
         product_designer_editor_save();
 
@@ -2967,7 +2969,7 @@ $(document).on('click','.clipart-list img',function(){
 			success: function(data)
 					{
 
-					    ////console.log(data);
+					    //console.log(data);
 						$('.product-designer .menu .loading').fadeOut();
 
                         //location.reload();
@@ -3101,7 +3103,7 @@ $(document).on('click','.clipart-list img',function(){
 
 	$(document).on('click','.product-designer .menu .export #export-update',function(){
 
-		////console.log(t_id);
+		//console.log(t_id);
 
 		$('.product-designer .menu .loading').fadeIn();
 		//json = JSON.stringify(canvas);
@@ -3211,7 +3213,7 @@ $(document).on('click','.clipart-list img',function(){
                 }
                 _config.currentStateIndex = _config.canvasState.length-1;
 
-                ////console.log(_config.currentStateIndex);
+                //console.log(_config.currentStateIndex);
 
 
                 if((_config.currentStateIndex == _config.canvasState.length-1) && _config.currentStateIndex != -1){
@@ -3305,10 +3307,10 @@ $(document).on('click','.clipart-list img',function(){
 
 
     var tourSubmitFunc = function(e,v,m,f){
-        console.log(e);
-        console.log(v);
-        console.log(m);
-        console.log(f);
+        //console.log(e);
+        //console.log(v);
+        //console.log(m);
+        //console.log(f);
 
         stateName = e.stateName;
 
@@ -3372,7 +3374,7 @@ $(document).on('click','.clipart-list img',function(){
         $('.product-designer .welcome-tour').fadeOut();
         tools_tabs_switch(1);
 
-        console.log('Tour start');
+        //console.log('Tour start');
 
         $.prompt(tour_steps);
 
@@ -3394,7 +3396,7 @@ $(document).on('click','.clipart-list img',function(){
 
         document.cookie = "product_designer_tour=false;"+expires;
 
-        console.log('Tour end');
+        //console.log('Tour end');
 
     });
 
@@ -3503,7 +3505,7 @@ $(document).on('click','.clipart-list img',function(){
             });
             img.id = $.now();
             //img.clipart_data = clipart_data;
-            ////console.log(img);
+            //console.log(img);
 
             canvas.add(img);
 
@@ -3567,7 +3569,7 @@ $(document).on('click','.clipart-list img',function(){
             });
             img.id = $.now();
             //img.clipart_data = clipart_data;
-            ////console.log(img);
+            //console.log(img);
 
             canvas.add(img);
             product_designer_editor_save();
