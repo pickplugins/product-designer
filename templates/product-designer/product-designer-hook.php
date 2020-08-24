@@ -487,6 +487,73 @@ function product_designer_panel_shapes($atts){
 
 
 
+//add_action('product_designer_panel_tab_content_assets', 'product_designer_panel_images', 15);
+
+function product_designer_panel_images($atts){
+
+
+    $settings = isset($atts['settings']) ? $atts['settings'] : array();
+    $posts_per_page = isset($settings['posts_per_page']) ? $settings['posts_per_page'] : 10;
+
+    $icons = isset($atts['icons']) ? $atts['icons'] : '';
+    $spinner = isset($icons['spinner']) ? $icons['spinner'] : '';
+    $shapes = isset($icons['shapes']) ? $icons['shapes'] : '';
+    $file_image = isset($icons['file_image']) ? $icons['file_image'] : '';
+
+    $hide_sections = isset($settings['hide_sections']) ? $settings['hide_sections'] : array();
+
+    if(in_array('shapes', $hide_sections )) return;
+
+
+    ?>
+    <div class="shapes item accordions " title="<?php echo __('Images', "product-designer"); ?>">
+        <div class="icon"><?php echo sprintf(__('%s Images','product-designer'), $file_image); ?></div>
+        <div class="child">
+
+            <?php
+
+            do_action('product_designer_panel_images_content', $atts);
+
+            ?>
+
+        </div>
+
+    </div>
+
+    <?php
+
+}
+
+
+
+//add_action('product_designer_panel_images_content', 'product_designer_panel_images_content_unsplash', 15);
+
+function product_designer_panel_images_content_unsplash($atts){
+
+
+    $settings = isset($atts['settings']) ? $atts['settings'] : array();
+    $posts_per_page = isset($settings['posts_per_page']) ? $settings['posts_per_page'] : 10;
+
+    $icons = isset($atts['icons']) ? $atts['icons'] : '';
+    $icon_unsplash = isset($icons['unsplash']) ? $icons['unsplash'] : '';
+
+
+
+    ?>
+    <div class="item accordions" title="<?php echo __('Images', "product-designer"); ?>">
+        <div class="icon"><?php echo sprintf(__('%s Unsplash ','product-designer'), $icon_unsplash); ?></div>
+        <div class="child">
+
+            Hello
+
+        </div>
+
+    </div>
+
+    <?php
+
+}
+
 
 
 

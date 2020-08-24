@@ -188,6 +188,7 @@ class class_product_designer_shortcodes  {
             $icon_keyboard = '<i class="far fa-keyboard"></i>';
             $icon_cart = '<i class="fas fa-shopping-cart"></i>';
             $icon_spinner = '<i class="fas fa-spinner fa-spin"></i>';
+            $icon_unsplash = '<i class="fab fa-unsplash"></i>';
 
 
 
@@ -229,6 +230,7 @@ class class_product_designer_shortcodes  {
             $icon_keyboard = '<i class="fa fa-keyboard-o" aria-hidden="true"></i>';
             $icon_cart = '<i class="fa fa-shopping-cart" aria-hidden="true"></i>';
             $icon_spinner = '<i class="fa fa-spinner fa-spin"></i>';
+            $icon_unsplash = '';
 
 
             wp_enqueue_style('font-awesome-4');
@@ -269,6 +271,7 @@ class class_product_designer_shortcodes  {
             'text_strikethrough' => $icon_text_strikethrough,
             'keyboard' => $icon_keyboard,
             'spinner' => $icon_spinner,
+            'unsplash' => $icon_unsplash,
 
 
         );
