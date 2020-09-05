@@ -458,6 +458,8 @@ function product_designer_ajax_add_to_cart(){
 	$variation_id = isset( $_POST['variation_id'] ) ? sanitize_text_field($_POST['variation_id']) : 0;
 
 	parse_str($_POST['values'], $form_data);
+
+
 	$pd_template_id = isset( $form_data['pd_template_id'] ) ? sanitize_text_field($form_data['pd_template_id']) : 0;
 	$quantity = isset( $form_data['quantity'] ) ? sanitize_text_field($form_data['quantity']) : 0;
     $assets_price = isset( $form_data['assets_price'] ) ? sanitize_text_field($form_data['assets_price']) : 0;
@@ -484,6 +486,7 @@ function product_designer_ajax_add_to_cart(){
 	$response['form_data'] = $form_data;
 	$response['msg'] = 'Custom design successfully added to <a href="'.esc_url_raw($cart_url).'"><strong>Cart</strong></a>';
     $response['assets_price'] = $assets_price;
+    $response['side_ids_json'] = $product_designer_side_ids_json;
 
 
 

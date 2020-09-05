@@ -283,11 +283,21 @@ function product_designer_wc_order_meta( $post ) {
 	            $pd_template_id = get_post_meta( $product_id, 'pd_template_id', true );
 	            $side_data = get_post_meta( $pd_template_id, 'side_data', true );
 
-	            $item_meta = wc_get_order_item_meta($order_item_id, 'product_designer_side_attach_ids');
-	            //$item_meta = unserialize($item_meta);
+
+
+
+
+                $item_meta = wc_get_order_item_meta($order_item_id, 'product_designer_side_attach_ids');
+
+                //$item_meta = unserialize($item_meta);
 	            $custom_design = wc_get_order_item_meta($order_item_id, 'custom_design');
 
-	            ?>
+
+
+	            echo '<pre>'.var_export($item_meta, true).'</pre>';
+
+
+                ?>
                 <tr class="item alternate">
                     <td width="100" class="name" colspan="3">
 	                   <?php echo __('Product title:', 'product-designer'); ?> <strong><?php echo $product_title; ?></strong>
@@ -300,7 +310,6 @@ function product_designer_wc_order_meta( $post ) {
 
 
 
-                //var_dump($item_meta);
 
 	            if(!empty($item_meta))
 	            foreach($item_meta as $side_id=>$attach_id){

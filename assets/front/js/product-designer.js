@@ -262,6 +262,9 @@ jQuery(document).ready(function($){
         //json = canvas.toJSON(["price"]);
         json = canvas.toJSON(["price", "attachment_id"]);
 
+        //console.log(json_stringify);
+
+
 
         product_designer_editor.side_serialized_data[current_side_id] = json_stringify;
         product_designer_editor.side_json_data[current_side_id] = json;
@@ -489,13 +492,20 @@ function product_designer_editor_update_previews(){
 
 }
 
+
+
+
+
+
 function product_designer_inc_attach_ids_to_cart(side_id, attach_id, attach_url, action){
 
     var side_serialized_data = product_designer_editor.side_serialized_data;
     var side_json_data =product_designer_editor.side_json_data;
 
+    //console.log(side_serialized_data);
 
-    //console.log(side_json_data);
+    //console.log(JSON.stringify(side_json_data[side_id]));
+    //console.log(side_json_data[side_id]);
 
     if(action=='add'){
         product_designer_editor.cart_attach_ids[side_id] = {'attach_id':attach_id, 'attach_url': attach_url };
@@ -506,8 +516,6 @@ function product_designer_inc_attach_ids_to_cart(side_id, attach_id, attach_url,
     else if(action == 'remove'){
         delete product_designer_editor.cart_attach_ids[side_id];
         cart_attach_ids = product_designer_editor.cart_attach_ids;
-
-
     }
 
 
@@ -522,9 +530,7 @@ function product_designer_inc_attach_ids_to_cart(side_id, attach_id, attach_url,
         attach_url = cart_attach_ids[key]['attach_url'];
 
         html += '<input type="text" value="'+attach_id+'" name="product_designer_side_attach_ids['+key+']">';
-        html_json += '<textarea  name="product_designer_side_ids_json['+key+']">'+side_serialized_data[key]+'</textarea>';
-
-
+        html_json += '<textarea  name="product_designer_side_ids_json['+key+']">'+JSON.stringify(side_json_data[side_id])+'</textarea>';
     }
 
     $('.output-side-items-attach-ids').html(html);
@@ -542,17 +548,14 @@ function product_designer_inc_attach_ids_to_cart(side_id, attach_id, attach_url,
 
 
 
+
     if( total_side > 0 ){
         $('.pd-addtocart').addClass('active');
         $('.pd-save-template').addClass('active');
-
-
     }
     else{
-
         $('.pd-addtocart').removeClass('active');
         $('.pd-save-template').removeClass('active');
-
     }
 
 
@@ -611,6 +614,7 @@ $(document).on('submit', ".product-designer .cart", function(event) {
     //$(this).html( 'Adding...' );
 
 
+    //console.log(values);
 
 
     $.ajax(
@@ -624,6 +628,7 @@ $(document).on('submit', ".product-designer .cart", function(event) {
                 "product_id"	: product_id,
                 "variation_id"	: variation_id,
                 "values"	: values,
+
             },
             success: function(response){
 
@@ -632,8 +637,9 @@ $(document).on('submit', ".product-designer .cart", function(event) {
                 var msg	= data['msg'];
                 var assets_price	= data['assets_price'];
                 var cart_subtotal	= data['cart_subtotal'];
+                var side_ids_json	= data['side_ids_json'];
 
-                //console.log(cart_subtotal);
+                console.log(side_ids_json);
 
                 $('.product-designer-notice .notices').html(msg).fadeIn();
                 $('.product-designer-notice').fadeIn();
