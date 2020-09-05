@@ -246,6 +246,7 @@ function product_designer_image_type_content_clipart($atts){
         if ( $clipart_query->have_posts() ) :
             while ( $clipart_query->have_posts() ) : $clipart_query->the_post();
 
+                $clipart_id = get_the_ID();
                 $clipart_thumb_id = get_post_meta(get_the_ID(),'clipart_thumb_id', true);
                 $clipart_price = get_post_meta(get_the_ID(),'clipart_price', true);
 
@@ -260,7 +261,7 @@ function product_designer_image_type_content_clipart($atts){
 
                 if(!empty($clipart_url)){
                     ?>
-                    <img data-price="<?php echo $clipart_price; ?>" class="" title="<?php echo get_the_title(); ?>" src="<?php echo esc_url_raw($clipart_url); ?>" />
+                    <img data-attachment-id="<?php echo $clipart_id; ?>" data-price="<?php echo $clipart_price; ?>" class="" title="<?php echo get_the_title(); ?>" src="<?php echo esc_url_raw($clipart_url); ?>" />
                     <?php
                 }
             endwhile;
@@ -428,6 +429,8 @@ function product_designer_panel_shapes($atts){
                 if ( $clipart_query->have_posts() ) :
                     while ( $clipart_query->have_posts() ) : $clipart_query->the_post();
 
+                        $clipart_id = get_the_ID();
+
                         $clipart_thumb_id = get_post_meta(get_the_ID(),'shape_thumb_id', true);
                         $clipart_price = get_post_meta(get_the_ID(),'shape_price', true);
 
@@ -443,7 +446,7 @@ function product_designer_panel_shapes($atts){
                         if(!empty($clipart_url)){
                             ?>
 
-                                <img data-price="<?php echo $clipart_price; ?>" class="add-shape" title="<?php echo get_the_title(); ?>" src="<?php echo esc_url_raw($clipart_url); ?>" />
+                                <img data-attachment-id="<?php echo $clipart_id; ?>" data-price="<?php echo $clipart_price; ?>" class="add-shape" title="<?php echo get_the_title(); ?>" src="<?php echo esc_url_raw($clipart_url); ?>" />
 
 
 

@@ -85,6 +85,7 @@ function product_designer_custom_mime_types( $mimes ) {
     $mimes['svg'] = 'image/svg+xml';
     $mimes['svgz'] = 'image/svg+xml';
     //$mimes['doc'] = 'application/msword';
+//    ["txt|asc|c|cc|h|srt"]=> "text/plain"
 
     // Optional. Remove a mime type.
     //unset( $mimes['exe'] );

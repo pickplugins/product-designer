@@ -98,14 +98,22 @@ jQuery(document).ready(function($){
 
 
             price = objectList[i].get('price');
+            attachment_id = objectList[i].get('attachment_id');
 
 
-            //console.log(price);
 
             if(typeof price == 'undefined' || price == null || price == ''){
                 price = 0;
 
             }
+
+            if(typeof attachment_id == 'undefined' || attachment_id == null || attachment_id == ''){
+                attachment_id = 0;
+
+            }
+
+            //console.log(attachment_id);
+
 
             totalPrice= totalPrice + parseFloat(price);
 
@@ -252,7 +260,7 @@ jQuery(document).ready(function($){
 
         json_stringify = JSON.stringify(canvas);
         //json = canvas.toJSON(["price"]);
-        json = canvas.toJSON(["price"]);
+        json = canvas.toJSON(["price", "attachment_id"]);
 
 
         product_designer_editor.side_serialized_data[current_side_id] = json_stringify;
@@ -282,6 +290,18 @@ jQuery(document).ready(function($){
                 }
 
                 totalPrice += parseFloat(objectPrice);
+
+                attachment_id = object.attachment_id;
+
+                if(typeof attachment_id == 'undefined' || attachment_id == null || attachment_id == ''){
+                    attachment_id = 0;
+
+                }
+
+                //console.log(object);
+
+                //console.log(attachment_id);
+
 
             }
 
@@ -2767,7 +2787,9 @@ $(document).on('click','.generate-side-output',function(event){
         product_designer_editor_toast('','Shape added.');
         src = $(this).attr('src');
         price = $(this).attr('data-price');
+        attachment_id = $(this).attr('data-attachment-id');
 
+        console.log(attachment_id);
 
 
         //console.log(src);
@@ -2792,7 +2814,6 @@ $(document).on('click','.generate-side-output',function(event){
 
 
 
-            console.log(objects);
 
 
             var obj = fabric.util.groupSVGElements(objects, options);
@@ -2806,6 +2827,7 @@ $(document).on('click','.generate-side-output',function(event){
                 scaleX: scale,
                 scaleY: scale,
                 price: price,
+                attachment_id: attachment_id,
 
             });
 
@@ -2904,7 +2926,9 @@ $(document).on('click','.clipart-list img',function(){
     product_designer_editor_toast('','Clipart added.');
     src = $(this).attr('src');
     price = $(this).attr('data-price');
+    attachment_id = $(this).attr('data-attachment-id');
 
+    console.log(attachment_id);
 
 
     var newImg = new Image();
@@ -2919,6 +2943,8 @@ $(document).on('click','.clipart-list img',function(){
             scaleX: scale,
             scaleY: scale,
             price: price,
+            attachment_id: attachment_id,
+
 
         });
         canvas.add(img);
@@ -2927,7 +2953,7 @@ $(document).on('click','.clipart-list img',function(){
         canvas.setActiveObject(img);
         canvas.renderAll();
 
-        json = JSON.stringify(canvas.toJSON(["price"]));
+        json = JSON.stringify(canvas.toJSON(["price", "attachment_id"]));
 
         //console.log(canvas.toJSON(["price"]));
 
