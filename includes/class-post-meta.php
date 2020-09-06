@@ -320,7 +320,7 @@ function product_designer_wc_order_meta( $post ) {
 	            foreach($item_meta as $side_id=> $attach_id){
 
 		            $attach_url = wp_get_attachment_url( $attach_id );
-                    $side_objects = ($side_ids_json[$side_id]);
+                    $side_objects = isset($side_ids_json[$side_id]) ? $side_ids_json[$side_id] : array();
 
 
 
@@ -347,7 +347,7 @@ function product_designer_wc_order_meta( $post ) {
                             <div class="expandable">
                                 <?php
 
-                                $objects = json_decode($side_objects)->objects;
+                                $objects = !empty($side_objects) ? json_decode($side_objects)->objects : array();
 
 
 
