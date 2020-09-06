@@ -4,7 +4,7 @@
 	Tags: product designer, product customizer, custom product, woocommerce product designer
 	Requires at least: 3.8
 	Tested up to: 5.5
-	Stable tag: 1.0.23
+	Stable tag: 1.0.24
 	License: GPLv2 or later
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -122,6 +122,9 @@ Before starting you need to add some clip art via custom post "Clip Art" with th
 
 
 == Changelog ==
+
+	= 1.0.24 =
+    * 2020-09-06 - add - product side object data added under WooCommerce order
 
 	= 1.0.23 =
     * 2020-08-21 - add - shape post type added.
