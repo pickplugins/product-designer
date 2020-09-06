@@ -297,10 +297,12 @@ function product_designer_wc_order_meta( $post ) {
 
 
 
-	            //echo '<pre>'.var_export($side_ids_json, true).'</pre>';
+	            echo '<pre>'.var_export($side_ids_json, true).'</pre>';
 
 
                 ?>
+
+
                 <tr class="item alternate">
                     <td width="100" class="name" colspan="3">
 	                   <?php echo __('Product title:', 'product-designer'); ?> <strong><?php echo $product_title; ?></strong>
@@ -347,17 +349,17 @@ function product_designer_wc_order_meta( $post ) {
                                 $objects = json_decode($side_objects)->objects;
 
 
-                                //echo '<pre>'.var_export($objects, true).'</pre>';
+                                echo '<pre>'.var_export($objects, true).'</pre>';
 
                                 foreach ($objects as $object){
 
-                                    echo '<pre>'.var_export($object, true).'</pre>';
+                                    //echo '<pre>'.var_export($object, true).'</pre>';
 
 
                                     $object_type = isset($object->type) ? $object->type : '';
-                                    $attachment_id = isset($object->attachment_id) ? $object->attachment_id : '';
-                                    $attachment_src = isset($object->src) ? $object->src : '';
-                                    $attachment_price = isset($object->price) ? $object->price : '';
+                                    $object_id = isset($object->attachment_id) ? $object->attachment_id : '';
+                                    $object_src = isset($object->src) ? $object->src : '';
+                                    $object_price = isset($object->price) ? $object->price : '';
 
                                     ?>
                                     <li>
@@ -365,17 +367,47 @@ function product_designer_wc_order_meta( $post ) {
                                             Type: <?php echo $object_type; ?>
                                         </div>
 
-                                        <div>
-                                            Price: <?php echo $attachment_price; ?>
-                                        </div>
+                                        <?php if(!empty($object_price)):?>
 
+                                            <div>
+                                                Price: <?php echo $object_price; ?>
+                                            </div>
+
+                                        <?php endif; ?>
                                         <?php
 
                                         if($object_type == 'image'){
                                             ?>
-                                            <img width="30" height="30" src="<?php echo $attachment_src; ?>">
+                                            <img width="50" height="50" src="<?php echo $object_src; ?>">
+                                            <div data-src="<?php echo esc_url_raw($object_src); ?>" class="button download-btn">Download</div>
+
                                             <?php
                                         }
+
+                                        if($object_type == 'path-group'){
+                                            ?>
+                                            <img width="50" height="50" src="<?php echo $object_src; ?>">
+                                            <div data-src="<?php echo esc_url_raw($object_src); ?>" class="button download-btn">Download</div>
+
+                                            <?php
+                                        }
+
+
+
+                                        if($object_type == 'text'){
+                                            $object_text = isset($object->text) ? $object->text : '';
+
+                                            ?>
+                                            <div>
+                                                Content:
+                                                <br>
+                                                <textarea><?php echo $object_text; ?></textarea>
+                                            </div>
+                                            <?php
+                                        }
+
+
+
 
                                         ?>
 
