@@ -265,7 +265,7 @@ function product_designer_wc_order_meta( $post ) {
                 <tr>
                     <td><?php echo __('Sides', 'product-designer'); ?></td>
                     <td style="text-align: center;"><?php echo __('Preview', 'product-designer'); ?></td>
-                    <td><?php echo __('Download', 'product-designer'); ?></td>
+                    <td><?php echo __('Objects', 'product-designer'); ?></td>
                 </tr>
             </thead>
 
@@ -287,14 +287,17 @@ function product_designer_wc_order_meta( $post ) {
 
 
 
+
                 $item_meta = wc_get_order_item_meta($order_item_id, 'product_designer_side_attach_ids');
+                $side_ids_json = wc_get_order_item_meta($order_item_id, 'product_designer_side_ids_json');
+
 
                 //$item_meta = unserialize($item_meta);
 	            $custom_design = wc_get_order_item_meta($order_item_id, 'custom_design');
 
 
 
-	            echo '<pre>'.var_export($item_meta, true).'</pre>';
+	            //echo '<pre>'.var_export($side_ids_json, true).'</pre>';
 
 
                 ?>
@@ -312,13 +315,16 @@ function product_designer_wc_order_meta( $post ) {
 
 
 	            if(!empty($item_meta))
-	            foreach($item_meta as $side_id=>$attach_id){
+	            foreach($item_meta as $side_id=> $attach_id){
 
 		            $attach_url = wp_get_attachment_url( $attach_id );
+                    $side_objects = ($side_ids_json[$side_id]);
 
 
 
-		            ?>
+
+
+                    ?>
                     <tr class="item">
                         <td width="100" class="name">
                             <?php
@@ -330,10 +336,58 @@ function product_designer_wc_order_meta( $post ) {
                         <td class="">
                             <div class="pd-preview-src" style="text-align: center;">
                                 <img  style="width: 100px" src="<?php echo esc_url_raw($attach_url); ?>" />
+
                             </div>
+                            <div data-src="<?php echo esc_url_raw($attach_url); ?>" class="button download-btn">Download</div>
                         </td>
                         <td class="">
-                            <div data-src="<?php echo esc_url_raw($attach_url); ?>" class="button download-btn">Download</div>
+                            <ul>
+                                <?php
+
+                                $objects = json_decode($side_objects)->objects;
+
+
+                                //echo '<pre>'.var_export($objects, true).'</pre>';
+
+                                foreach ($objects as $object){
+
+                                    echo '<pre>'.var_export($object, true).'</pre>';
+
+
+                                    $object_type = isset($object->type) ? $object->type : '';
+                                    $attachment_id = isset($object->attachment_id) ? $object->attachment_id : '';
+                                    $attachment_src = isset($object->src) ? $object->src : '';
+                                    $attachment_price = isset($object->price) ? $object->price : '';
+
+                                    ?>
+                                    <li>
+                                        <div>
+                                            Type: <?php echo $object_type; ?>
+                                        </div>
+
+                                        <div>
+                                            Price: <?php echo $attachment_price; ?>
+                                        </div>
+
+                                        <?php
+
+                                        if($object_type == 'image'){
+                                            ?>
+                                            <img width="30" height="30" src="<?php echo $attachment_src; ?>">
+                                            <?php
+                                        }
+
+                                        ?>
+
+                                    </li>
+                                    <?php
+
+                                }
+
+                                ?>
+
+                            </ul>
+
                         </td>
                     </tr>
                     <?php

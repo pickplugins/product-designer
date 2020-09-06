@@ -419,6 +419,12 @@ function custom_checkout_create_order_line_item( $item, $cart_item_key, $values,
     if( isset( $values['product_designer_side_attach_ids'] ) ) {
         $item->update_meta_data( 'product_designer_side_attach_ids', $values['product_designer_side_attach_ids'] );
     }
+
+
+    if( isset( $values['product_designer_side_ids_json'] ) ) {
+        $item->update_meta_data( 'product_designer_side_ids_json', $values['product_designer_side_ids_json'] );
+    }
+
 }
 
 
@@ -436,8 +442,20 @@ if(!function_exists('wdm_remove_user_custom_data_options_from_cart'))
         {
             if ( $values['product_designer_side_attach_ids'] == $cart_item_key )
                 unset( $woocommerce->cart->cart_contents[ $key ] );
+
+            if ( $values['product_designer_side_ids_json'] == $cart_item_key )
+                unset( $woocommerce->cart->cart_contents[ $key ] );
+
+
+
         }
     }
+
+
+
+
+
+
 }
 
 
