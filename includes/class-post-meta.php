@@ -297,7 +297,7 @@ function product_designer_wc_order_meta( $post ) {
 
 
 
-	            echo '<pre>'.var_export($side_ids_json, true).'</pre>';
+	            //echo '<pre>'.var_export($side_ids_json, true).'</pre>';
 
 
                 ?>
@@ -349,7 +349,7 @@ function product_designer_wc_order_meta( $post ) {
                                 $objects = json_decode($side_objects)->objects;
 
 
-                                echo '<pre>'.var_export($objects, true).'</pre>';
+                                //echo '<pre>'.var_export($objects, true).'</pre>';
 
                                 foreach ($objects as $object){
 
@@ -357,8 +357,6 @@ function product_designer_wc_order_meta( $post ) {
 
 
                                     $object_type = isset($object->type) ? $object->type : '';
-                                    $object_id = isset($object->attachment_id) ? $object->attachment_id : '';
-                                    $object_src = isset($object->src) ? $object->src : '';
                                     $object_price = isset($object->price) ? $object->price : '';
 
                                     ?>
@@ -377,6 +375,9 @@ function product_designer_wc_order_meta( $post ) {
                                         <?php
 
                                         if($object_type == 'image'){
+                                            $object_attachment_id = isset($object->attachment_id) ? $object->attachment_id : '';
+                                            $object_src = isset($object->src) ? $object->src : '';
+
                                             ?>
                                             <img width="50" height="50" src="<?php echo $object_src; ?>">
                                             <div data-src="<?php echo esc_url_raw($object_src); ?>" class="button download-btn">Download</div>
@@ -385,9 +386,17 @@ function product_designer_wc_order_meta( $post ) {
                                         }
 
                                         if($object_type == 'path-group'){
+                                            $object_attachment_id = isset($object->attachment_id) ? $object->attachment_id : '';
+                                            $shape_thumb_id = get_post_meta($object_attachment_id, 'shape_thumb_id', true);
+                                            $object_attachment_url = wp_get_attachment_url( $shape_thumb_id );
+
+                                            //var_dump($object_attachment_url);
+
+
+
                                             ?>
-                                            <img width="50" height="50" src="<?php echo $object_src; ?>">
-                                            <div data-src="<?php echo esc_url_raw($object_src); ?>" class="button download-btn">Download</div>
+                                            <img width="50" height="50" src="<?php echo $object_attachment_url; ?>">
+                                            <div data-src="<?php echo esc_url_raw($object_attachment_url); ?>" class="button download-btn">Download</div>
 
                                             <?php
                                         }
@@ -396,9 +405,31 @@ function product_designer_wc_order_meta( $post ) {
 
                                         if($object_type == 'text'){
                                             $object_text = isset($object->text) ? $object->text : '';
+                                            $object_fontFamily = isset($object->fontFamily) ? $object->fontFamily : '';
+                                            $object_fontSize = isset($object->fontSize) ? $object->fontSize : '';
+
+
 
                                             ?>
                                             <div>
+                                                <?php if(!empty($object_fontFamily)):?>
+
+                                                    <div>
+                                                        Font Family: <?php echo $object_fontFamily; ?>
+                                                    </div>
+
+                                                <?php endif; ?>
+
+                                                <?php if(!empty($object_fontSize)):?>
+
+                                                    <div>
+                                                        Font Size: <?php echo $object_fontSize; ?>
+                                                    </div>
+
+                                                <?php endif; ?>
+
+
+
                                                 Content:
                                                 <br>
                                                 <textarea><?php echo $object_text; ?></textarea>
