@@ -383,7 +383,7 @@ function product_designer_wc_order_meta( $post ) {
                                                 $args['key'] = $key;
 
 
-                                                do_action('product_designer_side_object_data', $args);
+                                                do_action('product_designer_wc_order_object_data', $args);
 
                                                 ?>
 
