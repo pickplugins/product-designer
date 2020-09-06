@@ -15,7 +15,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 
 
-
 class ProductDesigner{
 	
 	public function __construct(){
@@ -198,7 +197,7 @@ class ProductDesigner{
         wp_register_script('settings-tabs', product_designer_plugin_url.'assets/settings-tabs/settings-tabs.js'  , array( 'jquery' ));
 
 
-        if ($screen->id == 'toplevel_page_product_designer'){
+        if ($screen->id == 'toplevel_page_product_designer' || $screen->id == 'shop_order'){
 
             $settings_tabs_field = new settings_tabs_field();
             $settings_tabs_field->admin_scripts();

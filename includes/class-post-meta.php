@@ -259,7 +259,7 @@ function product_designer_wc_order_meta( $post ) {
 
 
 		?>
-        <table class="product-designer order-items widefat">
+        <table class="product-designer settings-tabs order-items widefat">
 
             <thead>
                 <tr>
@@ -343,113 +343,172 @@ function product_designer_wc_order_meta( $post ) {
                             <div data-src="<?php echo esc_url_raw($attach_url); ?>" class="button download-btn">Download</div>
                         </td>
                         <td class="">
-                            <ul>
+
+                            <div class="expandable">
                                 <?php
 
                                 $objects = json_decode($side_objects)->objects;
 
 
-                                //echo '<pre>'.var_export($objects, true).'</pre>';
-
-                                foreach ($objects as $object){
-
-                                    //echo '<pre>'.var_export($object, true).'</pre>';
 
 
-                                    $object_type = isset($object->type) ? $object->type : '';
-                                    $object_price = isset($object->price) ? $object->price : '';
+                                if(!empty($objects))
+                                    foreach($objects as $key=> $object){
 
-                                    ?>
-                                    <li>
-                                        <div>
-                                            Type: <?php echo $object_type; ?>
-                                        </div>
+                                        $object_type = isset($object->type) ? $object->type : '';
+                                        $object_price = isset($object->price) ? $object->price : '';
 
-                                        <?php if(!empty($object_price)):?>
-
-                                            <div>
-                                                Price: <?php echo $object_price; ?>
-                                            </div>
-
-                                        <?php endif; ?>
-                                        <?php
-
-                                        if($object_type == 'image'){
-                                            $object_attachment_id = isset($object->attachment_id) ? $object->attachment_id : '';
-                                            $object_src = isset($object->src) ? $object->src : '';
-
-                                            ?>
-                                            <img width="50" height="50" src="<?php echo $object_src; ?>">
-                                            <div data-src="<?php echo esc_url_raw($object_src); ?>" class="button download-btn">Download</div>
-
-                                            <?php
-                                        }
-
-                                        if($object_type == 'path-group'){
-                                            $object_attachment_id = isset($object->attachment_id) ? $object->attachment_id : '';
-                                            $shape_thumb_id = get_post_meta($object_attachment_id, 'shape_thumb_id', true);
-                                            $object_attachment_url = wp_get_attachment_url( $shape_thumb_id );
-
-                                            //var_dump($object_attachment_url);
-
-
-
-                                            ?>
-                                            <img width="50" height="50" src="<?php echo $object_attachment_url; ?>">
-                                            <div data-src="<?php echo esc_url_raw($object_attachment_url); ?>" class="button download-btn">Download</div>
-
-                                            <?php
-                                        }
-
-
-
-                                        if($object_type == 'text'){
-                                            $object_text = isset($object->text) ? $object->text : '';
-                                            $object_fontFamily = isset($object->fontFamily) ? $object->fontFamily : '';
-                                            $object_fontSize = isset($object->fontSize) ? $object->fontSize : '';
-
-
-
-                                            ?>
-                                            <div>
-                                                <?php if(!empty($object_fontFamily)):?>
-
-                                                    <div>
-                                                        Font Family: <?php echo $object_fontFamily; ?>
-                                                    </div>
-
-                                                <?php endif; ?>
-
-                                                <?php if(!empty($object_fontSize)):?>
-
-                                                    <div>
-                                                        Font Size: <?php echo $object_fontSize; ?>
-                                                    </div>
-
-                                                <?php endif; ?>
-
-
-
-                                                Content:
-                                                <br>
-                                                <textarea><?php echo $object_text; ?></textarea>
-                                            </div>
-                                            <?php
-                                        }
-
-
-
+                                        //echo '<pre>'.var_export($enable).'</pre>';
 
                                         ?>
+                                        <div class="item template <?php echo $key; ?>">
+                                            <div class="header">
+                                                <span title="<?php echo __('Click to expand', 'job-board-manager'); ?>" class="expand ">
+                                                    <i class="fa fa-expand"></i>
+                                                    <i class="fa fa-compress"></i>
+                                                </span>
 
-                                    </li>
-                                    <?php
+                                                <span class="expand"><?php echo $object_type; ?></span>
 
-                                }
+
+
+                                            </div>
+                                            <div class="options">
+
+                                                <?php if(!empty($object_price)):?>
+                                                <div class="setting-field">
+                                                    <div class="field-lable"><?php echo __('Price', 'job-board-manager'); ?></div>
+                                                    <div class="field-input">
+
+
+                                                         <?php echo $object_price; ?>
+
+
+                                                    </div>
+                                                </div>
+                                                <?php endif;
+
+
+
+
+                                                if($object_type == 'image'){
+                                                    $object_attachment_id = isset($object->attachment_id) ? $object->attachment_id : '';
+                                                    $object_src = isset($object->src) ? $object->src : '';
+
+                                                    ?>
+
+
+                                                    <div class="setting-field">
+                                                        <div class="field-lable"><?php echo __('Image Source', 'job-board-manager'); ?></div>
+                                                        <div class="field-input">
+
+
+                                                            <img width="30" height="30" src="<?php echo $object_src;
+                                                            ?>">
+                                                            <div data-src="<?php echo esc_url_raw($object_src); ?>" class="button download-btn">Download</div>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <?php
+                                                }
+
+                                                if($object_type == 'path-group'){
+                                                    $object_attachment_id = isset($object->attachment_id) ? $object->attachment_id : '';
+                                                    $shape_thumb_id = get_post_meta($object_attachment_id, 'shape_thumb_id', true);
+                                                    $object_attachment_url = wp_get_attachment_url( $shape_thumb_id );
+
+                                                    //var_dump($object_attachment_url);
+
+
+
+                                                    ?>
+                                                    <div class="setting-field">
+                                                        <div class="field-lable"><?php echo __('Image Source', 'job-board-manager'); ?></div>
+                                                        <div class="field-input">
+
+                                                            <img width="30" height="30" src="<?php echo
+                                                            $object_attachment_url; ?>">
+                                                            <div data-src="<?php echo esc_url_raw($object_attachment_url); ?>" class="button download-btn">Download</div>
+
+                                                        </div>
+                                                    </div>
+
+
+                                                    <?php
+                                                }
+
+
+
+                                                if($object_type == 'text'){
+                                                    $object_text = isset($object->text) ? $object->text : '';
+                                                    $object_fontFamily = isset($object->fontFamily) ? $object->fontFamily : '';
+                                                    $object_fontSize = isset($object->fontSize) ? $object->fontSize : '';
+
+
+
+                                                    ?>
+                                                        <?php if(!empty($object_fontFamily)):?>
+
+
+                                                            <div class="setting-field">
+                                                                <div class="field-lable"><?php echo __('Font Family', 'job-board-manager'); ?></div>
+                                                                <div class="field-input">
+
+                                                                    <?php echo $object_fontFamily; ?>
+
+                                                                </div>
+                                                            </div>
+                                                        <?php endif; ?>
+
+                                                        <?php if(!empty($object_fontSize)):?>
+
+                                                            <div class="setting-field">
+                                                                <div class="field-lable"><?php echo __('Font Size', 'job-board-manager'); ?></div>
+                                                                <div class="field-input">
+
+                                                                    <?php echo $object_fontSize; ?>
+
+                                                                </div>
+                                                            </div>
+
+                                                        <?php endif; ?>
+
+
+
+                                                        <div class="setting-field">
+                                                            <div class="field-lable"><?php echo __('Content', 'job-board-manager'); ?></div>
+                                                            <div class="field-input">
+
+                                                                <textarea><?php echo $object_text; ?></textarea>
+
+                                                            </div>
+                                                        </div>
+
+                                                    <?php
+                                                }
+
+
+
+
+                                                ?>
+
+
+
+
+
+                                            </div>
+
+                                        </div>
+                                        <?php
+
+                                    }
+
 
                                 ?>
 
-                            </ul>
+
+                            </div>
 
                         </td>
                     </tr>
