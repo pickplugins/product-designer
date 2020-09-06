@@ -358,7 +358,7 @@ function product_designer_wc_order_meta( $post ) {
                                         $object_type = isset($object->type) ? $object->type : '';
                                         $object_price = isset($object->price) ? $object->price : '';
 
-                                        //echo '<pre>'.var_export($enable).'</pre>';
+                                        //echo '<pre>'.var_export($object, true).'</pre>';
 
                                         ?>
                                         <div class="item template <?php echo $key; ?>">
@@ -374,6 +374,18 @@ function product_designer_wc_order_meta( $post ) {
 
                                             </div>
                                             <div class="options">
+
+
+
+                                                <?php
+
+                                                $args['object'] = $object;
+                                                $args['key'] = $key;
+
+
+                                                do_action('product_designer_side_object_data', $args);
+
+                                                ?>
 
                                                 <?php if(!empty($object_price)):?>
                                                 <div class="setting-field">
