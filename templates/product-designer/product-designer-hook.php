@@ -99,7 +99,7 @@ function product_designer_side_list($atts){
 
    ?>
     <div class="side item accordions  pd-guide-1" title="Sides">
-        <div class="icon"><?php echo sprintf(__('%s Sides','product-designer'), $cube); ?></div>
+        <div class="pd-toggle-icon"><?php echo sprintf(__('%s Sides','product-designer'), $cube); ?></div>
         <div class="child">
             <ul class="side-list">
                 <?php
@@ -164,7 +164,7 @@ function product_designer_panel_clipart($atts){
 
     ?>
     <div class="clipart accordions item pd-guide-2" title="<?php echo __('Clip Art', "product-designer"); ?>">
-        <div class="icon"><?php echo sprintf(__('%s Clipart & Assets','product-designer'), $file_image); ?></div>
+        <div class="pd-toggle-icon"><?php echo sprintf(__('%s Clipart & Assets','product-designer'), $file_image); ?></div>
         <div class="child">
             <div class="tabs">
                 <ul class="navs">
@@ -319,7 +319,7 @@ function product_designer_panel_text($atts){
 
     ?>
     <div class="text item accordions pd-guide-3" title="<?php echo __('Text Art', 'product-designer'); ?>">
-        <div class="icon"><?php echo sprintf(__('%s Text & Quotes','product-designer'), $file_word); ?></div>
+        <div class="pd-toggle-icon"><?php echo sprintf(__('%s Text & Quotes','product-designer'), $file_word); ?></div>
         <div class="child">
             <div class="tabs">
                 <ul class="navs">
@@ -385,7 +385,7 @@ function product_designer_panel_shapes($atts){
 
     ?>
     <div class="shapes item accordions pd-guide-4" title="<?php echo __('Shapes', "product-designer"); ?>">
-        <div class="icon"><?php echo sprintf(__('%s Shapes','product-designer'), $shapes); ?></div>
+        <div class="pd-toggle-icon"><?php echo sprintf(__('%s Shapes','product-designer'), $shapes); ?></div>
         <div class="child">
 
             <?php
@@ -510,7 +510,7 @@ function product_designer_panel_images($atts){
 
     ?>
     <div class="shapes item accordions " title="<?php echo __('Images', "product-designer"); ?>">
-        <div class="icon"><?php echo sprintf(__('%s Images','product-designer'), $file_image); ?></div>
+        <div class="pd-toggle-icon"><?php echo sprintf(__('%s Images','product-designer'), $file_image); ?></div>
         <div class="child">
 
             <?php
@@ -544,7 +544,7 @@ function product_designer_panel_images_content_unsplash($atts){
 
     ?>
     <div class="item accordions" title="<?php echo __('Images', "product-designer"); ?>">
-        <div class="icon"><?php echo sprintf(__('%s Unsplash ','product-designer'), $icon_unsplash); ?></div>
+        <div class="pd-toggle-icon"><?php echo sprintf(__('%s Unsplash ','product-designer'), $icon_unsplash); ?></div>
         <div class="child">
 
             Hello

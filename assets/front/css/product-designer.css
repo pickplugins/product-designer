@@ -88,7 +88,7 @@
 }
 
 
-.product-designer .menu .item .icon{
+.product-designer .menu .item .pd-toggle-icon{
   outline: none;
   padding: 10px;
   background: #3a5673;
@@ -97,12 +97,12 @@
   margin: 0 !important;
 }
 
-.product-designer .menu .item .icon.ui-state-active{
+.product-designer .menu .item .pd-toggle-icon.ui-state-active{
 outline: none;
 }
 
 
-.product-designer .menu .item .icon .ui-accordion-header-icon{
+.product-designer .menu .item .pd-toggle-icon .ui-accordion-header-icon{
   display: none;
 }
 
