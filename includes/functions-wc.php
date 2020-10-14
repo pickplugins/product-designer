@@ -78,7 +78,7 @@ function product_designer_is_customizable($post_id) {
     else:
 	    $pd_template_id = get_post_meta($post_id, 'pd_template_id', true);
 
-	    if(!empty($pd_template_id)):
+	    if(!empty($pd_template_id) && $pd_template_id != 'none'):
 		    $is_customizable = true;
 	    endif;
     endif;
