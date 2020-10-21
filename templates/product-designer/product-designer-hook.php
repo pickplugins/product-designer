@@ -359,7 +359,47 @@ function product_designer_text_type_content_text(){
 
     ?>
     <textarea class="input-text asset-text"></textarea>
+    <div class="setting-field half">
+        <div class="field-label"><?php echo __('Text color:', 'product-designer'); ?></div>
+        <div class="field-input">
+            <input data-jscolor="" class="tool-button" id="text-font-color-preview" aria-label="Text Color"
+                   placeholder="rgba
+            (255,255,255,1)" type="text" value="rgba(255,255,255,1)">
+        </div>
+    </div>
+
+    <div class="setting-field half">
+        <div class="field-label hint--top" aria-label="Set text size">Text size</div>
+        <div class="field-input">
+            <input type="number" id="text-font-size-preview" name="fontSize" placeholder="15" value="">
+        </div>
+    </div>
+
+    <div class="setting-field half">
+        <div class="field-label"><?php echo __('Font family:', 'product-designer'); ?></div>
+        <div class="field-input">
+            <?php
+            $product_designer_fonts = product_designer_fonts();
+            ?>
+            <select class=" font-family" aria-label="<?php echo __('Font family', 'product-designer'); ?>"
+                    id="text-font-family-preview">
+                <?php
+                foreach($product_designer_fonts as $font){
+                    $name = $font['name'];
+                    $name_id = str_replace(' ','+',$name);
+                    ?>
+                    <option style="font-family:<?php echo $name_id; ?>" value="<?php echo $name; ?>"><?php echo $name; ?></option>
+                    <?php
+                }
+                ?>
+            </select>
+        </div>
+    </div>
+
+
+
     <div class="add-text"><?php echo __('Add Text', "product-designer"); ?></div>
+
 
     <?php
 }
@@ -738,7 +778,8 @@ function product_designer_tools_edit_text($atts){
                 <div class="setting-field half">
                     <div class="field-label"><?php echo __('Text color:', 'product-designer'); ?></div>
                     <div class="field-input">
-                        <input data-jscolor="" class="tool-button" id="font-color" aria-label="Text Color" placeholder="rgba(255,255,255,1)" type="text" value="rgba(255,255,255,1)">
+                        <input data-jscolor="" class="tool-button" id="text-font-color" aria-label="Text Color"
+                               placeholder="rgba(255,255,255,1)" type="text" value="rgba(255,255,255,1)">
                     </div>
                 </div>
 
@@ -1134,7 +1175,7 @@ function product_designer_scripts($atts){
     $product_designer_editor['preview_file_format']  = isset($canvas['preview']['file_format']) ? $canvas['preview']['file_format'] : 'png';
 
 
-    $side_data_ids = array_keys($side_data);
+    $side_data_ids = !empty($side_data) ? array_keys($side_data) : array();
     $current_side_id = isset($side_data_ids[0]) ? $side_data_ids[0] : '';
 
     $product_designer_editor['pd_template_id']  = $pd_template_id;
@@ -1166,6 +1207,11 @@ function product_designer_scripts($atts){
     $product_designer_editor['cart_attach_ids']  = array();
 
 
+
+    if(empty($current_side_id)){
+
+        echo __('Product designer template is missing.', 'product-designer');
+    }
     ?>
 
     <script>

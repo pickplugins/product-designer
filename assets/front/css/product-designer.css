@@ -149,7 +149,10 @@ width: 95%;
 
 
 
-
+.text-preview, .asset-text{
+  padding: 10px;
+  background: url('../images/tile.png');
+}
 
 
 

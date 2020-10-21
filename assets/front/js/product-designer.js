@@ -2112,7 +2112,63 @@ $(document).on('click','.generate-side-output',function(event){
         product_designer_editor_save();
 
 
-		})
+
+
+
+    })
+
+
+    $(document).on('change','.product-designer #text-font-color-preview',function(){
+
+        val = $(this).val();
+
+        //alert('Hello');
+        //canvas.getActiveObject().setColor(val);
+        //canvas.renderAll();
+        //console.log(val);
+
+        $('.input-text').css('color', val);
+
+        //product_designer_editor_save();
+
+
+    })
+
+
+    $(document).on('change','.product-designer #text-font-size-preview',function(){
+
+        val = $(this).val();
+
+        //alert('Hello');
+        //canvas.getActiveObject().setColor(val);
+        //canvas.renderAll();
+        //console.log(val);
+
+        $('.input-text').css('font-size', val+'px');
+
+        //product_designer_editor_save();
+
+
+    })
+
+
+    $(document).on('change','.product-designer #text-font-family-preview',function(){
+
+        val = $(this).val();
+
+        //alert('Hello');
+        //canvas.getActiveObject().setColor(val);
+        //canvas.renderAll();
+        //console.log(val);
+
+        $('.input-text').css('font-family', val);
+
+        //product_designer_editor_save();
+
+
+    })
+
+
 
 
         $(document).on('change','.product-designer #stroke-size',function(){
@@ -2180,6 +2236,9 @@ $(document).on('click','.generate-side-output',function(event){
 		//console.log(fill_color);
         product_designer_editor_save();
 		})
+
+
+
 
 
 	$(document).on('change','.product-designer #font-opacity',function(){
@@ -2915,6 +2974,22 @@ $(document).on('click','.generate-side-output',function(event){
         canvas.centerObject(text);
         text.setCoords();
         canvas.setActiveObject(text);
+
+
+
+        color = $('#text-font-color-preview').val();
+        size = $('#text-font-size-preview').val();
+        fontfamily = $('#text-font-family-preview').val();
+
+
+        canvas.getActiveObject().setFontFamily(fontfamily);
+        //canvas.getActiveObject().set({fill: color});
+        canvas.getActiveObject().set("fontSize", size);
+        canvas.getActiveObject().setColor(color);
+
+
+
+
         canvas.renderAll();
 		//console.log($.now());
         product_designer_get_object_list();
