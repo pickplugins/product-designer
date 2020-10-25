@@ -371,7 +371,7 @@ function product_designer_text_type_content_text(){
     <div class="setting-field half">
         <div class="field-label hint--top" aria-label="Set text size">Text size</div>
         <div class="field-input">
-            <input type="number" id="text-font-size-preview" name="fontSize" placeholder="15" value="">
+            <input type="number" id="text-font-size-preview" name="fontSize" placeholder="15" value="22">
         </div>
     </div>
 
