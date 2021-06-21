@@ -30,7 +30,7 @@ function product_designer_variation_customize_link( $data, $product, $variation 
     //http://localhost/wp/product-designer/?product_id=1346&variation_id=1369
 
     if(($pd_template_id != 'none')){
-        $data['price_html'] .= '<div class="product-designer-editor-link"><a href="'.$product_designer_page_url.'?product_id='.$product_id.'&variation_id='.$variation_id.'" class="4xcb"><i class="fa fa-crop" ></i> Customize</a></div>';
+        $data['price_html'] .= '<div class="product-designer-editor-link"><a rel="noindex nofollow" href="'.$product_designer_page_url.'?product_id='.$product_id.'&variation_id='.$variation_id.'" class="4xcb"><i class="fa fa-crop" ></i> Customize</a></div>';
 
     }
 
@@ -78,7 +78,7 @@ function product_designer_is_customizable($post_id) {
     else:
 	    $pd_template_id = get_post_meta($post_id, 'pd_template_id', true);
 
-	    if(!empty($pd_template_id) && $pd_template_id != 'none'):
+	    if(!empty($pd_template_id)):
 		    $is_customizable = true;
 	    endif;
     endif;
@@ -228,7 +228,8 @@ function product_designer_after_add_to_cart_button() {
         else:
 	        ?>
             <div class="product-designer-editor-link" style="background-color: <?php echo $customize_button_bg_color; ?>">
-                <a target="_blank"  class="" href="<?php echo esc_url_raw($product_designer_page_url); ?>?product_id=<?php echo get_the_ID(); ?>"><i class="fa fa-crop" ></i> <?php echo $customize_button_text; ?></a>
+<!--                <a target="_blank"  class="" href="--><?php //echo esc_url_raw($product_designer_page_url); ?><!--?product_id=--><?php //echo get_the_ID(); ?><!--&pd_enable"><i class="fa fa-crop" ></i> --><?php //echo $customize_button_text; ?><!--</a>-->
+                <a rel="noindex nofollow" target="_blank"  class="" href="<?php echo esc_url_raw(get_permalink($product->get_id())); ?>?pd_enable"><i class="fa fa-crop" ></i> <?php echo $customize_button_text; ?></a>
 
             </div>
 	        <?php
@@ -247,6 +248,36 @@ function product_designer_after_add_to_cart_button() {
 
 
 }
+
+
+add_action('woocommerce_after_single_product', 'product_designer_wc_designer');
+
+function product_designer_wc_designer(){
+
+
+    if(isset($_GET['pd_enable'])){
+
+        $product_id = get_the_id();
+        echo do_shortcode('[product_designer product_id="'.$product_id.'"]');
+
+    }
+
+
+
+
+    //echo 'Hello';
+
+
+
+}
+
+
+
+
+
+
+
+
 
 function product_designer_woocommerce_after_shop_loop_item() {
 
@@ -277,7 +308,8 @@ function product_designer_woocommerce_after_shop_loop_item() {
 		else:
 			?>
             <div class="product-designer-editor-link" style="background-color: <?php echo $customize_button_bg_color; ?>">
-                <a target="_blank"  class="" href="<?php echo esc_url_raw($product_designer_page_url); ?>?product_id=<?php echo get_the_ID(); ?>"><i class="fa fa-crop" ></i> <?php echo $customize_button_text; ?></a>
+<!--                <a rel="noindex nofollow" target="_blank"  class="" href="--><?php //echo esc_url_raw($product_designer_page_url); ?><!--?product_id=--><?php //echo get_the_ID(); ?><!--"><i class="fa fa-crop" ></i> --><?php //echo $customize_button_text; ?><!--</a>-->
+                <a rel="noindex nofollow" target="_blank"  class="" href="<?php echo esc_url_raw(get_permalink($product->get_id())); ?>?pd_enable"><i class="fa fa-crop" ></i> <?php echo $customize_button_text; ?></a>
 
             </div>
 			<?php
@@ -394,14 +426,14 @@ function product_designer_add_cart_item_data( $cart_item_meta, $product_id ) {
 
 	if ( !empty( $_POST['product_designer_side_attach_ids'] )){
 
-		$cart_item_meta['product_designer_side_attach_ids'] = ($_POST['product_designer_side_attach_ids']);
+		$cart_item_meta['product_designer_side_attach_ids'] = product_designer_recursive_sanitize_arr($_POST['product_designer_side_attach_ids']);
 	}
 
 
 
 	if ( !empty( $_POST['product_designer_side_ids_json'] )){
 
-		$cart_item_meta['product_designer_side_ids_json'] = ($_POST['product_designer_side_ids_json']);
+		$cart_item_meta['product_designer_side_ids_json'] = product_designer_recursive_sanitize_arr($_POST['product_designer_side_ids_json']);
 	}
 
 
@@ -477,15 +509,17 @@ function product_designer_ajax_add_to_cart(){
 
 	parse_str($_POST['values'], $form_data);
 
+    $form_data = product_designer_recursive_sanitize_arr($form_data);
 
-	$pd_template_id = isset( $form_data['pd_template_id'] ) ? sanitize_text_field($form_data['pd_template_id']) : 0;
+
+    $pd_template_id = isset( $form_data['pd_template_id'] ) ? sanitize_text_field($form_data['pd_template_id']) : 0;
 	$quantity = isset( $form_data['quantity'] ) ? sanitize_text_field($form_data['quantity']) : 0;
     $assets_price = isset( $form_data['assets_price'] ) ? sanitize_text_field($form_data['assets_price']) : 0;
 
 
 
-	$product_designer_side_attach_ids = isset( $form_data['product_designer_side_attach_ids'] ) ? stripslashes_deep($form_data['product_designer_side_attach_ids']) : array();
-	$product_designer_side_ids_json = isset( $form_data['product_designer_side_ids_json'] ) ? stripslashes_deep($form_data['product_designer_side_ids_json']) : array();
+	$product_designer_side_attach_ids = isset( $form_data['product_designer_side_attach_ids'] ) ? product_designer_recursive_sanitize_arr($form_data['product_designer_side_attach_ids']) : array();
+	$product_designer_side_ids_json = isset( $form_data['product_designer_side_ids_json'] ) ? product_designer_recursive_sanitize_arr($form_data['product_designer_side_ids_json']) : array();
 
 	$cart_item_data['product_designer_side_attach_ids'] = $product_designer_side_attach_ids;
 	$cart_item_data['product_designer_side_ids_json'] = $product_designer_side_ids_json;
@@ -534,11 +568,15 @@ function product_designer_ajax_save_as_template(){
 	$response 	= array();
 
 	parse_str($_POST['values'], $form_data);
-	$pd_template_id = isset( $form_data['pd_template_id'] ) ? sanitize_text_field($form_data['pd_template_id']) : 0;
+
+    $form_data = product_designer_recursive_sanitize_arr($form_data);
 
 
-	$product_designer_side_attach_ids = isset( $form_data['product_designer_side_attach_ids'] ) ? stripslashes_deep($form_data['product_designer_side_attach_ids']) : array();
-	$product_designer_side_ids_json = isset( $form_data['product_designer_side_ids_json'] ) ? stripslashes_deep($form_data['product_designer_side_ids_json']) : array();
+    $pd_template_id = isset( $form_data['pd_template_id'] ) ? sanitize_text_field($form_data['pd_template_id']) : 0;
+
+
+	$product_designer_side_attach_ids = isset( $form_data['product_designer_side_attach_ids'] ) ? product_designer_recursive_sanitize_arr($form_data['product_designer_side_attach_ids']) : array();
+	$product_designer_side_ids_json = isset( $form_data['product_designer_side_ids_json'] ) ? product_designer_recursive_sanitize_arr($form_data['product_designer_side_ids_json']) : array();
 
 	$cart_item_data['product_designer_side_attach_ids'] = $product_designer_side_attach_ids;
 	$cart_item_data['product_designer_side_ids_json'] = $product_designer_side_ids_json;

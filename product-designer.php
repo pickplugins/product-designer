@@ -3,9 +3,9 @@
 Plugin Name: Product Designer
 Plugin URI: https://www.pickplugins.com/item/product-designer/?ref=dashboard
 Description: Awesome Product Designer for Woo-Commenrce.
-Version: 1.0.24
+Version: 1.0.28
 WC requires at least: 3.0.0
-WC tested up to: 4.4
+WC tested up to: 5.1
 Author: PickPlugins
 Author URI: http://pickplugins.com
 Text Domain: product-designer
@@ -23,7 +23,7 @@ class ProductDesigner{
 		define('product_designer_plugin_url', plugins_url('/', __FILE__) );
 		define('product_designer_plugin_dir', plugin_dir_path( __FILE__ ) );
 		define('product_designer_plugin_name', 'Product Designer' );
-		define('product_designer_plugin_version', '1.0.24' );
+		define('product_designer_plugin_version', '1.0.28' );
 
         require_once( product_designer_plugin_dir . 'includes/class-settings-tabs.php');
         require_once( product_designer_plugin_dir . 'includes/class-request-reviews.php');
@@ -60,6 +60,7 @@ class ProductDesigner{
 		$args = array(
 		    'option_name' => 'product_designer_settings',
             'review_url' => 'https://wordpress.org/support/plugin/product-designer/reviews/#new-post',
+            'plugin_name' => 'Product Designer',
 
         );
 
@@ -161,9 +162,11 @@ class ProductDesigner{
         wp_enqueue_script('jquery-qrcode.min', plugins_url( '/assets/front/js/jquery-qrcode.min.js' , __FILE__ ) , array( 'jquery' ));
         wp_enqueue_script( 'JsBarcode.all.min.js', plugins_url( 'assets/front/js/JsBarcode.all.min.js', __FILE__ ), array('jquery'), '1.0', false);
 
+        if(isset($_GET['pd_enable']) || isset($_GET['product_id'])){
+            wp_enqueue_script('fabric.js');
+            wp_enqueue_script('fabric.curvedText');
+        }
 
-        wp_enqueue_script('fabric.js');
-        wp_enqueue_script('fabric.curvedText');
 
 
 
@@ -197,7 +200,7 @@ class ProductDesigner{
         wp_register_script('settings-tabs', product_designer_plugin_url.'assets/settings-tabs/settings-tabs.js'  , array( 'jquery' ));
 
 
-        if ($screen->id == 'toplevel_page_product_designer' || $screen->id == 'shop_order'){
+        if ( $screen->id == 'shop_order'){
 
             $settings_tabs_field = new settings_tabs_field();
             $settings_tabs_field->admin_scripts();

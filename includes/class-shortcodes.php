@@ -21,7 +21,14 @@ class class_product_designer_shortcodes  {
             $atts
         );
 
-        $product_id = isset($_GET['product_id']) ? sanitize_text_field($_GET['product_id']) : '';
+//        global $product;
+//
+//        $product_id = $product->get_id();
+
+        $product_id = isset($atts['product_id']) ? sanitize_text_field($atts['product_id']) : '';
+        $product_id = isset($_GET['product_id']) ? sanitize_text_field($_GET['product_id']) : $product_id;
+
+
 
         if(empty($product_id)){
             echo __('Product is not selected. this is probably issue with site permalink settings, please select "Post name" on permalink settings','product-designer') ;

@@ -3,8 +3,8 @@
 	Donate link: https://www.pickplugins.com/item/product-designer/?ref=wordpress.org
 	Tags: product designer, product customizer, custom product, woocommerce product designer
 	Requires at least: 3.8
-	Tested up to: 5.5
-	Stable tag: 1.0.24
+	Tested up to: 5.7
+	Stable tag: 1.0.28
 	License: GPLv2 or later
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -122,6 +122,22 @@ Before starting you need to add some clip art via custom post "Clip Art" with th
 
 
 == Changelog ==
+
+	= 1.0.28 =
+    * 2021-06-21 - add - load designer on product page.
+    * 2021-06-21 - update - optimize CSS load.
+    * 2021-06-21 - update - fixed some style issue
+
+
+	= 1.0.27 =
+    * 2021-06-07 - fix - missing translation string issue fixed.
+
+	= 1.0.26 =
+    * 2021-04-16 - fix - minor security issue fixed.
+    * 2021-04-16 - remove - unnecessary function removed.
+
+	= 1.0.25 =
+    * 2021-04-13 - fix - security issue fixed.
 
 	= 1.0.24 =
     * 2020-09-06 - add - product side object data added under WooCommerce order

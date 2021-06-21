@@ -30,8 +30,8 @@ class class_product_designer_functions{
 
         $data = array(
             array(
-                'title' => __('#1 Product Sides',''),
-                'html' => __('Click here to load side and ready for edit.'),
+                'title' => __('#1 Product Sides','product-designer'),
+                'html' => __('Click here to load side and ready for edit.', 'product-designer'),
                 'focus' => 1,
                 'priority' => 5,
                 'position' => array(
@@ -46,8 +46,8 @@ class class_product_designer_functions{
                 ),
             ),
             array(
-                'title' => __('#2 Clipart & Assets',''),
-                'html' => __('You can add some clipart here also you can upload your own.'),
+                'title' => __('#2 Clipart & Assets','product-designer'),
+                'html' => __('You can add some clipart here also you can upload your own.', 'product-designer'),
                 'focus' => 1,
                 'priority' => 10,
                 'position' => array(
@@ -63,8 +63,8 @@ class class_product_designer_functions{
                 ),
             ),
             array(
-                'title' => __('#3 Text',''),
-                'html' => __('You can add text from here, there also curved text available.'),
+                'title' => __('#3 Text','product-designer'),
+                'html' => __('You can add text from here, there also curved text available.', 'product-designer'),
                 'focus' => 1,
                 'priority' => 15,
                 'position' => array(
@@ -80,8 +80,8 @@ class class_product_designer_functions{
                 ),
             ),
             array(
-                'title' => __('#4 Shapes',''),
-                'html' => __('Some exclusive shapes here, you can add them to your design.'),
+                'title' => __('#4 Shapes','product-designer'),
+                'html' => __('Some exclusive shapes here, you can add them to your design.', 'product-designer'),
                 'focus' => 1,
                 'priority' => 20,
                 'position' => array(
@@ -97,8 +97,8 @@ class class_product_designer_functions{
                 ),
             ),
             array(
-                'title' => __('5 Editor actions',''),
-                'html' => __('Choose actions button to customize your design.'),
+                'title' => __('5 Editor actions','product-designer'),
+                'html' => __('Choose actions button to customize your design.','product-designer'),
                 'focus' => 1,
                 'priority' => 25,
                 'position' => array(
@@ -114,8 +114,8 @@ class class_product_designer_functions{
                 ),
             ),
             array(
-                'title' => __('#6 Preview',''),
-                'html' => __('Click preview button to see current canvas preview.'),
+                'title' => __('#6 Preview','product-designer'),
+                'html' => __('Click preview button to see current canvas preview.', 'product-designer'),
                 'focus' => 1,
                 'priority' => 30,
                 'position' => array(
@@ -131,8 +131,8 @@ class class_product_designer_functions{
                 ),
             ),
             array(
-                'title' => __('#7 Download',''),
-                'html' => __('Click download your customized design.'),
+                'title' => __('#7 Download','product-designer'),
+                'html' => __('Click download your customized design.', 'product-designer'),
                 'focus' => 1,
                 'priority' => 35,
                 'position' => array(
@@ -148,8 +148,8 @@ class class_product_designer_functions{
                 ),
             ),
             array(
-                'title' => __('#8 Item list',''),
-                'html' => __('Click to see object added on canvas for current view.'),
+                'title' => __('#8 Item list','product-designer'),
+                'html' => __('Click to see object added on canvas for current view.', 'product-designer'),
                 'focus' => 1,
                 'priority' => 40,
                 'position' => array(
@@ -165,8 +165,8 @@ class class_product_designer_functions{
                 ),
             ),
             array(
-                'title' => __('#9 Product info & Cart',''),
-                'html' => __('After finishing the design you will see the preview and add them to cart and proceed to submit order.'),
+                'title' => __('#9 Product info & Cart','product-designer'),
+                'html' => __('After finishing the design you will see the preview and add them to cart and proceed to submit order.', 'product-designer'),
                 'focus' => 1,
                 'priority' => 45,
                 'position' => array(
@@ -182,8 +182,8 @@ class class_product_designer_functions{
                 ),
             ),
             array(
-                'title' => __('#10 Keyboard Shortcuts',''),
-                'html' => __('Use keyboard shortcuts to speed up your work.'),
+                'title' => __('#10 Keyboard Shortcuts','product-designer'),
+                'html' => __('Use keyboard shortcuts to speed up your work.', 'product-designer'),
                 'focus' => 1,
                 'priority' => 50,
                 'position' => array(

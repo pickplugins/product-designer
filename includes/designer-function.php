@@ -4,151 +4,6 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 
 
 
-function product_designer_shape_upload(){
-
-    check_ajax_referer('pd_shape_upload');
-
-    // you can use WP's wp_handle_upload() function:
-    $file = $_FILES['async-upload'];
-
-    $status = wp_handle_upload($file, array('action' => 'product_designer_shape_upload'));
-
-    $file_loc = $status['file'];
-    $file_name = isset($status['name']) ? basename($status['name']) : '';
-    $file_type = wp_check_filetype($file_name);
-
-    $attachment = array(
-        'post_mime_type' => $status['type'],
-        'post_title' => preg_replace('/\.[^.]+$/', '', basename($file['name'])),
-        'post_content' => '',
-        'post_status' => 'inherit'
-    );
-
-    $attach_id = wp_insert_attachment($attachment, $file_loc);
-    $attach_data = wp_generate_attachment_metadata($attach_id, $file_loc);
-    wp_update_attachment_metadata($attach_id, $attach_data);
-    //echo $attach_id;
-
-
-    $user_id = get_current_user_id();
-
-    $clipart_post = array(
-        'post_title'    => __('User Uploaded Shape', 'product-designer'),
-        'post_status'   => 'publish',
-        'post_author'   => $user_id,
-        'post_type'     =>'shape'
-    );
-
-    $product_designer_settings = get_option('product_designer_settings');
-    $shape_price = isset($product_designer_settings['shape_price']) ? $product_designer_settings['shape_price'] :'';
-
-
-    $clipart_ID = wp_insert_post( $clipart_post );
-    update_post_meta( $clipart_ID, 'shape_thumb_id', $attach_id );
-
-    update_post_meta( $clipart_ID, 'shape_price', $shape_price );
-
-
-
-
-
-    $attach_title = get_the_title($attach_id);
-
-    $html['attach_url'] = wp_get_attachment_url($attach_id);
-    $html['attach_id'] = $attach_id;
-    $html['attach_title'] = get_the_title($attach_id);
-
-    $response = array(
-        'status'=>'ok',
-        'html'=>$html,
-
-
-    );
-
-    echo json_encode($response);
-
-    exit;
-}
-
-add_action('wp_ajax_product_designer_shape_upload', 'product_designer_shape_upload');
-add_action('wp_ajax_nopriv_product_designer_shape_upload', 'product_designer_shape_upload');
-
-
-
-
-function product_designer_clipart_upload(){
-
-    check_ajax_referer('pd_clipart_upload');
-
-    // you can use WP's wp_handle_upload() function:
-    $file = $_FILES['async-upload'];
-
-    $status = wp_handle_upload($file, array('action' => 'product_designer_clipart_upload'));
-
-    $file_loc = $status['file'];
-    $file_name = isset($status['name']) ? basename($status['name']) : '';
-    $file_type = wp_check_filetype($file_name);
-
-    $attachment = array(
-        'post_mime_type' => $status['type'],
-        'post_title' => preg_replace('/\.[^.]+$/', '', basename($file['name'])),
-        'post_content' => '',
-        'post_status' => 'inherit'
-    );
-
-    $attach_id = wp_insert_attachment($attachment, $file_loc);
-    $attach_data = wp_generate_attachment_metadata($attach_id, $file_loc);
-    wp_update_attachment_metadata($attach_id, $attach_data);
-    //echo $attach_id;
-
-
-    $user_id = get_current_user_id();
-
-    $clipart_post = array(
-        'post_title'    => __('Custom clipart', 'product-designer'),
-        'post_status'   => 'publish',
-        'post_author'   => $user_id,
-        'post_type'     =>'clipart'
-    );
-
-    $product_designer_settings = get_option('product_designer_settings');
-    $clipart_price = isset($product_designer_settings['clipart_price']) ? $product_designer_settings['clipart_price'] :'';
-
-
-    $clipart_ID = wp_insert_post( $clipart_post );
-    update_post_meta( $clipart_ID, 'clipart_thumb_id', $attach_id );
-
-    update_post_meta( $clipart_ID, 'clipart_price', $clipart_price );
-
-
-
-
-
-    $attach_title = get_the_title($attach_id);
-
-    $html['attach_url'] = wp_get_attachment_url($attach_id);
-    $html['attach_id'] = $attach_id;
-    $html['attach_title'] = get_the_title($attach_id);
-
-    $response = array(
-        'status'=>'ok',
-        'html'=>$html,
-
-
-    );
-
-    echo json_encode($response);
-
-    exit;
-}
-
-add_action('wp_ajax_product_designer_clipart_upload', 'product_designer_clipart_upload');
-add_action('wp_ajax_nopriv_product_designer_clipart_upload', 'product_designer_clipart_upload');
-
-
-
-
-
 
 function product_designer_fonts(){
 	
@@ -288,14 +143,26 @@ function product_designer_create_order( $post_data ) {
 
 	
 // add_filter( 'the_content', 'product_designer_edit_link' );	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+function product_designer_recursive_sanitize_arr($array) {
+
+    foreach ( $array as $key => &$value ) {
+        if ( is_array( $value ) ) {
+            $value = product_designer_recursive_sanitize_arr($value);
+        }
+        else {
+            $value = sanitize_text_field( $value );
+        }
+    }
+
+    return $array;
+}
 	
 	
 	
@@ -306,6 +173,9 @@ function product_designer_ajax_create_template(){
 	$json = isset($_POST['json']) ? sanitize_text_field($_POST['json']) : '';
 
 	parse_str($_POST['form_data'], $form_data);
+
+    $form_data = product_designer_recursive_sanitize_arr($form_data);
+
 	$template_id = isset($form_data['template_id']) ? sanitize_text_field($form_data['template_id']) : '';
 	$side_id = isset($form_data['side_id']) ? sanitize_text_field($form_data['side_id']) : '';
 	$template_id = time();
@@ -331,14 +201,17 @@ function product_designer_ajax_create_template(){
 		
 
 	}
-	
-	update_post_meta( $product_id, 'pre_templates', $templates );
+
+
+    update_post_meta( $template_id, 'pre_templates', $templates );
+
+    //update_post_meta( $product_id, 'pre_templates', $templates );
 	//update_post_meta($product_id, 'templates', $templates);
 
 	$response['template_id'] = $template_id;
 	$response['side_id'] = $side_id;
 
-	$response['mgs'] = $form_data;
+	//$response['mgs'] = $form_data;
 
 
 	//echo $templates;

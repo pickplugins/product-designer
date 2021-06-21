@@ -2,7 +2,7 @@
 if ( ! defined('ABSPATH')) exit;  // if direct access
 
 
-$current_tab = isset($_REQUEST['tab']) ? $_REQUEST['tab'] : 'general';
+$current_tab = isset($_REQUEST['tab']) ? sanitize_text_field($_REQUEST['tab']) : 'general';
 
 $tabs = array();
 
@@ -60,7 +60,7 @@ $product_designer_settings = get_option('product_designer_settings');
 ?>
 <div class="wrap">
 	<div id="icon-tools" class="icon32"><br></div><h2><?php echo sprintf(__('%s Settings', 'product-designer'), product_designer_plugin_name)?></h2>
-		<form  method="post" action="<?php echo str_replace( '%7E', '~', $_SERVER['REQUEST_URI']); ?>">
+		<form  method="post" action="<?php echo str_replace( '%7E', '~', esc_url_raw($_SERVER['REQUEST_URI'])); ?>">
 	        <input type="hidden" name="product_designer_hidden" value="Y">
             <input type="hidden" name="tab" value="<?php echo $current_tab; ?>">
             <?php

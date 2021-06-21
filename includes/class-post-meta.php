@@ -1002,20 +1002,20 @@ function product_designer_wc_order_meta( $post ) {
 
 
 		if(!empty($_POST['canvas'])){
-			$canvas = isset($_POST['canvas']) ? stripslashes_deep($_POST['canvas']) : '';
+			$canvas = isset($_POST['canvas']) ? product_designer_recursive_sanitize_arr($_POST['canvas']) : '';
 		}
 		else{
 			$canvas = array();
 		}
 		if(!empty($_POST['side_data'])){
-			$side_data = isset($_POST['side_data']) ? stripslashes_deep($_POST['side_data']) : '';
+			$side_data = isset($_POST['side_data']) ? product_designer_recursive_sanitize_arr($_POST['side_data']) : '';
 		}
 		else{
 			$side_data = array();
 		}
 
 		if(!empty($_POST['templates'])){
-			$templates = isset($_POST['templates']) ? stripslashes_deep($_POST['templates']) : '';
+			$templates = isset($_POST['templates']) ? product_designer_recursive_sanitize_arr($_POST['templates']) : '';
 		}
 		else{
 			$templates = array();
@@ -1024,9 +1024,9 @@ function product_designer_wc_order_meta( $post ) {
 
 
 
-		$canvas = stripslashes_deep( $canvas );
-		$side_data = stripslashes_deep( $side_data );
-		$templates = stripslashes_deep( $templates );
+		$canvas = product_designer_recursive_sanitize_arr( $canvas );
+		$side_data = product_designer_recursive_sanitize_arr( $side_data );
+		$templates = product_designer_recursive_sanitize_arr( $templates );
 
 
 		update_post_meta( $post_id, 'canvas', $canvas );

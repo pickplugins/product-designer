@@ -613,7 +613,7 @@ add_action('product_designer_settings_save', 'product_designer_settings_save');
 
 function product_designer_settings_save(){
 
-    $product_designer_settings = isset($_POST['product_designer_settings']) ?  stripslashes_deep($_POST['product_designer_settings']) : array();
+    $product_designer_settings = isset($_POST['product_designer_settings']) ?  product_designer_recursive_sanitize_arr($_POST['product_designer_settings']) : array();
     update_option('product_designer_settings', $product_designer_settings);
 }
 

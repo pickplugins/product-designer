@@ -99,7 +99,7 @@ function product_designer_side_list($atts){
 
    ?>
     <div class="side item accordions  pd-guide-1" title="Sides">
-        <div class="pd-toggle-icon"><?php echo sprintf(__('%s Sides','product-designer'), $cube); ?></div>
+        <div class="icon"><?php echo sprintf(__('%s Sides','product-designer'), $cube); ?></div>
         <div class="child">
             <ul class="side-list">
                 <?php
@@ -164,7 +164,7 @@ function product_designer_panel_clipart($atts){
 
     ?>
     <div class="clipart accordions item pd-guide-2" title="<?php echo __('Clip Art', "product-designer"); ?>">
-        <div class="pd-toggle-icon"><?php echo sprintf(__('%s Clipart & Assets','product-designer'), $file_image); ?></div>
+        <div class="icon"><?php echo sprintf(__('%s Clipart & Assets','product-designer'), $file_image); ?></div>
         <div class="child">
             <div class="tabs">
                 <ul class="navs">
@@ -319,7 +319,7 @@ function product_designer_panel_text($atts){
 
     ?>
     <div class="text item accordions pd-guide-3" title="<?php echo __('Text Art', 'product-designer'); ?>">
-        <div class="pd-toggle-icon"><?php echo sprintf(__('%s Text & Quotes','product-designer'), $file_word); ?></div>
+        <div class="icon"><?php echo sprintf(__('%s Text & Quotes','product-designer'), $file_word); ?></div>
         <div class="child">
             <div class="tabs">
                 <ul class="navs">
@@ -359,47 +359,7 @@ function product_designer_text_type_content_text(){
 
     ?>
     <textarea class="input-text asset-text"></textarea>
-    <div class="setting-field half">
-        <div class="field-label"><?php echo __('Text color:', 'product-designer'); ?></div>
-        <div class="field-input">
-            <input data-jscolor="" class="tool-button" id="text-font-color-preview" aria-label="Text Color"
-                   placeholder="rgba
-            (255,255,255,1)" type="text" value="rgba(255,255,255,1)">
-        </div>
-    </div>
-
-    <div class="setting-field half">
-        <div class="field-label hint--top" aria-label="Set text size">Text size</div>
-        <div class="field-input">
-            <input type="number" id="text-font-size-preview" name="fontSize" placeholder="15" value="22">
-        </div>
-    </div>
-
-    <div class="setting-field half">
-        <div class="field-label"><?php echo __('Font family:', 'product-designer'); ?></div>
-        <div class="field-input">
-            <?php
-            $product_designer_fonts = product_designer_fonts();
-            ?>
-            <select class=" font-family" aria-label="<?php echo __('Font family', 'product-designer'); ?>"
-                    id="text-font-family-preview">
-                <?php
-                foreach($product_designer_fonts as $font){
-                    $name = $font['name'];
-                    $name_id = str_replace(' ','+',$name);
-                    ?>
-                    <option style="font-family:<?php echo $name_id; ?>" value="<?php echo $name; ?>"><?php echo $name; ?></option>
-                    <?php
-                }
-                ?>
-            </select>
-        </div>
-    </div>
-
-
-
     <div class="add-text"><?php echo __('Add Text', "product-designer"); ?></div>
-
 
     <?php
 }
@@ -425,7 +385,7 @@ function product_designer_panel_shapes($atts){
 
     ?>
     <div class="shapes item accordions pd-guide-4" title="<?php echo __('Shapes', "product-designer"); ?>">
-        <div class="pd-toggle-icon"><?php echo sprintf(__('%s Shapes','product-designer'), $shapes); ?></div>
+        <div class="icon"><?php echo sprintf(__('%s Shapes','product-designer'), $shapes); ?></div>
         <div class="child">
 
             <?php
@@ -550,7 +510,7 @@ function product_designer_panel_images($atts){
 
     ?>
     <div class="shapes item accordions " title="<?php echo __('Images', "product-designer"); ?>">
-        <div class="pd-toggle-icon"><?php echo sprintf(__('%s Images','product-designer'), $file_image); ?></div>
+        <div class="icon"><?php echo sprintf(__('%s Images','product-designer'), $file_image); ?></div>
         <div class="child">
 
             <?php
@@ -584,7 +544,7 @@ function product_designer_panel_images_content_unsplash($atts){
 
     ?>
     <div class="item accordions" title="<?php echo __('Images', "product-designer"); ?>">
-        <div class="pd-toggle-icon"><?php echo sprintf(__('%s Unsplash ','product-designer'), $icon_unsplash); ?></div>
+        <div class="icon"><?php echo sprintf(__('%s Unsplash ','product-designer'), $icon_unsplash); ?></div>
         <div class="child">
 
             Hello
@@ -778,8 +738,7 @@ function product_designer_tools_edit_text($atts){
                 <div class="setting-field half">
                     <div class="field-label"><?php echo __('Text color:', 'product-designer'); ?></div>
                     <div class="field-input">
-                        <input data-jscolor="" class="tool-button" id="text-font-color" aria-label="Text Color"
-                               placeholder="rgba(255,255,255,1)" type="text" value="rgba(255,255,255,1)">
+                        <input data-jscolor="" class="tool-button" id="font-color" aria-label="Text Color" placeholder="rgba(255,255,255,1)" type="text" value="rgba(255,255,255,1)">
                     </div>
                 </div>
 
@@ -1175,7 +1134,7 @@ function product_designer_scripts($atts){
     $product_designer_editor['preview_file_format']  = isset($canvas['preview']['file_format']) ? $canvas['preview']['file_format'] : 'png';
 
 
-    $side_data_ids = !empty($side_data) ? array_keys($side_data) : array();
+    $side_data_ids = array_keys($side_data);
     $current_side_id = isset($side_data_ids[0]) ? $side_data_ids[0] : '';
 
     $product_designer_editor['pd_template_id']  = $pd_template_id;
@@ -1207,11 +1166,6 @@ function product_designer_scripts($atts){
     $product_designer_editor['cart_attach_ids']  = array();
 
 
-
-    if(empty($current_side_id)){
-
-        echo __('Product designer template is missing.', 'product-designer');
-    }
     ?>
 
     <script>

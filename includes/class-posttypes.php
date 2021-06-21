@@ -31,7 +31,7 @@ class class_product_designer_posttypes  {
 	public function posttype_pd_template(){
 
 		$labels = array(
-			'name' => _x('Templates', 'product-designer'),
+			'name' => _x('Product Designer', 'product-designer'),
 			'singular_name' => _x('Template', 'product-designer'),
 			'add_new' => _x('Add Template', 'product-designer'),
 			'add_new_item' => __('Add Template', 'product-designer'),
@@ -54,9 +54,11 @@ class class_product_designer_posttypes  {
 			'rewrite' => true,
 			'capability_type' => 'post',
 			'hierarchical' => false,
-			'menu_position' => null,
+            'show_in_nav_menus' => true,
+
+            'menu_position' => null,
 			'supports' => array('title'),
-			//'show_in_menu' 	=> 'product_designer',
+			//'show_in_menu' 	=> 'admin.php?page=product_designer',
 
 		);
 
@@ -97,7 +99,9 @@ class class_product_designer_posttypes  {
             'menu_position' => null,
             'supports' => array('title'),
             //'show_in_menu' 	=> 'pd_template',
+            //'show_in_menu' 	=> 'product_designer',
             'show_in_menu' 	=> 'edit.php?post_type=pd_template',
+
 
 
         );
@@ -143,7 +147,7 @@ class class_product_designer_posttypes  {
                 'hierarchical' => false,
                 'menu_position' => null,
                 'supports' => array('title'),
-                //'show_in_menu' 	=> 'product_designer',
+            'show_in_menu' 	=> 'edit.php?post_type=pd_template',
 
 
         );
@@ -176,7 +180,7 @@ class class_product_designer_posttypes  {
 								'update_item' => __( 'Update Clip Art Categories', 'product-designer' ),
 								'add_new_item' => __( 'Add Clip Art Categories', 'product-designer' ),
 								'new_item_name' => __( 'New Clip Art Categories Name', 'product-designer' ),
-								'menu_name' => __( 'Clip Art Categories' ),
+								'menu_name' => __( 'Clip Art Categories', 'product-designer' ),
 								
 						),
 						// Control the slugs used for this taxonomy
@@ -226,7 +230,7 @@ class class_product_designer_posttypes  {
             'hierarchical' => false,
             'menu_position' => null,
             'supports' => array('title'),
-            //'show_in_menu' 	=> 'product_designer',
+            'show_in_menu' 	=> 'edit.php?post_type=pd_template',
 
 
         );

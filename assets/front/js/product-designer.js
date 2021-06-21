@@ -2011,19 +2011,8 @@ $(document).on('click','.generate-side-output',function(event){
 
             $('.edit-text').addClass('active');
 
-            text = canvas.getActiveObject().getText();
-            fontsize = canvas.getActiveObject().fontSize;
-            fill = canvas.getActiveObject().fill;
-
-            console.log(canvas.getActiveObject());
-            console.log(fill);
-
-            $('.product-designer #text-content').val(text);
-            $('.product-designer #font-size').val(fontsize);
-            $('.product-designer #text-font-color').val(fill);
-
-
-
+            val = canvas.getActiveObject().getText();
+            $('.product-designer #text-content').val(val);
 
             }
 
@@ -2031,12 +2020,7 @@ $(document).on('click','.generate-side-output',function(event){
             $('.edit-curvedText').addClass('active');
 
             val = canvas.getActiveObject().getText();
-            fontsize = canvas.getActiveObject().fontSize;
-            fill = canvas.getActiveObject().fill;
-
             $('.product-designer #curvedText-content').val(val);
-            $('.product-designer #curvedText-font-size').val(fontsize);
-            $('.product-designer #curvedText-font-color').val(fill);
 
         }
 
@@ -2128,73 +2112,7 @@ $(document).on('click','.generate-side-output',function(event){
         product_designer_editor_save();
 
 
-
-
-
-    })
-
-
-    $(document).on('change','.product-designer #text-font-color-preview',function(){
-
-        val = $(this).val();
-        fontsize = $('#text-font-size-preview').val();
-        fontfamily = $('#text-font-family-preview').val();
-
-        //alert('Hello');
-        //canvas.getActiveObject().setColor(val);
-        //canvas.renderAll();
-        //console.log(val);
-
-        $('.input-text').css('color', val);
-        $('.input-text').css('font-family', fontfamily);
-        $('.input-text').css('font-size', fontsize);
-
-        //product_designer_editor_save();
-
-
-    })
-
-
-    $(document).on('keyup','.product-designer #text-font-size-preview',function(){
-
-        val = $(this).val();
-        fontfamily = $('#text-font-family-preview').val();
-        fontcolor = $('#text-font-color-preview').val();
-        //alert('Hello');
-        //canvas.getActiveObject().setColor(val);
-        //canvas.renderAll();
-        //console.log(val);
-
-        $('.input-text').css('font-size', val+'px');
-        $('.input-text').css('font-family', fontfamily);
-        $('.input-text').css('color', fontcolor);
-
-        //product_designer_editor_save();
-
-
-    })
-
-
-    $(document).on('change','.product-designer #text-font-family-preview',function(){
-
-        val = $(this).val();
-        fontcolor = $('#text-font-color-preview').val();
-        fontsize = $('#text-font-size-preview').val();
-
-        //alert('Hello');
-        //canvas.getActiveObject().setColor(val);
-        //canvas.renderAll();
-        //console.log(val);
-
-        $('.input-text').css('font-family', val);
-        $('.input-text').css('font-size', fontsize+'px');
-        $('.input-text').css('color', fontcolor);
-        //product_designer_editor_save();
-
-
-    })
-
-
+		})
 
 
         $(document).on('change','.product-designer #stroke-size',function(){
@@ -2222,30 +2140,20 @@ $(document).on('click','.generate-side-output',function(event){
 
 
 
-        $(document).on('change','.product-designer #text-font-color',function(){
+        $(document).on('change','.product-designer #font-bg-color',function(){
 
             val = $(this).val();
 
             //alert('Hello');
-            //canvas.getActiveObject().set('color',val);
-            canvas.getActiveObject().setColor(val);
-
+            canvas.getActiveObject().set('backgroundColor',val);
             canvas.renderAll();
             //console.log(val);
             product_designer_editor_save();
         })
 
 
-    $(document).on('change','.product-designer #font-bg-color',function(){
 
-        val = $(this).val();
 
-        //alert('Hello');
-        canvas.getActiveObject().set('backgroundColor',val);
-        canvas.renderAll();
-        //console.log(val);
-        product_designer_editor_save();
-    })
 
 
 
@@ -2272,9 +2180,6 @@ $(document).on('click','.generate-side-output',function(event){
 		//console.log(fill_color);
         product_designer_editor_save();
 		})
-
-
-
 
 
 	$(document).on('change','.product-designer #font-opacity',function(){
@@ -2488,21 +2393,6 @@ $(document).on('click','.generate-side-output',function(event){
             canvas.centerObject(text);
             text.setCoords();
             canvas.setActiveObject(text);
-
-
-            color = $('#text-font-color-preview').val();
-            size = $('#text-font-size-preview').val();
-            fontfamily = $('#text-font-family-preview').val();
-
-
-            canvas.getActiveObject().setFontFamily(fontfamily);
-            //canvas.getActiveObject().set({fill: color});
-            canvas.getActiveObject().setColor(color);
-
-            canvas.getActiveObject().set("fontSize", size);
-            canvas.getActiveObject().setColor(color);
-
-
 
             canvas.renderAll();
 
@@ -3025,26 +2915,6 @@ $(document).on('click','.generate-side-output',function(event){
         canvas.centerObject(text);
         text.setCoords();
         canvas.setActiveObject(text);
-
-
-
-        color = $('#text-font-color-preview').val();
-        size = $('#text-font-size-preview').val();
-        fontfamily = $('#text-font-family-preview').val();
-
-
-        canvas.getActiveObject().setFontFamily(fontfamily);
-        canvas.getActiveObject().set({fill: color});
-        //canvas.getActiveObject().setColor(color);
-
-        //canvas.getActiveObject().set("fontSize", size);
-        canvas.getActiveObject().setFontSize(size);
-
-        canvas.getActiveObject().setColor(color);
-
-
-
-
         canvas.renderAll();
 		//console.log($.now());
         product_designer_get_object_list();
@@ -3219,7 +3089,7 @@ $(document).on('click','.clipart-list img',function(){
 
                     template_id = data['template_id'];
                     side_id = data['side_id'];
-                    mgs = data['mgs'];
+                    //mgs = data['mgs'];
 
                     html = '<li class="template" side_id="'+side_id+'" t_id="'+template_id+'">'+template_id+'</li>';
 

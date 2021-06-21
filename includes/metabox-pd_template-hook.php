@@ -415,13 +415,13 @@ add_action('product_designer_template_metabox_save','product_designer_template_m
 
 function product_designer_template_metabox_save($job_id){
 
-    $canvas = isset($_POST['canvas']) ? stripslashes_deep($_POST['canvas']) : '';
+    $canvas = isset($_POST['canvas']) ? product_designer_recursive_sanitize_arr($_POST['canvas']) : '';
     update_post_meta($job_id, 'canvas', $canvas);
 
-    $side_data= isset($_POST['side_data']) ? stripslashes_deep($_POST['side_data']) : '';
+    $side_data= isset($_POST['side_data']) ? product_designer_recursive_sanitize_arr($_POST['side_data']) : '';
     update_post_meta($job_id, 'side_data', $side_data);
 
-    $templates = isset($_POST['templates']) ? stripslashes_deep($_POST['templates']) : '';
+    $templates = isset($_POST['templates']) ? product_designer_recursive_sanitize_arr($_POST['templates']) : '';
     update_post_meta($job_id, 'templates', $templates);
 
 }

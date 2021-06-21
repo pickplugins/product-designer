@@ -145,7 +145,7 @@ class product_designer_meta_boxes{
         if (!isset($_POST['clipart_nonce_check_value']))
             return $post_id;
 
-        $nonce = $_POST['clipart_nonce_check_value'];
+        $nonce = sanitize_text_field($_POST['clipart_nonce_check_value']);
 
         // Verify that the nonce is valid.
         if (!wp_verify_nonce($nonce, 'clipart_nonce_check'))
@@ -171,7 +171,7 @@ class product_designer_meta_boxes{
         /* OK, its safe for us to save the data now. */
 
         // Sanitize the user input.
-        //$grid_item_layout = stripslashes_deep($_POST['grid_item_layout']);
+        //$grid_item_layout = product_designer_recursive_sanitize_arr($_POST['grid_item_layout']);
 
 
         // Update the meta field.
@@ -317,7 +317,7 @@ class product_designer_meta_boxes{
         if ( ! isset( $_POST['meta_boxes_clipart_input_nonce'] ) )
             return $post_id;
 
-        $nonce = $_POST['meta_boxes_clipart_input_nonce'];
+        $nonce = sanitize_text_field($_POST['meta_boxes_clipart_input_nonce']);
 
         // Verify that the nonce is valid.
         if ( ! wp_verify_nonce( $nonce, 'meta_boxes_clipart_input' ) )
@@ -471,7 +471,7 @@ class product_designer_meta_boxes{
         if ( ! isset( $_POST['meta_boxes_shape_input_nonce'] ) )
             return $post_id;
 
-        $nonce = $_POST['meta_boxes_shape_input_nonce'];
+        $nonce = sanitize_text_field($_POST['meta_boxes_shape_input_nonce']);
 
         // Verify that the nonce is valid.
         if ( ! wp_verify_nonce( $nonce, 'meta_boxes_shape_input' ) )

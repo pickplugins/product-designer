@@ -5,11 +5,14 @@ class pickplugins_request_reviews{
 
     public $option_name = '';
     public $review_url = '';
+    public $plugin_name = '';
+
 
     public function __construct($args){
 
-        $this->option_name = isset($args) ? $args['option_name'] : '';
-        $this->review_url = isset($args) ? $args['review_url'] : '';
+        $this->option_name = isset($args['option_name']) ? $args['option_name'] : '';
+        $this->review_url = isset($args['review_url']) ? $args['review_url'] : '';
+        $this->plugin_name = isset($args['plugin_name']) ? $args['plugin_name'] : '';
 
         add_action('admin_notices', array( $this, 'request_reviews' ));
         add_action('admin_notices', array( $this, 'request_reviews_action' ));
@@ -33,6 +36,9 @@ class pickplugins_request_reviews{
 
         //echo '<pre>'.var_export($option, true).'</pre>';
 
+
+        //delete_option($this->option_name);
+
         if(!empty($review_status)){
             if($review_status == 'done'){ return;}
             if($review_status == 'remind_later' && (strtotime($today_date) < strtotime($remind_date)) ){ return;}
@@ -52,10 +58,14 @@ class pickplugins_request_reviews{
 
         if($request_reviews != 'done'):
             ?>
-            <div class="update-nag">
+            <div class="notice notice-info">
+                <p>
+
+
                 <?php
-                echo sprintf(__('&#128525; We hope you are enjoying <strong>Product Designer</strong> plugin, please help us by providing your feedback <a target="_blank" href="%s">click here</a> to submit us five star review. <a href="%s">Remind me later</a> | <a href="%s">Mark as done</a> ', 'post-grid-pro'), $this->review_url, $remind_later, $mark_as_done)
+                echo sprintf(__('&#128525; We hope you are enjoying <strong>%s</strong> plugin, please help us by providing your feedback <a target="_blank" href="%s">click here</a> to submit us five star review. <a href="%s">Remind me later</a> | <a href="%s">Mark as done</a> ', 'post-grid-pro'), $this->plugin_name, $this->review_url, $remind_later, $mark_as_done);
                 ?>
+                </p>
             </div>
         <?php
         endif;
@@ -83,7 +93,7 @@ class pickplugins_request_reviews{
                 $option['remind_date'] = date('Y-m-d H:i:s', strtotime('+30 days'));
 
                 ?>
-                <div class="update-nag is-dismissible"><?php echo __('We will remind you later.','product-designer'); ?></div>
+                <div class="notice notice-info is-dismissible"><p><?php echo __('We will remind you later.','product-designer'); ?></p></div>
                 <?php
                 update_option($this->option_name, $option);
 
@@ -91,7 +101,7 @@ class pickplugins_request_reviews{
 
                 $option['review_status'] = 'done';
                 ?>
-                <div class="update-nag notice is-dismissible"><?php echo __('Thanks for your time and feedback.','product-designer'); ?></div>
+                <div class="notice  notice-success is-dismissible"><p><?php echo __('Thanks for your time and feedback.','product-designer'); ?></p></div>
                 <?php
 
                 update_option($this->option_name, $option);
