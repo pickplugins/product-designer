@@ -298,7 +298,7 @@ class class_product_designer_shortcodes  {
         ob_start();
 
         ?>
-        <div class="<?php echo $editor_class; ?>">
+        <div data-cp-position="<?php echo $menu_position; ?>" class="<?php echo $editor_class; ?>">
             <?php
             do_action('product_designer_editor', $atts);
             ?>
