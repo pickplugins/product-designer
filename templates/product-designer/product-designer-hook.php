@@ -360,7 +360,7 @@ add_action('product_designer_text_type_content_text', 'product_designer_text_typ
 function product_designer_text_type_content_text(){
 
     ?>
-    <textarea class="input-text asset-text"></textarea>
+    <textarea placeholder="<?php echo __('Text here...', "product-designer"); ?>" class="input-text asset-text"></textarea>
     <div class="add-text"><?php echo __('Add Text', "product-designer"); ?></div>
 
     <?php
@@ -1430,13 +1430,14 @@ function product_designer_editor_style($atts){
     $section_bg_color = isset($settings['section_bg_color']) ? $settings['section_bg_color'] : '';
     $section_title_bg_color = isset($settings['section_title_bg_color']) ? $settings['section_title_bg_color'] : '';
 
-    var_dump($editor_bg_color);
+    //var_dump($editor_bg_color);
 
     ?>
     <style type="text/css">
 
-        .product-designer .menu{
+        .product-designer .menu, .editor-tabs .editor-tab-navs .nav.active{
             background: <?php echo $editor_bg_color; ?> !important;
+
 
         }
 
@@ -1444,7 +1445,7 @@ function product_designer_editor_style($atts){
             background: <?php echo $section_bg_color; ?> !important;
 
         }
-        .product-designer .panel-section-title{
+        .product-designer .panel-section-title, .editor-tabs .editor-tab-navs .nav{
             background: <?php echo $section_title_bg_color; ?> !important;
 
         }

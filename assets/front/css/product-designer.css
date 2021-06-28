@@ -49,7 +49,7 @@
   margin: 0;
   float: left;
   color: #fff;
-  border-right: 1px solid #46617b;
+  border-right: 1px solid #0000004d;
   text-align: center;
   cursor: pointer;
   font-size: 14px;
@@ -691,8 +691,10 @@ display:none;
 .product-designer .pd-panel-section{
   margin: 20px 0;
   clear: both;
-  border: 1px solid #4f647b;
+  /*border: 1px solid #4f647b;*/
   background: #3c526b;
+  overflow: hidden;
+  border-radius: 3px;
 }
 
 .product-designer .pd-panel-section:hover{
@@ -751,7 +753,7 @@ display:none;
   font-size: 13px;
   color: #ffffff;
   font-weight: 500;
-  padding: 10px;
+  padding: 15px;
   text-transform: uppercase;
 }
 
@@ -1199,15 +1201,15 @@ display:none;
 }
 
 .product-designer .shortcut{
-  margin: 3px 0;
+  margin: 5px 0;
 }
 .product-designer .shortcut kbd {
-  background: #506f90;
+  background: #00000080;
   padding: 3px 10px;
   display: inline-block;
   border-radius: 3px;
   font-size: 12px;
-  border: 1px solid #314861;
+  /*border: 1px solid #314861;*/
 }
 
 
