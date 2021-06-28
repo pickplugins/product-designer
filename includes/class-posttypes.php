@@ -13,6 +13,7 @@ class class_product_designer_posttypes  {
 	
     public function __construct(){
 
+        add_filter( 'display_post_states', array( $this, '_post_states' ), 10, 2 );
 
 	    add_action('init', array( $this, 'posttype_pd_template' ));
         //add_action('init', array( $this, 'posttype_pd_pre_template' ));
@@ -27,6 +28,22 @@ class class_product_designer_posttypes  {
 		//add_action('init', array( $this, 'posttype_pd_order' ), 100);
 		
     }
+
+    public function _post_states( $post_states, $post ){
+
+        if($post->post_type != 'product') return $post_states;
+
+
+        $is_customizable = product_designer_is_customizable($post->ID );
+
+        if (   $is_customizable ) {
+
+            $post_states['pd_is_customizable'] = __( '<span title="Customizable Product" class="dashicons dashicons-admin-appearance"></span>', 'wishlist' );
+        }
+
+        return $post_states;
+    }
+
 
 	public function posttype_pd_template(){
 

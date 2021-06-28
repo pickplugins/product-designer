@@ -13,6 +13,12 @@ $tabs[] = array(
     'active' => ($current_tab == 'general') ? true : false,
 );
 
+$tabs[] = array(
+    'id' => 'editor',
+    'title' => sprintf(__('%s Editor','product-designer'),'<i class="fas fa-gamepad"></i>'),
+    'priority' => 5,
+    'active' => ($current_tab == 'editor') ? true : false,
+);
 
 $tabs[] = array(
     'id' => 'tour_guide',

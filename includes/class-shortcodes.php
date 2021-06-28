@@ -51,6 +51,9 @@ class class_product_designer_shortcodes  {
         $clipart_width = isset($product_designer_settings['clipart_width']) ? $product_designer_settings['clipart_width'] : '';
         $clipart_bg_color = isset($product_designer_settings['clipart_bg_color']) ? $product_designer_settings['clipart_bg_color'] : '';
         $hide_sections = isset($product_designer_settings['hide_sections']) ? $product_designer_settings['hide_sections'] : array();
+        $editor_bg_color = isset($product_designer_settings['editor_bg_color']) ? $product_designer_settings['editor_bg_color'] : '';
+        $section_bg_color = isset($product_designer_settings['section_bg_color']) ? $product_designer_settings['section_bg_color'] : '';
+        $section_title_bg_color = isset($product_designer_settings['section_title_bg_color']) ? $product_designer_settings['section_title_bg_color'] : '';
 
         $allow_upload_clipart = isset($product_designer_settings['allow_upload_clipart']) ? $product_designer_settings['allow_upload_clipart'] : array();
         $allow_upload_shape = isset($product_designer_settings['allow_upload_shape']) ? $product_designer_settings['allow_upload_shape'] : array();
@@ -74,6 +77,9 @@ class class_product_designer_shortcodes  {
         $atts['settings']['clipart_width'] = $clipart_width;
         $atts['settings']['clipart_bg_color'] = $clipart_bg_color;
         $atts['settings']['hide_sections'] = $hide_sections;
+        $atts['settings']['editor_bg_color'] = $editor_bg_color;
+        $atts['settings']['section_bg_color'] = $section_bg_color;
+        $atts['settings']['section_title_bg_color'] = $section_title_bg_color;
 
         $atts['settings']['allow_upload_clipart'] = $allow_upload_clipart;
         $atts['settings']['allow_upload_shape'] = $allow_upload_shape;
@@ -196,6 +202,7 @@ class class_product_designer_shortcodes  {
             $icon_cart = '<i class="fas fa-shopping-cart"></i>';
             $icon_spinner = '<i class="fas fa-spinner fa-spin"></i>';
             $icon_unsplash = '<i class="fab fa-unsplash"></i>';
+            $icon_check_circle = '<i class="fas fa-check-circle"></i>';
 
 
 
@@ -238,6 +245,7 @@ class class_product_designer_shortcodes  {
             $icon_cart = '<i class="fa fa-shopping-cart" aria-hidden="true"></i>';
             $icon_spinner = '<i class="fa fa-spinner fa-spin"></i>';
             $icon_unsplash = '';
+            $icon_check_circle = '<i class="fa fa-check-circle"></i>';
 
 
             wp_enqueue_style('font-awesome-4');
@@ -279,6 +287,7 @@ class class_product_designer_shortcodes  {
             'keyboard' => $icon_keyboard,
             'spinner' => $icon_spinner,
             'unsplash' => $icon_unsplash,
+            'check_circle' => $icon_check_circle,
 
 
         );
@@ -298,7 +307,7 @@ class class_product_designer_shortcodes  {
         ob_start();
 
         ?>
-        <div data-cp-position="<?php echo $menu_position; ?>" class="<?php echo $editor_class; ?>">
+        <div class="<?php echo $editor_class; ?>">
             <?php
             do_action('product_designer_editor', $atts);
             ?>

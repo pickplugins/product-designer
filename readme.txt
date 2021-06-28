@@ -4,7 +4,7 @@
 	Tags: product designer, product customizer, custom product, woocommerce product designer
 	Requires at least: 3.8
 	Tested up to: 5.7
-	Stable tag: 1.0.28
+	Stable tag: 1.0.29
 	License: GPLv2 or later
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -122,6 +122,14 @@ Before starting you need to add some clip art via custom post "Clip Art" with th
 
 
 == Changelog ==
+
+	= 1.0.30 =
+    * 2021-06-28 - update - post types public to private
+    * 2021-06-28 - add - display "customizable product" mark on product list page
+    * 2021-06-28 - add - hide designer editor sections
+
+	= 1.0.29 =
+    * 2021-06-27 - fix - color picker visibility issue fixed.
 
 	= 1.0.28 =
     * 2021-06-21 - add - load designer on product page.

@@ -142,7 +142,7 @@ function product_designer_settings_content_general(){
             'type'		=> 'colorpicker',
             'value'		=> $customize_button_bg_color,
             'default'		=> '',
-            'placeholder'		=> 'Customize',
+            'placeholder'		=> '',
 
         );
 
@@ -159,6 +159,130 @@ function product_designer_settings_content_general(){
 
 
 }
+
+
+
+
+add_action('product_designer_settings_content_editor', 'product_designer_settings_content_editor');
+
+if(!function_exists('product_designer_settings_content_editor')) {
+    function product_designer_settings_content_editor($tab){
+
+        $settings_tabs_field = new settings_tabs_field();
+        $product_designer_settings = get_option('product_designer_settings');
+
+        $hide_sections = isset($product_designer_settings['hide_sections']) ? $product_designer_settings['hide_sections'] : array();
+        $editor_bg_color = isset($product_designer_settings['editor_bg_color']) ? $product_designer_settings['editor_bg_color'] : '#314861';
+        $section_bg_color = isset($product_designer_settings['section_bg_color']) ? $product_designer_settings['section_bg_color'] : '#3c526b';
+        $section_hover_bg_color = isset($product_designer_settings['section_hover_bg_color']) ? $product_designer_settings['section_hover_bg_color'] : '#314861';
+
+        $section_title_bg_color = isset($product_designer_settings['section_title_bg_color']) ? $product_designer_settings['section_title_bg_color'] : '#3a5673';
+
+
+
+        $sections = array('editor_action'=>__('Editor action','product-designer'), 'layers'=>__('Layers','product-designer'), 'keyboard_shortcuts'=>__('Keyboard shortcuts','product-designer'), 'product_sides'=>__('Product sides','product-designer'), 'clipart_assets'=>__('Clipart assets','product-designer'),'edit_image'=>__('Image actions','product-designer'), 'clipart'=>__('Clipart','product-designer'),   'text'=>__('Text','product-designer'), 'edit_text'=>__('Edit text','product-designer'),  );
+
+        $sections = apply_filters('product_designer_editor_sections', $sections);
+
+
+        ?>
+        <div class="section">
+            <div class="section-title"><?php echo __('Editor setup', 'product-designer'); ?></div>
+            <p class="description section-description"><?php echo __('Setup editor options', 'product-designer'); ?></p>
+
+            <?php
+
+            $args = array(
+                'id'		=> 'hide_sections',
+                'parent'		=> 'product_designer_settings',
+                'title'		=> __('Hide sections','product-designer'),
+                'details'	=> __('Choose section to hide','product-designer'),
+                'type'		=> 'checkbox',
+                'value'		=> $hide_sections,
+                'style'		=> array('inline' => false),
+
+                'default'		=> array(),
+                'args'		=> $sections,
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+
+
+
+            $args = array(
+                'id'		=> 'editor_bg_color',
+                'parent'		=> 'product_designer_settings',
+                'title'		=> __('Background color','product-designer'),
+                'details'	=> __('Custom background color for customize button','product-designer'),
+                'type'		=> 'colorpicker',
+                'value'		=> $editor_bg_color,
+                'default'		=> '',
+                'placeholder'		=> '',
+
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+            $args = array(
+                'id'		=> 'section_bg_color',
+                'parent'		=> 'product_designer_settings',
+                'title'		=> __('Section background color','product-designer'),
+                'details'	=> __('Set section background color','product-designer'),
+                'type'		=> 'colorpicker',
+                'value'		=> $section_bg_color,
+                'default'		=> '',
+                'placeholder'		=> '',
+
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+
+            $args = array(
+                'id'		=> 'section_hover_bg_color',
+                'parent'		=> 'product_designer_settings',
+                'title'		=> __('Section hover background color','product-designer'),
+                'details'	=> __('Set section hover background color','product-designer'),
+                'type'		=> 'colorpicker',
+                'value'		=> $section_hover_bg_color,
+                'default'		=> '',
+                'placeholder'		=> '',
+
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+            $args = array(
+                'id'		=> 'section_title_bg_color',
+                'parent'		=> 'product_designer_settings',
+                'title'		=> __('Section title background color','product-designer'),
+                'details'	=> __('Set section title background color','product-designer'),
+                'type'		=> 'colorpicker',
+                'value'		=> $section_title_bg_color,
+                'default'		=> '',
+                'placeholder'		=> '',
+
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+
+            ?>
+
+
+        </div>
+        <?php
+
+    }
+}
+
+
+
+
+
+
+
 
 add_action('product_designer_settings_content_tour_guide', 'product_designer_settings_content_tour_guide');
 

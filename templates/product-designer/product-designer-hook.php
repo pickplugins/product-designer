@@ -90,6 +90,7 @@ function product_designer_side_list($atts){
     $side_data = isset($atts['side_data']) ? $atts['side_data'] : '';
     $icons = isset($atts['icons']) ? $atts['icons'] : '';
     $cube = isset($icons['cube']) ? $icons['cube'] : '';
+    $check_circle = isset($icons['check_circle']) ? $icons['check_circle'] : '';
 
     $settings = isset($atts['settings']) ? $atts['settings'] : array();
     $hide_sections = isset($settings['hide_sections']) ? $settings['hide_sections'] : array();
@@ -98,9 +99,9 @@ function product_designer_side_list($atts){
 
 
    ?>
-    <div class="side item accordions  pd-guide-1" title="Sides">
-        <div class="icon"><?php echo sprintf(__('%s Sides','product-designer'), $cube); ?></div>
-        <div class="child">
+    <div class="side  pd-panel-section accordions  pd-guide-1" title="Sides">
+        <div class="panel-section-title "><?php echo sprintf(__('%s Sides','product-designer'), $cube); ?></div>
+        <div class="pd-panel-section-inner">
             <ul class="side-list">
                 <?php
 
@@ -115,6 +116,7 @@ function product_designer_side_list($atts){
                             <li side_id="<?php echo $id; ?>" data-side_name="<?php echo $name; ?>" >
                                 <img src="<?php echo $icon; ?>" />
                                 <span class="name"><?php echo $name; ?></span>
+
                             </li>
                             <?php
                         }
@@ -163,9 +165,9 @@ function product_designer_panel_clipart($atts){
     $img_types = apply_filters('product_designer_image_types', $img_types, $atts);
 
     ?>
-    <div class="clipart accordions item pd-guide-2" title="<?php echo __('Clip Art', "product-designer"); ?>">
-        <div class="icon"><?php echo sprintf(__('%s Clipart & Assets','product-designer'), $file_image); ?></div>
-        <div class="child">
+    <div class="clipart accordions pd-panel-section pd-guide-2" title="<?php echo __('Clip Art', "product-designer"); ?>">
+        <div class="panel-section-title"><?php echo sprintf(__('%s Clipart & Assets','product-designer'), $file_image); ?></div>
+        <div class="pd-panel-section-inner">
             <div class="tabs">
                 <ul class="navs">
                     <?php
@@ -318,9 +320,9 @@ function product_designer_panel_text($atts){
     $text_types = apply_filters('product_designer_text_types', $text_types, $atts);
 
     ?>
-    <div class="text item accordions pd-guide-3" title="<?php echo __('Text Art', 'product-designer'); ?>">
-        <div class="icon"><?php echo sprintf(__('%s Text & Quotes','product-designer'), $file_word); ?></div>
-        <div class="child">
+    <div class="text pd-panel-section accordions pd-guide-3" title="<?php echo __('Text Art', 'product-designer'); ?>">
+        <div class="panel-section-title"><?php echo sprintf(__('%s Text & Quotes','product-designer'), $file_word); ?></div>
+        <div class="pd-panel-section-inner">
             <div class="tabs">
                 <ul class="navs">
                     <?php
@@ -384,9 +386,9 @@ function product_designer_panel_shapes($atts){
 
 
     ?>
-    <div class="shapes item accordions pd-guide-4" title="<?php echo __('Shapes', "product-designer"); ?>">
-        <div class="icon"><?php echo sprintf(__('%s Shapes','product-designer'), $shapes); ?></div>
-        <div class="child">
+    <div class="shapes pd-panel-section accordions pd-guide-4" title="<?php echo __('Shapes', "product-designer"); ?>">
+        <div class="panel-section-title"><?php echo sprintf(__('%s Shapes','product-designer'), $shapes); ?></div>
+        <div class="pd-panel-section-inner">
 
             <?php
 
@@ -509,9 +511,9 @@ function product_designer_panel_images($atts){
 
 
     ?>
-    <div class="shapes item accordions " title="<?php echo __('Images', "product-designer"); ?>">
-        <div class="icon"><?php echo sprintf(__('%s Images','product-designer'), $file_image); ?></div>
-        <div class="child">
+    <div class="shapes pd-panel-section accordions " title="<?php echo __('Images', "product-designer"); ?>">
+        <div class="panel-section-title"><?php echo sprintf(__('%s Images','product-designer'), $file_image); ?></div>
+        <div class="pd-panel-section-inner">
 
             <?php
 
@@ -543,9 +545,9 @@ function product_designer_panel_images_content_unsplash($atts){
 
 
     ?>
-    <div class="item accordions" title="<?php echo __('Images', "product-designer"); ?>">
-        <div class="icon"><?php echo sprintf(__('%s Unsplash ','product-designer'), $icon_unsplash); ?></div>
-        <div class="child">
+    <div class="pd-panel-section accordions" title="<?php echo __('Images', "product-designer"); ?>">
+        <div class="panel-section-title"><?php echo sprintf(__('%s Unsplash ','product-designer'), $icon_unsplash); ?></div>
+        <div class="pd-panel-section-inner">
 
             Hello
 
@@ -619,9 +621,9 @@ function product_designer_tools_editor_actions($atts){
     //var_dump($enable_preview);
 
     ?>
-    <div class="editor-actions section-editor-action toolbar-section pd-guide-5">
-        <div class="toolbar-title"><?php echo __('Editor Actions', 'product-designer'); ?></div>
-        <div class="toolbar-section-inner">
+    <div class="accordions section-editor-action pd-panel-section pd-guide-5">
+        <div class="panel-section-title"><?php echo __('Editor Actions', 'product-designer'); ?></div>
+        <div class="pd-panel-section-inner">
             <span class="pack-button hint--top" id="editor-show-grid" aria-label="<?php echo __('Show grid', 'product-designer'); ?>"><?php echo $icon_grid; ?></span>
             <span class="pack-button hint--top" id="editor-clear" aria-label="<?php echo __('Clear All', 'product-designer'); ?>"><?php echo $icon_eraser; ?></span>
             <span class="pack-button hint--top" id="editor-delete-item" aria-label="<?php echo __('Delete', 'product-designer'); ?>"><?php echo $icon_trash; ?></span>
@@ -675,9 +677,9 @@ function product_designer_tools_object_list($atts){
 
 
     ?>
-    <div class="object-list toolbar-section pd-guide-8">
-        <div class="toolbar-title"><?php echo sprintf(__('%s Layers','product-designer'), $icon_layers); ?></div>
-        <div class="toolbar-section-inner">
+    <div class="object-list accordions pd-panel-section pd-guide-8">
+        <div class="panel-section-title"><?php echo sprintf(__('%s Layers','product-designer'), $icon_layers); ?></div>
+        <div class="pd-panel-section-inner">
             <div class="layer-item layers-list ">
                 <?php echo __('No layers','product-designer'); ?>
             </div>
@@ -710,9 +712,9 @@ function product_designer_tools_edit_text($atts){
 
     ?>
 
-    <div class="edit-text toolbar-section section-edit-text">
-        <div class="toolbar-title"><?php echo __('Edit Text', 'product-designer'); ?></div>
-        <div class="toolbar-section-inner">
+    <div class="edit-text accordions pd-panel-section section-edit-text">
+        <div class="panel-section-title"><?php echo __('Edit Text', 'product-designer'); ?></div>
+        <div class="pd-panel-section-inner">
             <form id="edit-assets-text" action="#" method="get">
                 <div class="setting-field full">
                     <div class="field-label" aria-label="<?php echo __('Write text content', 'product-designer'); ?>"><?php echo __('Text Content', 'product-designer'); ?></div>
@@ -816,9 +818,9 @@ function product_designer_tools_edit_img($atts){
     if(in_array('edit_image', $hide_sections )) return;
 
     ?>
-    <div class="edit-img toolbar-section section-image-action">
-        <div class="toolbar-title"><?php echo __('Edit Images', 'product-designer'); ?></div>
-        <div class="toolbar-section-inner">
+    <div class="edit-img accordions pd-panel-section section-image-action">
+        <div class="panel-section-title"><?php echo __('Edit Images', 'product-designer'); ?></div>
+        <div class="pd-panel-section-inner">
             <div class="setting-field half">
                 <div class="field-label"><?php echo __('Opacity', 'product-designer'); ?></div>
                 <div class="field-input">
@@ -858,9 +860,9 @@ function product_designer_tools_edit_shape($atts){
 
 
     ?>
-    <div class="edit-shape toolbar-section">
-        <div class="toolbar-title"><?php echo __('Shapes Actions', 'product-designer'); ?></div>
-        <div class="toolbar-section-inner">
+    <div class="edit-shape accordions pd-panel-section">
+        <div class="panel-section-title"><?php echo __('Shapes Actions', 'product-designer'); ?></div>
+        <div class="pd-panel-section-inner">
             <div class="setting-field half">
                 <div class="field-label"><?php echo __('Opacity', 'product-designer'); ?></div>
                 <div class="field-input">
@@ -899,9 +901,9 @@ function product_designer_tools_product_info($atts){
 
     ?>
 
-    <div class="product-info toolbar-section pd-guide-9">
-        <div class="toolbar-title"><?php echo sprintf(__('%s Product info','product-designer'), $cart); ?></div>
-        <div class="toolbar-section-inner">
+    <div class="product-info accordions pd-panel-section pd-guide-9">
+        <div class="panel-section-title"><?php echo sprintf(__('%s Product info','product-designer'), $cart); ?></div>
+        <div class="pd-panel-section-inner">
             <form class="cart" enctype="multipart/form-data" method="post" action="#">
                 <input type="hidden" value="<?php echo $product_id; ?>" name="add-to-cart">
                 <input type="hidden" value="<?php echo $pd_template_id; ?>" name="pd_template_id">
@@ -986,9 +988,9 @@ function product_designer_tools_keyboard($atts){
 
 
     ?>
-    <div class="toolbar-section pd-guide-10">
-        <div class="toolbar-title"><?php echo sprintf(__('%s Keyboard Shortcut','product-designer'), $keyboard); ?></div>
-        <div class="toolbar-section-inner">
+    <div class="pd-panel-section accordions pd-guide-10">
+        <div class="panel-section-title"><?php echo sprintf(__('%s Keyboard Shortcut','product-designer'), $keyboard); ?></div>
+        <div class="pd-panel-section-inner">
 
             <div class="shortcut">
                 <?php echo sprintf(__('%s Delete selected item','product-designer'), '<kbd>Delete</kbd>'); ?>
@@ -1424,12 +1426,28 @@ function product_designer_editor_style($atts){
     $menu_position = isset($settings['menu_position']) ? $settings['menu_position'] : 'left';
     $clipart_width = isset($settings['clipart_width']) ? $settings['clipart_width'] : '';
     $clipart_bg_color = isset($settings['clipart_bg_color']) ? $settings['clipart_bg_color'] : '';
+    $editor_bg_color = isset($settings['editor_bg_color']) ? $settings['editor_bg_color'] : '';
+    $section_bg_color = isset($settings['section_bg_color']) ? $settings['section_bg_color'] : '';
+    $section_title_bg_color = isset($settings['section_title_bg_color']) ? $settings['section_title_bg_color'] : '';
 
-    //var_dump($settings);
+    var_dump($editor_bg_color);
 
     ?>
     <style type="text/css">
 
+        .product-designer .menu{
+            background: <?php echo $editor_bg_color; ?> !important;
+
+        }
+
+        .product-designer .pd-panel-section{
+            background: <?php echo $section_bg_color; ?> !important;
+
+        }
+        .product-designer .panel-section-title{
+            background: <?php echo $section_title_bg_color; ?> !important;
+
+        }
 
         .product-designer .clipart-list img{
             <?php if(!empty($clipart_width)): ?>

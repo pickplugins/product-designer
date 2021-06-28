@@ -21,7 +21,7 @@ function product_designer_variation_customize_link( $data, $product, $variation 
 
     $pd_template_id = get_post_meta($variation_id, 'pd_template_id', true);
 
-    //var_dump($product);
+    //var_dump($pd_template_id);
 
 
 
@@ -30,7 +30,7 @@ function product_designer_variation_customize_link( $data, $product, $variation 
     //http://localhost/wp/product-designer/?product_id=1346&variation_id=1369
 
     if(($pd_template_id != 'none')){
-        $data['price_html'] .= '<div class="product-designer-editor-link"><a rel="noindex nofollow" href="'.get_permalink($product_id).'?pd_enable=yes&variation_id='.$variation_id.'" class="4xcb"><i class="fa fa-crop" ></i> Customize</a></div>';
+        $data['price_html'] .= '<div class="product-designer-editor-link"><a rel="noindex nofollow" href="'.$product_designer_page_url.'?product_id='.$product_id.'&variation_id='.$variation_id.'" class="4xcb"><i class="fa fa-crop" ></i> Customize</a></div>';
 
     }
 
