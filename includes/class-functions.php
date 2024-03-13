@@ -1,9 +1,6 @@
 <?php
 
-/*
-* @Author 		ParaTheme
-* Copyright: 	2015 ParaTheme
-*/
+
 
 if ( ! defined('ABSPATH')) exit;  // if direct access 	
 
@@ -19,6 +16,29 @@ class class_product_designer_functions{
 		
     }
 
+    public function is_pro_active(){
+
+        if ( is_plugin_active( 'product-designer-pro/product-designer-pro.php' ) ) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function is_license_active(){
+
+        if ( is_plugin_active( 'product-designer-pro/product-designer-pro.php' ) ) {
+            $product_designer_settings = get_option('product_designer_settings');
+            $license_status = isset($product_designer_settings['license_status']) ? $product_designer_settings['license_status'] : '';
+
+
+            if($license_status =='active') return true;
+            else return false;
+        }else{
+            return false;
+        }
+
+    }
 
 
     public function tour_guide_steps(){

@@ -41,8 +41,6 @@ jQuery(document).ready(function($){
         $('input[name="tab"], input.current_tab').val(id);
 
 
-		//console.log('Hello click');
-        //console.log(id);
 
         $(this).parent().parent().children('.tab-content').removeClass('active');
         $(this).parent().parent().children('.tab-content#'+id).addClass('active');
@@ -94,7 +92,6 @@ jQuery(document).ready(function($){
             src_url = attachment.url;
             src_filename = attachment.filename;
 
-            //console.log(attachment);
 
             $(this_).prev().val(attachmentId);
 
@@ -133,7 +130,6 @@ jQuery(document).ready(function($){
 
             attachmentId = attachment.id;
             src_url = attachment.url;
-            //console.log(attachment);
 
             $(this_).prev().val(src_url);
 
@@ -224,7 +220,6 @@ jQuery(document).ready(function($){
             //editor_enabled = $(this).attr('editor_enabled');
 
 
-            //console.log(typeof wp.editor);
 
             if(el_attr == 'no' && typeof wp.editor != 'undefined'){
                 wp.editor.initialize( el_id, {
@@ -254,7 +249,6 @@ jQuery(document).ready(function($){
         editor_enabled = $(this).attr('editor_enabled');
 
 
-        //console.log(typeof wp.editor);
 
         if(editor_enabled == 'no' && typeof wp.editor != 'undefined'){
             wp.editor.initialize( id, {

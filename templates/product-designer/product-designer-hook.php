@@ -53,7 +53,6 @@ function product_designer_panel_main_tabs($atts){
         <ul class="editor-tab-navs">
             <li class="nav tab-nav" data-id="0"><?php echo __('Editor','product-designer'); ?></li>
             <li class="nav tab-nav" data-id="1"><?php echo __('Assets','product-designer'); ?></li>
-            <li class="nav tab-nav" data-id="2"><?php echo __('Templates','product-designer'); ?></li>
         </ul>
 
         <div class="editor-tab-content data-id-0">
@@ -66,11 +65,7 @@ function product_designer_panel_main_tabs($atts){
             do_action('product_designer_panel_tab_content_assets', $atts);
             ?>
         </div>
-        <div class="editor-tab-content data-id-2">
-            <?php
-            do_action('product_designer_panel_tab_content_templates', $atts);
-            ?>
-        </div>
+
 
     </div>
     <?php
@@ -83,7 +78,7 @@ function product_designer_panel_main_tabs($atts){
 
 
 
-add_action('product_designer_panel_tab_content_assets', 'product_designer_side_list', 15);
+add_action('product_designer_panel_tab_content_assets', 'product_designer_side_list', 5);
 
 function product_designer_side_list($atts){
 
@@ -142,7 +137,10 @@ function product_designer_side_list($atts){
 }
 
 
-add_action('product_designer_panel_tab_content_assets', 'product_designer_panel_clipart', 15);
+
+
+
+add_action('product_designer_panel_tab_content_assets', 'product_designer_panel_clipart', 10);
 
 function product_designer_panel_clipart($atts){
 
@@ -166,7 +164,7 @@ function product_designer_panel_clipart($atts){
 
     ?>
     <div class="clipart accordions pd-panel-section pd-guide-2" title="<?php echo __('Clip Art', "product-designer"); ?>">
-        <div class="panel-section-title"><?php echo sprintf(__('%s Clipart & Assets','product-designer'), $file_image); ?></div>
+        <div class="panel-section-title"><?php echo sprintf(__('%s Clipart & Images','product-designer'), $file_image); ?></div>
         <div class="pd-panel-section-inner">
             <div class="tabs">
                 <ul class="navs">
@@ -201,7 +199,7 @@ function product_designer_panel_clipart($atts){
 
 
 
-add_action('product_designer_image_type_content_clipart', 'product_designer_image_type_content_clipart', 15);
+add_action('product_designer_image_type_content_clipart', 'product_designer_image_type_content_clipart', 20);
 
 function product_designer_image_type_content_clipart($atts){
 
@@ -294,7 +292,7 @@ function product_designer_image_type_content_clipart($atts){
 
 
 
-add_action('product_designer_panel_tab_content_assets', 'product_designer_panel_text', 15);
+add_action('product_designer_panel_tab_content_assets', 'product_designer_panel_text', 25);
 
 function product_designer_panel_text($atts){
 
@@ -368,7 +366,7 @@ function product_designer_text_type_content_text(){
 
 
 
-add_action('product_designer_panel_tab_content_assets', 'product_designer_panel_shapes', 15);
+add_action('product_designer_panel_tab_content_assets', 'product_designer_panel_shapes', 30);
 
 function product_designer_panel_shapes($atts){
 
@@ -616,12 +614,14 @@ function product_designer_tools_editor_actions($atts){
     $icon_expand = isset($icons['expand']) ? $icons['expand'] : '';
     $icon_eye = isset($icons['eye']) ? $icons['eye'] : '';
     $icon_download = isset($icons['download']) ? $icons['download'] : '';
+    $icon_object_group = isset($icons['object_group']) ? $icons['object_group'] : '';
+    $icon_object_ungroup = isset($icons['object_ungroup']) ? $icons['object_ungroup'] : '';
 
 
     //var_dump($enable_preview);
 
     ?>
-    <div class="accordions section-editor-action pd-panel-section pd-guide-5">
+    <div class="section-editor-action pd-panel-section pd-guide-5">
         <div class="panel-section-title"><?php echo __('Editor Actions', 'product-designer'); ?></div>
         <div class="pd-panel-section-inner">
             <span class="pack-button hint--top" id="editor-show-grid" aria-label="<?php echo __('Show grid', 'product-designer'); ?>"><?php echo $icon_grid; ?></span>
@@ -629,6 +629,10 @@ function product_designer_tools_editor_actions($atts){
             <span class="pack-button hint--top" id="editor-delete-item" aria-label="<?php echo __('Delete', 'product-designer'); ?>"><?php echo $icon_trash; ?></span>
             <span class="pack-button hint--top" id="editor-clone-item" aria-label="<?php echo __('Clone', 'product-designer'); ?>"><?php echo $icon_clone; ?></span>
             <span class="pack-button hint--top" id="editor-DrawingMode" aria-label="<?php echo __('Drawing Mode', 'product-designer'); ?>"><?php echo $icon_pencil; ?></span>
+            <span class="pack-button hint--top" id="editor-object-group" aria-label="<?php echo __('Object group', 'product-designer'); ?>"><?php echo $icon_object_group; ?></span>
+            <span class="pack-button hint--top" id="editor-object-ungroup" aria-label="<?php echo __('Object ungroup', 'product-designer'); ?>"><?php echo $icon_object_ungroup; ?></span>
+
+
             <span class="pack-button hint--top" id="editor-zoomin" aria-label="<?php echo __('Zoom in', 'product-designer'); ?>"><?php echo $icon_zoomin; ?></span>
             <span class="pack-button hint--top" id="editor-zoomout" aria-label="<?php echo __('Zoom Out', 'product-designer'); ?>"><?php echo $icon_zoomout; ?></span>
             <span class="pack-button hint--top" id="editor-pan" aria-label="<?php echo __('Panning', 'product-designer'); ?>"><?php echo $icon_hand; ?></span>
@@ -646,6 +650,7 @@ function product_designer_tools_editor_actions($atts){
             <span class="pack-button hint--top" id="editor-undo" aria-label="<?php echo __('Undo', 'product-designer'); ?>" ><?php echo $icon_undo; ?></span>
             <span class="pack-button hint--top" id="editor-redo" aria-label="<?php echo __('Redo', 'product-designer'); ?>" ><?php echo $icon_redo; ?></span>
 
+            <div class="clear"></div>
             <?php
             if($enable_preview =='yes'): ?>
                 <div class="editor-preview pd-guide-6"><?php echo sprintf(__('%s Preview','product-designer'), $icon_eye); ?></div>
@@ -712,7 +717,7 @@ function product_designer_tools_edit_text($atts){
 
     ?>
 
-    <div class="edit-text accordions pd-panel-section section-edit-text">
+    <div class="edit-text pd-panel-section section-edit-text">
         <div class="panel-section-title"><?php echo __('Edit Text', 'product-designer'); ?></div>
         <div class="pd-panel-section-inner">
             <form id="edit-assets-text" action="#" method="get">
@@ -724,11 +729,13 @@ function product_designer_tools_edit_text($atts){
                 </div>
 
                 <div class="setting-field full">
-                        <span class="pack-button hint--top" aria-label="<?php echo __('Bold text', 'product-designer'); ?>" id="text-bold"><?php echo $icon_text_bold; ?></span>
-                        <span class="pack-button hint--top" aria-label="<?php echo __('Italic text', 'product-designer'); ?>" id="text-italic"><?php echo $icon_text_italic; ?></span>
-                        <span class="pack-button hint--top" aria-label="<?php echo __('Underline text', 'product-designer'); ?>" id="text-underline"><?php echo $icon_text_underline; ?></span>
-                        <span class="pack-button hint--top" aria-label="<?php echo __('Strikethrough text', 'product-designer'); ?>" id="text-strikethrough"><?php echo $icon_text_strikethrough; ?></span>
+                    <span class="pack-button hint--top" aria-label="<?php echo __('Bold text', 'product-designer'); ?>" id="text-bold"><?php echo $icon_text_bold; ?></span>
+                    <span class="pack-button hint--top" aria-label="<?php echo __('Italic text', 'product-designer'); ?>" id="text-italic"><?php echo $icon_text_italic; ?></span>
+                    <span class="pack-button hint--top" aria-label="<?php echo __('Underline text', 'product-designer'); ?>" id="text-underline"><?php echo $icon_text_underline; ?></span>
+                    <span class="pack-button hint--top" aria-label="<?php echo __('Strikethrough text', 'product-designer'); ?>" id="text-strikethrough"><?php echo $icon_text_strikethrough; ?></span>
                 </div>
+
+                <div class="clear"></div>
 
                 <div class="setting-field half">
                     <div class="field-label hint--top" aria-label="Set text size">Text size</div>
@@ -763,7 +770,53 @@ function product_designer_tools_edit_text($atts){
                 <div class="setting-field half">
                     <div class="field-label"><?php echo __('Text outline:', 'product-designer'); ?></div>
                     <div class="field-input">
-                        <input class="" id="stroke-size" aria-label="Text Outline" type="number" placeholder="2" value="2">
+                        <input class="" id="stroke-size" aria-label="Text Outline" type="number" placeholder="2" value="">
+                    </div>
+                </div>
+
+
+                <div class="setting-field half">
+                    <div class="field-label"><?php echo __('SkewX:', 'product-designer'); ?></div>
+                    <div class="field-input">
+                        <input class="" id="text-skewX" aria-label="Text SkewX" type="number" placeholder="2" value="">
+                    </div>
+                </div>
+
+
+
+                <div class="setting-field half">
+                    <div class="field-label"><?php echo __('SkewY:', 'product-designer'); ?></div>
+                    <div class="field-input">
+                        <input class="" id="text-skewY" aria-label="Text skewY" type="number" placeholder="2" value="">
+                    </div>
+                </div>
+
+                <div class="setting-field half">
+                    <div class="field-label"><?php echo __('Character spacing:', 'product-designer'); ?></div>
+                    <div class="field-input">
+                        <input class="" id="text-charSpacing" type="number" placeholder="10" value="">
+                    </div>
+                </div>
+
+                <div class="setting-field half">
+                    <div class="field-label"><?php echo __('Rotate:', 'product-designer'); ?></div>
+                    <div class="field-input">
+                        <input class="" id="text-angle" type="range" min="0" max="360" step="1" placeholder="10" value="">
+                    </div>
+                </div>
+
+
+
+                <div class="setting-field half">
+                    <div class="field-label"><?php echo __('Text transform :', 'product-designer'); ?></div>
+                    <div class="field-input">
+                        <select id="text-transform">
+                            <option value="none">None</option>
+                            <option value="uppercase">UPPERCASE</option>
+                            <option value="lowercase">lowercase</option>
+                            <option value="capitalize">Capitalize</option>
+
+                        </select>
                     </div>
                 </div>
 
@@ -818,26 +871,151 @@ function product_designer_tools_edit_img($atts){
     if(in_array('edit_image', $hide_sections )) return;
 
     ?>
-    <div class="edit-img accordions pd-panel-section section-image-action">
+    <div class="edit-img pd-panel-section section-image-action">
         <div class="panel-section-title"><?php echo __('Edit Images', 'product-designer'); ?></div>
         <div class="pd-panel-section-inner">
+
+
             <div class="setting-field half">
                 <div class="field-label"><?php echo __('Opacity', 'product-designer'); ?></div>
                 <div class="field-input">
+                    <label><input id="img-enable-opacity" type="checkbox">Enable</label>
                     <input  class="" aria-label="Opacity" id="img-opacity" type="range" min="0" max="1" step="0.1" value="1" />
                 </div>
             </div>
 
             <div class="setting-field half">
-                <div class="field-label"><?php echo __('Filters', 'product-designer'); ?></div>
+                <div class="field-label"><?php echo __('Grayscale', 'product-designer'); ?></div>
                 <div class="field-input">
-                    <label><input class="" aria-label="<?php echo __('Grayscale', 'product-designer'); ?>"  id="img-filter-grayscale" type="checkbox" value="1" /><?php echo __('Grayscale', 'product-designer'); ?></label>
-                    <label><input class="" aria-label="<?php echo __('Invert', 'product-designer'); ?>"  id="img-filter-invert" type="checkbox" value="1" /><?php echo __('Invert', 'product-designer'); ?></label>
-                    <label><input class="" aria-label="<?php echo __('Sepia', 'product-designer'); ?>"  id="img-filter-sepia" type="checkbox" value="1" /><?php echo __('Sepia', 'product-designer'); ?></label>
-                    <label><input class="" aria-label="<?php echo __('Noise', 'product-designer'); ?>"  id="img-filter-noise" type="checkbox" value="1" /><?php echo __('Noise', 'product-designer'); ?></label>
-                    <label><input class="" aria-label="<?php echo __('Pixelate', 'product-designer'); ?>"  id="img-filter-pixelate" type="checkbox" value="1" /><?php echo __('Pixelate', 'product-designer'); ?></label>
+                    <label><input id="img-enable-grayscale" type="checkbox">Enable</label>
                 </div>
             </div>
+
+            <div class="setting-field half">
+                <div class="field-label"><?php echo __('Invert', 'product-designer'); ?></div>
+                <div class="field-input">
+                    <label><input id="img-enable-invert" type="checkbox">Enable</label>
+                </div>
+            </div>
+
+            <div class="setting-field half">
+                <div class="field-label"><?php echo __('Sepia', 'product-designer'); ?></div>
+                <div class="field-input">
+                    <label><input id="img-enable-sepia" type="checkbox">Enable</label>
+                </div>
+            </div>
+
+            <div class="setting-field half">
+                <div class="field-label"><?php echo __('Noise', 'product-designer'); ?></div>
+                <div class="field-input">
+                    <label><input id="img-enable-noise" type="checkbox">Enable</label>
+                    <input  class="" aria-label="Noise" id="img-noise" type="range" min="0" max="1000" step="1" value="100" />
+                </div>
+            </div>
+
+            <div class="setting-field half">
+                <div class="field-label"><?php echo __('Pixelate', 'product-designer'); ?></div>
+                <div class="field-input">
+                    <label><input id="img-enable-pixelate" type="checkbox">Enable</label>
+                    <input  class="" aria-label="Pixelate" id="img-pixelate" type="range" min="2" max="20" step="1" value="5" />
+                </div>
+            </div>
+
+
+
+
+<!--            <div class="setting-field half">-->
+<!--                <div class="field-label">--><?php //echo __('Brightness', 'product-designer'); ?><!--</div>-->
+<!--                <div class="field-input">-->
+<!--                    <label><input id="img-enable-brightness" type="checkbox">Enable?</label>-->
+<!--                    <input  class="" aria-label="Brightness" id="img-brightness" type="range" min="-1" max="1" step="0.01" value="0" />-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="setting-field half">-->
+<!--                <div class="field-label">--><?php //echo __('Contrast', 'product-designer'); ?><!--</div>-->
+<!--                <div class="field-input">-->
+<!--                    <label><input id="img-enable-contrast" type="checkbox">Enable?</label>-->
+<!--                    <input  class="" aria-label="Contrast" id="img-contrast" type="range" min="-1" max="1" step="0.01" value="1" />-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="setting-field half">-->
+<!--                <div class="field-label">--><?php //echo __('Saturation', 'product-designer'); ?><!--</div>-->
+<!--                <div class="field-input">-->
+<!--                    <label><input id="img-enable-saturation" type="checkbox">Enable?</label>-->
+<!--                    <input  class="" aria-label="Saturation" id="img-saturation" type="range" min="-1" max="1" step="0.01" value="1" />-->
+<!--                </div>-->
+<!--            </div>-->
+
+
+
+
+
+<!--            <div class="setting-field half">-->
+<!--                <div class="field-label">--><?php //echo __('Blur', 'product-designer'); ?><!--</div>-->
+<!--                <div class="field-input">-->
+<!--                    <label><input id="img-enable-blur" type="checkbox">Enable?</label>-->
+<!--                    <input  class="" aria-label="Blur" id="img-blur" type="range" min="0" max="1" step="0.1" value="1" />-->
+<!--                </div>-->
+<!--            </div>-->
+
+
+<!--            <div class="setting-field half">-->
+<!--                <div class="field-label">--><?php //echo __('Vintage', 'product-designer'); ?><!--</div>-->
+<!--                <div class="field-input">-->
+<!--                    <label><input id="img-enable-vintage" type="checkbox">Enable?</label>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!---->
+<!--            <div class="setting-field half">-->
+<!--                <div class="field-label">--><?php //echo __('Brownie', 'product-designer'); ?><!--</div>-->
+<!--                <div class="field-input">-->
+<!--                    <label><input id="img-enable-brownie" type="checkbox">Enable?</label>-->
+<!--                </div>-->
+<!--            </div>-->
+<!---->
+<!--            <div class="setting-field half">-->
+<!--                <div class="field-label">--><?php //echo __('Kodachrome', 'product-designer'); ?><!--</div>-->
+<!--                <div class="field-input">-->
+<!--                    <label><input id="img-enable-kodachrome" type="checkbox">Enable?</label>-->
+<!--                </div>-->
+<!--            </div>-->
+<!---->
+<!--            <div class="setting-field half">-->
+<!--                <div class="field-label">--><?php //echo __('Technicolor', 'product-designer'); ?><!--</div>-->
+<!--                <div class="field-input">-->
+<!--                    <label><input id="img-enable-technicolor" type="checkbox">Enable?</label>-->
+<!--                </div>-->
+<!--            </div>-->
+<!---->
+<!--            <div class="setting-field half">-->
+<!--                <div class="field-label">--><?php //echo __('Polaroid', 'product-designer'); ?><!--</div>-->
+<!--                <div class="field-input">-->
+<!--                    <label><input id="img-enable-polaroid" type="checkbox">Enable?</label>-->
+<!--                </div>-->
+<!--            </div>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         </div>
     </div>
     <?php
@@ -860,9 +1038,10 @@ function product_designer_tools_edit_shape($atts){
 
 
     ?>
-    <div class="edit-shape accordions pd-panel-section">
-        <div class="panel-section-title"><?php echo __('Shapes Actions', 'product-designer'); ?></div>
+    <div class="edit-shape pd-panel-section">
+        <div class="panel-section-title"><?php echo __('Edit Shapes', 'product-designer'); ?></div>
         <div class="pd-panel-section-inner">
+
             <div class="setting-field half">
                 <div class="field-label"><?php echo __('Opacity', 'product-designer'); ?></div>
                 <div class="field-input">
@@ -898,6 +1077,14 @@ function product_designer_tools_product_info($atts){
     $icons = isset($atts['icons']) ? $atts['icons'] : '';
     $cart = isset($icons['cart']) ? $icons['cart'] : '';
 
+    $product_data = wc_get_product($product_id);
+//        $is_variable = $product_data->is_type('variable');
+    $product_type = $product_data->get_type();
+
+    if($product_type == 'variable'){
+        $product_title = get_the_title($variation_id);
+    }
+
 
     ?>
 
@@ -918,10 +1105,10 @@ function product_designer_tools_product_info($atts){
                 ?>
 
 
-                <div class="setting-field full">
+                <div class="setting-field half">
                     <div class="field-label"><?php echo __('You are editing', 'product-designer'); ?></div>
                     <div class="field-input">
-                        <?php echo $product_title; ?>
+                        <strong><?php echo $product_title; ?></strong>
                     </div>
                 </div>
 
@@ -1185,7 +1372,6 @@ function product_designer_scripts($atts){
 
             var product_designer_editor = <?php echo json_encode($product_designer_editor); ?>;
 
-            //console.log(product_designer_editor);
 
             var product_id = product_designer_editor.product_id;
             var variation_id = product_designer_editor.variation_id;
@@ -1389,21 +1575,7 @@ function product_designer_preview(){
 
 }
 
-add_action('product_designer_panel_tab_content_templates', 'product_designer_pre_templates_promo', 15);
 
-function product_designer_pre_templates_promo(){
-
-    ?>
-    <div class="pre_templates" title="Templates" style="color: #fff">
-        <?php
-
-        echo __('Sorry no pre-saved template found.');
-
-        ?>
-    </div>
-    <?php
-
-}
 
 
 add_action('product_designer_editor', 'product_designer_toast', 50);
@@ -1422,6 +1594,12 @@ function product_designer_toast(){
 add_action('product_designer_editor', 'product_designer_editor_style', 90);
 
 function product_designer_editor_style($atts){
+
+    $canvas = isset($atts['canvas']) ? $atts['canvas'] : array();
+    $canvas_bg_color  = isset($canvas['bg_color']) ? $canvas['bg_color'] : '';
+    $enable_tile_bg = !empty($canvas['enable_tile_bg']) ? $canvas['enable_tile_bg'] : '';
+    $tile_bg_src = !empty($canvas['tile_bg_src']) ? $canvas['tile_bg_src'] : '';
+
     $settings = isset($atts['settings']) ? $atts['settings'] : array();
     $menu_position = isset($settings['menu_position']) ? $settings['menu_position'] : 'left';
     $clipart_width = isset($settings['clipart_width']) ? $settings['clipart_width'] : '';
@@ -1447,6 +1625,17 @@ function product_designer_editor_style($atts){
         }
         .product-designer .panel-section-title, .editor-tabs .editor-tab-navs .nav{
             background: <?php echo $section_title_bg_color; ?> !important;
+
+        }
+
+        .product-designer .canvas-container{
+            <?php if(!empty($canvas_bg_color)): ?>
+            background-color: <?php echo $canvas_bg_color; ?> !important;
+            <?php endif; ?>
+
+        <?php if($enable_tile_bg=='yes' && !empty($tile_bg_src)): ?>
+            background-image: url(<?php echo $tile_bg_src; ?>) !important;
+        <?php endif; ?>
 
         }
 

@@ -2,7 +2,7 @@ jQuery(document).ready(function($){
 
 
     $(function() {
-        $( ".side-list" ).sortable({ handle: '.move' });
+        $( ".side-list, .sortable" ).sortable({ handle: '.move' });
         //$( ".items-container" ).disableSelection();
     });
 
@@ -27,8 +27,8 @@ jQuery(document).ready(function($){
         pre_template_id = $(this).attr('pre_template_id');
         pd_template_id = $(this).attr('pd_template_id');
 
-        console.log(pd_template_id);
-        console.log(pre_template_id);
+        //console.log(pd_template_id);
+        //console.log(pre_template_id);
 
         __this = this;
 
@@ -50,7 +50,7 @@ jQuery(document).ready(function($){
                     }
 
 
-                    console.log(status);
+                    //console.log(status);
                     //console.log(pre_templates);
 
                 }
@@ -71,7 +71,7 @@ jQuery(document).ready(function($){
 
         data_preview = $(this).attr('data-preview');
 
-        console.log(data_preview);
+        //console.log(data_preview);
         $(this).prev().attr('src',data_preview);
         $(this).prev().prev().val('');
     })

@@ -1,37 +1,39 @@
 <?php
-if ( ! defined('ABSPATH')) exit;  // if direct access
+if (!defined('ABSPATH')) exit;  // if direct access
 
 
-class class_product_designer_shortcodes  {
+class class_product_designer_shortcodes
+{
 
-    public function __construct(){
+    public function __construct()
+    {
 
-		add_shortcode( 'product_designer', array( $this, 'product_designer_display' ) );
-
+        add_shortcode('product_designer', array($this, 'product_designer_display'));
     }
 
-	
-	public function product_designer_display($atts, $content = null ) {
+
+    public function product_designer_display($atts, $content = null)
+    {
 
 
         $atts = shortcode_atts(
             array(
                 'product_id' => "",
-                ),
+            ),
             $atts
         );
 
-//        global $product;
-//
-//        $product_id = $product->get_id();
+        //        global $product;
+        //
+        //        $product_id = $product->get_id();
 
         $product_id = isset($atts['product_id']) ? sanitize_text_field($atts['product_id']) : '';
         $product_id = isset($_GET['product_id']) ? sanitize_text_field($_GET['product_id']) : $product_id;
 
 
 
-        if(empty($product_id)){
-            echo __('Product is not selected. this is probably issue with site permalink settings, please select "Post name" on permalink settings','product-designer') ;
+        if (empty($product_id)) {
+            echo __('Product is not selected. this is probably issue with site permalink settings, please select "Post name" on permalink settings', 'product-designer');
             return;
         }
 
@@ -43,10 +45,10 @@ class class_product_designer_shortcodes  {
         $clipart_price = isset($product_designer_settings['clipart_price']) ? $product_designer_settings['clipart_price'] : '';
         $shape_price = isset($product_designer_settings['shape_price']) ? $product_designer_settings['shape_price'] : '';
         $qrcode_price = isset($product_designer_settings['qrcode_price']) ? $product_designer_settings['qrcode_price'] : '';
-        $barcode_price= isset($product_designer_settings['barcode_price']) ? $product_designer_settings['barcode_price'] : '';
-        $posts_per_page= isset($product_designer_settings['posts_per_page']) ? $product_designer_settings['posts_per_page'] : 10;
-        $menu_position= isset($product_designer_settings['menu_position']) ? $product_designer_settings['menu_position'] : 'left';
-        $enable_guide= isset($product_designer_settings['enable_guide']) ? $product_designer_settings['enable_guide'] : 'yes';
+        $barcode_price = isset($product_designer_settings['barcode_price']) ? $product_designer_settings['barcode_price'] : '';
+        $posts_per_page = isset($product_designer_settings['posts_per_page']) ? $product_designer_settings['posts_per_page'] : 10;
+        $menu_position = isset($product_designer_settings['menu_position']) ? $product_designer_settings['menu_position'] : 'left';
+        $enable_guide = isset($product_designer_settings['enable_guide']) ? $product_designer_settings['enable_guide'] : 'yes';
         $designer_page_id = isset($product_designer_settings['designer_page_id']) ? $product_designer_settings['designer_page_id'] : '';
         $clipart_width = isset($product_designer_settings['clipart_width']) ? $product_designer_settings['clipart_width'] : '';
         $clipart_bg_color = isset($product_designer_settings['clipart_bg_color']) ? $product_designer_settings['clipart_bg_color'] : '';
@@ -91,36 +93,35 @@ class class_product_designer_shortcodes  {
 
 
         $product_data = wc_get_product($product_id);
-//        $is_variable = $product_data->is_type('variable');
+        //        $is_variable = $product_data->is_type('variable');
         $product_type = $product_data->get_type();
 
-        if($product_type == 'variable'):
+        if ($product_type == 'variable') :
 
-            $variation_id = isset($_GET['variation_id']) ? sanitize_text_field($_GET['variation_id']): '';
+            $variation_id = isset($_GET['variation_id']) ? sanitize_text_field($_GET['variation_id']) : '';
 
             $atts['variation_id'] = $variation_id;
 
 
-            if(empty($variation_id)){
-                echo __('Product variation is not selected.','product-designer') ;
+            if (empty($variation_id)) {
+                echo __('Product variation is not selected.', 'product-designer');
                 return;
             }
 
-            $pd_template_id = get_post_meta( $variation_id, 'pd_template_id', true );
+            $pd_template_id = get_post_meta($variation_id, 'pd_template_id', true);
 
 
-            $variation_data = new WC_Product_Variation( $variation_id );
+            $variation_data = new WC_Product_Variation($variation_id);
 
             $sale_price = $variation_data->get_sale_price();
             $regular_price = $variation_data->get_regular_price();
 
-            if(!empty($sale_price)){
+            if (!empty($sale_price)) {
                 $product_base_price = $sale_price;
-                $product_display_price = '<strike>'.$currency_symbol.$regular_price.'</strike> - '.$currency_symbol.$sale_price;;
-            }
-            else{
+                $product_display_price = '<strike>' . $currency_symbol . $regular_price . '</strike> - ' . $currency_symbol . $sale_price;;
+            } else {
                 $product_base_price = $regular_price;
-                $product_display_price = $currency_symbol.$regular_price;;
+                $product_display_price = $currency_symbol . $regular_price;;
             }
 
 
@@ -129,18 +130,17 @@ class class_product_designer_shortcodes  {
 
 
 
-        elseif($product_type == 'simple'):
+        elseif ($product_type == 'simple') :
 
-            $pd_template_id = get_post_meta( $product_id, 'pd_template_id', true );
+            $pd_template_id = get_post_meta($product_id, 'pd_template_id', true);
 
             $sale_price = get_post_meta($product_id, '_sale_price', true);
             $regular_price = get_post_meta($product_id, '_regular_price', true);
 
-            if(!empty($sale_price)){
+            if (!empty($sale_price)) {
                 $product_base_price = $sale_price;
                 $product_display_price = $product_data->get_price_html();
-            }
-            else{
+            } else {
                 $product_base_price = $regular_price;
                 $product_display_price = $product_data->get_price_html();
             }
@@ -155,8 +155,8 @@ class class_product_designer_shortcodes  {
         $atts['product_type'] = $product_type;
 
 
-        $canvas = get_post_meta( $pd_template_id, 'canvas', true );
-        $side_data = get_post_meta( $pd_template_id, 'side_data', true );
+        $canvas = get_post_meta($pd_template_id, 'canvas', true);
+        $side_data = get_post_meta($pd_template_id, 'side_data', true);
 
 
         $atts['canvas'] = $canvas;
@@ -165,7 +165,7 @@ class class_product_designer_shortcodes  {
         //var_dump($canvas);
 
 
-        if($font_aw_version == 'v_5'){
+        if ($font_aw_version == 'v_5') {
 
             $icon_separator = '<i class="fas fa-angle-double-right"></i>';
             $icon_grid = '<i class="fa fa-th"></i>';
@@ -187,6 +187,9 @@ class class_product_designer_shortcodes  {
             $icon_cube = '<i class="fas fa-cube"></i>';
             $icon_upload = '<i class="fas fa-upload"></i>';
             $icon_shapes = '<i class="fas fa-shapes"></i>';
+            $icon_object_group = '<i class="fas fa-object-group"></i>';
+            $icon_object_ungroup = '<i class="fas fa-object-ungroup"></i>';
+
             $icon_undo = '<i class="fas fa-undo-alt"></i>';
             $icon_redo = '<i class="fas fa-redo-alt"></i>';
             $icon_rotation = '<i class="fas fa-sync-alt"></i>';
@@ -207,8 +210,7 @@ class class_product_designer_shortcodes  {
 
 
             wp_enqueue_style('font-awesome-5');
-
-        }else{
+        } else {
 
             $icon_separator = '<i class="fa fa-angle-double-right"></i>';
             $icon_grid = '<i class="fa fa-th"></i>';
@@ -230,6 +232,10 @@ class class_product_designer_shortcodes  {
             $icon_cube = '<i class="fa fa-cube"></i>';
             $icon_upload = '<i class="fa fa-upload"></i>';
             $icon_shapes = '<i class="fa fa-codepen" ></i>';
+            $icon_object_group = '<i class="fa fa-object-group"></i>';
+            $icon_object_ungroup = '<i class="fa fa-object-ungroup"></i>';
+
+
             $icon_undo = '<i class="fa fa-undo"></i>';
             $icon_redo = '<i class="fa fa-repeat"></i>';
             $icon_rotation = '<i class="fa fa-refresh"></i>';
@@ -241,6 +247,8 @@ class class_product_designer_shortcodes  {
             $icon_text_italic = '<i class="fa fa-italic"></i>';
             $icon_text_underline = '<i class="fa fa-underline"></i>';
             $icon_text_strikethrough = '<i class="fa fa-strikethrough"></i>';
+
+
             $icon_keyboard = '<i class="fa fa-keyboard-o" aria-hidden="true"></i>';
             $icon_cart = '<i class="fa fa-shopping-cart" aria-hidden="true"></i>';
             $icon_spinner = '<i class="fa fa-spinner fa-spin"></i>';
@@ -272,6 +280,9 @@ class class_product_designer_shortcodes  {
             'cube' => $icon_cube,
             'upload' => $icon_upload,
             'shapes' => $icon_shapes,
+            'object_group' => $icon_object_group,
+            'object_ungroup' => $icon_object_ungroup,
+
             'undo' => $icon_undo,
             'redo' => $icon_redo,
             'rotation' => $icon_rotation,
@@ -306,38 +317,31 @@ class class_product_designer_shortcodes  {
 
         ob_start();
 
-        ?>
+?>
         <div class="<?php echo $editor_class; ?>">
             <?php
             do_action('product_designer_editor', $atts);
             ?>
         </div>
-        <?php
+<?php
 
 
 
 
         wp_enqueue_style('hint.min');
-        wp_enqueue_style('PickIcons');
         wp_enqueue_style('product-designer-editor');
         wp_enqueue_style('FontCPD');
         wp_enqueue_style('jquery.scrollbar');
-        wp_enqueue_style('product-designer-style');
         wp_enqueue_style('jquery-impromptu');
         wp_enqueue_script('plupload-all');
-        //wp_enqueue_script('product_designer_vue');
 
 
 
         wp_enqueue_script('jquery');
-        wp_enqueue_script( 'jquery-ui-core' );
-        wp_enqueue_script( 'jquery-ui-tabs' );
+        wp_enqueue_script('jquery-ui-core');
+        wp_enqueue_script('jquery-ui-tabs');
         wp_enqueue_script('jquery-ui-accordion');
-
-
-
         wp_enqueue_script('jquery.scrollbar');
-
         wp_enqueue_script('jquery-impromptu');
 
         wp_enqueue_script('jscolor');
@@ -350,9 +354,7 @@ class class_product_designer_shortcodes  {
 
 
         return ob_get_clean();
-
     }
-
 }
 
 new class_product_designer_shortcodes();

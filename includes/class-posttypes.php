@@ -1,9 +1,6 @@
 <?php
 
-/*
-* @Author 		ParaTheme
-* Copyright: 	2015 ParaTheme
-*/
+
 
 if ( ! defined('ABSPATH')) exit;  // if direct access 	
 
@@ -35,6 +32,8 @@ class class_product_designer_posttypes  {
 
 
         $is_customizable = product_designer_is_customizable($post->ID );
+
+        //var_dump($is_customizable);
 
         if (   $is_customizable ) {
 

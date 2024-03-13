@@ -68,7 +68,7 @@ function product_designer_is_customizable($post_id) {
 			$variation_id = $variation['variation_id'];
 			$pd_template_id = get_post_meta($variation_id, 'pd_template_id', true);
 
-			if($pd_template_id != 'none')
+			if(is_numeric($pd_template_id))
 				$all_variation[$variation_id] = $pd_template_id;
 		}
 
@@ -78,7 +78,9 @@ function product_designer_is_customizable($post_id) {
     else:
 	    $pd_template_id = get_post_meta($post_id, 'pd_template_id', true);
 
-	    if(!empty($pd_template_id)):
+		//var_dump($pd_template_id);
+
+	    if(is_numeric($pd_template_id)):
 		    $is_customizable = true;
 	    endif;
     endif;

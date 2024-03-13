@@ -7,8 +7,35 @@
 }
 .templates .templates-list{}
 .templates .templates-list .template {
+  background: #dddddd91;
   margin: 10px 0;
 }
+
+.templates .templates-list .template .info{
+  margin: 10px 0;
+  background: #c7c7c7;
+  padding: 10px;
+}
+
+.templates .templates-list .template .previews{
+  padding: 10px;
+}
+
+.templates .templates-list .template .previews a{
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  text-decoration: none;
+}
+
+.templates .templates-list .template .previews img{
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin: 10px;
+  width: 100px;
+  display: block;
+}
+
 .templates .templates-list .template .move {
   background: rgb(247, 98, 24) none repeat scroll 0 0;
   color: #fff;

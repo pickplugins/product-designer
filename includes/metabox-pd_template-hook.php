@@ -21,6 +21,9 @@ function product_designer_template_metabox_content_canvas( $post_id){
     $output_file_format = !empty($canvas['output']['file_format']) ? $canvas['output']['file_format'] : 'jpeg';
     $enable_preview = !empty($canvas['preview']['enable']) ? $canvas['preview']['enable'] : 'yes';
     $preview_file_format = !empty($canvas['preview']['file_format']) ? $canvas['preview']['file_format'] : 'jpeg';
+    $bg_color = !empty($canvas['bg_color']) ? $canvas['bg_color'] : '';
+    $enable_tile_bg = !empty($canvas['enable_tile_bg']) ? $canvas['enable_tile_bg'] : '';
+    $tile_bg_src = !empty($canvas['tile_bg_src']) ? $canvas['tile_bg_src'] : '';
 
 
     ?>
@@ -54,6 +57,49 @@ function product_designer_template_metabox_content_canvas( $post_id){
         );
 
         $settings_tabs_field->generate_field($args, $post_id);
+
+        $args = array(
+            'id'		=> 'bg_color',
+            'parent'		=> 'canvas',
+            'title'		=> __('Background color','product-designer'),
+            'details'	=> __('Set canvas background color.','product-designer'),
+            'type'		=> 'colorpicker',
+            'value'		=> $bg_color,
+            'default'		=> '',
+        );
+
+        $settings_tabs_field->generate_field($args, $post_id);
+
+
+        $args = array(
+            'id'		=> 'enable_tile_bg',
+            'parent'		=> 'canvas',
+            'title'		=> __('Enable tile background','product-designer'),
+            'details'	=> __('Enable tile background for canvas container.','product-designer'),
+            'type'		=> 'radio',
+            'value'		=> $enable_tile_bg,
+            'default'		=> 'no',
+            'args'		=> array(
+                'no'=>__('No','product-designer'),
+                'yes'=>__('Yes','product-designer'),
+            ),
+        );
+
+        $settings_tabs_field->generate_field($args, $post_id);
+
+        $args = array(
+            'id'		=> 'tile_bg_src',
+            'parent'		=> 'canvas',
+            'title'		=> __('Tile background source','product-designer'),
+            'details'	=> __('Tile background image source for canvas container.','product-designer'),
+            'type'		=> 'media_url',
+            'value'		=> $tile_bg_src,
+            'default'		=> product_designer_plugin_url.'assets/front/images/tile.png',
+
+        );
+
+        $settings_tabs_field->generate_field($args, $post_id);
+
 
 
 

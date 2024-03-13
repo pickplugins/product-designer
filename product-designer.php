@@ -3,7 +3,7 @@
 Plugin Name: Product Designer
 Plugin URI: https://www.pickplugins.com/item/product-designer/?ref=dashboard
 Description: Awesome Product Designer for Woo-Commenrce.
-Version: 1.0.29
+Version: 1.0.32
 WC requires at least: 3.0.0
 WC tested up to: 5.1
 Author: PickPlugins
@@ -23,7 +23,7 @@ class ProductDesigner{
 		define('product_designer_plugin_url', plugins_url('/', __FILE__) );
 		define('product_designer_plugin_dir', plugin_dir_path( __FILE__ ) );
 		define('product_designer_plugin_name', 'Product Designer' );
-		define('product_designer_plugin_version', '1.0.29' );
+		define('product_designer_plugin_version', '1.0.32' );
 
         require_once( product_designer_plugin_dir . 'includes/class-settings-tabs.php');
         require_once( product_designer_plugin_dir . 'includes/class-request-reviews.php');
@@ -145,6 +145,7 @@ class ProductDesigner{
 
         wp_register_script( 'jscolor', plugins_url( 'assets/front/js/jscolor.js', __FILE__ ), array('jquery'), '1.0', false);
         wp_register_script( 'fabric.js', plugins_url( '/assets/front/js/fabric.min.js', __FILE__ ), array('jquery'), '1.0', false);
+        //wp_register_script( 'fabric.js', plugins_url( '/assets/front/js/fabric-4.4.0.min.js', __FILE__ ), array('jquery'), '1.0', false);
 
         wp_register_script( 'jquery.scrollbar', plugins_url( '/assets/front/js/jquery.scrollbar.min.js', __FILE__ ), array('jquery'), '1.0', false);
 
@@ -155,7 +156,6 @@ class ProductDesigner{
         wp_register_style('font-awesome-4', product_designer_plugin_url.'assets/global/css/font-awesome-4.css');
         wp_register_style('font-awesome-5', product_designer_plugin_url.'assets/global/css/font-awesome-5.css');
         wp_register_style('hint.min', product_designer_plugin_url.'assets/front/css/hint.min.css');
-        wp_register_style('PickIcons', product_designer_plugin_url.'assets/front/css/PickIcons/PickIcons.css');
         wp_register_style('product-designer-editor', product_designer_plugin_url.'assets/front/css/product-designer.css');
         wp_register_style('FontCPD', product_designer_plugin_url.'assets/front/css/FontCPD/FontCPD.css');
         wp_register_style('jquery.scrollbar', product_designer_plugin_url.'assets/front/css/jquery.scrollbar.css');
@@ -187,7 +187,8 @@ class ProductDesigner{
 		wp_localize_script( 'product_designer_js', 'product_designer_ajax', array( 'product_designer_ajaxurl' => admin_url( 'admin-ajax.php')));
 
 		wp_enqueue_style('product_designer_admin', product_designer_plugin_url.'assets/admin/css/style.css');
-		wp_enqueue_style('product_designer_style-templates', product_designer_plugin_url.'assets/admin/css/style-templates.css');		
+		wp_enqueue_style('product_designer_style-templates', product_designer_plugin_url.'assets/admin/css/style-templates.css');
+        wp_register_script('jquery.lazy', product_designer_plugin_url.'assets/admin/js/jquery.lazy.js', array('jquery'));
 
 		//wp_enqueue_style('font-awesome.min', product_designer_plugin_url.'assets/global/css/font-awesome.min.css');
 		
@@ -200,7 +201,7 @@ class ProductDesigner{
         wp_register_script('settings-tabs', product_designer_plugin_url.'assets/settings-tabs/settings-tabs.js'  , array( 'jquery' ));
 
 
-        if ( $screen->id == 'shop_order'){
+        if ( $screen->id == 'shop_order' || $screen->id == 'pd_template'){
 
             $settings_tabs_field = new settings_tabs_field();
             $settings_tabs_field->admin_scripts();
