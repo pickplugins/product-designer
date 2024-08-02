@@ -4,13 +4,14 @@
 * @Author 		PickPlugins
 */
 
-if ( ! defined('ABSPATH')) exit;  // if direct access
+if (!defined('ABSPATH')) exit;  // if direct access
 
 
 
 add_action('product_designer_template_metabox_content_canvas', 'product_designer_template_metabox_content_canvas', 10);
 
-function product_designer_template_metabox_content_canvas( $post_id){
+function product_designer_template_metabox_content_canvas($post_id)
+{
 
     $settings_tabs_field = new settings_tabs_field();
 
@@ -26,7 +27,7 @@ function product_designer_template_metabox_content_canvas( $post_id){
     $tile_bg_src = !empty($canvas['tile_bg_src']) ? $canvas['tile_bg_src'] : '';
 
 
-    ?>
+?>
     <div class="section">
         <div class="section-title"><?php echo __('Canvas settings', 'product-designer'); ?></div>
         <p class="description section-description"><?php echo __('Choose options for canvas.', 'product-designer'); ?></p>
@@ -34,67 +35,67 @@ function product_designer_template_metabox_content_canvas( $post_id){
         <?php
 
         $args = array(
-            'id'		=> 'width',
-            'parent'		=> 'canvas',
-            'title'		=> __('Canvas width','product-designer'),
-            'details'	=> __('Set canvas width.','product-designer'),
-            'type'		=> 'text',
-            'value'		=> $canvas_width,
-            'default'		=> '',
+            'id'        => 'width',
+            'parent'        => 'canvas',
+            'title'        => __('Canvas width', 'product-designer'),
+            'details'    => __('Set canvas width.', 'product-designer'),
+            'type'        => 'text',
+            'value'        => $canvas_width,
+            'default'        => '',
         );
 
         $settings_tabs_field->generate_field($args, $post_id);
 
 
         $args = array(
-            'id'		=> 'height',
-            'parent'		=> 'canvas',
-            'title'		=> __('Canvas height','product-designer'),
-            'details'	=> __('Set canvas height.','product-designer'),
-            'type'		=> 'text',
-            'value'		=> $canvas_height,
-            'default'		=> '',
+            'id'        => 'height',
+            'parent'        => 'canvas',
+            'title'        => __('Canvas height', 'product-designer'),
+            'details'    => __('Set canvas height.', 'product-designer'),
+            'type'        => 'text',
+            'value'        => $canvas_height,
+            'default'        => '',
         );
 
         $settings_tabs_field->generate_field($args, $post_id);
 
         $args = array(
-            'id'		=> 'bg_color',
-            'parent'		=> 'canvas',
-            'title'		=> __('Background color','product-designer'),
-            'details'	=> __('Set canvas background color.','product-designer'),
-            'type'		=> 'colorpicker',
-            'value'		=> $bg_color,
-            'default'		=> '',
+            'id'        => 'bg_color',
+            'parent'        => 'canvas',
+            'title'        => __('Background color', 'product-designer'),
+            'details'    => __('Set canvas background color.', 'product-designer'),
+            'type'        => 'colorpicker',
+            'value'        => $bg_color,
+            'default'        => '',
         );
 
         $settings_tabs_field->generate_field($args, $post_id);
 
 
         $args = array(
-            'id'		=> 'enable_tile_bg',
-            'parent'		=> 'canvas',
-            'title'		=> __('Enable tile background','product-designer'),
-            'details'	=> __('Enable tile background for canvas container.','product-designer'),
-            'type'		=> 'radio',
-            'value'		=> $enable_tile_bg,
-            'default'		=> 'no',
-            'args'		=> array(
-                'no'=>__('No','product-designer'),
-                'yes'=>__('Yes','product-designer'),
+            'id'        => 'enable_tile_bg',
+            'parent'        => 'canvas',
+            'title'        => __('Enable tile background', 'product-designer'),
+            'details'    => __('Enable tile background for canvas container.', 'product-designer'),
+            'type'        => 'radio',
+            'value'        => $enable_tile_bg,
+            'default'        => 'no',
+            'args'        => array(
+                'no' => __('No', 'product-designer'),
+                'yes' => __('Yes', 'product-designer'),
             ),
         );
 
         $settings_tabs_field->generate_field($args, $post_id);
 
         $args = array(
-            'id'		=> 'tile_bg_src',
-            'parent'		=> 'canvas',
-            'title'		=> __('Tile background source','product-designer'),
-            'details'	=> __('Tile background image source for canvas container.','product-designer'),
-            'type'		=> 'media_url',
-            'value'		=> $tile_bg_src,
-            'default'		=> product_designer_plugin_url.'assets/front/images/tile.png',
+            'id'        => 'tile_bg_src',
+            'parent'        => 'canvas',
+            'title'        => __('Tile background source', 'product-designer'),
+            'details'    => __('Tile background image source for canvas container.', 'product-designer'),
+            'type'        => 'media_url',
+            'value'        => $tile_bg_src,
+            'default'        => product_designer_plugin_url . 'assets/front/images/tile.png',
 
         );
 
@@ -104,17 +105,17 @@ function product_designer_template_metabox_content_canvas( $post_id){
 
 
         $args = array(
-            'id'		=> 'file_format',
-            'parent'		=> 'canvas[output]',
-            'title'		=> __('Output file format','product-designer'),
-            'details'	=> __('Choose output file format.','product-designer'),
-            'type'		=> 'radio',
-            'value'		=> $output_file_format,
-            'default'		=> 'jpeg',
-            'args'		=> array(
-                'jpeg'=>__('JPEG','product-designer'),
-                'png'=>__('PNG','product-designer'),
-                'svg'=>__('SVG','product-designer'),
+            'id'        => 'file_format',
+            'parent'        => 'canvas[output]',
+            'title'        => __('Output file format', 'product-designer'),
+            'details'    => __('Choose output file format.', 'product-designer'),
+            'type'        => 'radio',
+            'value'        => $output_file_format,
+            'default'        => 'jpeg',
+            'args'        => array(
+                'jpeg' => __('JPEG', 'product-designer'),
+                'png' => __('PNG', 'product-designer'),
+                'svg' => __('SVG', 'product-designer'),
 
             ),
         );
@@ -122,16 +123,16 @@ function product_designer_template_metabox_content_canvas( $post_id){
         $settings_tabs_field->generate_field($args, $post_id);
 
         $args = array(
-            'id'		=> 'enable',
-            'parent'		=> 'canvas[preview]',
-            'title'		=> __('Enable preview','product-designer'),
-            'details'	=> __('Choose enable preview.','product-designer'),
-            'type'		=> 'radio',
-            'value'		=> $enable_preview,
-            'default'		=> 'yes',
-            'args'		=> array(
-                'yes'=>__('Yes','product-designer'),
-                'no'=>__('No','product-designer'),
+            'id'        => 'enable',
+            'parent'        => 'canvas[preview]',
+            'title'        => __('Enable preview', 'product-designer'),
+            'details'    => __('Choose enable preview.', 'product-designer'),
+            'type'        => 'radio',
+            'value'        => $enable_preview,
+            'default'        => 'yes',
+            'args'        => array(
+                'yes' => __('Yes', 'product-designer'),
+                'no' => __('No', 'product-designer'),
 
             ),
         );
@@ -140,17 +141,17 @@ function product_designer_template_metabox_content_canvas( $post_id){
 
 
         $args = array(
-            'id'		=> 'file_format',
-            'parent'		=> 'canvas[preview]',
-            'title'		=> __('Preview file format','post-grid'),
-            'details'	=> __('Choose preview file format.','post-grid'),
-            'type'		=> 'radio',
-            'value'		=> $preview_file_format,
-            'default'		=> 'jpeg',
-            'args'		=> array(
-                'jpeg'=>__('JPEG','post-grid'),
-                'png'=>__('PNG','post-grid'),
-                'svg'=>__('SVG','post-grid'),
+            'id'        => 'file_format',
+            'parent'        => 'canvas[preview]',
+            'title'        => __('Preview file format', 'post-grid'),
+            'details'    => __('Choose preview file format.', 'post-grid'),
+            'type'        => 'radio',
+            'value'        => $preview_file_format,
+            'default'        => 'jpeg',
+            'args'        => array(
+                'jpeg' => __('JPEG', 'post-grid'),
+                'png' => __('PNG', 'post-grid'),
+                'svg' => __('SVG', 'post-grid'),
 
             ),
         );
@@ -165,7 +166,7 @@ function product_designer_template_metabox_content_canvas( $post_id){
 
 
 
-    <?php
+<?php
 
 }
 
@@ -174,15 +175,16 @@ function product_designer_template_metabox_content_canvas( $post_id){
 
 add_action('product_designer_template_metabox_content_product_sides', 'product_designer_template_metabox_content_product_sides', 10);
 
-function product_designer_template_metabox_content_product_sides( $post_id){
+function product_designer_template_metabox_content_product_sides($post_id)
+{
 
     $settings_tabs_field = new settings_tabs_field();
 
 
-    $side_data = get_post_meta( $post_id, 'side_data', true );
+    $side_data = get_post_meta($post_id, 'side_data', true);
 
 
-    ?>
+?>
     <div class="section">
         <div class="section-title"><?php echo __('Product sides', 'post-grid'); ?></div>
         <p class="description section-description"><?php echo __('Choose options for product sides.', 'post-grid'); ?></p>
@@ -199,19 +201,19 @@ function product_designer_template_metabox_content_product_sides( $post_id){
 
 
 
-                $previw_icon = product_designer_plugin_url.'assets/admin/images/add-img.png';
-                $previw_background = product_designer_plugin_url.'assets/admin/images/add-img-bg.png';
-                $previw_overlay = product_designer_plugin_url.'assets/admin/images/add-img-overlay.png';
+                $previw_icon = product_designer_plugin_url . 'assets/admin/images/add-img.png';
+                $previw_background = product_designer_plugin_url . 'assets/admin/images/add-img-bg.png';
+                $previw_overlay = product_designer_plugin_url . 'assets/admin/images/add-img-overlay.png';
 
 
 
-                if(!empty($side_data)){
+                if (!empty($side_data)) {
 
-                    foreach($side_data as $id=>$side){
+                    foreach ($side_data as $id => $side) {
 
-                        $name = isset( $side['name']) ? $side['name'] : '';
+                        $name = isset($side['name']) ? $side['name'] : '';
                         $icon = isset($side['icon']) ? $side['icon'] : '';
-                        $background = isset($side['background'])? $side['background'] : '';
+                        $background = isset($side['background']) ? $side['background'] : '';
                         $inc_output_background = isset($side['inc_output_background']) ? $side['inc_output_background'] : '0';
                         $inc_preview_background = isset($side['inc_preview_background']) ? $side['inc_preview_background'] : '0';
                         $background_fit_canvas_size = isset($side['background_fit_canvas_size']) ? $side['background_fit_canvas_size'] : '0';
@@ -221,7 +223,7 @@ function product_designer_template_metabox_content_product_sides( $post_id){
                         $overlay_fit_canvas_size = isset($side['overlay_fit_canvas_size']) ? $side['overlay_fit_canvas_size'] : '0';
 
 
-                        ?>
+                ?>
 
                         <div class="side">
                             <div class="inline actions">
@@ -232,23 +234,25 @@ function product_designer_template_metabox_content_product_sides( $post_id){
 
                             <div class="inline side-name">
                                 <div class=""><?php echo __('Name', 'product-designer'); ?></div>
-                                <input placeholder="<?php echo __('Name', 'product-designer'); ?>" type="text" name="side_data[<?php echo $id; ?>][name]" value="<?php echo $name; ?>" />
+                                <input placeholder="<?php echo __('Name', 'product-designer'); ?>" type="text" name="side_data[<?php echo esc_url_raw($id); ?>][name]" value="<?php echo esc_html($name); ?>" />
                             </div>
                             <div class="inline side-icon">
                                 <div class=""><?php echo __('Icon', 'product-designer'); ?></div>
-                                <input type="hidden" placeholder="" name="side_data[<?php echo $id; ?>][icon]" value="<?php echo $icon; ?>" />
-                                <img class="upload_side preview"  src="<?php if(!empty($icon)) echo $icon; else echo $previw_icon; ?>">
-                                <div data-preview="<?php echo $previw_icon; ?>" class="side-part-remove button"><?php echo __('Remove', 'product-designer'); ?></div>
+                                <input type="hidden" placeholder="" name="side_data[<?php echo esc_url_raw($id); ?>][icon]" value="<?php echo esc_url_raw($icon); ?>" />
+                                <img class="upload_side preview" src="<?php if (!empty($icon)) echo esc_url_raw($icon);
+                                                                        else echo esc_url_raw($previw_icon); ?>">
+                                <div data-preview="<?php echo esc_url_raw($previw_icon); ?>" class="side-part-remove button"><?php echo __('Remove', 'product-designer'); ?></div>
                             </div>
 
                             <div class="inline side-bg-inc">
                                 <div class=""><?php echo __('Background', 'product-designer'); ?></div>
-                                <input type="hidden" placeholder="" name="side_data[<?php echo $id; ?>][background]" value="<?php echo $background; ?>" />
-                                <img class="upload_side preview"  src="<?php if(!empty($background)) echo $background; else echo $previw_background; ?>">
-                                <div data-preview="<?php echo $previw_background; ?>" class="side-part-remove button"><?php echo __('Remove', 'product-designer'); ?></div><br>
-                                <label><input type="checkbox" value="1" <?php if($inc_output_background==1) echo 'checked'; ?> name="side_data[<?php echo $id; ?>][inc_output_background]"><?php echo __('Include background in output', 'product-designer'); ?></label><br>
-                                <label><input type="checkbox" value="1" <?php if($inc_preview_background==1) echo 'checked'; ?> name="side_data[<?php echo $id; ?>][inc_preview_background]"><?php echo __('Include background in preview', 'product-designer'); ?></label><br>
-                                <label><input type="checkbox" value="1" <?php if($background_fit_canvas_size==1) echo 'checked'; ?> name="side_data[<?php echo $id; ?>][background_fit_canvas_size]"><?php echo __('Fit with canvas size', 'product-designer'); ?></label>
+                                <input type="hidden" placeholder="" name="side_data[<?php echo esc_attr($id); ?>][background]" value="<?php echo esc_url_raw($background); ?>" />
+                                <img class="upload_side preview" src="<?php if (!empty($background)) echo esc_url_raw($background);
+                                                                        else echo esc_url_raw($previw_background); ?>">
+                                <div data-preview="<?php echo esc_url_raw($previw_background); ?>" class="side-part-remove button"><?php echo __('Remove', 'product-designer'); ?></div><br>
+                                <label><input type="checkbox" value="1" <?php if ($inc_output_background == 1) echo 'checked'; ?> name="side_data[<?php echo esc_attr($id); ?>][inc_output_background]"><?php echo __('Include background in output', 'product-designer'); ?></label><br>
+                                <label><input type="checkbox" value="1" <?php if ($inc_preview_background == 1) echo 'checked'; ?> name="side_data[<?php echo esc_attr($id); ?>][inc_preview_background]"><?php echo __('Include background in preview', 'product-designer'); ?></label><br>
+                                <label><input type="checkbox" value="1" <?php if ($background_fit_canvas_size == 1) echo 'checked'; ?> name="side_data[<?php echo esc_attr($id); ?>][background_fit_canvas_size]"><?php echo __('Fit with canvas size', 'product-designer'); ?></label>
 
 
 
@@ -258,12 +262,13 @@ function product_designer_template_metabox_content_product_sides( $post_id){
 
                             <div class="inline side-bg-not-inc">
                                 <div class=""><?php echo __('Overlay', 'product-designer'); ?></div>
-                                <input type="hidden" placeholder="" name="side_data[<?php echo $id; ?>][overlay]" value="<?php echo $overlay; ?>" />
-                                <img class="upload_side preview"  src="<?php if(!empty($overlay)) echo $overlay; else echo $previw_overlay; ?>">
-                                <div data-preview="<?php echo $previw_overlay; ?>" class="side-part-remove button">Remove</div><br>
-                                <label><input type="checkbox" value="1" <?php if($inc_output_overlay==1) echo 'checked'; ?> name="side_data[<?php echo $id; ?>][inc_output_overlay]"><?php echo __('Include Overlay in output', 'product-designer'); ?></label><br>
-                                <label><input type="checkbox" value="1" <?php if($inc_preview_overlay==1) echo 'checked'; ?> name="side_data[<?php echo $id; ?>][inc_preview_overlay]"><?php echo __('Include Overlay in preview', 'product-designer'); ?></label><br>
-                                <label><input type="checkbox" value="1" <?php if($overlay_fit_canvas_size==1) echo 'checked'; ?> name="side_data[<?php echo $id; ?>][overlay_fit_canvas_size]"><?php echo __('Fit with canvas size', 'product-designer'); ?></label>
+                                <input type="hidden" placeholder="" name="side_data[<?php echo esc_attr($id); ?>][overlay]" value="<?php echo esc_url_raw($overlay); ?>" />
+                                <img class="upload_side preview" src="<?php if (!empty($overlay)) echo esc_url_raw($overlay);
+                                                                        else echo esc_url_raw($previw_overlay); ?>">
+                                <div data-preview="<?php echo esc_url_raw($previw_overlay); ?>" class="side-part-remove button">Remove</div><br>
+                                <label><input type="checkbox" value="1" <?php if ($inc_output_overlay == 1) echo 'checked'; ?> name="side_data[<?php echo esc_attr($id); ?>][inc_output_overlay]"><?php echo __('Include Overlay in output', 'product-designer'); ?></label><br>
+                                <label><input type="checkbox" value="1" <?php if ($inc_preview_overlay == 1) echo 'checked'; ?> name="side_data[<?php echo esc_attr($id); ?>][inc_preview_overlay]"><?php echo __('Include Overlay in preview', 'product-designer'); ?></label><br>
+                                <label><input type="checkbox" value="1" <?php if ($overlay_fit_canvas_size == 1) echo 'checked'; ?> name="side_data[<?php echo esc_attr($id); ?>][overlay_fit_canvas_size]"><?php echo __('Fit with canvas size', 'product-designer'); ?></label>
 
 
 
@@ -274,12 +279,11 @@ function product_designer_template_metabox_content_product_sides( $post_id){
                         </div>
 
 
-                        <?php
+                    <?php
 
 
                     }
-                }
-                else{
+                } else {
 
                     $id = time();
                     $name = '';
@@ -303,23 +307,25 @@ function product_designer_template_metabox_content_product_sides( $post_id){
 
                         <div class="inline side-name">
                             <div class=""><?php echo __('Name', 'product-designer'); ?></div>
-                            <input placeholder="<?php echo __('Name', 'product-designer'); ?>" type="text" name="side_data[<?php echo $id; ?>][name]" value="<?php echo $name; ?>" />
+                            <input placeholder="<?php echo __('Name', 'product-designer'); ?>" type="text" name="side_data[<?php echo esc_attr($id); ?>][name]" value="<?php echo esc_attr($name); ?>" />
                         </div>
                         <div class="inline side-icon">
                             <div class=""><?php echo __('Icon', 'product-designer'); ?></div>
-                            <input type="hidden" placeholder="" name="side_data[<?php echo $id; ?>][icon]" value="<?php echo $icon; ?>" />
-                            <img class="upload_side preview"  src="<?php if(!empty($icon)) echo $icon; else echo $previw_icon; ?>">
-                            <div data-preview="<?php echo $previw_icon; ?>" class="side-part-remove button"><?php echo __('Remove', 'product-designer'); ?></div>
+                            <input type="hidden" placeholder="" name="side_data[<?php echo esc_attr($id); ?>][icon]" value="<?php echo $icon; ?>" />
+                            <img class="upload_side preview" src="<?php if (!empty($icon)) echo $icon;
+                                                                    else echo wp_kses_post($previw_icon); ?>">
+                            <div data-preview="<?php echo wp_kses_post($previw_icon); ?>" class="side-part-remove button"><?php echo __('Remove', 'product-designer'); ?></div>
                         </div>
 
                         <div class="inline side-bg-inc">
                             <div class=""><?php echo __('Background', 'product-designer'); ?></div>
-                            <input type="hidden" placeholder="" name="side_data[<?php echo $id; ?>][background]" value="<?php echo $background; ?>" />
-                            <img class="upload_side preview"  src="<?php if(!empty($background)) echo $background; else echo $previw_background; ?>">
-                            <div data-preview="<?php echo $previw_background; ?>" class="side-part-remove button"><?php echo __('Remove', 'product-designer'); ?></div><br>
-                            <label><input type="checkbox" value="1" <?php if($inc_output_background==1) echo 'checked'; ?> name="side_data[<?php echo $id; ?>][inc_output_background]"><?php echo __('Include background in output', 'product-designer'); ?></label><br>
-                            <label><input type="checkbox" value="1" <?php if($inc_preview_background==1) echo 'checked'; ?> name="side_data[<?php echo $id; ?>][inc_preview_background]"><?php echo __('Include background in preview', 'product-designer'); ?></label><br>
-                            <label><input type="checkbox" value="1" <?php if($background_fit_canvas_size==1) echo 'checked'; ?> name="side_data[<?php echo $id; ?>][background_fit_canvas_size]"><?php echo __('Fit with canvas size', 'product-designer'); ?></label>
+                            <input type="hidden" placeholder="" name="side_data[<?php echo esc_attr($id); ?>][background]" value="<?php echo esc_url_raw($background); ?>" />
+                            <img class="upload_side preview" src="<?php if (!empty($background)) echo $background;
+                                                                    else echo esc_url_raw($previw_background); ?>">
+                            <div data-preview="<?php echo esc_url_raw($previw_background); ?>" class="side-part-remove button"><?php echo __('Remove', 'product-designer'); ?></div><br>
+                            <label><input type="checkbox" value="1" <?php if ($inc_output_background == 1) echo 'checked'; ?> name="side_data[<?php echo esc_attr($id); ?>][inc_output_background]"><?php echo __('Include background in output', 'product-designer'); ?></label><br>
+                            <label><input type="checkbox" value="1" <?php if ($inc_preview_background == 1) echo 'checked'; ?> name="side_data[<?php echo esc_attr($id); ?>][inc_preview_background]"><?php echo __('Include background in preview', 'product-designer'); ?></label><br>
+                            <label><input type="checkbox" value="1" <?php if ($background_fit_canvas_size == 1) echo 'checked'; ?> name="side_data[<?php echo esc_attr($id); ?>][background_fit_canvas_size]"><?php echo __('Fit with canvas size', 'product-designer'); ?></label>
 
 
 
@@ -329,12 +335,13 @@ function product_designer_template_metabox_content_product_sides( $post_id){
 
                         <div class="inline side-bg-not-inc">
                             <div class="">Overlay</div>
-                            <input type="hidden" placeholder="" name="side_data[<?php echo $id; ?>][overlay]" value="<?php echo $overlay; ?>" />
-                            <img class="upload_side preview"  src="<?php if(!empty($overlay)) echo $overlay; else echo $previw_overlay; ?>">
-                            <div data-preview="<?php echo $previw_overlay; ?>" class="side-part-remove button"><?php echo __('Remove', 'product-designer'); ?></div><br>
-                            <label><input type="checkbox" value="1" <?php if($inc_output_overlay==1) echo 'checked'; ?> name="side_data[<?php echo $id; ?>][inc_output_overlay]">Include Overlay in output</label><br>
-                            <label><input type="checkbox" value="1" <?php if($inc_preview_overlay==1) echo 'checked'; ?> name="side_data[<?php echo $id; ?>][inc_preview_overlay]">Include Overlay in preview</label><br>
-                            <label><input type="checkbox" value="1" <?php if($overlay_fit_canvas_size==1) echo 'checked'; ?> name="side_data[<?php echo $id; ?>][overlay_fit_canvas_size]">Fit with canvas size</label>
+                            <input type="hidden" placeholder="" name="side_data[<?php echo esc_attr($id); ?>][overlay]" value="<?php echo esc_attr($overlay); ?>" />
+                            <img class="upload_side preview" src="<?php if (!empty($overlay)) echo $overlay;
+                                                                    else echo esc_url_raw($previw_overlay); ?>">
+                            <div data-preview="<?php echo esc_url_raw($previw_overlay); ?>" class="side-part-remove button"><?php echo __('Remove', 'product-designer'); ?></div><br>
+                            <label><input type="checkbox" value="1" <?php if ($inc_output_overlay == 1) echo 'checked'; ?> name="side_data[<?php echo esc_attr($id); ?>][inc_output_overlay]">Include Overlay in output</label><br>
+                            <label><input type="checkbox" value="1" <?php if ($inc_preview_overlay == 1) echo 'checked'; ?> name="side_data[<?php echo esc_attr($id); ?>][inc_preview_overlay]">Include Overlay in preview</label><br>
+                            <label><input type="checkbox" value="1" <?php if ($overlay_fit_canvas_size == 1) echo 'checked'; ?> name="side_data[<?php echo esc_attr($id); ?>][overlay_fit_canvas_size]">Fit with canvas size</label>
 
 
 
@@ -343,7 +350,7 @@ function product_designer_template_metabox_content_product_sides( $post_id){
 
 
                     </div>
-                    <?php
+                <?php
 
                 }
 
@@ -361,12 +368,11 @@ function product_designer_template_metabox_content_product_sides( $post_id){
         </div>
 
         <script>
-            jQuery(document).ready(function($)
-            {
+            jQuery(document).ready(function($) {
 
-                $(document).on('click','.add_side',function(){
+                $(document).on('click', '.add_side', function() {
 
-                    now = 'side_id_'+$.now();
+                    now = 'side_id_' + $.now();
 
 
                     html = '<div class="side">\n' +
@@ -376,31 +382,31 @@ function product_designer_template_metabox_content_product_sides( $post_id){
                         '</div>\n' +
                         '<div class="inline side-name">\n' +
                         '<div class=""></div>\n' +
-                        '<input placeholder="Name" name="side_data['+now+'][name]" value="" type="text">\n' +
+                        '<input placeholder="Name" name="side_data[' + now + '][name]" value="" type="text">\n' +
                         '</div>\n' +
                         '<div class="inline side-icon">\n' +
                         '<div class="">Icon</div>\n' +
-                        '<input placeholder="" name="side_data['+now+'][icon]" value="" type="hidden">\n' +
-                        '<img class="upload_side preview" src="<?php echo $previw_icon; ?>">\n' +
+                        '<input placeholder="" name="side_data[' + now + '][icon]" value="" type="hidden">\n' +
+                        '<img class="upload_side preview" src="<?php echo esc_url_raw($previw_icon); ?>">\n' +
                         '<div data-preview="" class="side-part-remove button">Remove</div>\n' +
                         '</div>\n' +
                         '<div class="inline side-bg-inc">\n' +
                         '<div class="">Background</div>\n' +
-                        '<input placeholder="" name="side_data['+now+'][background]" value="" type="hidden">\n' +
-                        '<img class="upload_side preview" src="<?php echo $previw_background; ?>">\n' +
+                        '<input placeholder="" name="side_data[' + now + '][background]" value="" type="hidden">\n' +
+                        '<img class="upload_side preview" src="<?php echo esc_url_raw($previw_background); ?>">\n' +
                         '<div data-preview="" class="side-part-remove button">Remove</div><br>\n' +
-                        '<label><input value="1" checked="" name="side_data['+now+'][inc_output_background]" type="checkbox">Include background in output</label><br>\n' +
-                        '<label><input value="1" checked="" name="side_data['+now+'][inc_preview_background]" type="checkbox">Include background in preview</label><br>\n' +
-                        '<label><input value="1" checked="" name="side_data['+now+'][background_fit_canvas_size]" type="checkbox">Fit with canvas size</label>\n' +
+                        '<label><input value="1" checked="" name="side_data[' + now + '][inc_output_background]" type="checkbox">Include background in output</label><br>\n' +
+                        '<label><input value="1" checked="" name="side_data[' + now + '][inc_preview_background]" type="checkbox">Include background in preview</label><br>\n' +
+                        '<label><input value="1" checked="" name="side_data[' + now + '][background_fit_canvas_size]" type="checkbox">Fit with canvas size</label>\n' +
                         '</div>\n' +
                         '<div class="inline side-bg-not-inc">\n' +
                         '<div class="">Overlay</div>\n' +
-                        '<input placeholder="" name="side_data['+now+'][overlay]" value="" type="hidden">\n' +
-                        '<img class="upload_side preview" src="<?php echo $previw_overlay; ?>">\n' +
+                        '<input placeholder="" name="side_data[' + now + '][overlay]" value="" type="hidden">\n' +
+                        '<img class="upload_side preview" src="<?php echo esc_url_raw($previw_overlay); ?>">\n' +
                         '<div data-preview="" class="side-part-remove button">Remove</div><br>\n' +
-                        '<label><input value="1" checked="" name="side_data['+now+'][inc_output_overlay]" type="checkbox">Include Overlay in output</label><br>\n' +
-                        '<label><input value="1" checked="" name="side_data['+now+'][inc_preview_overlay]" type="checkbox">Include Overlay in preview</label><br>\n' +
-                        '<label><input value="1" checked="" name="side_data['+now+'][overlay_fit_canvas_size]" type="checkbox">Fit with canvas size</label>\n' +
+                        '<label><input value="1" checked="" name="side_data[' + now + '][inc_output_overlay]" type="checkbox">Include Overlay in output</label><br>\n' +
+                        '<label><input value="1" checked="" name="side_data[' + now + '][inc_preview_overlay]" type="checkbox">Include Overlay in preview</label><br>\n' +
+                        '<label><input value="1" checked="" name="side_data[' + now + '][overlay_fit_canvas_size]" type="checkbox">Fit with canvas size</label>\n' +
                         '</div>\n' +
                         '</div>';
 
@@ -430,12 +436,12 @@ function product_designer_template_metabox_content_product_sides( $post_id){
         $html = ob_get_clean();
 
         $args = array(
-            'id'		=> 'side_data',
-            'parent'		=> 'canvas',
-            'title'		=> __('Product sides','post-grid'),
-            'details'	=> __('Set product sides.','post-grid'),
-            'type'		=> 'custom_html',
-            'html'		=> $html,
+            'id'        => 'side_data',
+            'parent'        => 'canvas',
+            'title'        => __('Product sides', 'post-grid'),
+            'details'    => __('Set product sides.', 'post-grid'),
+            'type'        => 'custom_html',
+            'html'        => $html,
         );
 
         $settings_tabs_field->generate_field($args, $post_id);
@@ -449,7 +455,7 @@ function product_designer_template_metabox_content_product_sides( $post_id){
 
 
 
-    <?php
+<?php
 
 }
 
@@ -457,20 +463,17 @@ function product_designer_template_metabox_content_product_sides( $post_id){
 
 
 
-add_action('product_designer_template_metabox_save','product_designer_template_metabox_save');
+add_action('product_designer_template_metabox_save', 'product_designer_template_metabox_save');
 
-function product_designer_template_metabox_save($job_id){
+function product_designer_template_metabox_save($job_id)
+{
 
     $canvas = isset($_POST['canvas']) ? product_designer_recursive_sanitize_arr($_POST['canvas']) : '';
     update_post_meta($job_id, 'canvas', $canvas);
 
-    $side_data= isset($_POST['side_data']) ? product_designer_recursive_sanitize_arr($_POST['side_data']) : '';
+    $side_data = isset($_POST['side_data']) ? product_designer_recursive_sanitize_arr($_POST['side_data']) : '';
     update_post_meta($job_id, 'side_data', $side_data);
 
     $templates = isset($_POST['templates']) ? product_designer_recursive_sanitize_arr($_POST['templates']) : '';
     update_post_meta($job_id, 'templates', $templates);
-
 }
-
-
-
