@@ -415,19 +415,31 @@ function product_designer_ajax_delete_attach_id()
 
 
 	$attach_id = isset($_POST['attach_id']) ? sanitize_text_field($_POST['attach_id']) : '';
+	$nonce = isset($_POST['nonce']) ? sanitize_text_field($_POST['nonce']) : '';
 
-	if (false === wp_delete_attachment($attach_id)) {
+	$jsonReturn = [];
 
-		$status = 'failed';
-	} else {
-		$status = 'success';
+
+
+	if (wp_verify_nonce($nonce, 'product_designer_nonce')) {
+
+		if (current_user_can('delete_post', $attach_id)) {
+
+			if (false === wp_delete_attachment($attach_id)) {
+
+				$status = 'failed';
+			} else {
+				$status = 'success';
+			}
+
+			$jsonReturn = array(
+				'status'  =>  $status,
+
+			);
+		}
 	}
 
 
-	$jsonReturn = array(
-		'status'  =>  $status,
-
-	);
 
 	echo json_encode($jsonReturn);
 

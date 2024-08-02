@@ -676,7 +676,7 @@ jQuery(document).ready(function ($) {
             $.ajax({
                 type: 'POST',
                 url: product_designer_ajax.product_designer_ajaxurl,
-                data: { "action": "product_designer_ajax_delete_attach_id", "attach_id": attach_id },
+                data: { "action": "product_designer_ajax_delete_attach_id", "attach_id": attach_id, "nonce": product_designer_ajax.nonce },
                 success: function (response) {
 
                     var data = JSON.parse(response);

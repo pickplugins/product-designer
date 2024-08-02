@@ -3,8 +3,8 @@
 	Donate link: https://www.pickplugins.com/item/product-designer/?ref=wordpress.org
 	Tags: product designer, product customizer, custom product, woocommerce product designer
 	Requires at least: 3.8
-	Tested up to: 6.4
-	Stable tag: 1.0.33
+	Tested up to: 6.6
+	Stable tag: 1.0.34
 	License: GPLv2 or later
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -124,6 +124,8 @@ Before starting you need to add some clip art via custom post "Clip Art" with th
 == Changelog ==
 
 
+	= 1.0.34 =
+    * 2024-08-02 - fix - security issue fixed
 
 	= 1.0.33 =
     * 2024-03-13 - remove - Removed unnecessary ajax function.

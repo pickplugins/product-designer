@@ -3,7 +3,7 @@
 Plugin Name: Product Designer
 Plugin URI: https://www.pickplugins.com/item/product-designer/?ref=dashboard
 Description: Awesome Product Designer for Woo-Commenrce.
-Version: 1.0.33
+Version: 1.0.34
 WC requires at least: 3.0.0
 WC tested up to: 5.1
 Author: PickPlugins
@@ -25,7 +25,7 @@ class ProductDesigner
         define('product_designer_plugin_url', plugins_url('/', __FILE__));
         define('product_designer_plugin_dir', plugin_dir_path(__FILE__));
         define('product_designer_plugin_name', 'Product Designer');
-        define('product_designer_plugin_version', '1.0.33');
+        define('product_designer_plugin_version', '1.0.34');
 
         require_once(product_designer_plugin_dir . 'includes/class-settings-tabs.php');
         require_once(product_designer_plugin_dir . 'includes/class-request-reviews.php');
@@ -149,6 +149,11 @@ class ProductDesigner
 
         wp_register_script('product_designer_js', plugins_url('/assets/front/js/product-designer.js', __FILE__), array('jquery'));
         wp_localize_script('product_designer_js', 'product_designer_ajax', array('product_designer_ajaxurl' => admin_url('admin-ajax.php')));
+
+
+        wp_localize_script('product_designer_js', 'product_designer_ajax', array('product_designer_ajaxurl' => admin_url('admin-ajax.php'), 'nonce' => wp_create_nonce('product_designer_nonce')));
+
+
         wp_register_script('fabric.curvedText', plugins_url('/assets/front/js/fabric.curvedText.js', __FILE__), array('jquery'));
 
         wp_register_style('font-awesome-4', product_designer_plugin_url . 'assets/global/css/font-awesome-4.css');
