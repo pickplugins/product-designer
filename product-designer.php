@@ -3,9 +3,9 @@
 Plugin Name: Product Designer
 Plugin URI: https://www.pickplugins.com/item/product-designer/?ref=dashboard
 Description: Awesome Product Designer for Woo-Commenrce.
-Version: 1.0.34
+Version: 1.0.35
 WC requires at least: 3.0.0
-WC tested up to: 5.1
+WC tested up to: 9.1
 Author: PickPlugins
 Author URI: http://pickplugins.com
 Text Domain: product-designer
@@ -25,7 +25,7 @@ class ProductDesigner
         define('product_designer_plugin_url', plugins_url('/', __FILE__));
         define('product_designer_plugin_dir', plugin_dir_path(__FILE__));
         define('product_designer_plugin_name', 'Product Designer');
-        define('product_designer_plugin_version', '1.0.34');
+        define('product_designer_plugin_version', '1.0.35');
 
         require_once(product_designer_plugin_dir . 'includes/class-settings-tabs.php');
         require_once(product_designer_plugin_dir . 'includes/class-request-reviews.php');
@@ -54,6 +54,7 @@ class ProductDesigner
         add_action('admin_enqueue_scripts', array($this, '_admin_scripts'));
         add_action('admin_enqueue_scripts', 'wp_enqueue_media');
         add_action('plugins_loaded', array($this, 'load_textdomain'));
+        add_action('before_woocommerce_init', array($this, 'high_performance_order_storage'));
 
         add_filter('widget_text', 'do_shortcode');
 
@@ -67,6 +68,13 @@ class ProductDesigner
         );
 
         $pickplugins_request_reviews = new pickplugins_request_reviews($args);
+    }
+
+    function high_performance_order_storage()
+    {
+        if (class_exists(\Automattic\WooCommerce\Utilities\FeaturesUtil::class)) {
+            \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility('custom_order_tables', __FILE__, true);
+        }
     }
 
     public function load_textdomain()

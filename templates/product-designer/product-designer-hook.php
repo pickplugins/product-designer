@@ -1115,7 +1115,7 @@ function product_designer_tools_product_info($atts)
 ?>
 
     <div class="product-info accordions pd-panel-section pd-guide-9">
-        <div class="panel-section-title"><?php echo sprintf(__('%s Product info', 'product-designer'), esc_html($cart)); ?></div>
+        <div class="panel-section-title"><?php echo sprintf(__('%s Product info', 'product-designer'), wp_kses_post($cart)); ?></div>
         <div class="pd-panel-section-inner">
             <form class="cart" enctype="multipart/form-data" method="post" action="#">
                 <input type="hidden" value="<?php echo esc_attr($product_id); ?>" name="add-to-cart">
@@ -1134,7 +1134,7 @@ function product_designer_tools_product_info($atts)
                 <div class="setting-field half">
                     <div class="field-label"><?php echo __('You are editing', 'product-designer'); ?></div>
                     <div class="field-input">
-                        <strong><?php echo esc_html($product_title); ?></strong>
+                        <strong><?php echo wp_kses_post($product_title); ?></strong>
                     </div>
                 </div>
 
@@ -1142,14 +1142,14 @@ function product_designer_tools_product_info($atts)
                 <div class="setting-field half">
                     <div class="field-label"><?php echo __('Base price', 'product-designer'); ?></div>
                     <div class="field-input">
-                        <?php echo esc_html($display_price); ?>
+                        <?php echo wp_kses_post($display_price); ?>
                     </div>
                 </div>
 
                 <div class="setting-field half assets-price-wrap">
                     <div class="field-label"><?php echo __('Assets price', 'product-designer'); ?></div>
                     <div class="field-input">
-                        <div class="" id="assets-price"><?php echo esc_html($currency_symbol); ?><span>0.00</span></div>
+                        <div class="" id="assets-price"><?php echo wp_kses_post($currency_symbol); ?><span>0.00</span></div>
                         <input class="" type="hidden" value="" id="assets-price-val" name="assets_price">
                     </div>
                 </div>
@@ -1352,7 +1352,7 @@ function product_designer_scripts($atts)
     $product_designer_editor['preview_file_format']  = isset($canvas['preview']['file_format']) ? $canvas['preview']['file_format'] : 'png';
 
 
-    $side_data_ids = array_keys($side_data);
+    $side_data_ids = !empty($side_data) ? array_keys($side_data) : [];
     $current_side_id = isset($side_data_ids[0]) ? $side_data_ids[0] : '';
 
     $product_designer_editor['pd_template_id']  = $pd_template_id;

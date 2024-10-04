@@ -4,7 +4,7 @@
 	Tags: product designer, product customizer, custom product, woocommerce product designer
 	Requires at least: 3.8
 	Tested up to: 6.6
-	Stable tag: 1.0.34
+	Stable tag: 1.0.35
 	License: GPLv2 or later
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -123,6 +123,8 @@ Before starting you need to add some clip art via custom post "Clip Art" with th
 
 == Changelog ==
 
+	= 1.0.35 =
+    * 2024-10-04 - fix - Only admin can access to shapes and clipart post types.
 
 	= 1.0.34 =
     * 2024-08-02 - fix - security issue fixed

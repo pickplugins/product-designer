@@ -30,7 +30,7 @@ class class_product_designer_shortcodes
         $product_id = isset($atts['product_id']) ? sanitize_text_field($atts['product_id']) : '';
         $product_id = isset($_GET['product_id']) ? sanitize_text_field($_GET['product_id']) : $product_id;
 
-
+        ob_start();
 
         if (empty($product_id)) {
             echo __('Product is not selected. this is probably issue with site permalink settings, please select "Post name" on permalink settings', 'product-designer');
@@ -96,6 +96,8 @@ class class_product_designer_shortcodes
         //        $is_variable = $product_data->is_type('variable');
         $product_type = $product_data->get_type();
 
+
+
         if ($product_type == 'variable') :
 
             $variation_id = isset($_GET['variation_id']) ? sanitize_text_field($_GET['variation_id']) : '';
@@ -148,6 +150,10 @@ class class_product_designer_shortcodes
             $atts['base_price'] = $product_base_price;
             $atts['display_price'] = $product_display_price;
 
+        else:
+
+            echo __('You can\'t edit this product.', 'product-designer');
+            return;
 
         endif;
 
@@ -315,7 +321,7 @@ class class_product_designer_shortcodes
         $editor_class = apply_filters('product_designer_editor_class', 'product-designer');
 
 
-        ob_start();
+
 
 ?>
         <div class="<?php echo $editor_class; ?>">

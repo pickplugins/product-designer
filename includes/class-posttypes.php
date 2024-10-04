@@ -2,91 +2,123 @@
 
 
 
-if ( ! defined('ABSPATH')) exit;  // if direct access 	
+if (! defined('ABSPATH')) exit;  // if direct access 	
 
 
-class class_product_designer_posttypes  {
-	
-	
-    public function __construct(){
+class class_product_designer_posttypes
+{
 
-        add_filter( 'display_post_states', array( $this, '_post_states' ), 10, 2 );
 
-	    add_action('init', array( $this, 'posttype_pd_template' ));
+    public function __construct()
+    {
+
+        add_filter('display_post_states', array($this, '_post_states'), 10, 2);
+
+        add_action('init', array($this, 'posttype_pd_template'));
         //add_action('init', array( $this, 'posttype_pd_pre_template' ));
 
-		add_action('init', array( $this, 'posttype_clipart' ));
-		add_action( 'init', array( $this, 'clipart_taxonomies' ), 0 );
+        add_action('init', array($this, 'posttype_clipart'));
+        add_action('init', array($this, 'clipart_taxonomies'), 0);
 
-        add_action('init', array( $this, 'posttype_shape' ));
-        add_action( 'init', array( $this, 'shape_taxonomies' ), 0 );
+        add_action('init', array($this, 'posttype_shape'));
+        add_action('init', array($this, 'shape_taxonomies'), 0);
+        add_action('admin_init', array($this, 'add_capability'));
 
 
-		//add_action('init', array( $this, 'posttype_pd_order' ), 100);
-		
+        //add_action('init', array( $this, 'posttype_pd_order' ), 100);
+
     }
 
-    public function _post_states( $post_states, $post ){
+    public function add_capability()
+    {
+        $role = get_role('administrator');
 
-        if($post->post_type != 'product') return $post_states;
+        $role->add_cap('publish_shapes');
+        $role->add_cap('edit_shapes');
+        $role->add_cap('edit_others_shapes');
+        $role->add_cap('read_private_shapes');
+        $role->add_cap('edit_shape');
+        $role->add_cap('read_shape');
+        $role->add_cap('delete_shape', false);
 
 
-        $is_customizable = product_designer_is_customizable($post->ID );
+        $role->add_cap('publish_cliparts');
+        $role->add_cap('edit_cliparts');
+        $role->add_cap('edit_others_cliparts');
+        $role->add_cap('read_private_cliparts');
+        $role->add_cap('edit_clipart');
+        $role->add_cap('read_clipart');
+        $role->add_cap('delete_clipart', false);
+    }
+
+
+
+
+
+
+
+    public function _post_states($post_states, $post)
+    {
+
+        if ($post->post_type != 'product') return $post_states;
+
+
+        $is_customizable = product_designer_is_customizable($post->ID);
 
         //var_dump($is_customizable);
 
-        if (   $is_customizable ) {
+        if ($is_customizable) {
 
-            $post_states['pd_is_customizable'] = __( '<span title="Customizable Product" class="dashicons dashicons-admin-appearance"></span>', 'wishlist' );
+            $post_states['pd_is_customizable'] = __('<span title="Customizable Product" class="dashicons dashicons-admin-appearance"></span>', 'wishlist');
         }
 
         return $post_states;
     }
 
 
-	public function posttype_pd_template(){
+    public function posttype_pd_template()
+    {
 
-		$labels = array(
-			'name' => _x('Product Designer', 'product-designer'),
-			'singular_name' => _x('Template', 'product-designer'),
-			'add_new' => _x('Add Template', 'product-designer'),
-			'add_new_item' => __('Add Template', 'product-designer'),
-			'edit_item' => __('Edit Template', 'product-designer'),
-			'new_item' => __('New Template', 'product-designer'),
-			'view_item' => __('View Template', 'product-designer'),
-			'search_items' => __('Search Template', 'product-designer'),
-			'not_found' =>  __('Nothing found', 'product-designer'),
-			'not_found_in_trash' => __('Nothing found in Trash', 'product-designer'),
-			'parent_item_colon' => ''
-		);
+        $labels = array(
+            'name' => _x('Product Designer', 'product-designer'),
+            'singular_name' => _x('Template', 'product-designer'),
+            'add_new' => _x('Add Template', 'product-designer'),
+            'add_new_item' => __('Add Template', 'product-designer'),
+            'edit_item' => __('Edit Template', 'product-designer'),
+            'new_item' => __('New Template', 'product-designer'),
+            'view_item' => __('View Template', 'product-designer'),
+            'search_items' => __('Search Template', 'product-designer'),
+            'not_found' =>  __('Nothing found', 'product-designer'),
+            'not_found_in_trash' => __('Nothing found in Trash', 'product-designer'),
+            'parent_item_colon' => ''
+        );
 
-		$args = array(
-			'labels' => $labels,
-			'public' => true,
-			'publicly_queryable' => true,
-			'show_ui' => true,
-			'query_var' => true,
-			'menu_icon' => 'dashicons-nametag',
-			'rewrite' => true,
-			'capability_type' => 'post',
-			'hierarchical' => false,
+        $args = array(
+            'labels' => $labels,
+            'public' => true,
+            'publicly_queryable' => true,
+            'show_ui' => true,
+            'query_var' => true,
+            'menu_icon' => 'dashicons-nametag',
+            'rewrite' => true,
+            'capability_type' => 'post',
+            'hierarchical' => false,
             'show_in_nav_menus' => true,
 
             'menu_position' => null,
-			'supports' => array('title'),
-			//'show_in_menu' 	=> 'admin.php?page=product_designer',
+            'supports' => array('title'),
+            //'show_in_menu' 	=> 'admin.php?page=product_designer',
 
-		);
+        );
 
-		register_post_type( 'pd_template' , $args );
-
-
-	}
+        register_post_type('pd_template', $args);
+    }
 
 
 
 
-    public function posttype_pd_pre_template(){
+    public function posttype_pd_pre_template()
+    {
 
         $labels = array(
             'name' => _x('Saved Templates', 'product-designer'),
@@ -116,15 +148,13 @@ class class_product_designer_posttypes  {
             'supports' => array('title'),
             //'show_in_menu' 	=> 'pd_template',
             //'show_in_menu' 	=> 'product_designer',
-            'show_in_menu' 	=> 'edit.php?post_type=pd_template',
+            'show_in_menu'     => 'edit.php?post_type=pd_template',
 
 
 
         );
 
-        register_post_type( 'pd_pre_template' , $args );
-
-
+        register_post_type('pd_pre_template', $args);
     }
 
 
@@ -135,7 +165,8 @@ class class_product_designer_posttypes  {
 
 
 
-    public function posttype_clipart(){
+    public function posttype_clipart()
+    {
 
         $labels = array(
             'name' => _x('Clip Art', 'product-designer'),
@@ -149,66 +180,72 @@ class class_product_designer_posttypes  {
             'not_found' =>  __('Nothing found', 'product-designer'),
             'not_found_in_trash' => __('Nothing found in Trash', 'product-designer'),
             'parent_item_colon' => ''
-    );
+        );
 
         $args = array(
-                'labels' => $labels,
-                'public' => true,
-                'publicly_queryable' => true,
-                'show_ui' => true,
-                'query_var' => true,
-                'menu_icon' => 'dashicons-nametag',
-                'rewrite' => true,
-                'capability_type' => 'post',
-                'hierarchical' => false,
-                'menu_position' => null,
-                'supports' => array('title'),
-            'show_in_menu' 	=> 'edit.php?post_type=pd_template',
+            'labels' => $labels,
+            'public' => true,
+            'publicly_queryable' => true,
+            'show_ui' => true,
+            'query_var' => true,
+            'menu_icon' => 'dashicons-nametag',
+            'rewrite' => true,
+            'capability_type' => 'post',
+            'capabilities' => array(
+                'publish_posts' => 'publish_cliparts',
+                'edit_posts' => 'edit_cliparts',
+                'edit_others_posts' => 'edit_others_cliparts',
+                'read_private_posts' => 'read_private_cliparts',
+                'edit_post' => 'edit_clipart',
+                'delete_post' => 'delete_clipart',
+                'read_post' => 'read_clipart',
+            ),
+            'hierarchical' => false,
+            'menu_position' => null,
+            'supports' => array('title'),
+            'show_in_menu'     => 'edit.php?post_type=pd_template',
 
 
         );
- 
-        register_post_type( 'clipart' , $args );
-			
-			
-			}
+
+        register_post_type('clipart', $args);
+    }
 
 
 
 
-	
-	    public function clipart_taxonomies(){
-			
-			
-				register_taxonomy('clipart_cat', 'clipart', array(
-						// Hierarchical taxonomy (like categories)
-						'hierarchical' => true,
-						'show_admin_column' => true,
-						// This array of options controls the labels displayed in the WordPress Admin UI
-						'labels' => array(
-								'name' => _x( 'Clip Art Categories', 'product-designer' ),
-								'singular_name' => _x( 'Clip Art Categories', 'product-designer' ),
-								'search_items' =>  __( 'Search Clip Art Categories', 'product-designer' ),
-								'all_items' => __( 'All Clip Art Categories', 'product-designer' ),
-								'parent_item' => __( 'Parent Clip Art Categories', 'product-designer' ),
-								'parent_item_colon' => __( 'Parent Clip Art Categories:', 'product-designer' ),
-								'edit_item' => __( 'Edit Clip Art Categories', 'product-designer' ),
-								'update_item' => __( 'Update Clip Art Categories', 'product-designer' ),
-								'add_new_item' => __( 'Add Clip Art Categories', 'product-designer' ),
-								'new_item_name' => __( 'New Clip Art Categories Name', 'product-designer' ),
-								'menu_name' => __( 'Clip Art Categories', 'product-designer' ),
-								
-						),
-						// Control the slugs used for this taxonomy
-						'rewrite' => array(
-								'slug' => 'clipart_cat', // This controls the base slug that will display before each term
-								'with_front' => false, // Don't display the category base before "/locations/"
-								'hierarchical' => true // This will allow URL's like "/locations/boston/cambridge/"
-						),
-				));
-			
-			
-			}
+
+    public function clipart_taxonomies()
+    {
+
+
+        register_taxonomy('clipart_cat', 'clipart', array(
+            // Hierarchical taxonomy (like categories)
+            'hierarchical' => true,
+            'show_admin_column' => true,
+            // This array of options controls the labels displayed in the WordPress Admin UI
+            'labels' => array(
+                'name' => _x('Clip Art Categories', 'product-designer'),
+                'singular_name' => _x('Clip Art Categories', 'product-designer'),
+                'search_items' =>  __('Search Clip Art Categories', 'product-designer'),
+                'all_items' => __('All Clip Art Categories', 'product-designer'),
+                'parent_item' => __('Parent Clip Art Categories', 'product-designer'),
+                'parent_item_colon' => __('Parent Clip Art Categories:', 'product-designer'),
+                'edit_item' => __('Edit Clip Art Categories', 'product-designer'),
+                'update_item' => __('Update Clip Art Categories', 'product-designer'),
+                'add_new_item' => __('Add Clip Art Categories', 'product-designer'),
+                'new_item_name' => __('New Clip Art Categories Name', 'product-designer'),
+                'menu_name' => __('Clip Art Categories', 'product-designer'),
+
+            ),
+            // Control the slugs used for this taxonomy
+            'rewrite' => array(
+                'slug' => 'clipart_cat', // This controls the base slug that will display before each term
+                'with_front' => false, // Don't display the category base before "/locations/"
+                'hierarchical' => true // This will allow URL's like "/locations/boston/cambridge/"
+            ),
+        ));
+    }
 
 
 
@@ -218,7 +255,8 @@ class class_product_designer_posttypes  {
 
 
 
-    public function posttype_shape(){
+    public function posttype_shape()
+    {
 
         $labels = array(
             'name' => _x('Shape', 'product-designer'),
@@ -243,24 +281,32 @@ class class_product_designer_posttypes  {
             'menu_icon' => 'dashicons-nametag',
             'rewrite' => true,
             'capability_type' => 'post',
+            'capabilities' => array(
+                'publish_posts' => 'publish_shapes',
+                'edit_posts' => 'edit_shapes',
+                'edit_others_posts' => 'edit_others_shapes',
+                'read_private_posts' => 'read_private_shapes',
+                'edit_post' => 'edit_shape',
+                'delete_post' => 'delete_shape',
+                'read_post' => 'read_shape',
+            ),
             'hierarchical' => false,
             'menu_position' => null,
             'supports' => array('title'),
-            'show_in_menu' 	=> 'edit.php?post_type=pd_template',
+            'show_in_menu'     => 'edit.php?post_type=pd_template',
 
 
         );
 
-        register_post_type( 'shape' , $args );
-
-
+        register_post_type('shape', $args);
     }
 
 
 
 
 
-    public function shape_taxonomies(){
+    public function shape_taxonomies()
+    {
 
 
         register_taxonomy('shape_cat', 'shape', array(
@@ -269,17 +315,17 @@ class class_product_designer_posttypes  {
             'show_admin_column' => true,
             // This array of options controls the labels displayed in the WordPress Admin UI
             'labels' => array(
-                'name' => _x( 'Shape Categories', 'product-designer' ),
-                'singular_name' => _x( 'Shape Categories', 'product-designer' ),
-                'search_items' =>  __( 'Search Shape Categories', 'product-designer' ),
-                'all_items' => __( 'All Shape Categories', 'product-designer' ),
-                'parent_item' => __( 'Parent Shape Categories', 'product-designer' ),
-                'parent_item_colon' => __( 'Parent Shape Categories:', 'product-designer' ),
-                'edit_item' => __( 'Edit Shape Categories', 'product-designer' ),
-                'update_item' => __( 'Update Shape Categories', 'product-designer' ),
-                'add_new_item' => __( 'Add Shape Categories', 'product-designer' ),
-                'new_item_name' => __( 'New Shape Categories Name', 'product-designer' ),
-                'menu_name' => __( 'Shape Categories' ),
+                'name' => _x('Shape Categories', 'product-designer'),
+                'singular_name' => _x('Shape Categories', 'product-designer'),
+                'search_items' =>  __('Search Shape Categories', 'product-designer'),
+                'all_items' => __('All Shape Categories', 'product-designer'),
+                'parent_item' => __('Parent Shape Categories', 'product-designer'),
+                'parent_item_colon' => __('Parent Shape Categories:', 'product-designer'),
+                'edit_item' => __('Edit Shape Categories', 'product-designer'),
+                'update_item' => __('Update Shape Categories', 'product-designer'),
+                'add_new_item' => __('Add Shape Categories', 'product-designer'),
+                'new_item_name' => __('New Shape Categories Name', 'product-designer'),
+                'menu_name' => __('Shape Categories'),
 
             ),
             // Control the slugs used for this taxonomy
@@ -289,8 +335,6 @@ class class_product_designer_posttypes  {
                 'hierarchical' => true // This will allow URL's like "/locations/boston/cambridge/"
             ),
         ));
-
-
     }
 
 
@@ -309,45 +353,43 @@ class class_product_designer_posttypes  {
 
 
 
-    public function posttype_pd_order(){
-			
-	        $labels = array(
-                'name' => _x('Order', 'product-designer'),
-                'singular_name' => _x('Order', 'product-designer'),
-                'add_new' => _x('Add Order', 'product-designer'),
-                'add_new_item' => __('Add Order', 'product-designer'),
-                'edit_item' => __('Edit Order', 'product-designer'),
-                'new_item' => __('New Order', 'product-designer'),
-                'view_item' => __('View Order', 'product-designer'),
-                'search_items' => __('Search Order', 'product-designer'),
-                'not_found' =>  __('Nothing found', 'product-designer'),
-                'not_found_in_trash' => __('Nothing found in Trash', 'product-designer'),
-                'parent_item_colon' => ''
+    public function posttype_pd_order()
+    {
+
+        $labels = array(
+            'name' => _x('Order', 'product-designer'),
+            'singular_name' => _x('Order', 'product-designer'),
+            'add_new' => _x('Add Order', 'product-designer'),
+            'add_new_item' => __('Add Order', 'product-designer'),
+            'edit_item' => __('Edit Order', 'product-designer'),
+            'new_item' => __('New Order', 'product-designer'),
+            'view_item' => __('View Order', 'product-designer'),
+            'search_items' => __('Search Order', 'product-designer'),
+            'not_found' =>  __('Nothing found', 'product-designer'),
+            'not_found_in_trash' => __('Nothing found in Trash', 'product-designer'),
+            'parent_item_colon' => ''
         );
 
         $args = array(
-                'labels' => $labels,
-                'public' => true,
-                'publicly_queryable' => true,
-                'show_ui' => true,
-                'query_var' => true,
-                'menu_icon' => 'dashicons-nametag',
-                'rewrite' => true,
-                'capability_type' => 'post',
-                'hierarchical' => false,
-                'menu_position' => null,
-				'show_in_menu' 	=> 'product_designer',	
-                'supports' => array('title','thumbnail','custom-fields'),
-				
+            'labels' => $labels,
+            'public' => true,
+            'publicly_queryable' => true,
+            'show_ui' => true,
+            'query_var' => true,
+            'menu_icon' => 'dashicons-nametag',
+            'rewrite' => true,
+            'capability_type' => 'post',
+            'hierarchical' => false,
+            'menu_position' => null,
+            'show_in_menu'     => 'product_designer',
+            'supports' => array('title', 'thumbnail', 'custom-fields'),
 
-          );
- 
-        register_post_type( 'pd_order' , $args );
-			
-			
-			}
+
+        );
+
+        register_post_type('pd_order', $args);
+    }
 }
 
 
 new class_product_designer_posttypes();
-

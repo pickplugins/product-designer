@@ -217,10 +217,12 @@ function product_designer_template_metabox_content_product_sides($post_id)
                         $inc_output_background = isset($side['inc_output_background']) ? $side['inc_output_background'] : '0';
                         $inc_preview_background = isset($side['inc_preview_background']) ? $side['inc_preview_background'] : '0';
                         $background_fit_canvas_size = isset($side['background_fit_canvas_size']) ? $side['background_fit_canvas_size'] : '0';
-                        $overlay = isset($side['overlay']) ? $side['overlay'] : array();
+                        $overlay = isset($side['overlay']) ? $side['overlay'] : '';
                         $inc_output_overlay = isset($side['inc_output_overlay']) ? $side['inc_output_overlay'] : '0';
                         $inc_preview_overlay = isset($side['inc_preview_overlay']) ? $side['inc_preview_overlay'] : '0';
                         $overlay_fit_canvas_size = isset($side['overlay_fit_canvas_size']) ? $side['overlay_fit_canvas_size'] : '0';
+
+                        //var_dump($overlay);
 
 
                 ?>
