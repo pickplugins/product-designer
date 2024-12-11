@@ -82,15 +82,12 @@ function product_designer_shape_metabox_save($job_id)
 
 function product_designer_custom_mime_types($mimes)
 {
+    if (current_user_can('manage_options')) {
+        // New allowed mime types.
+        $mimes['svg'] = 'image/svg+xml';
+        $mimes['svgz'] = 'image/svg+xml';
+    }
 
-    // New allowed mime types.
-    $mimes['svg'] = 'image/svg+xml';
-    $mimes['svgz'] = 'image/svg+xml';
-    //$mimes['doc'] = 'application/msword';
-    //    ["txt|asc|c|cc|h|srt"]=> "text/plain"
-
-    // Optional. Remove a mime type.
-    //unset( $mimes['exe'] );
 
     return $mimes;
 }
