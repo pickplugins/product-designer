@@ -123,6 +123,11 @@ Before starting you need to add some clip art via custom post "Clip Art" with th
 
 == Changelog ==
 
+
+
+	= 1.0.37 =
+    * 2024-12-12 - removed - SVG upload feature removed
+
 	= 1.0.36 =
     * 2024-12-11 - fixed - security issue fixed for SVG upload
 

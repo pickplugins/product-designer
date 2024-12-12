@@ -3,7 +3,7 @@
 Plugin Name: Product Designer
 Plugin URI: https://www.pickplugins.com/item/product-designer/?ref=dashboard
 Description: Awesome Product Designer for Woo-Commenrce.
-Version: 1.0.36
+Version: 1.0.37
 WC requires at least: 3.0.0
 WC tested up to: 9.1
 Author: PickPlugins
@@ -25,7 +25,7 @@ class ProductDesigner
         define('product_designer_plugin_url', plugins_url('/', __FILE__));
         define('product_designer_plugin_dir', plugin_dir_path(__FILE__));
         define('product_designer_plugin_name', 'Product Designer');
-        define('product_designer_plugin_version', '1.0.36');
+        define('product_designer_plugin_version', '1.0.37');
 
         require_once(product_designer_plugin_dir . 'includes/class-settings-tabs.php');
         require_once(product_designer_plugin_dir . 'includes/class-request-reviews.php');

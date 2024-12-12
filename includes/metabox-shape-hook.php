@@ -78,17 +78,3 @@ function product_designer_shape_metabox_save($job_id)
     $shape_thumb_id = isset($_POST['shape_thumb_id']) ? sanitize_text_field($_POST['shape_thumb_id']) : '';
     update_post_meta($job_id, 'shape_thumb_id', $shape_thumb_id);
 }
-
-
-function product_designer_custom_mime_types($mimes)
-{
-    if (current_user_can('manage_options')) {
-        // New allowed mime types.
-        $mimes['svg'] = 'image/svg+xml';
-        $mimes['svgz'] = 'image/svg+xml';
-    }
-
-
-    return $mimes;
-}
-add_filter('upload_mimes', 'product_designer_custom_mime_types');
