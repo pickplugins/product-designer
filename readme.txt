@@ -3,8 +3,8 @@
 	Donate link: https://www.pickplugins.com/item/product-designer/?ref=wordpress.org
 	Tags: product designer, product customizer, custom product, woocommerce product designer
 	Requires at least: 3.8
-	Tested up to: 6.6
-	Stable tag: 1.0.36
+	Tested up to: 6.7
+	Stable tag: 1.0.37
 	License: GPLv2 or later
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
